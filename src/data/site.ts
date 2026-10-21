@@ -1,24 +1,20 @@
 /**
- * Datos centrales del sitio. Cambia aquí el nombre, la URL del sistema
- * externo y los datos de contacto; el resto de la página los consume.
+ * Datos centrales del sitio. Cambia aquí el nombre y los datos de contacto;
+ * el resto de las páginas los consume.
+ *
+ * Nota: la Corte organiza y administra arbitrajes; no resuelve las
+ * controversias. Esa distinción debe mantenerse en todos los textos.
  */
 export const SITE = {
-  name: "Corte Superior de Arbitraje de Huancayo",
+  name: "Corte Superior de Arbitraje",
   shortName: "Corte de Arbitraje",
   legalName:
     "Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín",
   description:
-    "Administramos arbitrajes y juntas de prevención y resolución de disputas con independencia, transparencia y excelencia técnica en la región Junín.",
+    "Organizamos y administramos arbitrajes bajo un reglamento único, con plazos definidos, tarifas públicas y un registro de árbitros acreditados.",
   url: "https://arbitraje.camarahuancayo.com.pe",
   mainSiteUrl: "https://camarahuancayo.com.pe",
   mainSiteLabel: "Cámara de Comercio de Huancayo",
-
-  /**
-   * TODO: reemplazar por la URL real del sistema de arbitraje.
-   * Se usa en el botón principal del header, del hero y del footer.
-   */
-  systemUrl: "https://sistema-arbitraje.example.com",
-  systemLabel: "Sistema de Arbitraje",
 
   contact: {
     address: "Av. Giráldez N° 634, Huancayo, Perú",
@@ -54,64 +50,93 @@ export const SITE = {
   ],
 } as const;
 
+/**
+ * Cifras normativas, no estadísticas históricas. Si la institución
+ * publica una Memoria Anual, reemplazar por los datos del periodo.
+ */
 export const STATS = [
-  { value: 25, suffix: "+", label: "Años de trayectoria institucional" },
-  { value: 120, suffix: "+", label: "Árbitros y adjudicadores acreditados" },
-  { value: 900, suffix: "+", label: "Controversias administradas" },
-  { value: 100, suffix: "%", label: "Confidencialidad garantizada" },
+  { value: 7, suffix: "", label: "Consejeros titulares (máximo)" },
+  { value: 6, suffix: "", label: "Comisiones especializadas" },
+  { value: 40, suffix: "", label: "Días para el laudo" },
+  { value: 3, suffix: "", label: "Años del período del Consejo" },
 ] as const;
 
 export const VALORES = [
   {
     title: "Independencia",
-    text: "La Corte actúa con autonomía de las partes, de los árbitros y de cualquier órgano de la Cámara.",
+    text: "La Corte actúa con autonomía frente a las partes y frente a cualquier poder público o privado.",
   },
   {
-    title: "Imparcialidad",
-    text: "Garantizamos igualdad de trato y ausencia de conflictos de interés en cada actuación.",
+    title: "Neutralidad y predictibilidad",
+    text: "Las decisiones administrativas se adoptan con criterios uniformes, públicos y verificables.",
   },
   {
     title: "Transparencia",
-    text: "Publicamos reglamentos, tarifas, nóminas y decisiones para un acceso pleno a la información.",
+    text: "Publicamos reglamentos, tarifas, plazos y criterios de designación de árbitros.",
+  },
+  {
+    title: "Confidencialidad",
+    text: "Las actuaciones y el laudo son reservados, salvo las excepciones legales para ejecutar o impugnar el laudo.",
   },
   {
     title: "Celeridad",
-    text: "Procesos administrados con plazos claros y seguimiento permanente de la Secretaría.",
+    text: "Plazos escritos y seguimiento permanente de la Secretaría, como estándar de gestión y no como promesa.",
   },
 ] as const;
 
 export const FUNCIONES = [
-  "Designar y confirmar árbitros, de oficio o a propuesta de las partes, conforme al reglamento vigente.",
-  "Resolver recusaciones y garantizar la independencia e idoneidad de los profesionales intervinientes.",
-  "Administrar el desarrollo del procedimiento arbitral y el flujo documentario de cada expediente.",
-  "Gestionar renuncias, remociones y devolución de honorarios con criterios uniformes y motivados.",
-  "Aprobar y actualizar anualmente las nóminas de árbitros y adjudicadores de la institución.",
-  "Supervisar el cumplimiento del Código de Ética y adoptar las medidas disciplinarias que correspondan.",
+  "Proponer al Consejo Directivo de la Cámara las modificaciones a los reglamentos.",
+  "Interpretar los alcances de los reglamentos y emitir directivas, notas prácticas y lineamientos.",
+  "Absolver consultas generales de los usuarios sobre la administración del arbitraje.",
+  "Resolver conflictos de competencia entre los órganos de la Corte.",
+  "Resolver en última instancia los asuntos administrativos decididos por las comisiones.",
+  "Nombrar al Secretario del Consejo, al Secretario General y a los secretarios arbitrales.",
+  "Aprobar el presupuesto y monitorear la marcha de los casos arbitrales.",
+  "Supervisar la capacitación de los árbitros y el cumplimiento del Código de Ética.",
 ] as const;
 
 export const PASOS_ARBITRAJE = [
   {
-    title: "Verifica la cláusula arbitral",
-    text: "Revisa que tu contrato contenga una cláusula que someta las controversias a la Corte Superior de Arbitraje de Huancayo.",
+    title: "Solicitud",
+    text: "El demandante presenta la solicitud, el contrato, el convenio arbitral y el comprobante de pago.",
   },
   {
-    title: "Presenta la solicitud",
-    text: "Ingresa al Sistema de Arbitraje y registra la solicitud con los datos de las partes y la documentación del contrato.",
+    title: "Admisión y notificación",
+    text: "La Secretaría califica la solicitud y notifica al demandado para que ejerza su defensa.",
   },
   {
-    title: "Pago de derechos",
-    text: "La Secretaría emite la liquidación de gastos administrativos y honorarios según la cuantía de la controversia.",
+    title: "Respuesta",
+    text: "El demandado responde, formula excepciones y designa árbitro en el plazo de cinco días.",
   },
   {
-    title: "Instalación del tribunal",
-    text: "Designado el árbitro único o el tribunal arbitral, se notifica la instalación y se fija el calendario procesal.",
+    title: "Constitución",
+    text: "Los árbitros aceptan el cargo; se confirma la designación y se nombra al presidente del tribunal.",
+  },
+  {
+    title: "Instalación",
+    text: "Se fijan las reglas procesales, el calendario y la entrega del expediente al tribunal.",
+  },
+  {
+    title: "Demanda y contestación",
+    text: "Se presentan los escritos principales, la reconvención y las pruebas, con veinte días por actuación.",
+  },
+  {
+    title: "Audiencias y cierre",
+    text: "Se fijan los puntos controvertidos, se actúa la prueba y se reciben las conclusiones.",
+  },
+  {
+    title: "Laudo",
+    text: "El tribunal delibera y notifica el laudo en cuarenta días, prorrogables por diez.",
   },
 ] as const;
 
 export const REQUISITOS = [
-  "Copia del contrato o documento que contiene la cláusula arbitral.",
-  "Identificación de las partes y de sus representantes legales.",
-  "Descripción clara de la controversia y de la pretensión.",
-  "Medios probatorios que se ofrecen y su ubicación.",
-  "Comprobante de pago de los derechos de administración.",
+  "Información de contacto de las partes y de sus representantes.",
+  "Descripción breve de la naturaleza y circunstancias de la controversia.",
+  "Declaración preliminar de las reclamaciones y estimación de su valor, de ser posible.",
+  "Contrato o acuerdo relevante y, en particular, el convenio arbitral.",
+  "Referencia al convenio cuando las reclamaciones se formulen bajo más de uno.",
+  "Designación del árbitro y sus datos, o propuesta sobre el número y la forma de designación.",
+  "Propuesta de sede, idioma y normas aplicables.",
+  "Comprobante de pago del derecho de presentación: S/ 800 (nacional) o US$ 425 (internacional).",
 ] as const;

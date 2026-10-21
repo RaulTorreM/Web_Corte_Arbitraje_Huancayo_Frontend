@@ -734,6 +734,7 @@ export default function ReclamacionesPage() {
       <CtaBand
         title="¿Tu consulta no es un reclamo?"
         subtitle="Para consultas sobre requisitos, expedientes o capacitaciones, usa el canal de contacto. Te orientaremos hacia el área correspondiente."
+        showPrimary={false}
         secondaryLabel="Ir a Contacto"
         secondaryTo="/contacto"
       />

@@ -2,7 +2,7 @@
 
 Sitio web institucional independiente de la **Corte Superior de Arbitraje de Huancayo**, publicado en `arbitraje.camarahuancayo.com.pe`.
 
-El proyecto es una SPA construida con Vite, React y TypeScript. En esta fase **no tiene backend ni autenticación**: todo el contenido proviene de datos mock tipados, los formularios validan y simulan el envío, y el botón **Sistema de Arbitraje** apunta a una URL externa pendiente de definir.
+El proyecto es una SPA construida con Vite, React y TypeScript. En esta fase **no tiene backend ni autenticación**: el contenido normativo está centralizado en datos tipados, las nóminas y registros son de demostración y los formularios validan y simulan el envío. La JPRD se presenta como servicio **en implementación** y sus documentos como **preliminares**.
 
 ---
 
@@ -55,7 +55,7 @@ src/
 ### Secciones publicadas
 
 - Inicio
-- Quiénes somos: presentación, consejo directivo, equipo y certificaciones
+- Quiénes somos: presentación, Consejo Superior, equipo y certificaciones
 - Arbitraje: presentación, costos, reglamentos, árbitros, cláusula, inicio y laudos
 - JPRD: presentación, reglamento, adjudicadores, aranceles, cláusula y decisiones
 - Documentos
@@ -67,19 +67,28 @@ src/
 
 ---
 
-## Datos que debes actualizar
+## Pendientes de validación institucional
 
-### 1. URL del Sistema de Arbitraje
+### 1. Documentos y PDFs
 
-En `src/data/site.ts`:
+Las URLs de documentos y registros usan `"#"` como marcador. La interfaz muestra **“Próximamente”** mientras no exista el archivo oficial. Cuando la institución entregue los PDF firmados, actualiza `url` en `src/data/documentos.ts` y en `src/data/registros.ts`.
 
-```ts
-systemUrl: "https://sistema-arbitraje.example.com",
-```
+No deben publicarse como definitivos:
 
-Reemplázalo por la URL real del sistema externo. Se usa en el header, el hero, la banda CTA y el footer.
+- el Código de Ética mientras conserve referencias a la Cámara de Lima;
+- el Reglamento mientras mantenga artículos duplicados o notas editoriales internas;
+- los rubros G, I, J y K del Anexo 1, hoy marcados **“En revisión”**;
+- los documentos, aranceles y cláusulas de la JPRD, hoy marcados **“Preliminar”**.
 
-### 2. Datos de contacto y redes
+### 2. JPRD
+
+La JPRD se anuncia en el Estatuto, pero no tiene reglamento ni aranceles aprobados. Las páginas `/jprd` muestran un aviso reutilizable (`PreliminaryNotice`) y no deben presentarse como servicio disponible.
+
+### 3. Libro de Reclamaciones
+
+La web mantiene un plazo de **15 días hábiles**. El paquete normativo propone 30 días calendario; el cambio requiere validación legal antes de publicarse.
+
+### 4. Datos de contacto y redes
 
 También en `src/data/site.ts`:
 
@@ -90,11 +99,11 @@ También en `src/data/site.ts`:
 
 Los datos actuales son referenciales y provienen temporalmente de la Cámara de Comercio de Huancayo.
 
-### 3. Contenido institucional
+### 5. Nóminas y registros
 
-Los archivos de `src/data/` concentran nóminas, directivos, documentos, tarifas, laudos, decisiones y eventos. Las URLs de documentos y registros usan `"#"` como marcador hasta contar con los PDF reales.
+Los archivos de `src/data/` concentran directivos, árbitros, adjudicadores, laudos, decisiones y eventos. Son datos de demostración: no corresponden a expedientes ni personas oficialmente publicadas. El repositorio de laudos y el banco de decisiones JPRD están etiquetados como muestra o estado vacío.
 
-### 4. Fotos
+### 6. Fotos
 
 Las imágenes están en `public/images/`. Reemplaza los archivos manteniendo los nombres o actualiza las referencias en `src/data/` y en las páginas que las usan.
 
@@ -187,8 +196,9 @@ El contenedor:
 
 ## Estado actual
 
-- Contenido y navegación completos con datos mock.
+- Contenido normativo aplicado y centralizado; nóminas y registros de demostración.
 - Sin login, panel administrador ni persistencia.
-- URL del sistema externo pendiente.
+- JPRD en implementación, con documentos y aranceles preliminares.
+- PDFs normativos pendientes: se muestran como “Próximamente”.
+- Libro de Reclamaciones conserva 15 días hábiles hasta validación legal.
 - Datos de contacto y redes reutilizados temporalmente de la Cámara.
-- Documentos y registros sin archivos reales.

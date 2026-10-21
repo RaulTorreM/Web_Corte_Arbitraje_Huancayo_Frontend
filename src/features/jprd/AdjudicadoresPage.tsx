@@ -16,6 +16,7 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import ProfessionalDirectory from "../../components/common/ProfessionalDirectory";
+import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
@@ -23,32 +24,38 @@ import { ADJUDICADORES } from "../../data/arbitros";
 
 export default function AdjudicadoresPage() {
   const presidentes = ADJUDICADORES.filter((a) => a.rol === "presidente").length;
-  const conRna = ADJUDICADORES.filter((a) => a.rna).length;
   const profesiones = new Set(ADJUDICADORES.map((a) => a.profesion)).size;
 
   const resumen = [
-    { value: ADJUDICADORES.length, label: "Adjudicadores en la nómina" },
+    { value: ADJUDICADORES.length, label: "Adjudicadores en la nómina de muestra" },
     { value: presidentes, label: "Habilitados como presidentes" },
-    { value: conRna, label: "Con acreditación RNA" },
+    { value: 3, label: "Años de vigencia del Registro" },
     { value: profesiones, label: "Profesiones representadas" },
   ];
 
   return (
     <>
       <PageMeta
-        title="Nómina de adjudicadores"
-        description="Nómina de adjudicadores de la Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo."
+        title="Registro de adjudicadores (en implementación)"
+        description="Registro de Adjudicadores para Juntas de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo. Servicio en implementación."
       />
 
       <PageHero
-        kicker="Especialistas en JPRD"
-        title="Nómina de adjudicadores"
-        subtitle="Profesionales habilitados para prevenir y resolver disputas durante la ejecución de contratos de obra, bienes y servicios."
+        kicker="Registro en conformación"
+        title="Registro de adjudicadores"
+        subtitle="El Estatuto incorpora la figura del adjudicador y el Registro correspondiente. La JPRD se encuentra en implementación, por lo que la nómina es referencial y no existe aún un procedimiento aprobado para administrar juntas."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
-          { label: "Nómina de adjudicadores" },
+          { label: "Registro de adjudicadores" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+      />
+
+      <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
+
+      <PreliminaryNotice
+        title="Registro en conformación"
+        text="La JPRD no cuenta con reglamento aprobado. Los perfiles de esta página son datos de demostración y no deben presentarse como una nómina oficial ni como adjudicadores disponibles para designación."
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
@@ -58,9 +65,9 @@ export default function AdjudicadoresPage() {
           <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-end" }}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
-                kicker="Directorio institucional"
+                kicker="Directorio referencial"
                 title="Experiencia técnica y legal para la ejecución"
-                subtitle="La nómina reúne profesionales con experiencia en contratación pública, ingeniería, construcción y solución de controversias."
+                subtitle="Nómina de demostración con profesionales de contratación pública, ingeniería, construcción y solución de controversias. No reemplaza el Registro oficial."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -73,7 +80,7 @@ export default function AdjudicadoresPage() {
                 startIcon={<DownloadOutlinedIcon />}
                 sx={{ width: { xs: "100%", sm: "fit-content" }, float: { md: "right" } }}
               >
-                Descargar nómina
+                Requisitos de postulación
               </Button>
             </Grid>
           </Grid>
@@ -139,9 +146,11 @@ export default function AdjudicadoresPage() {
           >
             <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.1rem", mt: "1px" }} />
             <Typography sx={{ color: brand.primary, fontSize: "0.82rem", lineHeight: 1.65 }}>
-              <strong>RNA:</strong> acreditación vigente en el Registro Nacional de
-              Árbitros. La información de esta nómina es referencial y puede
-              actualizarse durante el año.
+              <strong>Registro de Adjudicadores:</strong> la inscripción tendrá
+              vigencia de tres años y deberá renovarse. La postulación o
+              renovación nacional cuesta S/ 850 por año; la internacional, US$ 425.
+              La nómina de esta página es referencial y no reemplaza el Registro
+              oficial.
             </Typography>
           </Stack>
 
@@ -190,9 +199,11 @@ export default function AdjudicadoresPage() {
       </Box>
 
       <CtaBand
-        title="¿Necesitas conformar una Junta?"
-        subtitle="Revisa el reglamento y la cláusula modelo, o consulta con la Secretaría General."
-        secondaryLabel="Ver cláusula JPRD"
+        title="¿Quieres postular al Registro?"
+        subtitle="La JPRD se encuentra en implementación. Podemos registrar tu interés y orientarte sobre los requisitos previstos."
+        primaryLabel="Registrar mi interés"
+        primaryTo="/contacto"
+        secondaryLabel="Ver cláusula preliminar"
         secondaryTo="/jprd/clausula"
       />
     </>

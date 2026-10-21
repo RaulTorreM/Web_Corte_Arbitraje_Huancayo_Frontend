@@ -17,7 +17,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import { brand } from "../../theme/brand";
-import { ANIOS, type Registro } from "../../data/registros";
+import { type Registro } from "../../data/registros";
 import SearchInput from "./SearchInput";
 import FilterSelect from "./FilterSelect";
 import EmptyState from "./EmptyState";
@@ -47,7 +47,10 @@ export default function RegistryBrowser({
   const [anio, setAnio] = useState("");
 
   const anios = useMemo(
-    () => ANIOS(registros).map((value) => String(value)),
+    () =>
+      Array.from(new Set(registros.map((registro) => registro.anio)))
+        .sort((a, b) => b - a)
+        .map((value) => String(value)),
     [registros]
   );
 
@@ -129,7 +132,7 @@ export default function RegistryBrowser({
           >
             {filtered.length}
           </Box>{" "}
-          de {registros.length} registros publicados
+          de {registros.length} registros en esta muestra
         </Typography>
 
         {(query || anio) && (
@@ -209,11 +212,12 @@ export default function RegistryBrowser({
                 component="a"
                 href={item.url}
                 onClick={preventMock}
+                disabled={item.url === "#"}
                 size="small"
                 startIcon={<PictureAsPdfOutlinedIcon />}
                 sx={{ mt: 1.5, px: 0, fontSize: "0.78rem" }}
               >
-                Ver documento
+                {item.url === "#" ? "Próximamente" : "Ver documento"}
               </Button>
             </Paper>
           ))}
@@ -283,11 +287,12 @@ export default function RegistryBrowser({
                       component="a"
                       href={item.url}
                       onClick={preventMock}
+                      disabled={item.url === "#"}
                       size="small"
                       startIcon={<PictureAsPdfOutlinedIcon />}
                       sx={{ fontSize: "0.74rem", px: 0.5 }}
                     >
-                      Ver PDF
+                      {item.url === "#" ? "Próximamente" : "Ver PDF"}
                     </Button>
                   </TableCell>
                 </TableRow>

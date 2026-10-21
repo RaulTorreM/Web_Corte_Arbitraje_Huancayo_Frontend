@@ -36,13 +36,13 @@ export default function EquipoPage() {
     <>
       <PageMeta
         title="Equipo de trabajo"
-        description="Conoce al equipo de la Secretaría General y las áreas de apoyo de la Corte Superior de Arbitraje de Huancayo."
+        description="Secretaría General, Secretaría del Consejo y secretarios arbitrales: quiénes conducen la operación diaria de los casos."
       />
 
       <PageHero
         kicker="Nuestro equipo"
-        title="Personas que hacen posible el servicio"
-        subtitle="Un equipo multidisciplinario acompaña a las partes, a los árbitros y a los adjudicadores durante todo el procedimiento."
+        title="El equipo que hace funcionar el arbitraje"
+        subtitle="Detrás de cada expediente hay un equipo técnico que recibe la solicitud, liquida los gastos, controla los plazos y notifica las decisiones. No resuelve la controversia: asegura que el proceso avance conforme al reglamento."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Equipo de trabajo" },
@@ -55,14 +55,14 @@ export default function EquipoPage() {
           <SectionHeading
             kicker="Secretaría y áreas de apoyo"
             title="Profesionales al servicio de la institución"
-            subtitle="La gestión administrativa es parte esencial de un arbitraje ordenado, predecible y confiable."
+            subtitle="La Secretaría General conduce la operación diaria; la Secretaría del Consejo coordina las sesiones y verifica el cumplimiento de sus decisiones."
             centered
           />
 
           <Stagger>
             <Grid container spacing={{ xs: 2.5, md: 3 }}>
               {EQUIPO.map((persona) => (
-                <Grid key={persona.id} size={{ xs: 12, sm: 6, md: 3 }}>
+                <Grid key={persona.id} size={{ xs: 12, sm: 6, md: 4 }}>
                   <PersonCard persona={persona} />
                 </Grid>
               ))}
@@ -197,9 +197,11 @@ export default function EquipoPage() {
 
       <CtaBand
         title="Hablemos de tu controversia"
-        subtitle="Nuestro equipo puede orientarte sobre el mecanismo adecuado y los requisitos para iniciar un procedimiento."
-        secondaryLabel="Ir a contacto"
-        secondaryTo="/contacto"
+        subtitle="Nuestro equipo puede orientarte sobre la vía procesal, los plazos y los requisitos para presentar una solicitud."
+        primaryLabel="Ir a contacto"
+        primaryTo="/contacto"
+        secondaryLabel="Conocer el Consejo"
+        secondaryTo="/quienes-somos/consejo"
       />
     </>
   );

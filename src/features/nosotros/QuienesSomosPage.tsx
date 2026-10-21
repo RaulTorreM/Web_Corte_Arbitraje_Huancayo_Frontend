@@ -25,25 +25,31 @@ import FramedImage from "../../components/common/FramedImage";
 import { Stagger } from "../../components/common/Reveal";
 import { fadeUp, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
-import { SITE, VALORES } from "../../data/site";
+import { VALORES } from "../../data/site";
 
 const ESTRUCTURA = [
   {
     icon: GroupsOutlinedIcon,
-    title: "Consejo directivo",
-    text: "Órgano de gobierno que define la política institucional y supervisa la administración de la Corte.",
+    title: "Consejo Superior de Arbitraje",
+    text: "Máximo órgano de gobierno administrativo, no jurisdiccional. Hasta siete consejeros con sus suplentes, por períodos de tres años.",
     to: "/quienes-somos/consejo",
   },
   {
     icon: BadgeOutlinedIcon,
-    title: "Equipo de trabajo",
-    text: "Profesionales que gestionan expedientes, brindan asesoría y atienden a las partes durante todo el proceso.",
-    to: "/quienes-somos/equipo",
+    title: "Comisiones especializadas",
+    text: "Registro y Designación, Confirmación, Recusación y Remoción, Ética, Arbitraje de Emergencia y Buenas Prácticas.",
+    to: "/quienes-somos/consejo",
   },
   {
     icon: WorkspacePremiumOutlinedIcon,
+    title: "Secretaría General",
+    text: "Conduce la operación diaria de los casos, liquida gastos, notifica y designa secretarios arbitrales.",
+    to: "/quienes-somos/equipo",
+  },
+  {
+    icon: BadgeOutlinedIcon,
     title: "Certificaciones",
-    text: "Sistemas de gestión que respaldan la calidad, la integridad y la mejora continua de nuestros servicios.",
+    text: "Sistemas de gestión en implementación. No se presentan como certificaciones obtenidas hasta contar con el documento que las acredite.",
     to: "/quienes-somos/certificaciones",
   },
 ];
@@ -53,13 +59,13 @@ export default function QuienesSomosPage() {
     <>
       <PageMeta
         title="Quiénes somos"
-        description="Conoce la Corte Superior de Arbitraje de Huancayo, su naturaleza institucional, misión, visión y estructura de gobierno."
+        description="Conoce la naturaleza, finalidad y órganos de gobierno de la Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín."
       />
 
       <PageHero
         kicker="La institución"
-        title="Una Corte cercana, independiente y especializada"
-        subtitle="Somos la Corte Superior de Arbitraje de Huancayo, adscrita a la Cámara de Comercio y Producción de Huancayo y de la Región Junín."
+        title="Una institución arbitral al servicio de la región"
+        subtitle="Somos el órgano de la Cámara de Comercio y Producción de Huancayo y de la Región Junín encargado de organizar y administrar arbitrajes. No resolvemos las controversias: aseguramos que se tramiten bajo reglas claras, plazos ciertos y árbitros idóneos."
         crumbs={[{ label: "Quiénes somos" }]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
       />
@@ -81,7 +87,7 @@ export default function QuienesSomosPage() {
                 <Box component={motion.div} variants={fadeUp}>
                   <SectionLabel>Quiénes somos</SectionLabel>
                   <SectionTitle>
-                    Rigor técnico al servicio de la solución de controversias
+                    Administramos el arbitraje, no la controversia
                   </SectionTitle>
                 </Box>
 
@@ -90,11 +96,11 @@ export default function QuienesSomosPage() {
                   variants={fadeUp}
                   sx={{ mt: 2.6, color: brand.muted, fontSize: "0.99rem", lineHeight: 1.85 }}
                 >
-                  La Corte Superior de Arbitraje de Huancayo es una institución
-                  arbitral que administra procedimientos de arbitraje y juntas de
-                  prevención y resolución de disputas. Su actuación se rige por
-                  los principios de independencia, imparcialidad, transparencia y
-                  confidencialidad.
+                  La Corte Superior de Arbitraje es el órgano de la Cámara de
+                  Comercio y Producción de Huancayo y de la Región Junín encargado
+                  de organizar y administrar arbitrajes. No resolvemos las
+                  controversias: aseguramos que se tramiten bajo reglas claras,
+                  plazos ciertos y árbitros idóneos.
                 </Typography>
 
                 <Typography
@@ -102,10 +108,11 @@ export default function QuienesSomosPage() {
                   variants={fadeUp}
                   sx={{ mt: 1.8, color: brand.muted, fontSize: "0.99rem", lineHeight: 1.85 }}
                 >
-                  Forma parte de la {SITE.legalName}. Desde Huancayo, acompaña a
-                  empresas, entidades públicas y profesionales de la región Junín
-                  en la resolución ordenada y oportuna de sus conflictos
-                  patrimoniales.
+                  Su actuación se rige por el Estatuto y por los principios de
+                  independencia, neutralidad, transparencia, confidencialidad y
+                  celeridad. Desde Huancayo, acompaña a empresas, entidades
+                  públicas y profesionales de la región Junín en la administración
+                  ordenada de sus controversias patrimoniales disponibles.
                 </Typography>
 
                 <Stack
@@ -115,10 +122,10 @@ export default function QuienesSomosPage() {
                   sx={{ mt: 3.5 }}
                 >
                   {[
-                    "Autonomía técnica en la designación y actuación de árbitros.",
-                    "Reglas procesales claras y plazos definidos.",
-                    "Atención permanente de la Secretaría General.",
-                    "Compromiso con la integridad y la confidencialidad.",
+                    "Reglamento único y público para arbitrajes nacionales e internacionales.",
+                    "Laudo en 40 días desde el cierre, prorrogable por 10.",
+                    "Tarifas públicas y registro de árbitros con vigencia de tres años.",
+                    "Doble instancia administrativa ante el Consejo Superior.",
                   ].map((item) => (
                     <Stack key={item} direction="row" spacing={1.4} sx={{ alignItems: "flex-start" }}>
                       <CheckCircleOutlineIcon
@@ -217,9 +224,13 @@ export default function QuienesSomosPage() {
                 </Typography>
 
                 <Typography sx={{ color: "rgba(255,255,255,0.74)", fontSize: "0.96rem", lineHeight: 1.85 }}>
-                  Administrar procedimientos arbitrales y juntas de prevención y
-                  resolución de disputas con excelencia técnica, garantizando un
-                  servicio accesible, transparente y confiable para las partes.
+                  Como institución organizadora y administradora, nuestra misión
+                  es salvaguardar la correcta aplicación de los reglamentos y
+                  prestar los servicios de administración necesarios para la
+                  organización y funcionamiento del arbitraje.
+                  <Box component="span" sx={{ display: "block", mt: 1, fontSize: "0.78rem", color: "rgba(255,255,255,0.55)" }}>
+                    Estatuto, Art. 2
+                  </Box>
                 </Typography>
               </Stack>
             </Grid>
@@ -259,14 +270,18 @@ export default function QuienesSomosPage() {
                   variant="h3"
                   sx={{ color: brand.primaryDark, fontSize: "1.65rem", mb: 1.8 }}
                 >
-                  Nuestra visión
+                  Nuestra finalidad
                 </Typography>
 
                 <Typography sx={{ color: brand.muted, fontSize: "0.96rem", lineHeight: 1.85 }}>
-                  Ser la institución arbitral de referencia en la macro región
-                  centro, reconocida por su independencia, la calidad de sus
-                  decisiones y su aporte a una cultura de paz y cumplimiento
-                  contractual.
+                  Contribuir a la solución de controversias mediante el desarrollo
+                  y fomento del arbitraje institucional, realizando las acciones
+                  necesarias para su generalización, agilización, perfeccionamiento
+                  y divulgación como mecanismo alternativo de solución de
+                  controversias.
+                  <Box component="span" sx={{ display: "block", mt: 1, fontSize: "0.78rem", color: brand.muted }}>
+                    Estatuto, Art. 1
+                  </Box>
                 </Typography>
               </Stack>
             </Grid>
@@ -277,7 +292,7 @@ export default function QuienesSomosPage() {
       <Box component="section" sx={{ py: { xs: 8, md: 11 }, backgroundColor: brand.white }}>
         <Container>
           <SectionHeading
-            kicker="Nuestros valores"
+            kicker="Nuestros principios"
             title="Lo que guía cada actuación"
             subtitle="Principios que orientan la conducta de nuestros órganos de gobierno, árbitros, adjudicadores y equipo administrativo."
             centered
@@ -286,7 +301,7 @@ export default function QuienesSomosPage() {
           <Stagger>
             <Grid container spacing={{ xs: 2.5, md: 3 }}>
               {VALORES.map((valor, index) => (
-                <Grid key={valor.title} size={{ xs: 12, sm: 6, md: 3 }}>
+                <Grid key={valor.title} size={{ xs: 12, sm: 6, md: 4 }}>
                   <Stack
                     component={motion.article}
                     variants={fadeUp}
@@ -356,7 +371,7 @@ export default function QuienesSomosPage() {
                 const Icon = item.icon;
 
                 return (
-                  <Grid key={item.title} size={{ xs: 12, md: 4 }}>
+                  <Grid key={item.title} size={{ xs: 12, sm: 6, md: 3 }}>
                     <Stack
                       component={motion.article}
                       variants={fadeUp}
@@ -416,8 +431,10 @@ export default function QuienesSomosPage() {
       <CtaBand
         title="¿Quieres conocer más sobre nuestra labor?"
         subtitle="Conversa con la Secretaría General y recibe orientación sobre los mecanismos que administramos."
-        secondaryLabel="Ver documentos institucionales"
-        secondaryTo="/documentos"
+        primaryLabel="Ver documentos institucionales"
+        primaryTo="/documentos"
+        secondaryLabel="Contactar a la Corte"
+        secondaryTo="/contacto"
       />
     </>
   );

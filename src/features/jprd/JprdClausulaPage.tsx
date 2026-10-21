@@ -17,6 +17,7 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import ClauseBlock from "../../components/common/ClauseBlock";
+import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
@@ -62,22 +63,27 @@ export default function JprdClausulaPage() {
   return (
     <>
       <PageMeta
-        title="Cláusula modelo JPRD"
-        description="Cláusula modelo para incorporar la Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo en contratos de obra, bienes y servicios."
+        title="Cláusula modelo JPRD (preliminar)"
+        description="Borrador de cláusula para incorporar la Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo. Documento no vigente."
       />
 
       <PageHero
-        kicker="Prevención desde el contrato"
+        kicker="Borrador sujeto a revisión legal"
         title="Cláusula modelo JPRD"
-        subtitle="Incorporar la Junta desde el inicio permite resolver desacuerdos durante la ejecución y evitar conflictos mayores."
+        subtitle="Propuesta de redacción para incorporar una Junta de Prevención y Resolución de Disputas. No debe utilizarse como cláusula definitiva hasta que el reglamento de la JPRD sea aprobado."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
-          { label: "Cláusula modelo" },
+          { label: "Cláusula preliminar" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
+
+      <PreliminaryNotice
+        title="Borrador — no utilizar como cláusula definitiva"
+        text="La JPRD no cuenta con reglamento aprobado. Este texto es una propuesta y debe validarse con la Secretaría y con el asesor legal de las partes antes de incorporarlo a un contrato."
+      />
 
       <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
         <Container>
@@ -86,7 +92,7 @@ export default function JprdClausulaPage() {
               <SectionHeading
                 kicker="Antes de ejecutar"
                 title="Una Junta prevista en el contrato"
-                subtitle="La cláusula debe identificar con claridad la institución, la conformación de la Junta y la sede del procedimiento. Una redacción precisa evita demoras cuando surge la primera discrepancia."
+                subtitle="La cláusula debe identificar con claridad la institución, la conformación de la Junta y la sede del procedimiento. Esta versión es un borrador y no reemplaza la revisión legal del contrato."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -127,10 +133,10 @@ export default function JprdClausulaPage() {
 
           <Box sx={{ mt: { xs: 4.5, md: 6 } }}>
             <ClauseBlock
-              title="Cláusula modelo de JPRD"
-              description="Elige un adjudicador único o una Junta de tres integrantes y elimina la opción que no corresponda."
+              title="Borrador de cláusula JPRD"
+              description="Elige un adjudicador único o una Junta de tres integrantes y elimina la opción que no corresponda. El texto está sujeto a la aprobación del reglamento."
               clause={CLAUSULA}
-              note="La JPRD no reemplaza al arbitraje: ambos mecanismos pueden coexistir en un mismo contrato para atender distintas etapas o materias."
+              note="La JPRD no reemplaza al arbitraje: ambos mecanismos pueden coexistir. La cláusula definitiva debe validarse cuando el reglamento sea aprobado."
             />
           </Box>
 
@@ -250,9 +256,11 @@ export default function JprdClausulaPage() {
       </Box>
 
       <CtaBand
-        title="Prevenir cuesta menos que litigar"
-        subtitle="Incorpora la JPRD en tus contratos y protege la continuidad de tus proyectos."
-        secondaryLabel="Ver reglamento"
+        title="La JPRD se encuentra en implementación"
+        subtitle="Si tu contrato ya contempla una junta o dispute board, podemos orientarte sobre su administración futura. La cláusula definitiva se publicará cuando el reglamento sea aprobado."
+        primaryLabel="Consultar con la Corte"
+        primaryTo="/contacto"
+        secondaryLabel="Ver reglamento preliminar"
         secondaryTo="/jprd/reglamento"
       />
     </>

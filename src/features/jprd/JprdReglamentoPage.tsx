@@ -9,6 +9,7 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import DocumentCard from "../../components/common/DocumentCard";
+import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { Stagger } from "../../components/common/Reveal";
 import { viewportOnce } from "../../utils/animations";
@@ -39,10 +40,35 @@ const PRINCIPIOS = [
   },
 ];
 
-const NORMAS = [
-  { norma: "Ley N.° 30225", detalle: "Ley de Contrataciones del Estado" },
-  { norma: "Reglamento de la Ley N.° 30225", detalle: "Reglas de la Junta de Prevención y Resolución de Disputas" },
-  { norma: "Directiva interna de la JPRD", detalle: "Procedimiento administrado por la Corte" },
+const ESTRUCTURA = [
+  {
+    titulo: "I. Disposiciones generales",
+    detalle: "Objeto, definiciones, relación con el Reglamento de Arbitraje y carácter institucional del servicio.",
+  },
+  {
+    titulo: "II. Constitución de la junta",
+    detalle: "Uno o tres miembros, designación desde el Registro, requisitos, independencia y reemplazos.",
+  },
+  {
+    titulo: "III. Reglas de actuación",
+    detalle: "Instalación, calendario, visitas, confidencialidad, comunicaciones y medios electrónicos.",
+  },
+  {
+    titulo: "IV. Prevención de disputas",
+    detalle: "Alertas tempranas, recomendaciones no vinculantes e informes periódicos.",
+  },
+  {
+    titulo: "V. Procedimiento de disputa",
+    detalle: "Notificación, posiciones, audiencia, decisión, corrección y escalamiento.",
+  },
+  {
+    titulo: "VI. Costos",
+    detalle: "Honorarios, gastos de la Corte, traslados, distribución entre las partes y provisión.",
+  },
+  {
+    titulo: "VII. Disposiciones finales",
+    detalle: "Confidencialidad, responsabilidad, vigencia y régimen transitorio.",
+  },
 ];
 
 export default function JprdReglamentoPage() {
@@ -51,31 +77,36 @@ export default function JprdReglamentoPage() {
   return (
     <>
       <PageMeta
-        title="Reglamento y ética de la JPRD"
-        description="Reglamento, código de ética, aranceles y cláusula modelo de la Junta de Prevención y Resolución de Disputas."
+        title="Reglamento JPRD (preliminar)"
+        description="Estructura del futuro reglamento de Juntas de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
-        kicker="Marco normativo de la JPRD"
-        title="Reglamento y ética"
-        subtitle="Reglas claras para la actuación de los adjudicadores y el desarrollo ordenado de la Junta."
+        kicker="Documento preliminar — en proceso de aprobación"
+        title="Reglamento de la JPRD"
+        subtitle="El reglamento que regirá las Juntas de Prevención y Resolución de Disputas se encuentra en elaboración. Esta página describe su estructura prevista y los criterios que se están considerando, para conocimiento de las partes y de los profesionales interesados."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
-          { label: "Reglamento y ética" },
+          { label: "Reglamento preliminar" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
+      <PreliminaryNotice
+        title="Documento preliminar — no vigente"
+        text="El reglamento de la JPRD no ha sido aprobado. Esta sección es un documento de trabajo y no debe citarse como norma aplicable. Cuando el Consejo lo apruebe, se publicará el PDF firmado y se reemplazará esta etiqueta."
+      />
+
       <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-start" }}>
             <Grid size={{ xs: 12, md: 7 }}>
               <SectionHeading
-                kicker="Documentos oficiales"
-                title="Un procedimiento regulado y transparente"
-                subtitle="El reglamento desarrolla la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
+                kicker="Documentos preliminares"
+                title="Estructura prevista del reglamento"
+                subtitle="El documento en elaboración desarrollará la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -95,12 +126,12 @@ export default function JprdReglamentoPage() {
                 }}
               >
                 <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
-                  Versión vigente
+                  Documento de trabajo
                 </Typography>
                 <Typography sx={{ color: brand.primary, fontSize: "0.82rem", mt: 0.6, lineHeight: 1.65 }}>
-                  Los documentos publicados corresponden a la versión aprobada
-                  por el Consejo Directivo. Cualquier modificación se comunica en
-                  esta misma sección.
+                  Los documentos de esta sección son borradores. No han sido
+                  aprobados por el Consejo Superior ni publicados como normativa
+                  vigente. Las observaciones pueden enviarse a la Secretaría.
                 </Typography>
               </Box>
             </Grid>
@@ -130,7 +161,7 @@ export default function JprdReglamentoPage() {
         <Container>
           <SectionHeading
             kicker="Principios"
-            title="La conducta que esperamos de un adjudicador"
+            title="Criterios que se están considerando"
             centered
           />
 
@@ -192,23 +223,23 @@ export default function JprdReglamentoPage() {
           <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "center" }}>
             <Grid size={{ xs: 12, md: 5 }}>
               <SectionHeading
-                kicker="Normativa aplicable"
-                title="Base legal de la Junta"
-                subtitle="La JPRD se desarrolla en el marco de la normativa de contrataciones del Estado y del reglamento interno de la Corte."
+                kicker="Contenido previsto"
+                title="Siete capítulos en elaboración"
+                subtitle="La estructura aún no es definitiva. Los plazos, el efecto de las decisiones y el costo son puntos abiertos que el Consejo deberá aprobar."
                 sx={{ mb: 0 }}
               />
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }}>
-              <Stack spacing={1.5}>
-                {NORMAS.map((norma, index) => (
+              <Stack spacing={1.2}>
+                {ESTRUCTURA.map((norma, index) => (
                   <Stack
-                    key={norma.norma}
+                    key={norma.titulo}
                     direction="row"
                     spacing={2}
                     sx={{
-                      p: 2.3,
-                      alignItems: "center",
+                      p: 2,
+                      alignItems: "flex-start",
                       backgroundColor: brand.paper,
                       border: `1px solid ${brand.line}`,
                       borderLeft: `3px solid ${brand.gold}`,
@@ -217,7 +248,7 @@ export default function JprdReglamentoPage() {
                     <Typography
                       sx={{
                         fontFamily: '"Fraunces", Georgia, serif',
-                        fontSize: "1.15rem",
+                        fontSize: "1.05rem",
                         fontWeight: 600,
                         color: brand.skyMid,
                         minWidth: 28,
@@ -227,10 +258,10 @@ export default function JprdReglamentoPage() {
                     </Typography>
 
                     <Box>
-                      <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
-                        {norma.norma}
+                      <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.86rem" }}>
+                        {norma.titulo}
                       </Typography>
-                      <Typography sx={{ color: brand.muted, fontSize: "0.8rem", mt: 0.25 }}>
+                      <Typography sx={{ color: brand.muted, fontSize: "0.78rem", mt: 0.25, lineHeight: 1.6 }}>
                         {norma.detalle}
                       </Typography>
                     </Box>
@@ -243,10 +274,12 @@ export default function JprdReglamentoPage() {
       </Box>
 
       <CtaBand
-        title="¿Tienes dudas sobre el reglamento de la JPRD?"
-        subtitle="La Secretaría General puede orientarte sobre la aplicación de las reglas en tu contrato."
-        secondaryLabel="Contactar a la Corte"
-        secondaryTo="/contacto"
+        title="¿Quieres opinar sobre el reglamento?"
+        subtitle="Las observaciones de usuarios, árbitros, adjudicadores, entidades públicas y empresas serán recibidas por la Secretaría y puestas en conocimiento del Consejo."
+        primaryLabel="Enviar observaciones"
+        primaryTo="/contacto"
+        secondaryLabel="Ver aranceles preliminares"
+        secondaryTo="/jprd/aranceles"
       />
     </>
   );

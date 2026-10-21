@@ -19,7 +19,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
@@ -264,10 +264,9 @@ export default function Header() {
               sx={{ alignItems: "center", ml: "auto", flexShrink: 0 }}
             >
               <Button
-                href={SITE.systemUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                endIcon={<OpenInNewIcon sx={{ fontSize: "0.95rem !important" }} />}
+                component={RouterLink}
+                to="/arbitraje/inicio"
+                endIcon={<ArrowForwardIcon sx={{ fontSize: "0.95rem !important" }} />}
                 sx={{
                   display: { xs: "none", sm: "inline-flex" },
                   px: { sm: 1.6, xl: 2.1 },
@@ -295,7 +294,7 @@ export default function Header() {
                   },
                 }}
               >
-                {SITE.systemLabel}
+                Iniciar arbitraje
               </Button>
 
               <IconButton
@@ -530,10 +529,9 @@ export default function Header() {
         >
           <Button
             fullWidth
-            href={SITE.systemUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
+            component={RouterLink}
+            to="/arbitraje/inicio"
+            endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
             sx={{
               py: 1.2,
               background:
@@ -544,7 +542,7 @@ export default function Header() {
               mb: 1.2,
             }}
           >
-            {SITE.systemLabel}
+            Cómo iniciar un arbitraje
           </Button>
 
           <Stack spacing={0.7} sx={{ px: 0.5 }}>

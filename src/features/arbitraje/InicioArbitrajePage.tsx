@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutlined";
 import LaptopMacOutlinedIcon from "@mui/icons-material/LaptopMacOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
@@ -28,11 +27,11 @@ import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 const CANALES = [
   {
     icon: LaptopMacOutlinedIcon,
-    title: "Sistema de Arbitraje",
-    text: "Canal virtual recomendado. Permite registrar la solicitud y adjuntar la documentación.",
-    action: "Ingresar al sistema",
-    href: SITE.systemUrl,
-    external: true,
+    title: "Sistema de Arbitraje (en implementación)",
+    text: "El canal virtual está en implementación. Mientras tanto, presenta tu solicitud por mesa de partes o correo institucional.",
+    action: "Consultar disponibilidad",
+    href: "/contacto",
+    external: false,
   },
   {
     icon: BusinessOutlinedIcon,
@@ -57,13 +56,13 @@ export default function InicioArbitrajePage() {
     <>
       <PageMeta
         title="Inicio de arbitraje"
-        description="Requisitos, canales y pasos para presentar una solicitud de arbitraje ante la Corte Superior de Arbitraje de Huancayo."
+        description="Requisitos, documentos, tasas y plazos para presentar una solicitud de arbitraje ante la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Presenta tu solicitud"
-        title="Inicio de arbitraje"
-        subtitle="Reúne los requisitos, verifica tu cláusula arbitral y presenta tu solicitud a través del Sistema de Arbitraje."
+        title="Cómo iniciar un arbitraje"
+        subtitle="El arbitraje comienza el día en que la Corte recibe la solicitud. Antes de presentarla, verifica que tu convenio arbitral remite a esta institución y reúne los documentos que exige el artículo 5 del Reglamento."
         crumbs={[
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Inicio de arbitraje" },
@@ -125,11 +124,12 @@ export default function InicioArbitrajePage() {
                   }}
                   sx={{ mt: 2.5, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.85 }}
                 >
-                  La solicitud de arbitraje debe presentarse por escrito e incluir
-                  la identificación de las partes, la cláusula arbitral, la
-                  descripción de la controversia y los medios probatorios que se
-                  ofrecen. La Secretaría General revisará la documentación y
-                  comunicará las observaciones que correspondan.
+                  La solicitud debe presentarse por escrito con los datos de las
+                  partes, la controversia, el convenio arbitral, la propuesta de
+                  designación y el comprobante de pago del derecho de
+                  presentación: S/ 800 en arbitrajes nacionales o US$ 425 en
+                  internacionales. La Secretaría califica la solicitud y, si
+                  falta información, otorga plazo para subsanarla.
                 </Typography>
 
                 <Stack
@@ -143,23 +143,21 @@ export default function InicioArbitrajePage() {
                   sx={{ mt: 3.5 }}
                 >
                   <Button
-                    href={SITE.systemUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    component={RouterLink}
+                    to="/contacto"
                     variant="contained"
                     color="secondary"
-                    endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
+                    endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
                   >
-                    {SITE.systemLabel}
+                    Consultar antes de presentar
                   </Button>
 
                   <Button
                     component={RouterLink}
-                    to="/contacto"
+                    to="/arbitraje/costos"
                     variant="outlined"
-                    endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
                   >
-                    Consultar antes de presentar
+                    Calcular el costo
                   </Button>
                 </Stack>
               </Stack>
@@ -185,11 +183,11 @@ export default function InicioArbitrajePage() {
 
                 <Stack spacing={1.6}>
                   {[
-                    "Cláusula arbitral que designa a la Corte.",
-                    "Identificación completa de las partes.",
-                    "Descripción clara de la pretensión.",
-                    "Medios probatorios ofrecidos.",
-                    "Comprobante de pago de derechos.",
+                    "Convenio arbitral que designa a la Corte.",
+                    "Identificación de las partes y sus representantes.",
+                    "Descripción de la controversia y estimación de la cuantía.",
+                    "Propuesta de designación de árbitro.",
+                    "Comprobante de pago de S/ 800 o US$ 425.",
                   ].map((item) => (
                     <Stack key={item} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
                       <CheckCircleOutlineIcon
@@ -219,8 +217,8 @@ export default function InicioArbitrajePage() {
         <Container>
           <SectionHeading
             kicker="El recorrido"
-            title="De la solicitud al tribunal arbitral"
-            subtitle="Cuatro etapas que ordenan el inicio del procedimiento."
+            title="El proceso en 8 etapas"
+            subtitle="Desde la solicitud hasta el laudo. La respuesta del demandado y la aceptación de los árbitros tienen un plazo de cinco días."
             centered
           />
 
@@ -316,7 +314,7 @@ export default function InicioArbitrajePage() {
               <SectionHeading
                 kicker="Canales de atención"
                 title="Elige cómo presentar tu solicitud"
-                subtitle="El Sistema de Arbitraje es el canal recomendado para iniciar el procedimiento."
+                subtitle="El sistema virtual está en implementación. La mesa de partes y el correo institucional siguen disponibles."
                 sx={{ mb: 3 }}
               />
 
@@ -453,9 +451,11 @@ export default function InicioArbitrajePage() {
 
       <CtaBand
         title="¿Listo para presentar tu solicitud?"
-        subtitle="Ingresa al Sistema de Arbitraje o solicita una orientación previa con la Secretaría General."
-        secondaryLabel="Hablar con la Corte"
-        secondaryTo="/contacto"
+        subtitle="Solicita una orientación previa con la Secretaría General o revisa la tabla de costos antes de presentar tu solicitud."
+        primaryLabel="Solicitar orientación"
+        primaryTo="/contacto"
+        secondaryLabel="Ver costos"
+        secondaryTo="/arbitraje/costos"
       />
     </>
   );

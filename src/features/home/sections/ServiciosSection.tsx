@@ -36,14 +36,14 @@ const SERVICIOS = [
   },
   {
     id: "02",
-    etiqueta: "JPRD",
+    etiqueta: "JPRD · en implementación",
     titulo: "Junta de Prevención y Resolución de Disputas",
     texto:
-      "Acompañamiento técnico durante la ejecución contractual para prevenir desacuerdos, emitir decisiones oportunas y preservar la continuidad del proyecto.",
+      "Servicio anunciado para acompañar la ejecución contractual y prevenir desacuerdos. Aún no cuenta con reglamento ni aranceles aprobados; su implementación será progresiva.",
     items: [
-      "Decisiones durante la ejecución",
-      "Continuidad de la obra o servicio",
-      "Adjudicadores especializados",
+      "Figura de adjudicador en el Estatuto",
+      "Reglamento en proceso de aprobación",
+      "Aranceles preliminares, no vigentes",
     ],
     to: "/jprd",
     cta: "Conocer la JPRD",
@@ -85,8 +85,9 @@ export default function ServiciosSection() {
                 ml: { md: "auto" },
               }}
             >
-              Diseñamos mecanismos eficientes para que las partes resuelvan sus
-              diferencias con celeridad, confidencialidad y seguridad jurídica.
+              La Corte administra el arbitraje y la JPRD; no resuelve las
+              controversias. Su función es asegurar reglas, plazos y árbitros
+              idóneos para que la decisión se adopte conforme al reglamento.
             </Typography>
           </Grid>
         </Grid>

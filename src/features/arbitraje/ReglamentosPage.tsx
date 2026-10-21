@@ -16,16 +16,24 @@ import { documentosPorCategoria } from "../../data/documentos";
 
 const NORMAS = [
   {
+    norma: "Reglamento de Arbitraje — V1",
+    detalle: "Aprobado el 21.09.2026. Rige la solicitud, la designación, el proceso y el laudo.",
+  },
+  {
+    norma: "Estatuto del Centro",
+    detalle: "Aprobado el 21.09.2026. Naturaleza, órganos de gobierno y comisiones.",
+  },
+  {
+    norma: "Código de Ética — V2",
+    detalle: "Aprobado el 23.09.2026. Deberes, denuncias y régimen sancionador.",
+  },
+  {
+    norma: "Tabla de Gastos Arbitrales",
+    detalle: "Anexos 1 al 4: honorarios, tasas de trámite y arbitraje de emergencia.",
+  },
+  {
     norma: "Decreto Legislativo N.° 1071",
-    detalle: "Ley de Arbitraje",
-  },
-  {
-    norma: "Código Civil",
-    detalle: "Régimen de obligaciones y contratos",
-  },
-  {
-    norma: "Ley N.° 30225",
-    detalle: "Ley de Contrataciones del Estado",
+    detalle: "Ley de Arbitraje y normativa legal aplicable.",
   },
 ];
 
@@ -36,13 +44,13 @@ export default function ReglamentosPage() {
     <>
       <PageMeta
         title="Reglamentos y directivas"
-        description="Reglamento de arbitraje, código de ética, directiva de inicio y cláusula modelo de la Corte Superior de Arbitraje de Huancayo."
+        description="Reglamento de Arbitraje V1, Estatuto, Código de Ética V2, apéndices y tabla de gastos de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Marco normativo"
-        title="Reglamentos y directivas"
-        subtitle="Las reglas que garantizan un procedimiento ordenado, predecible y respetuoso del debido proceso."
+        title="Normativa que rige nuestros arbitrajes"
+        subtitle="Un reglamento único y público, con apéndices para el arbitraje acelerado, social y de emergencia, y una tabla de gastos aprobada por el Consejo."
         crumbs={[
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Reglamentos y directivas" },
@@ -59,7 +67,7 @@ export default function ReglamentosPage() {
               <SectionHeading
                 kicker="Documentos oficiales"
                 title="Reglas claras para todas las partes"
-                subtitle="El Reglamento de Arbitraje regula la solicitud, la designación de árbitros, las actuaciones procesales, los plazos y el laudo. El Código de Ética establece los deberes de los profesionales."
+                subtitle="El Reglamento de Arbitraje V1 regula la solicitud, la designación de árbitros, las actuaciones procesales, los plazos y el laudo. El Estatuto define los órganos de gobierno y el Código de Ética los deberes de los profesionales."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -84,12 +92,13 @@ export default function ReglamentosPage() {
 
                 <Box>
                   <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
-                    Versión vigente
+                    Versiones y vigencia
                   </Typography>
                   <Typography sx={{ color: brand.primary, fontSize: "0.82rem", mt: 0.5, lineHeight: 1.65 }}>
-                    Los documentos publicados corresponden a la versión aprobada
-                    por el Consejo Directivo y se actualizan cuando se emite una
-                    modificación.
+                    Se publican el Reglamento V1 (21.09.2026), el Estatuto
+                    (21.09.2026) y el Código de Ética V2 (23.09.2026). Los
+                    documentos de la JPRD son preliminares y no forman parte de
+                    esta sección normativa.
                   </Typography>
                 </Box>
               </Stack>
@@ -208,8 +217,10 @@ export default function ReglamentosPage() {
       <CtaBand
         title="¿Tienes dudas sobre la aplicación de un reglamento?"
         subtitle="La Secretaría General puede orientarte sobre las reglas aplicables a tu procedimiento."
-        secondaryLabel="Contactar a la Corte"
-        secondaryTo="/contacto"
+        primaryLabel="Contactar a la Corte"
+        primaryTo="/contacto"
+        secondaryLabel="Ver costos"
+        secondaryTo="/arbitraje/costos"
       />
     </>
   );

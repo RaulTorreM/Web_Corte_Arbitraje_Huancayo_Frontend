@@ -133,6 +133,19 @@ export default function DocumentCard({
           <Typography sx={{ fontSize: "0.74rem", color: brand.muted }}>
             {documento.peso}
           </Typography>
+
+          {documento.estado && (
+            <Typography
+              sx={{
+                fontSize: "0.7rem",
+                color:
+                  documento.estado === "Vigente" ? brand.primary : brand.goldDeep,
+                fontWeight: 700,
+              }}
+            >
+              {documento.estado}
+            </Typography>
+          )}
         </Stack>
 
         <Button
@@ -141,13 +154,21 @@ export default function DocumentCard({
           onClick={handleClick}
           size="small"
           variant="text"
-          endIcon={<DownloadOutlinedIcon sx={{ fontSize: "1rem" }} />}
-          aria-label={`Descargar ${documento.titulo}`}
+          endIcon={
+            documento.url !== "#" ? (
+              <DownloadOutlinedIcon sx={{ fontSize: "1rem" }} />
+            ) : undefined
+          }
+          aria-label={
+            documento.url === "#"
+              ? `${documento.titulo}: descarga próxima`
+              : `Descargar ${documento.titulo}`
+          }
           sx={{
             minWidth: 0,
             px: 0.5,
             py: 0.4,
-            color: brand.primary,
+            color: documento.url === "#" ? brand.muted : brand.primary,
             fontSize: "0.78rem",
             "&:hover": {
               backgroundColor: "transparent",
@@ -156,7 +177,7 @@ export default function DocumentCard({
             },
           }}
         >
-          Descargar
+          {documento.url === "#" ? "Próximamente" : "Descargar"}
         </Button>
       </Stack>
     </Box>

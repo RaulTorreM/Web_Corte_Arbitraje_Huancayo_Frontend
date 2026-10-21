@@ -1,7 +1,6 @@
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
@@ -97,7 +96,7 @@ export default function HeroHome() {
                       textTransform: "uppercase",
                     }}
                   >
-                    Corte Superior de Arbitraje de Huancayo
+                    Corte Superior de Arbitraje
                   </Typography>
                 </Stack>
 
@@ -113,18 +112,18 @@ export default function HeroHome() {
                     maxWidth: 720,
                   }}
                 >
-                  Justicia arbitral con estándares de{" "}
+                  Arbitraje institucional con{" "}
                   <Box
                     component="span"
                     sx={{
                       color: brand.goldSoft,
                       fontStyle: "italic",
                       position: "relative",
-                      whiteSpace: "nowrap",
                     }}
                   >
-                    excelencia
+                    reglas claras
                   </Box>
+                  , desde Huancayo para todo el Perú.
                 </Typography>
 
                 <Typography
@@ -138,9 +137,9 @@ export default function HeroHome() {
                     lineHeight: 1.8,
                   }}
                 >
-                  Administramos controversias con independencia, transparencia y
-                  rigor técnico, al servicio de empresas e instituciones de la
-                  región Junín.
+                  {SITE.legalName} organiza y administra arbitrajes bajo un
+                  reglamento único, con plazos definidos, tarifas públicas y un
+                  registro de árbitros acreditados.
                 </Typography>
 
                 <Stack
@@ -151,12 +150,11 @@ export default function HeroHome() {
                   sx={{ mt: 4.2 }}
                 >
                   <Button
-                    href={SITE.systemUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    component={RouterLink}
+                    to="/arbitraje/inicio"
                     variant="contained"
                     color="secondary"
-                    endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
+                    endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
                     sx={{
                       px: 3,
                       py: 1.15,
@@ -169,12 +167,12 @@ export default function HeroHome() {
                       },
                     }}
                   >
-                    {SITE.systemLabel}
+                    Iniciar un arbitraje
                   </Button>
 
                   <Button
                     component={RouterLink}
-                    to="/quienes-somos"
+                    to="/arbitraje/costos"
                     variant="outlined"
                     endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
                     sx={{
@@ -189,7 +187,7 @@ export default function HeroHome() {
                       },
                     }}
                   >
-                    Conoce la Corte
+                    Calcular el costo
                   </Button>
                 </Stack>
 
@@ -216,8 +214,8 @@ export default function HeroHome() {
                       lineHeight: 1.6,
                     }}
                   >
-                    Corte adscrita a la Cámara de Comercio y Producción de
-                    Huancayo y de la Región Junín.
+                    La Corte organiza y administra el arbitraje. La decisión de
+                    la controversia corresponde al tribunal arbitral.
                   </Typography>
                 </Stack>
               </Box>

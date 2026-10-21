@@ -1,25 +1,21 @@
-import { useState } from "react";
 import {
   Box,
   Button,
   Container,
   Grid,
   Stack,
-  Tab,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Tabs,
   Typography,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
@@ -28,42 +24,63 @@ import SectionHeading from "../../components/common/SectionHeading";
 import CtaBand from "../../components/common/CtaBand";
 import { viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
-import { SITE } from "../../data/site";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
-import { TARIFAS, NOTAS_TARIFAS, type TarifaTabla } from "../../data/tarifas";
+import {
+  ANEXO_1,
+  ANEXO_3,
+  ANEXO_4,
+  EJEMPLOS_COSTO,
+  NOTAS_TARIFAS,
+} from "../../data/tarifas";
 
-type TarifaId = TarifaTabla["id"];
-
-const PASOS_COSTO = [
+const COMPONENTES = [
   {
-    title: "Determina la cuantía",
-    text: "La cuantía se establece según el valor de las pretensiones al momento de presentar la solicitud.",
+    titulo: "Tasa administrativa",
+    texto: "Gestión del caso, secretaría, notificaciones y administración del expediente.",
   },
   {
-    title: "Ubica el rango",
-    text: "Identifica el tramo de UIT que corresponde a tu controversia en la tabla vigente.",
+    titulo: "Honorarios arbitrales",
+    texto: "Retribución del árbitro único o de cada integrante del tribunal arbitral.",
   },
   {
-    title: "Suma honorarios y gastos",
-    text: "El costo total considera los honorarios arbitrales y los gastos administrativos de la Corte.",
+    titulo: "Derecho de presentación",
+    texto: "S/ 800 en arbitrajes nacionales o US$ 425 en internacionales. No está incluido en la tabla.",
+  },
+  {
+    titulo: "Gastos adicionales",
+    texto: "Peritos, viajes, actuaciones fuera de la sede, copias y notificaciones físicas.",
   },
 ];
 
-export default function CostosPage() {
-  const [tab, setTab] = useState<TarifaId>("arbitro-unico");
-  const tarifa = TARIFAS.find((item) => item.id === tab) ?? TARIFAS[0];
+const PASOS_COSTO = [
+  {
+    title: "Determine la cuantía",
+    text: "Sume las pretensiones cuantificables en dinero. Las pretensiones sobre costos y costas no se consideran.",
+  },
+  {
+    title: "Calcule las indeterminadas",
+    text: "Por cada pretensión no cuantificable se aplica el 6.2% del monto del contrato original, con el tope del contrato.",
+  },
+  {
+    title: "Ubique el rubro y sume",
+    text: "Identifique el rubro del Anexo 1 y sume la tasa administrativa y los honorarios de la opción elegida.",
+  },
+];
 
+const celda = { fontSize: "0.82rem", py: 1.1, px: 1.2 };
+
+export default function CostosPage() {
   return (
     <>
       <PageMeta
         title="Costos y tarifas"
-        description="Honorarios arbitrales y gastos administrativos de la Corte Superior de Arbitraje de Huancayo, calculados según la cuantía de la controversia."
+        description="Tabla de gastos arbitrales, tasas administrativas, honorarios por cuantía y ejemplos de cálculo de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Transparencia económica"
-        title="Costos y tarifas"
-        subtitle="Conoce cómo se calculan los honorarios arbitrales y los gastos administrativos antes de iniciar un procedimiento."
+        title="Costos claros antes de empezar"
+        subtitle="Los costos del arbitraje se componen de la tasa administrativa de la Corte y de los honorarios de los árbitros. Ambos se calculan sobre la cuantía de la controversia, según la tabla vigente al momento de presentar la solicitud."
         crumbs={[
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Costos y tarifas" },
@@ -75,156 +92,112 @@ export default function CostosPage() {
 
       <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-start" }}>
-            <Grid size={{ xs: 12, md: 7 }}>
-              <SectionHeading
-                kicker="Tarifas referenciales"
-                title="Una estructura clara, sin costos ocultos"
-                subtitle="Los montos se expresan en soles y se calculan sobre la UIT vigente a la fecha de la solicitud. La liquidación definitiva es emitida por la Secretaría General."
-                sx={{ mb: 0 }}
-              />
-            </Grid>
+          <SectionHeading
+            kicker="Qué incluye"
+            title="Cuatro componentes del costo"
+            subtitle="Los montos de los Anexos 1, 3 y 4 no incluyen IGV. La liquidación definitiva es emitida por la Secretaría General."
+            centered
+          />
 
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Stack
-                direction="row"
-                spacing={1.8}
-                sx={{
-                  p: 2.5,
-                  backgroundColor: brand.white,
-                  border: `1px solid ${brand.line}`,
-                  borderLeft: `4px solid ${brand.gold}`,
-                }}
-              >
-                <PaymentsOutlinedIcon sx={{ color: brand.goldDeep, mt: "2px" }} />
-
-                <Box>
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
-                    ¿Necesitas una liquidación?
+          <Grid container spacing={{ xs: 2.5, md: 3 }}>
+            {COMPONENTES.map((componente, index) => (
+              <Grid key={componente.titulo} size={{ xs: 12, sm: 6, md: 3 }}>
+                <Box
+                  component={motion.article}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  sx={{
+                    height: "100%",
+                    p: 2.8,
+                    backgroundColor: brand.white,
+                    border: `1px solid ${brand.line}`,
+                    borderTop: `3px solid ${brand.gold}`,
+                  }}
+                >
+                  <PaymentsOutlinedIcon sx={{ color: brand.goldDeep, fontSize: "1.5rem" }} />
+                  <Typography variant="h4" sx={{ mt: 1.6, color: brand.primaryDark, fontSize: "1rem" }}>
+                    {componente.titulo}
                   </Typography>
-                  <Typography sx={{ color: brand.muted, fontSize: "0.82rem", mt: 0.5, lineHeight: 1.6 }}>
-                    Escríbenos con los datos de tu controversia y te ayudaremos a
-                    estimar el costo del procedimiento.
+                  <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.84rem", lineHeight: 1.65 }}>
+                    {componente.texto}
                   </Typography>
                 </Box>
-              </Stack>
-            </Grid>
+              </Grid>
+            ))}
           </Grid>
+        </Container>
+      </Box>
 
-          <Box
-            component={motion.div}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.6 }}
-            sx={{
-              mt: { xs: 4, md: 5 },
-              backgroundColor: brand.white,
-              border: `1px solid ${brand.line}`,
-            }}
-          >
-            <Tabs
-              value={tab}
-              onChange={(_event, value: TarifaId) => setTab(value)}
-              variant="scrollable"
-              scrollButtons="auto"
-              sx={{
-                px: { xs: 1, md: 2 },
-                borderBottom: `1px solid ${brand.line}`,
-                "& .MuiTabs-indicator": {
-                  backgroundColor: brand.gold,
-                  height: 3,
-                },
-                "& .MuiTab-root": {
-                  minHeight: 58,
-                  px: { xs: 1.6, md: 2.4 },
-                  color: brand.muted,
-                  fontSize: { xs: "0.78rem", md: "0.84rem" },
-                },
-                "& .Mui-selected": { color: brand.primaryDark },
-              }}
-            >
-              {TARIFAS.map((item) => (
-                <Tab key={item.id} value={item.id} label={item.label} />
-              ))}
-            </Tabs>
+      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+        <Container>
+          <SectionHeading
+            kicker="Anexo 1"
+            title="Honorarios y tasa administrativa"
+            subtitle="Cuantía en soles. La columna “tribunal” corresponde al honorario de cada integrante; el presidente percibe el monto que fije el reglamento."
+          />
 
-            <Box sx={{ p: { xs: 2.5, md: 3.5 } }}>
-              <Typography
-                variant="h3"
-                sx={{ color: brand.primaryDark, fontSize: { xs: "1.35rem", md: "1.6rem" } }}
-              >
-                {tarifa.titulo}
-              </Typography>
+          <TableContainer sx={{ border: `1px solid ${brand.line}`, overflowX: "auto" }}>
+            <Table aria-label="Anexo 1: honorarios y tasa administrativa" sx={{ minWidth: 760 }}>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: brand.primaryDark }}>
+                  {["Rubro", "Cuantía en controversia (S/)", "Tasa administrativa", "Honorarios tribunal", "Honorarios árbitro único"].map(
+                    (header) => (
+                      <TableCell
+                        key={header}
+                        align={header === "Rubro" ? "left" : "right"}
+                        sx={{ color: brand.white, fontWeight: 700, fontSize: "0.78rem" }}
+                      >
+                        {header}
+                      </TableCell>
+                    )
+                  )}
+                </TableRow>
+              </TableHead>
 
-              <Typography sx={{ mt: 1, mb: 3, color: brand.muted, fontSize: "0.88rem", lineHeight: 1.65 }}>
-                {tarifa.descripcion}
-              </Typography>
+              <TableBody>
+                {ANEXO_1.map((row) => {
+                  const revision = row.admin === "En revisión";
 
-              <TableContainer sx={{ border: `1px solid ${brand.line}` }}>
-                <Table aria-label={tarifa.titulo}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Rango de cuantía</TableCell>
-                      <TableCell align="right">{tarifa.columnaHonorario}</TableCell>
-                      <TableCell align="right">{tarifa.columnaGasto}</TableCell>
+                  return (
+                    <TableRow
+                      key={row.rubro}
+                      sx={{
+                        "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" },
+                        "&:hover": { backgroundColor: "rgba(157,196,239,0.16)" },
+                      }}
+                    >
+                      <TableCell sx={{ ...celda, fontWeight: 750, color: brand.primaryDark }}>
+                        {row.rubro}
+                      </TableCell>
+                      <TableCell align="right" sx={{ ...celda, color: brand.primaryDark }}>
+                        {row.cuantia}
+                      </TableCell>
+                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.goldDeep : brand.primary }}>
+                        {row.admin}
+                      </TableCell>
+                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.goldDeep : brand.primary }}>
+                        {row.tribunal}
+                      </TableCell>
+                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.goldDeep : brand.primary }}>
+                        {row.unico}
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
 
-                  <TableBody>
-                    {tarifa.rows.map((row) => {
-                      const convenir = row.honorario === "A convenir";
-
-                      return (
-                        <TableRow
-                          key={row.rango}
-                          sx={{
-                            "&:nth-of-type(odd)": {
-                              backgroundColor: "rgba(234,242,251,0.35)",
-                            },
-                            "&:hover": { backgroundColor: "rgba(157,196,239,0.16)" },
-                          }}
-                        >
-                          <TableCell
-                            sx={{
-                              color: brand.primaryDark,
-                              fontWeight: 650,
-                              fontSize: "0.86rem",
-                            }}
-                          >
-                            {row.rango}
-                          </TableCell>
-
-                          <TableCell
-                            align="right"
-                            sx={{
-                              color: convenir ? brand.goldDeep : brand.primary,
-                              fontWeight: 700,
-                              fontSize: "0.88rem",
-                            }}
-                          >
-                            {row.honorario}
-                          </TableCell>
-
-                          <TableCell
-                            align="right"
-                            sx={{ color: brand.muted, fontSize: "0.86rem" }}
-                          >
-                            {row.gasto}
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-
-              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.74rem", lineHeight: 1.6 }}>
-                Los valores son referenciales. La Corte emite la liquidación
-                definitiva luego de calificar la solicitud y determinar la cuantía.
-              </Typography>
-            </Box>
-          </Box>
+          <Stack direction="row" spacing={1.3} sx={{ mt: 2, alignItems: "flex-start" }}>
+            <InfoOutlinedIcon sx={{ color: brand.goldDeep, fontSize: "1.05rem", mt: "2px" }} />
+            <Typography sx={{ color: brand.muted, fontSize: "0.76rem", lineHeight: 1.6 }}>
+              Los rubros G, I, J y K se encuentran en revisión y no se publican
+              como montos aplicables. La tabla completa consta en el documento
+              normativo; no uses esta versión para una liquidación definitiva.
+            </Typography>
+          </Stack>
         </Container>
       </Box>
 
@@ -315,6 +288,111 @@ export default function CostosPage() {
               ))}
             </Stack>
           </Box>
+        </Container>
+      </Box>
+
+      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
+        <Container>
+          <SectionHeading
+            kicker="Tasas y trámites"
+            title="Anexos 3 y 4"
+            subtitle="Montos fijos por actuaciones y servicios administrativos, sin IGV."
+          />
+
+          <Grid container spacing={{ xs: 4, md: 5 }}>
+            <Grid size={{ xs: 12, md: 7 }}>
+              <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1.05rem", mb: 1.5 }}>
+                Anexo 3 · Tasas administrativas
+              </Typography>
+              <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
+                <Table size="small" aria-label="Anexo 3: tasas administrativas">
+                  <TableHead>
+                    <TableRow sx={{ backgroundColor: brand.skySoft }}>
+                      <TableCell sx={{ fontWeight: 750, fontSize: "0.76rem" }}>N.°</TableCell>
+                      <TableCell sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Concepto</TableCell>
+                      <TableCell align="right" sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Monto</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {ANEXO_3.map((tasa) => (
+                      <TableRow key={tasa.n} sx={{ "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" } }}>
+                        <TableCell sx={celda}>{tasa.n}</TableCell>
+                        <TableCell sx={{ ...celda, color: brand.primaryDark }}>{tasa.concepto}</TableCell>
+                        <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
+                          {tasa.monto}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1.05rem", mb: 1.5 }}>
+                Anexo 4 · Arbitraje de emergencia
+              </Typography>
+              <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
+                <Table size="small" aria-label="Anexo 4: arbitraje de emergencia">
+                  <TableHead>
+                    <TableRow sx={{ backgroundColor: brand.skySoft }}>
+                      <TableCell sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Concepto</TableCell>
+                      <TableCell align="right" sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Monto</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {ANEXO_4.map((item) => (
+                      <TableRow key={item.concepto}>
+                        <TableCell sx={{ ...celda, color: brand.primaryDark }}>{item.concepto}</TableCell>
+                        <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
+                          {item.monto}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+
+              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.78rem", lineHeight: 1.6 }}>
+                La solicitud de medida cautelar dentro del proceso tiene una
+                tasa de S/ 800, según el Anexo 3.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+        <Container>
+          <SectionHeading
+            kicker="Ejemplos"
+            title="Estimaciones de referencia"
+            subtitle="Los ejemplos no reemplazan la liquidación de la Secretaría General."
+            centered
+          />
+
+          <Grid container spacing={{ xs: 2.5, md: 3 }}>
+            {EJEMPLOS_COSTO.map((ejemplo) => (
+              <Grid key={ejemplo.titulo} size={{ xs: 12, sm: 6 }}>
+                <Box
+                  sx={{
+                    height: "100%",
+                    p: 3,
+                    backgroundColor: brand.paper,
+                    border: `1px solid ${brand.line}`,
+                    borderLeft: `3px solid ${brand.gold}`,
+                  }}
+                >
+                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem" }}>
+                    {ejemplo.titulo}
+                  </Typography>
+                  <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.7 }}>
+                    {ejemplo.detalle}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
 
           <Stack
             direction={{ xs: "column", sm: "row" }}
@@ -322,22 +400,20 @@ export default function CostosPage() {
             sx={{ mt: 4, alignItems: { sm: "center" } }}
           >
             <Button
-              href={SITE.systemUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              component={RouterLink}
+              to="/contacto"
               variant="contained"
-              endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
+              endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
             >
-              {SITE.systemLabel}
+              Solicitar una liquidación
             </Button>
 
             <Button
               component={RouterLink}
-              to="/contacto"
+              to="/arbitraje/reglamentos"
               variant="outlined"
-              endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
             >
-              Solicitar orientación
+              Ver la tabla normativa
             </Button>
           </Stack>
         </Container>
@@ -346,8 +422,10 @@ export default function CostosPage() {
       <CtaBand
         title="¿Quieres revisar el reglamento de aranceles?"
         subtitle="Consulta el detalle normativo de los honorarios y gastos aplicables a los procedimientos administrados por la Corte."
-        secondaryLabel="Ver reglamentos"
-        secondaryTo="/arbitraje/reglamentos"
+        primaryLabel="Ver reglamentos"
+        primaryTo="/arbitraje/reglamentos"
+        secondaryLabel="Hablar con la Corte"
+        secondaryTo="/contacto"
       />
     </>
   );

@@ -8,18 +8,17 @@ import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
-import DocumentCard from "../../components/common/DocumentCard";
 import { Stagger } from "../../components/common/Reveal";
 import { fadeUp, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
-import { DOCUMENTOS } from "../../data/documentos";
 
 const CERTIFICACIONES = [
   {
     norma: "ISO 9001:2015",
+    estado: "En implementación",
     titulo: "Sistema de gestión de la calidad",
     icon: VerifiedOutlinedIcon,
-    text: "Aseguramos que la administración de los procedimientos arbitrales se ejecute con procesos controlados, indicadores medibles y mejora continua.",
+    text: "La Corte se encuentra implementando un sistema de gestión de la calidad. Aún no cuenta con certificación otorgada; el diagnóstico y el mapa de procesos están concluidos.",
     items: [
       "Procesos documentados y auditables",
       "Seguimiento de la satisfacción de las partes",
@@ -28,9 +27,10 @@ const CERTIFICACIONES = [
   },
   {
     norma: "ISO 37001:2016",
+    estado: "En implementación",
     titulo: "Sistema de gestión antisoborno",
     icon: ShieldOutlinedIcon,
-    text: "Reforzamos la integridad institucional mediante controles preventivos, canales de denuncia y una política de tolerancia cero frente al soborno.",
+    text: "La política antisoborno se encuentra aprobada y el sistema en implementación. No debe presentarse como certificación obtenida hasta que exista el certificado correspondiente.",
     items: [
       "Debida diligencia de terceros",
       "Canal de denuncias confidencial",
@@ -47,19 +47,17 @@ const COMPROMISOS = [
 ];
 
 export default function CertificacionesPage() {
-  const documentos = DOCUMENTOS.filter((doc) => doc.categoria === "certificacion");
-
   return (
     <>
       <PageMeta
         title="Certificaciones"
-        description="Certificaciones ISO 9001 e ISO 37001 y política del sistema integrado de gestión de la Corte Superior de Arbitraje de Huancayo."
+        description="Estado de implementación de los sistemas de gestión de calidad y antisoborno de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Calidad e integridad"
-        title="Estándares que respaldan nuestra actuación"
-        subtitle="Nuestros sistemas de gestión fortalecen la confianza de las partes y aseguran procesos ordenados, auditables y transparentes."
+        title="Estándares en construcción"
+        subtitle="La Corte se encuentra implementando sistemas de gestión de calidad y antisoborno. Publicamos su estado real y no presentamos como certificación obtenida lo que aún está en proceso."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Certificaciones" },
@@ -72,7 +70,7 @@ export default function CertificacionesPage() {
           <SectionHeading
             kicker="Certificaciones"
             title="Calidad e integridad como compromiso institucional"
-            subtitle="La Corte mantiene sistemas de gestión certificados que ordenan sus procesos y refuerzan la confianza en el servicio."
+            subtitle="Los sistemas de gestión se encuentran en implementación. Su avance se refleja en la política antisoborno, el mapa de procesos y los controles internos."
             centered
           />
 
@@ -141,7 +139,7 @@ export default function CertificacionesPage() {
                           textTransform: "uppercase",
                         }}
                       >
-                        {certificacion.norma}
+                        {certificacion.norma} · {certificacion.estado}
                       </Typography>
 
                       <Typography
@@ -236,13 +234,14 @@ export default function CertificacionesPage() {
                   variant="h2"
                   sx={{ color: brand.primaryDark, fontSize: { xs: "1.9rem", md: "2.3rem" } }}
                 >
-                  Política del sistema integrado de gestión
+                  Compromisos de calidad e integridad
                 </Typography>
 
                 <Typography sx={{ color: brand.muted, fontSize: "0.96rem", lineHeight: 1.8 }}>
-                  Nuestra política expresa el compromiso de la Corte con la
-                  calidad, la integridad y la mejora continua. Es revisada
-                  periódicamente y comunicada a todo el personal.
+                  Mientras los sistemas de gestión completan su implementación,
+                  la Corte mantiene compromisos públicos de actuación. No se
+                  publican números de registro ni certificados que no puedan
+                  acreditarse documentalmente.
                 </Typography>
               </Stack>
             </Grid>
@@ -271,7 +270,7 @@ export default function CertificacionesPage() {
                     mb: 3,
                   }}
                 >
-                  “Administramos controversias con rigor técnico, protegiendo la
+                  “Administramos arbitrajes con rigor técnico, protegiendo la
                   confianza de las partes y actuando siempre con integridad.”
                 </Typography>
 
@@ -300,29 +299,11 @@ export default function CertificacionesPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
-        <Container>
-          <SectionHeading
-            kicker="Documentos"
-            title="Certificados y políticas disponibles"
-            subtitle="Descarga los documentos que acreditan nuestros sistemas de gestión."
-          />
-
-          <Stagger>
-            <Grid container spacing={{ xs: 2.5, md: 3 }}>
-              {documentos.map((documento) => (
-                <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                  <DocumentCard documento={documento} />
-                </Grid>
-              ))}
-            </Grid>
-          </Stagger>
-        </Container>
-      </Box>
-
       <CtaBand
         title="La confianza se construye con hechos"
         subtitle="Conoce nuestros reglamentos, políticas y canales de atención institucional."
+        primaryLabel="Contactar a la Corte"
+        primaryTo="/contacto"
         secondaryLabel="Ver documentos"
         secondaryTo="/documentos"
       />

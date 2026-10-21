@@ -39,7 +39,6 @@ const CATEGORIAS: FiltroCategoria[] = [
   "institucional",
   "arbitraje",
   "jprd",
-  "certificacion",
 ];
 
 export default function DocumentosPage() {
@@ -77,19 +76,39 @@ export default function DocumentosPage() {
     <>
       <PageMeta
         title="Documentos"
-        description="Repositorio de reglamentos, directivas, formatos, certificaciones y documentos institucionales de la Corte Superior de Arbitraje de Huancayo."
+        description="Repositorio de reglamentos, apéndices, formatos y documentos institucionales de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Repositorio institucional"
         title="Documentos"
-        subtitle="Reglamentos, directivas, formatos y certificaciones organizados para facilitar tu consulta."
+        subtitle="Reglamentos, apéndices, formatos y documentos institucionales. Los PDFs se publicarán cuando la institución entregue las versiones firmadas; los documentos de la JPRD son preliminares."
         crumbs={[{ label: "Documentos" }]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
       />
 
       <Box component="section" sx={{ py: { xs: 6, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
+          <Stack
+            direction="row"
+            spacing={1.2}
+            sx={{
+              mb: 2.5,
+              p: 2,
+              alignItems: "flex-start",
+              backgroundColor: brand.skySoft,
+              border: `1px solid ${brand.skyMid}`,
+              borderLeft: `3px solid ${brand.gold}`,
+            }}
+          >
+            <DescriptionOutlinedIcon sx={{ color: brand.primary, fontSize: "1.05rem", mt: "2px" }} />
+            <Typography sx={{ color: brand.primary, fontSize: "0.82rem", lineHeight: 1.6 }}>
+              Las descargas están marcadas como “Próximamente” mientras no exista
+              el PDF oficial. Los documentos de la JPRD son borradores y no
+              normativa vigente.
+            </Typography>
+          </Stack>
+
           <Box
             sx={{
               backgroundColor: brand.white,
@@ -250,9 +269,11 @@ export default function DocumentosPage() {
 
       <CtaBand
         title="¿Necesitas iniciar un procedimiento?"
-        subtitle="Revisa los requisitos y presenta tu solicitud a través del Sistema de Arbitraje."
-        secondaryLabel="Cómo iniciar un arbitraje"
-        secondaryTo="/arbitraje/inicio"
+        subtitle="Revisa los requisitos, los plazos y el derecho de presentación antes de acudir a la Secretaría General."
+        primaryLabel="Cómo iniciar un arbitraje"
+        primaryTo="/arbitraje/inicio"
+        secondaryLabel="Ver reglamentos"
+        secondaryTo="/arbitraje/reglamentos"
       />
     </>
   );

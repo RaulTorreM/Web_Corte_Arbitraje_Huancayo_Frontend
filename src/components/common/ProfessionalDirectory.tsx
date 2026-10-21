@@ -195,18 +195,6 @@ export default function ProfessionalDirectory({
                 >
                   {item.nombre}
                 </Typography>
-
-                {item.rna && (
-                  <Chip
-                    label="RNA"
-                    size="small"
-                    sx={{
-                      backgroundColor: "rgba(186,153,7,0.14)",
-                      color: brand.goldDeep,
-                      height: 22,
-                    }}
-                  />
-                )}
               </Stack>
 
               <Typography
@@ -252,9 +240,6 @@ export default function ProfessionalDirectory({
                 <TableCell>Apellidos y nombres</TableCell>
                 <TableCell sx={{ width: 150 }}>Profesión</TableCell>
                 <TableCell>Especialidades</TableCell>
-                <TableCell sx={{ width: 84 }} align="center">
-                  RNA
-                </TableCell>
               </TableRow>
             </TableHead>
 
@@ -310,27 +295,6 @@ export default function ProfessionalDirectory({
                         />
                       ))}
                     </Stack>
-                  </TableCell>
-
-                  <TableCell align="center">
-                    {item.rna ? (
-                      <Chip
-                        label="RNA"
-                        size="small"
-                        sx={{
-                          backgroundColor: "rgba(186,153,7,0.14)",
-                          color: brand.goldDeep,
-                          height: 22,
-                          fontSize: "0.64rem",
-                        }}
-                      />
-                    ) : (
-                      <Typography
-                        sx={{ color: brand.line, fontSize: "0.8rem" }}
-                      >
-                        —
-                      </Typography>
-                    )}
                   </TableCell>
                 </TableRow>
               ))}

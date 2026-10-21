@@ -1,10 +1,8 @@
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { motion } from "framer-motion";
 import { brand, fonts } from "../../theme/brand";
-import { SITE } from "../../data/site";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import seal from "../../assets/brand/logo-corte.png";
 
@@ -12,16 +10,18 @@ type CtaBandProps = {
   title?: string;
   subtitle?: string;
   primaryLabel?: string;
-  primaryHref?: string;
+  primaryTo?: string;
+  showPrimary?: boolean;
   secondaryLabel?: string;
   secondaryTo?: string;
 };
 
 export default function CtaBand({
   title = "¿Listo para iniciar un arbitraje?",
-  subtitle = "Nuestro equipo te orienta en cada etapa del proceso. Presenta tu solicitud en línea o conversa con la Secretaría General.",
-  primaryLabel = SITE.systemLabel,
-  primaryHref = SITE.systemUrl,
+  subtitle = "Nuestro equipo te orienta en cada etapa del proceso. Revisa los requisitos y conversa con la Secretaría General.",
+  primaryLabel = "Cómo iniciar un arbitraje",
+  primaryTo = "/arbitraje/inicio",
+  showPrimary = true,
   secondaryLabel = "Hablar con la Corte",
   secondaryTo = "/contacto",
 }: CtaBandProps) {
@@ -128,17 +128,18 @@ export default function CtaBand({
             spacing={1.5}
             sx={{ flexShrink: 0, width: { xs: "100%", sm: "auto" } }}
           >
-            <Button
-              variant="contained"
-              color="secondary"
-              href={primaryHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
-              sx={{ px: 3 }}
-            >
-              {primaryLabel}
-            </Button>
+            {showPrimary && (
+              <Button
+                component={RouterLink}
+                to={primaryTo}
+                variant="contained"
+                color="secondary"
+                endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
+                sx={{ px: 3 }}
+              >
+                {primaryLabel}
+              </Button>
+            )}
 
             <Button
               component={RouterLink}

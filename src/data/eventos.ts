@@ -42,7 +42,7 @@ export const EVENTOS: Evento[] = [
     id: "ev-03",
     titulo: "Jornada sobre juntas de prevención y resolución de disputas",
     descripcion:
-      "Buenas prácticas de la JPRD en obras públicas, con casos reales de prevención y resolución temprana de conflictos.",
+      "Marco general de la JPRD, experiencias comparadas y propuesta de implementación en la Corte. La JPRD aún no cuenta con reglamento aprobado.",
     fecha: "2026-12-10",
     hora: "9:00 a. m. – 1:00 p. m.",
     lugar: "Sede institucional, Av. Giráldez 634",

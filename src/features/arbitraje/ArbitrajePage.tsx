@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
@@ -26,7 +25,7 @@ import CtaBand from "../../components/common/CtaBand";
 import { Stagger } from "../../components/common/Reveal";
 import { fadeUp, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
-import { SITE, FUNCIONES, PASOS_ARBITRAJE } from "../../data/site";
+import { FUNCIONES, PASOS_ARBITRAJE } from "../../data/site";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 
 const ENLACES = [
@@ -44,8 +43,8 @@ const ENLACES = [
   },
   {
     icon: GroupsOutlinedIcon,
-    title: "Nómina de árbitros",
-    text: "Explora el listado de profesionales acreditados por la Corte.",
+    title: "Registro de árbitros",
+    text: "Consulta los requisitos, la vigencia y la nómina de profesionales acreditados.",
     to: "/arbitraje/arbitros",
   },
   {
@@ -56,18 +55,45 @@ const ENLACES = [
   },
 ];
 
+const MODALIDADES = [
+  {
+    nombre: "Arbitraje ordinario",
+    text: "Para controversias de mayor cuantía o complejidad. Tribunal de uno o tres árbitros, según el convenio. Aplica desde el rubro D de la tabla.",
+  },
+  {
+    nombre: "Arbitraje acelerado",
+    text: "Para controversias hasta el límite del rubro D o cuando las partes lo acuerden. Siempre a cargo de un árbitro único, con laudo en cuatro meses.",
+  },
+  {
+    nombre: "Arbitraje social",
+    text: "Para conflictos de menor cuantía, con tarifa fija y trámite simplificado. Árbitro único designado directamente por la Corte.",
+  },
+  {
+    nombre: "Arbitraje de emergencia",
+    text: "Para medidas cautelares urgentes antes de la constitución del tribunal. Árbitro designado en dos días y decisión en cinco días.",
+  },
+  {
+    nombre: "Arbitraje internacional",
+    text: "Mismas reglas, con consideración de nacionalidad, residencia e idioma del árbitro. Derecho de presentación: US$ 425.",
+  },
+  {
+    nombre: "Arbitraje ad hoc con secretaría",
+    text: "La Corte puede actuar como secretaría arbitral o autoridad nominadora, con aplicación supletoria de sus reglas.",
+  },
+];
+
 export default function ArbitrajePage() {
   return (
     <>
       <PageMeta
         title="Arbitraje"
-        description="Arbitraje institucional administrado por la Corte Superior de Arbitraje de Huancayo: reglas, plazos, funciones y beneficios."
+        description="Arbitraje administrado con reglamento único, plazos definidos y tarifas públicas. Conoce las modalidades, el proceso y cómo iniciar tu caso."
       />
 
       <PageHero
         kicker="Mecanismo de solución de controversias"
-        title="Arbitraje institucional"
-        subtitle="Un procedimiento administrado con reglas claras, plazos definidos y el respaldo de una institución especializada."
+        title="Arbitraje administrado, de principio a fin"
+        subtitle="La Corte organiza y administra el arbitraje: recibe la solicitud, designa o confirma árbitros, controla los plazos, liquida los gastos y notifica el laudo. La decisión de la controversia corresponde al tribunal arbitral."
         crumbs={[{ label: "Arbitraje" }]}
         image="/images/ARBITRAJE_IMG_02-04.jpg"
       >
@@ -142,11 +168,11 @@ export default function ArbitrajePage() {
                   variants={fadeUp}
                   sx={{ mt: 1.7, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.85 }}
                 >
-                  La Corte Superior de Arbitraje de Huancayo administra el
-                  procedimiento, designa árbitros cuando corresponde, controla
-                  plazos y garantiza el debido proceso. El laudo que pone fin al
+                  La Corte Superior de Arbitraje administra el procedimiento,
+                  designa o confirma árbitros cuando corresponde, controla plazos
+                  y garantiza el debido proceso. El laudo que pone fin al
                   arbitraje es definitivo, vinculante e inapelable, sin perjuicio
-                  de los recursos de anulación previstos por ley.
+                  del recurso de anulación previsto por ley.
                 </Typography>
 
                 <Stack
@@ -198,6 +224,44 @@ export default function ArbitrajePage() {
               </Box>
             </Grid>
           </Grid>
+        </Container>
+      </Box>
+
+      <Box component="section" sx={{ py: { xs: 8, md: 11 }, backgroundColor: brand.paper }}>
+        <Container>
+          <SectionHeading
+            kicker="Modalidades"
+            title="Un reglamento, distintas formas de arbitrar"
+            subtitle="La cuantía, la complejidad y el acuerdo de las partes determinan la modalidad aplicable."
+            centered
+          />
+
+          <Stagger>
+            <Grid container spacing={{ xs: 2.5, md: 3 }}>
+              {MODALIDADES.map((modalidad) => (
+                <Grid key={modalidad.nombre} size={{ xs: 12, sm: 6, md: 4 }}>
+                  <Stack
+                    component={motion.article}
+                    variants={fadeUp}
+                    sx={{
+                      height: "100%",
+                      p: 3,
+                      backgroundColor: brand.white,
+                      border: `1px solid ${brand.line}`,
+                      borderTop: `3px solid ${brand.gold}`,
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1.05rem" }}>
+                      {modalidad.nombre}
+                    </Typography>
+                    <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.86rem", lineHeight: 1.7 }}>
+                      {modalidad.text}
+                    </Typography>
+                  </Stack>
+                </Grid>
+              ))}
+            </Grid>
+          </Stagger>
         </Container>
       </Box>
 
@@ -284,8 +348,8 @@ export default function ArbitrajePage() {
         <Container>
           <SectionHeading
             kicker="El procedimiento"
-            title="Cuatro pasos para comenzar"
-            subtitle="Un recorrido ordenado, desde la verificación de la cláusula arbitral hasta la instalación del tribunal."
+            title="El proceso en 8 etapas"
+            subtitle="Un recorrido ordenado, desde la solicitud hasta el laudo. El cómputo de cada plazo se rige por el Reglamento."
             centered
           />
 
@@ -344,14 +408,13 @@ export default function ArbitrajePage() {
             </Typography>
 
             <Button
-              href={SITE.systemUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              component={RouterLink}
+              to="/arbitraje/inicio"
               variant="contained"
               color="secondary"
-              endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
+              endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
             >
-              {SITE.systemLabel}
+              Iniciar un arbitraje
             </Button>
           </Stack>
         </Container>
@@ -441,8 +504,10 @@ export default function ArbitrajePage() {
       <CtaBand
         title="¿Tu contrato ya tiene una cláusula arbitral?"
         subtitle="Verifica la redacción y presenta tu solicitud. La Secretaría General te acompañará en cada etapa."
-        secondaryLabel="Ver cláusula modelo"
-        secondaryTo="/arbitraje/clausula"
+        primaryLabel="Revisar mi cláusula"
+        primaryTo="/arbitraje/clausula"
+        secondaryLabel="Ver costos"
+        secondaryTo="/arbitraje/costos"
       />
     </>
   );

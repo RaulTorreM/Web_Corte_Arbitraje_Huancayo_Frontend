@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <PageMeta
         title="Inicio"
-        description="Corte Superior de Arbitraje de Huancayo: administración de arbitrajes y juntas de prevención y resolución de disputas con independencia, transparencia y excelencia técnica."
+        description="Administramos arbitrajes nacionales e internacionales con reglas claras, plazos definidos y árbitros acreditados. Conoce nuestras tarifas y cómo iniciar tu caso."
       />
 
       <HeroHome />

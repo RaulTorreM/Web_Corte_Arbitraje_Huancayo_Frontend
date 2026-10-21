@@ -22,6 +22,7 @@ import SectionLabel from "../../components/common/SectionLabel";
 import SectionTitle from "../../components/common/SectionTitle";
 import FramedImage from "../../components/common/FramedImage";
 import DocumentCard from "../../components/common/DocumentCard";
+import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { Stagger } from "../../components/common/Reveal";
 import { fadeUp, viewportOnce } from "../../utils/animations";
@@ -77,19 +78,19 @@ export default function JprdPage() {
   return (
     <>
       <PageMeta
-        title="JPRD"
-        description="Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo: prevención y solución temprana de controversias contractuales."
+        title="JPRD (en implementación)"
+        description="La Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo se encuentra en implementación. Reglamento y aranceles preliminares."
       />
 
       <PageHero
         kicker="Prevención y resolución temprana"
         title="Junta de Prevención y Resolución de Disputas"
-        subtitle="Un mecanismo ágil para resolver desacuerdos durante la ejecución del contrato y preservar la continuidad del proyecto."
+        subtitle="Servicio anunciado en el Estatuto para prevenir y resolver desacuerdos durante la ejecución contractual. Su implementación será progresiva y aún no cuenta con reglamento ni aranceles aprobados."
         crumbs={[{ label: "JPRD" }]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
       >
         <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1 }}>
-          {["Prevención", "Decisiones oportunas", "Continuidad contractual"].map((item) => (
+          {["En implementación", "Documentos preliminares", "Sin aranceles vigentes"].map((item) => (
             <Box
               key={item}
               sx={{
@@ -108,6 +109,8 @@ export default function JprdPage() {
       </PageHero>
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
+
+      <PreliminaryNotice />
 
       <Box component="section" sx={{ py: { xs: 8, md: 11 }, backgroundColor: brand.white }}>
         <Container>
@@ -133,10 +136,10 @@ export default function JprdPage() {
                   sx={{ mt: 2.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.85 }}
                 >
                   La Junta de Prevención y Resolución de Disputas es un mecanismo
-                  que acompaña la ejecución del contrato. Un adjudicador o un
-                  tribunal de adjudicación conoce las diferencias técnicas o
-                  contractuales y emite decisiones oportunas, motivadas y
-                  vinculantes para las partes.
+                  previsto para acompañar la ejecución del contrato. El Estatuto
+                  incorpora la figura del adjudicador y faculta al Consejo a
+                  proponer progresivamente su creación; mientras no se apruebe su
+                  reglamento, no existe un procedimiento aplicable.
                 </Typography>
 
                 <Typography
@@ -144,9 +147,11 @@ export default function JprdPage() {
                   variants={fadeUp}
                   sx={{ mt: 1.7, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.85 }}
                 >
-                  Su finalidad es prevenir que un desacuerdo se convierta en un
+                  La propuesta busca prevenir que un desacuerdo se convierta en un
                   conflicto mayor, evitar la paralización de la obra o del
-                  servicio y preservar la relación contractual.
+                  servicio y preservar la relación contractual. Su puesta en
+                  marcha depende de la aprobación del reglamento y de la
+                  designación de los adjudicadores.
                 </Typography>
 
                 <Stack
@@ -156,7 +161,7 @@ export default function JprdPage() {
                   sx={{ mt: 3 }}
                 >
                   {[
-                    "Aplicable a contratos de obra, bienes y servicios.",
+                    "Figura prevista para contratos de obra, bienes y servicios.",
                     "Decisiones durante la ejecución, no al final del contrato.",
                     "Adjudicadores con experiencia técnica y legal.",
                   ].map((item) => (
@@ -184,11 +189,11 @@ export default function JprdPage() {
                     variant="contained"
                     endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
                   >
-                    Ver cláusula modelo
+                    Ver cláusula preliminar
                   </Button>
 
                   <Button component={RouterLink} to="/jprd/reglamento" variant="outlined">
-                    Reglamento
+                    Reglamento preliminar
                   </Button>
                 </Stack>
               </Box>
@@ -218,9 +223,9 @@ export default function JprdPage() {
       >
         <Container>
           <SectionHeading
-            kicker="Beneficios"
-            title="Por qué incorporar una JPRD"
-            subtitle="La prevención temprana reduce la conflictividad y protege el valor del contrato."
+            kicker="Beneficios esperados"
+            title="Qué busca la propuesta de JPRD"
+            subtitle="Ventajas del mecanismo una vez aprobado e implementado. No describen un servicio actualmente disponible."
             centered
           />
 
@@ -280,8 +285,9 @@ export default function JprdPage() {
       <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
-            kicker="Cómo funciona"
-            title="Cuatro pasos para activar la Junta"
+            kicker="Cómo funcionará"
+            title="Cuatro pasos previstos"
+            subtitle="Secuencia propuesta, sujeta a la aprobación del reglamento de la JPRD."
             centered
           />
 
@@ -333,9 +339,9 @@ export default function JprdPage() {
           <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-end", mb: 5 }}>
             <Grid size={{ xs: 12, md: 7 }}>
               <SectionHeading
-                kicker="Documentos"
+                kicker="Documentos preliminares"
                 title="Reglamento, ética y aranceles"
-                subtitle="Consulta las reglas que rigen la actuación de la Junta y de los adjudicadores."
+                subtitle="Documentos en proceso de aprobación. No son normativa vigente y no deben citarse como reglas aplicables."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -367,8 +373,10 @@ export default function JprdPage() {
 
       <CtaBand
         title="¿Tu contrato necesita una JPRD?"
-        subtitle="Incorporar la cláusula desde el inicio evita conflictos costosos durante la ejecución."
-        secondaryLabel="Ver nómina de adjudicadores"
+        subtitle="La JPRD se encuentra en implementación. Podemos orientarte sobre la propuesta y su eventual incorporación contractual."
+        primaryLabel="Consultar con la Corte"
+        primaryTo="/contacto"
+        secondaryLabel="Ver registro de adjudicadores"
         secondaryTo="/jprd/adjudicadores"
       />
     </>

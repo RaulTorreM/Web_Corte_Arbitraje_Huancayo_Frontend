@@ -68,7 +68,7 @@ type ContactoValues = z.infer<typeof contactoSchema>;
 const TIPOS = [
   "Consulta general",
   "Arbitraje",
-  "Junta de Prevención y Resolución de Disputas",
+  "JPRD (en implementación)",
   "Capacitaciones",
   "Documentos y certificaciones",
   "Otro",
@@ -121,13 +121,13 @@ export default function ContactoPage() {
     <>
       <PageMeta
         title="Contacto"
-        description="Comunícate con la Corte Superior de Arbitraje de Huancayo: dirección, teléfonos, correo institucional, horarios y formulario de contacto."
+        description="Comunícate con la Corte Superior de Arbitraje de la Cámara de Comercio de Huancayo: dirección, teléfonos, correo institucional, horarios y formulario de contacto."
       />
 
       <PageHero
         kicker="Estamos para orientarte"
         title="Contacto"
-        subtitle="Escríbenos, llámanos o visítanos. La Secretaría General atiende consultas sobre arbitraje, JPRD, capacitaciones y documentación institucional."
+        subtitle="Escríbenos, llámanos o visítanos. La Secretaría General atiende consultas sobre arbitraje, documentación institucional y capacitaciones. La JPRD se encuentra en implementación, por lo que aún no se reciben solicitudes para administrar juntas."
         crumbs={[{ label: "Contacto" }]}
         image="/images/ARBITRAJE_IMG_02-01.jpg"
       />
@@ -521,9 +521,11 @@ export default function ContactoPage() {
 
       <CtaBand
         title="¿Ya cuentas con una cláusula arbitral?"
-        subtitle="Presenta tu solicitud a través del Sistema de Arbitraje o revisa antes los requisitos del procedimiento."
-        secondaryLabel="Cómo iniciar un arbitraje"
-        secondaryTo="/arbitraje/inicio"
+        subtitle="Revisa los requisitos, los plazos y el derecho de presentación antes de acudir a la Secretaría General."
+        primaryLabel="Cómo iniciar un arbitraje"
+        primaryTo="/arbitraje/inicio"
+        secondaryLabel="Revisar mi cláusula"
+        secondaryTo="/arbitraje/clausula"
       />
     </>
   );

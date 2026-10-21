@@ -15,11 +15,42 @@ import { brand } from "../../theme/brand";
 import { CONSEJO } from "../../data/directivos";
 import { DOCUMENTOS } from "../../data/documentos";
 
+const COMISIONES = [
+  {
+    nombre: "Registro y Designación",
+    funcion: "Inscribe, renueva y designa árbitros y adjudicadores de forma directa y residual.",
+  },
+  {
+    nombre: "Confirmación",
+    funcion: "Confirma o no la designación de árbitros que no integran el Registro.",
+  },
+  {
+    nombre: "Recusación y Remoción",
+    funcion: "Resuelve recusaciones y remociones, incluidas las iniciadas de oficio.",
+  },
+  {
+    nombre: "Ética",
+    funcion: "Aplica el Código de Ética, determina infracciones e impone sanciones.",
+  },
+  {
+    nombre: "Arbitraje de Emergencia",
+    funcion: "Designa árbitros de emergencia y mantiene la lista corta de acceso público.",
+  },
+  {
+    nombre: "Buenas Prácticas",
+    funcion: "Vela por la calidad, la transparencia web, las certificaciones y la memoria anual.",
+  },
+];
+
 const FUNCIONES_CONSEJO = [
-  "Define la política institucional y aprueba el plan anual de la Corte.",
-  "Supervisa la administración de expedientes y el cumplimiento de los reglamentos.",
-  "Aprueba y actualiza la nómina de árbitros y adjudicadores.",
-  "Adopta las medidas disciplinarias que correspondan conforme al Código de Ética.",
+  "Propone al Consejo Directivo de la Cámara las modificaciones a los reglamentos.",
+  "Interpreta los alcances de los reglamentos y emite directivas y lineamientos.",
+  "Absuelve consultas generales de los usuarios sobre la administración del arbitraje.",
+  "Resuelve conflictos de competencia entre los órganos de la Corte.",
+  "Resuelve en última instancia los asuntos administrativos decididos por las comisiones.",
+  "Nombra al Secretario del Consejo, al Secretario General y a los secretarios arbitrales.",
+  "Aprueba el presupuesto y monitorea la marcha de los casos arbitrales.",
+  "Supervisa la capacitación de los árbitros y el cumplimiento del Código de Ética.",
 ];
 
 export default function ConsejoPage() {
@@ -28,17 +59,17 @@ export default function ConsejoPage() {
   return (
     <>
       <PageMeta
-        title="Consejo directivo"
-        description="Conoce a los integrantes del Consejo Directivo de la Corte Superior de Arbitraje de Huancayo."
+        title="Consejo Superior"
+        description="Composición, requisitos y funciones del Consejo Superior de Arbitraje de la Cámara de Comercio de Huancayo."
       />
 
       <PageHero
         kicker="Gobierno institucional"
-        title="Consejo directivo"
-        subtitle="El Consejo Directivo conduce la Corte con autonomía técnica, vocación de servicio y apego a los principios de integridad y transparencia."
+        title="Consejo Superior de Arbitraje"
+        subtitle="Es la máxima autoridad institucional de gobierno administrativo no jurisdiccional. Asegura la aplicación de los reglamentos y, a pedido de parte, resuelve en última instancia los temas administrativos e incidentes procesales del arbitraje."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
-          { label: "Consejo directivo" },
+          { label: "Consejo Superior" },
         ]}
         image="/images/ARBITRAJE_IMG_02-04.jpg"
       />
@@ -48,7 +79,7 @@ export default function ConsejoPage() {
           <SectionHeading
             kicker="Nuestros integrantes"
             title="Experiencia y compromiso al servicio de la institución"
-            subtitle="Profesionales del derecho, la ingeniería y las ciencias económicas que aportan una mirada multidisciplinaria a la administración de la Corte."
+            subtitle="Un presidente, un vicepresidente y hasta cinco consejeros, con sus respectivos suplentes, nombrados por el Consejo Directivo de la Cámara por períodos de tres años. Las sesiones requieren quórum de cuatro consejeros y se realizan como mínimo una vez por trimestre."
             centered
           />
 
@@ -107,9 +138,11 @@ export default function ConsejoPage() {
                 </Typography>
 
                 <Typography sx={{ color: "rgba(255,255,255,0.7)", fontSize: "0.95rem", lineHeight: 1.8 }}>
-                  El Consejo Directivo es el órgano de gobierno de la Corte. Sus
-                  decisiones se adoptan de forma colegiada y quedan registradas en
-                  actas institucionales.
+                  El Consejo Superior sesiona como mínimo una vez por trimestre.
+                  Sus sesiones son confidenciales, requieren quórum de cuatro
+                  consejeros y se adoptan por mayoría simple, con voto dirimente
+                  del presidente en caso de empate. Todo consta en el Libro de
+                  Actas.
                 </Typography>
 
                 <Button
@@ -176,6 +209,54 @@ export default function ConsejoPage() {
         </Container>
       </Box>
 
+      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+        <Container>
+          <SectionHeading
+            kicker="Comisiones"
+            title="Seis comisiones especializadas"
+            subtitle="Cada comisión tiene dos miembros y ejerce las competencias que le asigna el Estatuto. Sus decisiones pueden revisarse ante el Consejo Superior."
+            centered
+          />
+
+          <Stagger>
+            <Grid container spacing={{ xs: 2.5, md: 3 }}>
+              {COMISIONES.map((comision, index) => (
+                <Grid key={comision.nombre} size={{ xs: 12, sm: 6, md: 4 }}>
+                  <Stack
+                    component={motion.article}
+                    sx={{
+                      height: "100%",
+                      p: 3,
+                      backgroundColor: brand.paper,
+                      border: `1px solid ${brand.line}`,
+                      borderTop: `3px solid ${brand.gold}`,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFamily: '"Fraunces", Georgia, serif',
+                        fontSize: "1.6rem",
+                        fontWeight: 600,
+                        color: brand.skyMid,
+                        lineHeight: 1,
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </Typography>
+                    <Typography variant="h4" sx={{ mt: 1.8, color: brand.primaryDark, fontSize: "1.02rem" }}>
+                      {comision.nombre}
+                    </Typography>
+                    <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.86rem", lineHeight: 1.7 }}>
+                      {comision.funcion}
+                    </Typography>
+                  </Stack>
+                </Grid>
+              ))}
+            </Grid>
+          </Stagger>
+        </Container>
+      </Box>
+
       <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
           <Grid container spacing={{ xs: 5, md: 6 }} sx={{ alignItems: "center" }}>
@@ -183,7 +264,7 @@ export default function ConsejoPage() {
               <SectionHeading
                 kicker="Marco normativo"
                 title="Reglas claras para una gestión predecible"
-                subtitle="El Estatuto y el Reglamento de Organización y Funciones establecen las competencias y el régimen de adopción de decisiones."
+                subtitle="El Estatuto y el Reglamento de Arbitraje establecen las competencias del Consejo y el régimen de adopción de decisiones."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -206,8 +287,10 @@ export default function ConsejoPage() {
       <CtaBand
         title="Conoce al equipo que acompaña cada expediente"
         subtitle="La Secretaría General y el equipo administrativo garantizan el debido curso de los procedimientos."
-        secondaryLabel="Ver equipo de trabajo"
-        secondaryTo="/quienes-somos/equipo"
+        primaryLabel="Ver equipo de trabajo"
+        primaryTo="/quienes-somos/equipo"
+        secondaryLabel="Ver reglamentos"
+        secondaryTo="/arbitraje/reglamentos"
       />
     </>
   );

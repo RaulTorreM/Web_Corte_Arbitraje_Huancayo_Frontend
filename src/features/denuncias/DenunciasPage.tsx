@@ -13,6 +13,12 @@ import {
   Grid,
   MenuItem,
   Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   TextField,
   Typography,
 } from "@mui/material";
@@ -21,9 +27,11 @@ import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
+import SectionHeading from "../../components/common/SectionHeading";
 import CtaBand from "../../components/common/CtaBand";
 import FormSuccess from "../../components/forms/FormSuccess";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
@@ -33,6 +41,13 @@ const denunciaSchema = z
   .object({
     tipo: z.string().min(1, "Selecciona el tipo de conducta"),
     relacion: z.string().min(1, "Indica la vinculación con la Corte"),
+    denunciado: z
+      .string()
+      .trim()
+      .min(3, "Identifica a la persona denunciada")
+      .max(160, "Máximo 160 caracteres"),
+    rolDenunciado: z.string().min(1, "Selecciona el rol de la persona denunciada"),
+    norma: z.string().trim().max(400, "Máximo 400 caracteres").optional(),
     anonima: z.boolean(),
     nombre: z.string().trim().max(100, "Máximo 100 caracteres").optional(),
     email: z.string().trim().optional(),
@@ -73,11 +88,14 @@ const denunciaSchema = z
 type DenunciaValues = z.infer<typeof denunciaSchema>;
 
 const TIPOS = [
-  "Soborno o conflicto de intereses",
-  "Conducta antiética de un árbitro o adjudicador",
-  "Irregularidad en el procedimiento arbitral",
-  "Uso indebido de información confidencial",
-  "Maltrato o conducta indebida del personal",
+  "Incumplimiento de la Ley de Arbitraje o del Reglamento",
+  "Conducta contraria a las Reglas de Ética",
+  "Falta al deber de confidencialidad",
+  "Inasistencia reiterada a actuaciones arbitrales",
+  "Demora injustificada en la conducción del arbitraje",
+  "Recusación manifiestamente maliciosa o dilatoria",
+  "Mala fe en el desarrollo del arbitraje",
+  "Incumplimiento de mandatos del Consejo",
   "Otra conducta contraria al Código de Ética",
 ];
 
@@ -88,6 +106,24 @@ const RELACIONES = [
   "Personal de la Corte",
   "Proveedor o contratista",
   "Tercero o ciudadano",
+];
+
+const ROLES_DENUNCIADO = [
+  "Árbitro",
+  "Adjudicador",
+  "Abogado o asesor",
+  "Secretario arbitral",
+  "Personal de la Corte",
+  "Otro",
+];
+
+const SANCIONES = [
+  { sancion: "Exhortación", alcance: "Llamado de atención. No se publica." },
+  { sancion: "Amonestación escrita", alcance: "Constancia en el registro. No se publica." },
+  { sancion: "Suspensión", alcance: "Temporal o definitiva para ser elegido árbitro o adjudicador." },
+  { sancion: "Separación del Registro", alcance: "Definitiva." },
+  { sancion: "Multa", alcance: "Hasta 50 UIT." },
+  { sancion: "Pérdida o devolución de honorarios", alcance: "Total o parcial." },
 ];
 
 const GARANTIAS = [
@@ -109,25 +145,32 @@ const GARANTIAS = [
 ];
 
 const ALCANCE = [
-  "Soborno, tráfico de influencias o conflicto de intereses no declarado.",
-  "Incumplimiento del Código de Ética por árbitros o adjudicadores.",
-  "Irregularidades en la designación, recusación o conducción del procedimiento.",
-  "Divulgación indebida de información confidencial de un expediente.",
-  "Trato indebido o discriminación por parte del personal de la Corte.",
+  "Incumplimiento de los requisitos y procedimientos de la Ley de Arbitraje y del Reglamento.",
+  "Conductas contrarias a las Reglas de Ética.",
+  "Faltas al deber de confidencialidad.",
+  "Inasistencia reiterada a las actuaciones arbitrales sin causa justificada.",
+  "Demoras injustificadas en la conducción del arbitraje.",
+  "Recusaciones manifiestamente maliciosas o dilatorias.",
+  "Mala fe en el desarrollo del arbitraje.",
+  "Incumplimiento de los mandatos impuestos por el Consejo.",
 ];
 
 const TRATAMIENTO = [
   {
-    title: "Registro reservado",
-    text: "La denuncia se registra en un canal restringido y se asigna un código de seguimiento.",
+    title: "Presentación",
+    text: "La denuncia se envía a la Secretaría General con los hechos y las pruebas. La identidad del denunciante se mantiene reservada.",
   },
   {
-    title: "Evaluación de admisibilidad",
-    text: "El órgano competente verifica los hechos y determina la vía de investigación aplicable.",
+    title: "Traslado y descargos",
+    text: "La denuncia se pone en conocimiento del denunciado, que tiene cinco días hábiles para formular sus descargos y presentar documentación.",
+  },
+  {
+    title: "Evaluación",
+    text: "El Consejo evalúa los argumentos y documentos de ambas partes. Puede disponer una audiencia con presencia del denunciante y del denunciado.",
   },
   {
     title: "Decisión motivada",
-    text: "Se adoptan las medidas que correspondan y se comunica el resultado por el canal indicado.",
+    text: "El Consejo resuelve de manera motivada y definitiva sobre la sanción aplicable. Las sanciones se registran en el Libro de Sanciones.",
   },
 ];
 
@@ -146,6 +189,9 @@ export default function DenunciasPage() {
     defaultValues: {
       tipo: "",
       relacion: "",
+      denunciado: "",
+      rolDenunciado: "",
+      norma: "",
       anonima: false,
       nombre: "",
       email: "",
@@ -168,14 +214,14 @@ export default function DenunciasPage() {
   return (
     <>
       <PageMeta
-        title="Canal de denuncias"
-        description="Canal confidencial para reportar conductas contrarias a la ética, conflictos de intereses o irregularidades en la Corte Superior de Arbitraje de Huancayo."
+        title="Denuncias y ética"
+        description="Canal para denunciar incumplimientos del Código de Ética por parte de árbitros, adjudicadores, abogados y asesores de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Integridad institucional"
-        title="Canal de denuncias"
-        subtitle="Un espacio reservado para reportar conductas contrarias al Código de Ética, conflictos de intereses o irregularidades en la administración de arbitrajes y JPRD."
+        title="Canal de denuncias de ética"
+        subtitle="Cualquier persona natural o jurídica que tenga conocimiento de una violación al Código de Ética puede denunciarla ante el Consejo Superior de Arbitraje, a través de la Secretaría General. La denuncia se tramita de forma reservada."
         crumbs={[{ label: "Canal de denuncias" }]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
       />
@@ -383,6 +429,50 @@ export default function DenunciasPage() {
                             </MenuItem>
                           ))}
                         </TextField>
+                      </Grid>
+
+                      <Grid size={{ xs: 12, sm: 8 }}>
+                        <TextField
+                          label="Persona denunciada *"
+                          fullWidth
+                          {...register("denunciado")}
+                          error={!!errors.denunciado}
+                          helperText={
+                            errors.denunciado?.message ??
+                            "Nombre de la persona o identificación suficiente para individualizarla."
+                          }
+                        />
+                      </Grid>
+
+                      <Grid size={{ xs: 12, sm: 4 }}>
+                        <TextField
+                          select
+                          label="Rol del denunciado *"
+                          fullWidth
+                          {...register("rolDenunciado")}
+                          error={!!errors.rolDenunciado}
+                          helperText={errors.rolDenunciado?.message}
+                        >
+                          <MenuItem value="" disabled sx={{ display: "none" }} />
+                          {ROLES_DENUNCIADO.map((rol) => (
+                            <MenuItem key={rol} value={rol}>
+                              {rol}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
+
+                      <Grid size={{ xs: 12 }}>
+                        <TextField
+                          label="Norma o deber infringido"
+                          fullWidth
+                          {...register("norma")}
+                          error={!!errors.norma}
+                          helperText={
+                            errors.norma?.message ??
+                            "Si no conoces la norma exacta, describe el deber que consideras incumplido."
+                          }
+                        />
                       </Grid>
 
                       <Grid size={{ xs: 12 }}>
@@ -711,9 +801,104 @@ export default function DenunciasPage() {
         </Container>
       </Box>
 
+      <Box
+        component="section"
+        id="sancionados"
+        sx={{
+          py: { xs: 8, md: 10 },
+          backgroundColor: brand.paper,
+          borderTop: `1px solid ${brand.line}`,
+        }}
+      >
+        <Container>
+          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-start" }}>
+            <Grid size={{ xs: 12, md: 5 }}>
+              <SectionHeading
+                kicker="Régimen sancionador"
+                title="Sanciones aplicables"
+                subtitle="El Consejo resuelve de manera motivada y definitiva. Las sanciones se registran en el Libro de Sanciones a cargo de la Secretaría General."
+                sx={{ mb: 0 }}
+              />
+
+              <Stack
+                direction="row"
+                spacing={1.2}
+                sx={{ mt: 2.5, alignItems: "flex-start" }}
+              >
+                <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.05rem", mt: "2px" }} />
+                <Typography sx={{ color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
+                  Se publican las sanciones salvo los casos de exhortación y
+                  amonestación escrita. La publicación incluye el motivo y la
+                  vigencia.
+                </Typography>
+              </Stack>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 7 }}>
+              <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
+                <Table aria-label="Sanciones aplicables" sx={{ minWidth: 480 }}>
+                  <TableHead>
+                    <TableRow sx={{ backgroundColor: brand.primaryDark }}>
+                      <TableCell sx={{ color: brand.white, fontWeight: 700, fontSize: "0.78rem" }}>
+                        Sanción
+                      </TableCell>
+                      <TableCell sx={{ color: brand.white, fontWeight: 700, fontSize: "0.78rem" }}>
+                        Alcance
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {SANCIONES.map((row) => (
+                      <TableRow
+                        key={row.sancion}
+                        sx={{ "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" } }}
+                      >
+                        <TableCell sx={{ fontSize: "0.82rem", py: 1.1, fontWeight: 700, color: brand.primaryDark }}>
+                          {row.sancion}
+                        </TableCell>
+                        <TableCell sx={{ fontSize: "0.82rem", py: 1.1, color: brand.muted }}>
+                          {row.alcance}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+          </Grid>
+
+          <Box
+            sx={{
+              mt: { xs: 5, md: 6 },
+              p: { xs: 3, md: 4 },
+              textAlign: "center",
+              backgroundColor: brand.white,
+              border: `1px solid ${brand.line}`,
+              borderTop: `3px solid ${brand.gold}`,
+            }}
+          >
+            <Typography
+              sx={{
+                color: brand.primaryDark,
+                fontWeight: 750,
+                fontSize: "0.95rem",
+              }}
+            >
+              Relación de sancionados
+            </Typography>
+            <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.86rem", lineHeight: 1.7 }}>
+              No hay sanciones publicadas a la fecha. Cuando existan, se
+              publicarán el nombre, el rol, el motivo, la sanción y su vigencia,
+              salvo las excepciones de ley.
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
+
       <CtaBand
         title="¿Necesitas orientación sobre un procedimiento?"
         subtitle="La Secretaría General atiende consultas sobre expedientes, requisitos y trámites. Para reportar conductas indebidas usa el formulario de esta página."
+        showPrimary={false}
         secondaryLabel="Ir a Contacto"
         secondaryTo="/contacto"
       />

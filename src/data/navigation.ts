@@ -20,7 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
     to: "/quienes-somos",
     children: [
       { label: "Presentación", to: "/quienes-somos" },
-      { label: "Consejo directivo", to: "/quienes-somos/consejo" },
+      { label: "Consejo Superior", to: "/quienes-somos/consejo" },
       { label: "Equipo de trabajo", to: "/quienes-somos/equipo" },
       { label: "Certificaciones", to: "/quienes-somos/certificaciones" },
     ],
@@ -42,12 +42,12 @@ export const NAV_ITEMS: NavItem[] = [
     label: "JPRD",
     to: "/jprd",
     children: [
-      { label: "Presentación", to: "/jprd" },
-      { label: "Reglamento y ética", to: "/jprd/reglamento" },
-      { label: "Nómina de adjudicadores", to: "/jprd/adjudicadores" },
-      { label: "Tabla de aranceles", to: "/jprd/aranceles" },
-      { label: "Cláusula modelo", to: "/jprd/clausula" },
-      { label: "Banco de decisiones", to: "/jprd/decisiones" },
+      { label: "Presentación (en implementación)", to: "/jprd" },
+      { label: "Reglamento (preliminar)", to: "/jprd/reglamento" },
+      { label: "Registro de adjudicadores", to: "/jprd/adjudicadores" },
+      { label: "Aranceles (preliminar)", to: "/jprd/aranceles" },
+      { label: "Cláusula modelo (preliminar)", to: "/jprd/clausula" },
+      { label: "Decisiones (en implementación)", to: "/jprd/decisiones" },
     ],
   },
   {

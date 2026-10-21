@@ -45,7 +45,7 @@ const FAQS = [
   {
     question: "¿Se entrega certificado de participación?",
     answer:
-      "Sí. Las actividades académicas otorgan un certificado digital de participación, siempre que se cumpla con la asistencia mínima establecida por la organización.",
+      "Las actividades que así lo indiquen en su convocatoria otorgan un certificado digital de participación, siempre que se cumpla con la asistencia mínima establecida.",
   },
   {
     question: "¿Puedo solicitar una capacitación para mi institución?",
@@ -79,13 +79,13 @@ export default function CapacitacionesPage() {
     <>
       <PageMeta
         title="Capacitaciones"
-        description="Seminarios, talleres y programas de capacitación en arbitraje y juntas de prevención y resolución de disputas."
+        description="Seminarios, talleres y programas de capacitación en arbitraje y juntas de prevención y resolución de disputas. Agenda referencial."
       />
 
       <PageHero
         kicker="Formación especializada"
         title="Capacitaciones"
-        subtitle="Seminarios, talleres y conversatorios para fortalecer las competencias de profesionales, empresas y entidades públicas."
+        subtitle="Seminarios, talleres y conversatorios para fortalecer las competencias de profesionales, empresas y entidades públicas. La agenda publicada es referencial y se confirma en cada convocatoria."
         crumbs={[{ label: "Capacitaciones" }]}
         image="/images/ARBITRAJE_IMG_02-04.jpg"
       />
@@ -105,9 +105,9 @@ export default function CapacitacionesPage() {
             <Grid size={{ xs: 12, md: 5 }}>
               <Grid container spacing={2}>
                 {[
-                  { icon: SchoolOutlinedIcon, value: "5", label: "Actividades en agenda" },
-                  { icon: GroupsOutlinedIcon, value: "290+", label: "Cupos disponibles" },
-                  { icon: CalendarMonthOutlinedIcon, value: "3", label: "Modalidades de participación" },
+                  { icon: SchoolOutlinedIcon, value: "Abierta", label: "Agenda referencial sujeta a confirmación" },
+                  { icon: GroupsOutlinedIcon, value: "A medida", label: "Programas para instituciones y empresas" },
+                  { icon: CalendarMonthOutlinedIcon, value: "3", label: "Modalidades: presencial, virtual e híbrida" },
                 ].map((item) => {
                   const Icon = item.icon;
 
@@ -153,7 +153,7 @@ export default function CapacitacionesPage() {
           <Stack
             direction="row"
             spacing={1}
-            sx={{ mt: { xs: 4, md: 5 }, mb: 3, flexWrap: "wrap", gap: 1 }}
+            sx={{ mt: { xs: 4, md: 5 }, mb: 2, flexWrap: "wrap", gap: 1 }}
           >
             {FILTROS.map((item) => {
               const active = filtro === item.value;
@@ -193,6 +193,11 @@ export default function CapacitacionesPage() {
               );
             })}
           </Stack>
+
+          <Typography sx={{ mb: 3, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.6 }}>
+            Agenda de demostración. Las fechas, cupos y sedes se confirman en la
+            convocatoria oficial de cada actividad.
+          </Typography>
 
           <Stagger amount={0.08}>
             <Grid container spacing={{ xs: 3, md: 3 }}>
@@ -344,7 +349,8 @@ export default function CapacitacionesPage() {
 
       <CtaBand
         title="Inscríbete en nuestra próxima actividad"
-        subtitle="Amplía tus conocimientos en arbitraje y resolución de disputas con especialistas de la Corte."
+        subtitle="Consulta la agenda referencial y solicita información sobre la convocatoria vigente."
+        showPrimary={false}
         secondaryLabel="Solicitar información"
         secondaryTo="/contacto"
       />

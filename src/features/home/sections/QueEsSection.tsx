@@ -27,7 +27,7 @@ const BENEFICIOS = [
   {
     icon: LockOutlinedIcon,
     title: "Confidencialidad",
-    text: "El procedimiento y la información del expediente se mantienen reservados.",
+    text: "Las actuaciones y el laudo son reservados, salvo las excepciones legales para ejecutar o impugnar el laudo.",
   },
   {
     icon: GavelOutlinedIcon,
@@ -157,9 +157,10 @@ export default function QueEsSection() {
                   lineHeight: 1.82,
                 }}
               >
-                En la Corte Superior de Arbitraje de Huancayo administramos el
-                procedimiento con reglas claras, plazos definidos y el
-                acompañamiento permanente de nuestra Secretaría General.
+                La Corte Superior de Arbitraje organiza y administra el
+                procedimiento: recibe la solicitud, designa o confirma árbitros,
+                controla los plazos y notifica el laudo. La decisión de la
+                controversia corresponde al tribunal arbitral.
               </Typography>
 
               <Stack spacing={2.4} sx={{ mt: 4 }}>
