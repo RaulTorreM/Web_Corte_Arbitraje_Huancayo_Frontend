@@ -17,6 +17,10 @@ export default function Breadcrumbs({
   items,
   light = true,
 }: BreadcrumbsProps) {
+  const baseColor = light ? "rgba(255,255,255,0.62)" : brand.muted;
+  const hoverColor = light ? brand.goldSoft : brand.goldDeep;
+  const currentColor = light ? brand.goldSoft : brand.primary;
+
   return (
     <Box
       component="nav"
@@ -25,24 +29,21 @@ export default function Breadcrumbs({
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        gap: 0.6,
-        mb: 3,
+        gap: 0.5,
       }}
     >
       <Typography
         component={RouterLink}
         to="/"
         sx={{
-          fontSize: "0.72rem",
-          fontWeight: 600,
-          letterSpacing: "0.06em",
+          fontSize: "0.66rem",
+          fontWeight: 700,
+          letterSpacing: "0.1em",
           textTransform: "uppercase",
-          color: light ? "rgba(255,255,255,0.58)" : brand.muted,
+          color: baseColor,
           textDecoration: "none",
-          transition: "color 0.2s ease",
-          "&:hover": {
-            color: light ? brand.goldSoft : brand.goldDeep,
-          },
+          transition: "color 0.18s ease",
+          "&:hover": { color: hoverColor },
         }}
       >
         Inicio
@@ -54,12 +55,12 @@ export default function Breadcrumbs({
         return (
           <Box
             key={`${item.label}-${index}`}
-            sx={{ display: "inline-flex", alignItems: "center", gap: 0.6 }}
+            sx={{ display: "inline-flex", alignItems: "center", gap: 0.5 }}
           >
             <ChevronRightIcon
               sx={{
-                fontSize: "0.95rem",
-                color: light ? "rgba(255,255,255,0.35)" : brand.line,
+                fontSize: "0.9rem",
+                color: light ? "rgba(255,255,255,0.35)" : brand.lineStrong,
               }}
             />
 
@@ -68,15 +69,13 @@ export default function Breadcrumbs({
                 component={RouterLink}
                 to={item.to}
                 sx={{
-                  fontSize: "0.72rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.06em",
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  color: light ? "rgba(255,255,255,0.58)" : brand.muted,
+                  color: baseColor,
                   textDecoration: "none",
-                  "&:hover": {
-                    color: light ? brand.goldSoft : brand.goldDeep,
-                  },
+                  "&:hover": { color: hoverColor },
                 }}
               >
                 {item.label}
@@ -84,11 +83,11 @@ export default function Breadcrumbs({
             ) : (
               <Typography
                 sx={{
-                  fontSize: "0.72rem",
+                  fontSize: "0.66rem",
                   fontWeight: 700,
-                  letterSpacing: "0.06em",
+                  letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  color: light ? brand.goldSoft : brand.primary,
+                  color: currentColor,
                 }}
               >
                 {item.label}

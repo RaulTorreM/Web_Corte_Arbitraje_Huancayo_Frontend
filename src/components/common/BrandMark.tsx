@@ -20,7 +20,7 @@ export default function BrandMark({
       to="/"
       onClick={onClick}
       direction="row"
-      spacing={1.4}
+      spacing={compact ? 1 : 1.3}
       sx={{
         alignItems: "center",
         textDecoration: "none",
@@ -33,11 +33,10 @@ export default function BrandMark({
         src={logo}
         alt="Sello de la Corte Superior de Arbitraje de Huancayo"
         sx={{
-          width: compact ? 44 : { xs: 46, md: 56 },
-          height: compact ? 44 : { xs: 46, md: 56 },
+          width: compact ? 38 : { xs: 42, md: 48 },
+          height: compact ? 38 : { xs: 42, md: 48 },
           objectFit: "contain",
           display: "block",
-          filter: "drop-shadow(0 4px 10px rgba(18,35,61,0.18))",
         }}
       />
 
@@ -45,9 +44,9 @@ export default function BrandMark({
         <Typography
           sx={{
             fontFamily: fonts.body,
-            fontSize: compact ? "0.52rem" : "0.58rem",
+            fontSize: compact ? "0.48rem" : "0.55rem",
             fontWeight: 700,
-            letterSpacing: "0.19em",
+            letterSpacing: "0.18em",
             color: light ? brand.goldSoft : brand.goldDeep,
             textTransform: "uppercase",
             mb: 0.45,
@@ -59,9 +58,9 @@ export default function BrandMark({
         <Typography
           sx={{
             fontFamily: fonts.display,
-            fontSize: compact ? "0.95rem" : { xs: "1rem", md: "1.12rem" },
+            fontSize: compact ? "0.92rem" : { xs: "0.98rem", md: "1.08rem" },
             fontWeight: 600,
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.012em",
             color: light ? brand.white : brand.primaryDark,
             whiteSpace: "nowrap",
           }}
@@ -72,15 +71,15 @@ export default function BrandMark({
         <Typography
           sx={{
             fontFamily: fonts.body,
-            fontSize: compact ? "0.55rem" : "0.6rem",
+            fontSize: compact ? "0.49rem" : "0.55rem",
             fontWeight: 600,
-            letterSpacing: "0.14em",
-            color: light ? "rgba(255,255,255,0.62)" : brand.muted,
+            letterSpacing: "0.16em",
+            color: light ? "rgba(255,255,255,0.66)" : brand.muted,
             textTransform: "uppercase",
-            mt: 0.4,
+            mt: 0.45,
           }}
         >
-          de Huancayo
+          Huancayo · Junín
         </Typography>
       </Box>
     </Stack>

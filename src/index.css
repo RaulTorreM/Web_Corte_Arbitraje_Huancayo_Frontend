@@ -4,6 +4,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --paper: #f4f0e7;
+  --paper-alt: #eae4d8;
+  --ink: #17212c;
+  --navy: #17324f;
+  --gold: #b08a2e;
+  --line: #d7d0c3;
 }
 
 *,
@@ -21,6 +27,7 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: hidden;
+  background-color: var(--paper);
 }
 
 #root {
@@ -32,8 +39,8 @@ img {
 }
 
 ::selection {
-  background-color: rgba(186, 153, 7, 0.28);
-  color: #12233d;
+  background-color: #e7d8ae;
+  color: #0a1b2b;
 }
 
 ::-webkit-scrollbar {
@@ -42,24 +49,27 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #edf3fa;
+  background-color: #eae4d8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #9db4ce;
-  border: 2px solid #edf3fa;
+  background-color: #b8af9e;
+  border: 2px solid #eae4d8;
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #2d4979;
+  background-color: #17324f;
 }
 
 a:focus-visible,
 button:focus-visible,
-[role="button"]:focus-visible {
-  outline: 3px solid rgba(186, 153, 7, 0.7);
-  outline-offset: 2px;
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #725311;
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,5 +83,33 @@ button:focus-visible,
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  @page {
+    margin: 18mm;
+  }
+
+  body:has(#guia-requisitos) {
+    background: #ffffff;
+  }
+
+  body:has(#guia-requisitos) #root > div > a,
+  body:has(#guia-requisitos) #root header,
+  body:has(#guia-requisitos) #root footer,
+  body:has(#guia-requisitos) #root main > *:not(#guia-requisitos) {
+    display: none !important;
+  }
+
+  body:has(#guia-requisitos) #guia-requisitos {
+    display: block !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border: 0 !important;
+  }
+
+  body:has(#guia-requisitos) #guia-requisitos .no-print {
+    display: none !important;
   }
 }

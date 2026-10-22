@@ -1,9 +1,4 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import { motion } from "framer-motion";
-import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
-import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import BoltOutlinedIcon from "@mui/icons-material/BoltOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
@@ -11,30 +6,24 @@ import SectionHeading from "../../components/common/SectionHeading";
 import DocumentCard from "../../components/common/DocumentCard";
 import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
-import { Stagger } from "../../components/common/Reveal";
-import { viewportOnce } from "../../utils/animations";
-import { brand } from "../../theme/brand";
+import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import { documentosPorCategoria } from "../../data/documentos";
 
 const PRINCIPIOS = [
   {
-    icon: GavelOutlinedIcon,
     title: "Independencia",
     text: "El adjudicador actúa con autonomía frente a las partes y frente a cualquier interés externo.",
   },
   {
-    icon: BalanceOutlinedIcon,
     title: "Imparcialidad",
     text: "Se garantiza igualdad de trato y la oportunidad de presentar la posición técnica de cada parte.",
   },
   {
-    icon: LockOutlinedIcon,
     title: "Confidencialidad",
     text: "La información del procedimiento se mantiene reservada y se usa únicamente para la decisión.",
   },
   {
-    icon: BoltOutlinedIcon,
     title: "Oportunidad",
     text: "Las decisiones se emiten en plazos breves para no afectar la ejecución contractual.",
   },
@@ -90,6 +79,7 @@ export default function JprdReglamentoPage() {
           { label: "Reglamento preliminar" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
@@ -99,36 +89,24 @@ export default function JprdReglamentoPage() {
         text="El reglamento de la JPRD no ha sido aprobado. Esta sección es un documento de trabajo y no debe citarse como norma aplicable. Cuando el Consejo lo apruebe, se publicará el PDF firmado y se reemplazará esta etiqueta."
       />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-start" }}>
-            <Grid size={{ xs: 12, md: 7 }}>
+          <Grid container spacing={{ xs: 4, md: 6 }}>
+            <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
                 kicker="Documentos preliminares"
                 title="Estructura prevista del reglamento"
                 subtitle="El documento en elaboración desarrollará la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
-                sx={{ mb: 0 }}
+                sx={{ mb: 3 }}
               />
             </Grid>
 
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.6 }}
-                sx={{
-                  p: 2.5,
-                  backgroundColor: brand.skySoft,
-                  border: `1px solid ${brand.skyMid}`,
-                  borderLeft: `4px solid ${brand.gold}`,
-                }}
-              >
-                <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
+                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.86rem" }}>
                   Documento de trabajo
                 </Typography>
-                <Typography sx={{ color: brand.primary, fontSize: "0.82rem", mt: 0.6, lineHeight: 1.65 }}>
+                <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
                   Los documentos de esta sección son borradores. No han sido
                   aprobados por el Consejo Superior ni publicados como normativa
                   vigente. Las observaciones pueden enviarse a la Secretaría.
@@ -137,135 +115,102 @@ export default function JprdReglamentoPage() {
             </Grid>
           </Grid>
 
-          <Stagger amount={0.08}>
-            <Grid container spacing={{ xs: 2.5, md: 3 }} sx={{ mt: 3 }}>
-              {documentos.map((documento) => (
-                <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 3 }}>
-                  <DocumentCard documento={documento} />
-                </Grid>
-              ))}
-            </Grid>
-          </Stagger>
-        </Container>
-      </Box>
-
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.paper,
-          borderTop: `1px solid ${brand.line}`,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      >
-        <Container>
-          <SectionHeading
-            kicker="Principios"
-            title="Criterios que se están considerando"
-            centered
-          />
-
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
-            {PRINCIPIOS.map((principio, index) => {
-              const Icon = principio.icon;
-
-              return (
-                <Grid key={principio.title} size={{ xs: 12, sm: 6 }}>
-                  <Stack
-                    component={motion.article}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.5, delay: index * 0.06 }}
-                    direction="row"
-                    spacing={2.2}
-                    sx={{
-                      height: "100%",
-                      p: 2.8,
-                      backgroundColor: brand.white,
-                      border: `1px solid ${brand.line}`,
-                      borderLeft: `3px solid ${brand.gold}`,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 44,
-                        height: 44,
-                        flexShrink: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: brand.skySoft,
-                        color: brand.primary,
-                      }}
-                    >
-                      <Icon />
-                    </Box>
-
-                    <Box>
-                      <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem" }}>
-                        {principio.title}
-                      </Typography>
-                      <Typography sx={{ mt: 0.6, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.7 }}>
-                        {principio.text}
-                      </Typography>
-                    </Box>
-                  </Stack>
-                </Grid>
-              );
-            })}
+          <Grid container spacing={{ xs: 3, md: 4 }}>
+            {documentos.map((documento) => (
+              <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 3 }}>
+                <DocumentCard documento={documento} />
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "center" }}>
+          <SectionHeading kicker="Principios" title="Criterios que se están considerando" />
+
+          <Grid container spacing={{ xs: 0, md: 5 }}>
+            {PRINCIPIOS.map((principio, index) => (
+              <Grid key={principio.title} size={{ xs: 12, md: 6 }}>
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: "34px 1fr",
+                    gap: 1.6,
+                    py: 1.8,
+                    borderTop: `1px solid ${brand.line}`,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: fonts.display,
+                      color: brand.goldDeep,
+                      fontSize: "0.9rem",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </Typography>
+                  <Box>
+                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
+                      {principio.title}
+                    </Typography>
+                    <Typography sx={{ mt: 0.35, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
+                      {principio.text}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+        <Container>
+          <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 5 }}>
               <SectionHeading
                 kicker="Contenido previsto"
                 title="Siete capítulos en elaboración"
                 subtitle="La estructura aún no es definitiva. Los plazos, el efecto de las decisiones y el costo son puntos abiertos que el Consejo deberá aprobar."
+                stacked
                 sx={{ mb: 0 }}
               />
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }}>
-              <Stack spacing={1.2}>
+              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
                 {ESTRUCTURA.map((norma, index) => (
-                  <Stack
+                  <Box
                     key={norma.titulo}
-                    direction="row"
-                    spacing={2}
                     sx={{
-                      p: 2,
-                      alignItems: "flex-start",
-                      backgroundColor: brand.paper,
-                      border: `1px solid ${brand.line}`,
-                      borderLeft: `3px solid ${brand.gold}`,
+                      display: "grid",
+                      gridTemplateColumns: "34px 1fr",
+                      gap: 1.6,
+                      py: 1.5,
+                      borderBottom: `1px solid ${brand.line}`,
                     }}
                   >
                     <Typography
                       sx={{
-                        fontFamily: '"Fraunces", Georgia, serif',
-                        fontSize: "1.05rem",
-                        fontWeight: 600,
-                        color: brand.skyMid,
-                        minWidth: 28,
+                        fontFamily: fonts.display,
+                        color: brand.goldDeep,
+                        fontSize: "0.86rem",
+                        lineHeight: 1.6,
                       }}
                     >
                       {String(index + 1).padStart(2, "0")}
                     </Typography>
-
                     <Box>
-                      <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.86rem" }}>
+                      <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.86rem" }}>
                         {norma.titulo}
                       </Typography>
-                      <Typography sx={{ color: brand.muted, fontSize: "0.78rem", mt: 0.25, lineHeight: 1.6 }}>
+                      <Typography sx={{ mt: 0.25, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.55 }}>
                         {norma.detalle}
                       </Typography>
                     </Box>
-                  </Stack>
+                  </Box>
                 ))}
               </Stack>
             </Grid>

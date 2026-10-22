@@ -1,10 +1,12 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import { motion } from "framer-motion";
-import { brand, fonts } from "../../theme/brand";
+import { brand } from "../../theme/brand";
+import { SITE } from "../../data/site";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
-import seal from "../../assets/brand/logo-corte.png";
 
 type CtaBandProps = {
   title?: string;
@@ -17,149 +19,148 @@ type CtaBandProps = {
 };
 
 export default function CtaBand({
-  title = "¿Listo para iniciar un arbitraje?",
-  subtitle = "Nuestro equipo te orienta en cada etapa del proceso. Revisa los requisitos y conversa con la Secretaría General.",
+  title = "Conversemos antes de presentar tu caso",
+  subtitle = "La Secretaría General revisa los requisitos, la cláusula arbitral y el paso que corresponde. Si ya tienes un expediente, indícanos el número de caso al escribirnos.",
   primaryLabel = "Cómo iniciar un arbitraje",
   primaryTo = "/arbitraje/inicio",
   showPrimary = true,
-  secondaryLabel = "Hablar con la Corte",
+  secondaryLabel = "Ver canales de atención",
   secondaryTo = "/contacto",
 }: CtaBandProps) {
   return (
     <Box
       component="section"
       sx={{
-        position: "relative",
-        overflow: "hidden",
-        backgroundColor: brand.primaryDark,
+        backgroundColor: brand.primaryDeep,
         color: brand.white,
+        borderTop: `2px solid ${brand.gold}`,
         py: { xs: 7, md: 9 },
-        borderTop: `3px solid ${brand.gold}`,
       }}
     >
-      <Box
-        aria-hidden
-        sx={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(700px 360px at 85% 20%, rgba(157,196,239,0.16), transparent 65%)",
-        }}
-      />
-
-      <Box
-        aria-hidden
-        component="img"
-        src={seal}
-        alt=""
-        sx={{
-          position: "absolute",
-          right: { xs: "-30%", md: "2%" },
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: { xs: 380, md: 300 },
-          opacity: 0.09,
-          pointerEvents: "none",
-        }}
-      />
-
-      <Container sx={{ position: "relative" }}>
-        <Stack
-          component={motion.div}
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          direction={{ xs: "column", md: "row" }}
-          spacing={{ xs: 4, md: 6 }}
-          sx={{
-            alignItems: { xs: "flex-start", md: "center" },
-            justifyContent: "space-between",
-          }}
-        >
-          <Box sx={{ maxWidth: 700 }}>
-            <Typography
-              component={motion.p}
-              variants={fadeUp}
-              sx={{
-                color: brand.goldSoft,
-                fontSize: "0.72rem",
-                fontWeight: 750,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                mb: 1.5,
-              }}
+      <Container>
+        <Grid container spacing={{ xs: 4, md: 7 }} sx={{ alignItems: "center" }}>
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Stack
+              component={motion.div}
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              spacing={2}
             >
-              Corte Superior de Arbitraje
-            </Typography>
+              <Typography
+                component={motion.h2}
+                variants={fadeUp}
+                variant="h2"
+                sx={{
+                  color: brand.white,
+                  fontSize: { xs: "2rem", md: "2.8rem" },
+                  maxWidth: 640,
+                }}
+              >
+                {title}
+              </Typography>
 
-            <Typography
-              component={motion.h2}
+              <Typography
+                component={motion.p}
+                variants={fadeUp}
+                sx={{
+                  color: "rgba(255,255,255,0.72)",
+                  maxWidth: 600,
+                  fontSize: "0.98rem",
+                  lineHeight: 1.72,
+                }}
+              >
+                {subtitle}
+              </Typography>
+
+              <Stack
+                component={motion.div}
+                variants={fadeUp}
+                direction={{ xs: "column", sm: "row" }}
+                spacing={{ xs: 1, sm: 2.5 }}
+                sx={{ pt: 0.5 }}
+              >
+                <Box
+                  component="a"
+                  href={SITE.contact.phoneHref}
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 0.8,
+                    color: brand.goldSoft,
+                    textDecoration: "none",
+                    fontSize: "0.88rem",
+                    "&:hover": { color: brand.white },
+                  }}
+                >
+                  <PhoneOutlinedIcon sx={{ fontSize: 17 }} />
+                  {SITE.contact.phone}
+                </Box>
+                <Box
+                  component="a"
+                  href={`mailto:${SITE.contact.email}`}
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 0.8,
+                    color: "rgba(255,255,255,0.7)",
+                    textDecoration: "none",
+                    fontSize: "0.88rem",
+                    "&:hover": { color: brand.white },
+                  }}
+                >
+                  <MailOutlinedIcon sx={{ fontSize: 17 }} />
+                  {SITE.contact.email}
+                </Box>
+              </Stack>
+            </Stack>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Stack
+              component={motion.div}
               variants={fadeUp}
-              variant="h2"
-              sx={{
-                color: brand.white,
-                fontFamily: fonts.display,
-                fontSize: { xs: "1.9rem", md: "2.4rem" },
-              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              spacing={1.2}
+              sx={{ alignItems: { xs: "stretch", md: "flex-end" } }}
             >
-              {title}
-            </Typography>
+              {showPrimary && (
+                <Button
+                  component={RouterLink}
+                  to={primaryTo}
+                  variant="contained"
+                  color="secondary"
+                  endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+                  sx={{ width: { xs: "100%", md: "auto" } }}
+                >
+                  {primaryLabel}
+                </Button>
+              )}
 
-            <Typography
-              component={motion.p}
-              variants={fadeUp}
-              sx={{
-                mt: 2,
-                color: "rgba(255,255,255,0.72)",
-                maxWidth: 620,
-                fontSize: "0.98rem",
-                lineHeight: 1.75,
-              }}
-            >
-              {subtitle}
-            </Typography>
-          </Box>
-
-          <Stack
-            component={motion.div}
-            variants={fadeUp}
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1.5}
-            sx={{ flexShrink: 0, width: { xs: "100%", sm: "auto" } }}
-          >
-            {showPrimary && (
               <Button
                 component={RouterLink}
-                to={primaryTo}
-                variant="contained"
-                color="secondary"
-                endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
-                sx={{ px: 3 }}
+                to={secondaryTo}
+                variant="outlined"
+                endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+                sx={{
+                  width: { xs: "100%", md: "auto" },
+                  color: brand.white,
+                  borderColor: "rgba(255,255,255,0.38)",
+                  "&:hover": {
+                    borderColor: brand.goldSoft,
+                    backgroundColor: brand.goldSoft,
+                    color: brand.primaryDeep,
+                  },
+                }}
               >
-                {primaryLabel}
+                {secondaryLabel}
               </Button>
-            )}
-
-            <Button
-              component={RouterLink}
-              to={secondaryTo}
-              variant="outlined"
-              endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
-              sx={{
-                color: brand.white,
-                borderColor: "rgba(255,255,255,0.42)",
-                "&:hover": {
-                  borderColor: brand.goldSoft,
-                  color: brand.goldSoft,
-                  backgroundColor: "rgba(255,255,255,0.04)",
-                },
-              }}
-            >
-              {secondaryLabel}
-            </Button>
-          </Stack>
-        </Stack>
+            </Stack>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   );

@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Chip,
-  Paper,
   Stack,
   Table,
   TableBody,
@@ -55,9 +54,9 @@ export default function ProfessionalDirectory({
 
   const especialidades = useMemo(
     () =>
-      Array.from(
-        new Set(profesionales.flatMap((p) => p.especialidades))
-      ).sort((a, b) => a.localeCompare(b, "es")),
+      Array.from(new Set(profesionales.flatMap((p) => p.especialidades))).sort((a, b) =>
+        a.localeCompare(b, "es")
+      ),
     [profesionales]
   );
 
@@ -86,12 +85,12 @@ export default function ProfessionalDirectory({
 
   return (
     <Box>
-      <Paper
+      <Box
         sx={{
-          p: { xs: 2, md: 2.5 },
-          border: `1px solid ${brand.line}`,
-          backgroundColor: brand.white,
-          mb: 3,
+          py: 2,
+          borderTop: `1px solid ${brand.lineStrong}`,
+          borderBottom: `1px solid ${brand.line}`,
+          mb: 2.5,
         }}
       >
         <Stack
@@ -125,7 +124,7 @@ export default function ProfessionalDirectory({
             minWidth={240}
           />
         </Stack>
-      </Paper>
+      </Box>
 
       <Stack
         direction="row"
@@ -133,19 +132,14 @@ export default function ProfessionalDirectory({
           alignItems: "center",
           justifyContent: "space-between",
           gap: 2,
-          mb: 2,
+          mb: 1.5,
           flexWrap: "wrap",
         }}
       >
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-          <BadgeOutlinedIcon
-            sx={{ fontSize: "1.05rem", color: brand.goldDeep }}
-          />
-          <Typography sx={{ fontSize: "0.84rem", color: brand.muted }}>
-            <Box
-              component="span"
-              sx={{ color: brand.primaryDark, fontWeight: 750 }}
-            >
+          <BadgeOutlinedIcon sx={{ fontSize: 17, color: brand.goldDeep }} />
+          <Typography sx={{ fontSize: "0.8rem", color: brand.muted }}>
+            <Box component="span" sx={{ color: brand.primaryDeep, fontWeight: 700 }}>
               {filtered.length}
             </Box>{" "}
             de {profesionales.length} profesionales
@@ -156,7 +150,7 @@ export default function ProfessionalDirectory({
           <Button
             size="small"
             onClick={clearFilters}
-            sx={{ fontSize: "0.78rem", color: brand.primary }}
+            sx={{ fontSize: "0.76rem", color: brand.primary }}
           >
             Limpiar filtros
           </Button>
@@ -171,46 +165,38 @@ export default function ProfessionalDirectory({
           onAction={clearFilters}
         />
       ) : isMobile ? (
-        <Stack spacing={1.5}>
+        <Stack>
           {filtered.map((item) => (
-            <Paper
+            <Box
               key={item.id}
-              sx={{
-                p: 2.2,
-                border: `1px solid ${brand.line}`,
-                borderLeft: `3px solid ${brand.gold}`,
-              }}
+              sx={{ py: 2.2, borderTop: `1px solid ${brand.line}` }}
             >
-              <Stack
-                direction="row"
-                sx={{ justifyContent: "space-between", gap: 1, mb: 0.8 }}
+              <Typography
+                sx={{
+                  color: brand.primaryDeep,
+                  fontWeight: 700,
+                  fontSize: "0.92rem",
+                  lineHeight: 1.4,
+                }}
               >
-                <Typography
-                  sx={{
-                    color: brand.primaryDark,
-                    fontWeight: 750,
-                    fontSize: "0.92rem",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {item.nombre}
-                </Typography>
-              </Stack>
+                {item.nombre}
+              </Typography>
 
               <Typography
                 sx={{
                   color: brand.goldDeep,
-                  fontSize: "0.68rem",
-                  fontWeight: 750,
+                  fontSize: "0.64rem",
+                  fontWeight: 700,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  mb: 1.2,
+                  mt: 0.5,
+                  mb: 1,
                 }}
               >
                 {item.profesion}
               </Typography>
 
-              <Stack direction="row" spacing={0.7} sx={{ flexWrap: "wrap", gap: 0.7 }}>
+              <Stack direction="row" sx={{ flexWrap: "wrap", gap: 0.6 }}>
                 {item.especialidades.map((esp) => (
                   <Chip
                     key={esp}
@@ -220,23 +206,20 @@ export default function ProfessionalDirectory({
                       backgroundColor: brand.skySoft,
                       color: brand.primary,
                       height: 24,
-                      fontSize: "0.66rem",
+                      fontSize: "0.64rem",
                     }}
                   />
                 ))}
               </Stack>
-            </Paper>
+            </Box>
           ))}
         </Stack>
       ) : (
-        <TableContainer
-          component={Paper}
-          sx={{ border: `1px solid ${brand.line}` }}
-        >
+        <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
           <Table aria-label="Nómina de profesionales">
             <TableHead>
               <TableRow>
-                <TableCell sx={{ width: 56 }}>N°</TableCell>
+                <TableCell sx={{ width: 56 }}>N.º</TableCell>
                 <TableCell>Apellidos y nombres</TableCell>
                 <TableCell sx={{ width: 150 }}>Profesión</TableCell>
                 <TableCell>Especialidades</TableCell>
@@ -248,39 +231,29 @@ export default function ProfessionalDirectory({
                 <TableRow
                   key={item.id}
                   sx={{
-                    "&:nth-of-type(odd)": {
-                      backgroundColor: "rgba(234,242,251,0.35)",
-                    },
-                    "&:hover": {
-                      backgroundColor: "rgba(157,196,239,0.18)",
-                    },
+                    "&:hover": { backgroundColor: "rgba(176,138,46,0.06)" },
                   }}
                 >
-                  <TableCell sx={{ color: brand.muted, fontSize: "0.8rem" }}>
+                  <TableCell sx={{ color: brand.muted, fontSize: "0.78rem" }}>
                     {String(index + 1).padStart(2, "0")}
                   </TableCell>
 
                   <TableCell
                     sx={{
-                      color: brand.primaryDark,
-                      fontWeight: 650,
+                      color: brand.primaryDeep,
+                      fontWeight: 700,
                       fontSize: "0.86rem",
                     }}
                   >
                     {item.nombre}
                   </TableCell>
 
-                  <TableCell
-                    sx={{ color: brand.muted, fontSize: "0.82rem" }}
-                  >
+                  <TableCell sx={{ color: brand.muted, fontSize: "0.82rem" }}>
                     {item.profesion}
                   </TableCell>
 
                   <TableCell>
-                    <Stack
-                      direction="row"
-                      sx={{ flexWrap: "wrap", gap: 0.6 }}
-                    >
+                    <Stack direction="row" sx={{ flexWrap: "wrap", gap: 0.6 }}>
                       {item.especialidades.map((esp) => (
                         <Chip
                           key={esp}
@@ -290,7 +263,7 @@ export default function ProfessionalDirectory({
                             backgroundColor: brand.skySoft,
                             color: brand.primary,
                             height: 23,
-                            fontSize: "0.64rem",
+                            fontSize: "0.62rem",
                           }}
                         />
                       ))}

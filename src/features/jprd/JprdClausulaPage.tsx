@@ -1,16 +1,5 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutlined";
-import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
-import HandshakeOutlinedIcon from "@mui/icons-material/HandshakeOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
@@ -19,7 +8,6 @@ import SectionHeading from "../../components/common/SectionHeading";
 import ClauseBlock from "../../components/common/ClauseBlock";
 import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
-import { viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 
@@ -32,17 +20,15 @@ const ELEMENTOS = [
 
 const DIFERENCIAS = [
   {
-    icon: HandshakeOutlinedIcon,
     title: "JPRD",
     subtitle: "Durante la ejecución",
     items: [
       "Interviene mientras el contrato está vigente.",
-      "Emiten decisiones oportunas y motivadas.",
+      "Emite decisiones oportunas y motivadas.",
       "Busca preservar la continuidad del proyecto.",
     ],
   },
   {
-    icon: GavelOutlinedIcon,
     title: "Arbitraje",
     subtitle: "Solución definitiva",
     items: [
@@ -76,6 +62,7 @@ export default function JprdClausulaPage() {
           { label: "Cláusula preliminar" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
@@ -85,9 +72,9 @@ export default function JprdClausulaPage() {
         text="La JPRD no cuenta con reglamento aprobado. Este texto es una propuesta y debe validarse con la Secretaría y con el asesor legal de las partes antes de incorporarlo a un contrato."
       />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "flex-start" }}>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 7 }}>
               <SectionHeading
                 kicker="Antes de ejecutar"
@@ -98,33 +85,25 @@ export default function JprdClausulaPage() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 5 }}>
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.6 }}
-                sx={{
-                  p: { xs: 2.5, md: 3 },
-                  backgroundColor: brand.skySoft,
-                  border: `1px solid ${brand.skyMid}`,
-                  borderTop: `3px solid ${brand.gold}`,
-                }}
-              >
-                <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.9rem", mb: 1.8 }}>
+              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
+                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
                   La cláusula debe contener:
                 </Typography>
 
-                <Stack spacing={1.4}>
+                <Stack sx={{ mt: 1.2 }}>
                   {ELEMENTOS.map((elemento) => (
-                    <Stack key={elemento} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
-                      <CheckCircleOutlineIcon
-                        sx={{ fontSize: "1.05rem", color: brand.goldDeep, mt: "2px", flexShrink: 0 }}
-                      />
-                      <Typography sx={{ color: brand.primary, fontSize: "0.84rem", lineHeight: 1.6 }}>
-                        {elemento}
-                      </Typography>
-                    </Stack>
+                    <Typography
+                      key={elemento}
+                      sx={{
+                        py: 0.95,
+                        borderTop: `1px solid ${brand.line}`,
+                        color: brand.muted,
+                        fontSize: "0.82rem",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {elemento}
+                    </Typography>
                   ))}
                 </Stack>
               </Box>
@@ -139,111 +118,71 @@ export default function JprdClausulaPage() {
               note="La JPRD no reemplaza al arbitraje: ambos mecanismos pueden coexistir. La cláusula definitiva debe validarse cuando el reglamento sea aprobado."
             />
           </Box>
+        </Container>
+      </Box>
 
-          <Grid container spacing={{ xs: 3, md: 4 }} sx={{ mt: 4 }}>
-            {DIFERENCIAS.map((item, index) => {
-              const Icon = item.icon;
-              const dark = index === 0;
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+        <Container>
+          <SectionHeading
+            kicker="Dos mecanismos"
+            title="JPRD y arbitraje no compiten"
+            subtitle="La Junta acompaña la ejecución; el arbitraje resuelve de forma definitiva lo que no pudo superarse."
+          />
 
-              return (
-                <Grid key={item.title} size={{ xs: 12, md: 6 }}>
-                  <Box
-                    component={motion.article}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.55, delay: index * 0.08 }}
+          <Grid container spacing={{ xs: 4, md: 6 }}>
+            {DIFERENCIAS.map((item) => (
+              <Grid key={item.title} size={{ xs: 12, md: 6 }}>
+                <Box sx={{ pt: 2, borderTop: `1px solid ${brand.lineStrong}` }}>
+                  <Typography
                     sx={{
-                      height: "100%",
-                      p: { xs: 3, md: 3.5 },
-                      backgroundColor: dark ? brand.primaryDark : brand.paper,
-                      color: dark ? brand.white : brand.ink,
-                      border: `1px solid ${dark ? brand.primaryDark : brand.line}`,
-                      borderTop: `3px solid ${brand.gold}`,
+                      fontFamily: fonts.display,
+                      color: brand.primaryDeep,
+                      fontSize: "1.45rem",
+                      lineHeight: 1.2,
                     }}
                   >
-                    <Stack direction="row" spacing={1.6} sx={{ alignItems: "center", mb: 1.2 }}>
-                      <Box
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      mt: 0.4,
+                      color: brand.goldDeep,
+                      fontSize: "0.64rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {item.subtitle}
+                  </Typography>
+
+                  <Stack sx={{ mt: 1.6 }}>
+                    {item.items.map((texto) => (
+                      <Typography
+                        key={texto}
                         sx={{
-                          width: 42,
-                          height: 42,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          backgroundColor: dark ? "rgba(186,153,7,0.16)" : brand.skySoft,
-                          color: dark ? brand.goldSoft : brand.primary,
+                          py: 0.9,
+                          borderTop: `1px solid ${brand.line}`,
+                          color: brand.muted,
+                          fontSize: "0.85rem",
+                          lineHeight: 1.62,
                         }}
                       >
-                        <Icon />
-                      </Box>
-
-                      <Box>
-                        <Typography
-                          sx={{
-                            fontFamily: fonts.display,
-                            fontSize: "1.3rem",
-                            fontWeight: 600,
-                            color: dark ? brand.white : brand.primaryDark,
-                            lineHeight: 1.2,
-                          }}
-                        >
-                          {item.title}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: dark ? brand.goldSoft : brand.goldDeep,
-                            fontSize: "0.68rem",
-                            fontWeight: 750,
-                            letterSpacing: "0.1em",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          {item.subtitle}
-                        </Typography>
-                      </Box>
-                    </Stack>
-
-                    <Stack spacing={1.2} sx={{ mt: 2 }}>
-                      {item.items.map((texto) => (
-                        <Stack key={texto} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
-                          <Box
-                            sx={{
-                              width: 5,
-                              height: 5,
-                              borderRadius: "50%",
-                              backgroundColor: dark ? brand.goldSoft : brand.goldDeep,
-                              mt: "8px",
-                              flexShrink: 0,
-                            }}
-                          />
-                          <Typography
-                            sx={{
-                              color: dark ? "rgba(255,255,255,0.74)" : brand.muted,
-                              fontSize: "0.86rem",
-                              lineHeight: 1.65,
-                            }}
-                          >
-                            {texto}
-                          </Typography>
-                        </Stack>
-                      ))}
-                    </Stack>
-                  </Box>
-                </Grid>
-              );
-            })}
+                        {texto}
+                      </Typography>
+                    ))}
+                  </Stack>
+                </Box>
+              </Grid>
+            ))}
           </Grid>
 
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1.5}
-            sx={{ mt: 4.5, alignItems: { sm: "center" } }}
-          >
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 4 }}>
             <Button
               component={RouterLink}
               to="/jprd/adjudicadores"
               variant="contained"
-              endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
+              endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
             >
               Ver adjudicadores
             </Button>

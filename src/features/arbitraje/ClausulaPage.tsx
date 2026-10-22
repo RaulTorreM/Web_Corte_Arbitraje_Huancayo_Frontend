@@ -1,15 +1,5 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutlined";
-import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
@@ -17,7 +7,6 @@ import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import ClauseBlock from "../../components/common/ClauseBlock";
 import CtaBand from "../../components/common/CtaBand";
-import { viewportOnce } from "../../utils/animations";
 import { brand } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 
@@ -118,9 +107,9 @@ export default function ClausulaPage() {
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "flex-start" }}>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 7 }}>
               <SectionHeading
                 kicker="Antes de firmar"
@@ -131,33 +120,25 @@ export default function ClausulaPage() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 5 }}>
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.6 }}
-                sx={{
-                  p: { xs: 2.5, md: 3 },
-                  backgroundColor: brand.skySoft,
-                  border: `1px solid ${brand.skyMid}`,
-                  borderTop: `3px solid ${brand.gold}`,
-                }}
-              >
-                <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem", mb: 1.8 }}>
+              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
+                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
                   Una cláusula completa debe contener:
                 </Typography>
 
-                <Stack spacing={1.4}>
+                <Stack sx={{ mt: 1.2 }}>
                   {ELEMENTOS.map((elemento) => (
-                    <Stack key={elemento} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
-                      <CheckCircleOutlineIcon
-                        sx={{ fontSize: "1.05rem", color: brand.goldDeep, mt: "2px", flexShrink: 0 }}
-                      />
-                      <Typography sx={{ color: brand.primary, fontSize: "0.84rem", lineHeight: 1.6 }}>
-                        {elemento}
-                      </Typography>
-                    </Stack>
+                    <Typography
+                      key={elemento}
+                      sx={{
+                        py: 0.95,
+                        borderTop: `1px solid ${brand.line}`,
+                        color: brand.muted,
+                        fontSize: "0.82rem",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {elemento}
+                    </Typography>
                   ))}
                 </Stack>
               </Box>
@@ -183,30 +164,40 @@ export default function ClausulaPage() {
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.paper,
-          borderTop: `1px solid ${brand.line}`,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Cómo adaptarla"
-            title="Siete decisiones antes de firmar"
+            title="Seis decisiones antes de firmar"
             subtitle="Cada elemento debe quedar claro en el texto. Si falta alguno, el reglamento suple el vacío, pero puede no coincidir con lo que las partes esperaban."
           />
 
-          <Grid container spacing={{ xs: 2, md: 2.5 }}>
-            {ADAPTACION.map((item) => (
-              <Grid key={item.elemento} size={{ xs: 12, sm: 6, md: 4 }}>
-                <Box sx={{ height: "100%", p: 2.5, backgroundColor: brand.white, border: `1px solid ${brand.line}` }}>
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
+          <Grid container spacing={{ xs: 0, md: 5 }}>
+            {ADAPTACION.map((item, index) => (
+              <Grid key={item.elemento} size={{ xs: 12, md: 6 }}>
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: "34px 150px 1fr",
+                    gap: 1.4,
+                    py: 1.6,
+                    borderTop: `1px solid ${brand.line}`,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: '"Source Serif 4", Georgia, serif',
+                      color: brand.goldDeep,
+                      fontSize: "0.86rem",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </Typography>
+                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.83rem" }}>
                     {item.elemento}
                   </Typography>
-                  <Typography sx={{ mt: 0.8, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
+                  <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.55 }}>
                     {item.recomendacion}
                   </Typography>
                 </Box>
@@ -225,7 +216,7 @@ export default function ClausulaPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Errores frecuentes"
@@ -233,24 +224,27 @@ export default function ClausulaPage() {
             subtitle="Una cláusula defectuosa no siempre se corrige con el reglamento: puede abrir un incidente de competencia antes de que el caso empiece."
           />
 
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
+          <Grid container spacing={{ xs: 0, md: 5 }}>
             {ERRORES.map((error, index) => (
-              <Grid key={error.title} size={{ xs: 12, sm: 6, md: 4 }}>
-                <Box
-                  component={motion.article}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.55, delay: index * 0.05 }}
-                  sx={{ height: "100%", p: 3, backgroundColor: brand.paper, border: `1px solid ${brand.line}` }}
-                >
-                  <WarningAmberOutlinedIcon sx={{ color: brand.goldDeep, fontSize: "1.6rem" }} />
-
-                  <Typography variant="h4" sx={{ mt: 1.6, color: brand.primaryDark, fontSize: "1rem" }}>
-                    {error.title}
-                  </Typography>
-
-                  <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.7 }}>
+              <Grid key={error.title} size={{ xs: 12, md: 6 }}>
+                <Box sx={{ py: 1.8, borderTop: `1px solid ${brand.line}` }}>
+                  <Stack direction="row" spacing={1.2} sx={{ alignItems: "baseline" }}>
+                    <Typography
+                      sx={{
+                        fontFamily: '"Source Serif 4", Georgia, serif',
+                        color: brand.accent,
+                        fontSize: "0.82rem",
+                        lineHeight: 1.6,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </Typography>
+                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
+                      {error.title}
+                    </Typography>
+                  </Stack>
+                  <Typography sx={{ mt: 0.5, pl: 3.2, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
                     {error.text}
                   </Typography>
                 </Box>
@@ -260,53 +254,46 @@ export default function ClausulaPage() {
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.skySoft,
-          borderTop: `1px solid ${brand.skyMid}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "start" }}>
+          <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 5 }}>
               <SectionHeading
                 kicker="Checklist"
                 title="Antes de firmar"
                 subtitle="Una revisión rápida puede evitar años de discusión sobre quién debe resolver la controversia."
+                stacked
                 sx={{ mb: 0 }}
               />
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }}>
-              <Stack spacing={1.3}>
+              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
                 {CHECKLIST.map((item) => (
-                  <Stack key={item} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
-                    <CheckCircleOutlineIcon
-                      sx={{ fontSize: "1.1rem", color: brand.primary, mt: "2px", flexShrink: 0 }}
-                    />
-                    <Typography sx={{ color: brand.primary, fontSize: "0.88rem", lineHeight: 1.65 }}>
-                      {item}
-                    </Typography>
-                  </Stack>
+                  <Typography
+                    key={item}
+                    sx={{
+                      py: 1.2,
+                      borderBottom: `1px solid ${brand.line}`,
+                      color: brand.muted,
+                      fontSize: "0.85rem",
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    {item}
+                  </Typography>
                 ))}
               </Stack>
 
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={1.5}
-                sx={{ mt: 3.5, alignItems: { sm: "center" } }}
-              >
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 3 }}>
                 <Button
                   component={RouterLink}
                   to="/arbitraje/inicio"
                   variant="contained"
-                  endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
+                  endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
                 >
                   Cómo iniciar un arbitraje
                 </Button>
-
                 <Button component={RouterLink} to="/contacto" variant="outlined">
                   Validar mi cláusula
                 </Button>

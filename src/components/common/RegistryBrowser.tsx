@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Chip,
-  Paper,
   Stack,
   Table,
   TableBody,
@@ -83,11 +82,12 @@ export default function RegistryBrowser({
 
   return (
     <Box>
-      <Paper
+      <Box
         sx={{
-          p: { xs: 2, md: 2.5 },
-          border: `1px solid ${brand.line}`,
-          mb: 3,
+          py: 2,
+          borderTop: `1px solid ${brand.lineStrong}`,
+          borderBottom: `1px solid ${brand.line}`,
+          mb: 2.5,
         }}
       >
         <Stack
@@ -113,7 +113,7 @@ export default function RegistryBrowser({
             minWidth={170}
           />
         </Stack>
-      </Paper>
+      </Box>
 
       <Stack
         direction="row"
@@ -121,15 +121,12 @@ export default function RegistryBrowser({
           alignItems: "center",
           justifyContent: "space-between",
           gap: 2,
-          mb: 2,
+          mb: 1.5,
           flexWrap: "wrap",
         }}
       >
-        <Typography sx={{ fontSize: "0.84rem", color: brand.muted }}>
-          <Box
-            component="span"
-            sx={{ color: brand.primaryDark, fontWeight: 750 }}
-          >
+        <Typography sx={{ fontSize: "0.8rem", color: brand.muted }}>
+          <Box component="span" sx={{ color: brand.primaryDeep, fontWeight: 700 }}>
             {filtered.length}
           </Box>{" "}
           de {registros.length} registros en esta muestra
@@ -139,7 +136,7 @@ export default function RegistryBrowser({
           <Button
             size="small"
             onClick={clearFilters}
-            sx={{ fontSize: "0.78rem", color: brand.primary }}
+            sx={{ fontSize: "0.76rem", color: brand.primary }}
           >
             Limpiar filtros
           </Button>
@@ -154,26 +151,21 @@ export default function RegistryBrowser({
           onAction={clearFilters}
         />
       ) : isMobile ? (
-        <Stack spacing={1.5}>
+        <Stack>
           {filtered.map((item) => (
-            <Paper
+            <Box
               key={item.id}
               sx={{
-                p: 2.2,
-                border: `1px solid ${brand.line}`,
-                borderLeft: `3px solid ${brand.gold}`,
+                py: 2.2,
+                borderTop: `1px solid ${brand.line}`,
               }}
             >
               <Stack
                 direction="row"
-                sx={{ justifyContent: "space-between", gap: 1, mb: 0.8 }}
+                sx={{ justifyContent: "space-between", gap: 1, mb: 0.7 }}
               >
                 <Typography
-                  sx={{
-                    color: brand.primaryDark,
-                    fontWeight: 750,
-                    fontSize: "0.9rem",
-                  }}
+                  sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}
                 >
                   {item.expediente}
                 </Typography>
@@ -181,30 +173,24 @@ export default function RegistryBrowser({
                 <Chip
                   label={item.anio}
                   size="small"
-                  sx={{
-                    backgroundColor: brand.skySoft,
-                    color: brand.primary,
-                    height: 22,
-                  }}
+                  sx={{ backgroundColor: brand.skySoft, color: brand.primary, height: 22 }}
                 />
               </Stack>
 
               <Typography
                 sx={{
                   color: brand.goldDeep,
-                  fontSize: "0.68rem",
-                  fontWeight: 750,
+                  fontSize: "0.64rem",
+                  fontWeight: 700,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  mb: 1,
+                  mb: 0.8,
                 }}
               >
                 {item.materia}
               </Typography>
 
-              <Typography
-                sx={{ color: brand.muted, fontSize: "0.85rem", lineHeight: 1.6 }}
-              >
+              <Typography sx={{ color: brand.muted, fontSize: "0.85rem", lineHeight: 1.6 }}>
                 {item.resumen}
               </Typography>
 
@@ -215,18 +201,15 @@ export default function RegistryBrowser({
                 disabled={item.url === "#"}
                 size="small"
                 startIcon={<PictureAsPdfOutlinedIcon />}
-                sx={{ mt: 1.5, px: 0, fontSize: "0.78rem" }}
+                sx={{ mt: 1.4, px: 0, fontSize: "0.75rem" }}
               >
                 {item.url === "#" ? "Próximamente" : "Ver documento"}
               </Button>
-            </Paper>
+            </Box>
           ))}
         </Stack>
       ) : (
-        <TableContainer
-          component={Paper}
-          sx={{ border: `1px solid ${brand.line}` }}
-        >
+        <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
           <Table aria-label="Registro de documentos">
             <TableHead>
               <TableRow>
@@ -247,21 +230,10 @@ export default function RegistryBrowser({
                 <TableRow
                   key={item.id}
                   sx={{
-                    "&:nth-of-type(odd)": {
-                      backgroundColor: "rgba(234,242,251,0.35)",
-                    },
-                    "&:hover": {
-                      backgroundColor: "rgba(157,196,239,0.18)",
-                    },
+                    "&:hover": { backgroundColor: "rgba(176,138,46,0.06)" },
                   }}
                 >
-                  <TableCell
-                    sx={{
-                      color: brand.primaryDark,
-                      fontWeight: 650,
-                      fontSize: "0.82rem",
-                    }}
-                  >
+                  <TableCell sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.82rem" }}>
                     {item.expediente}
                   </TableCell>
 
@@ -269,16 +241,11 @@ export default function RegistryBrowser({
                     {item.materia}
                   </TableCell>
 
-                  <TableCell
-                    align="center"
-                    sx={{ color: brand.primary, fontWeight: 650, fontSize: "0.82rem" }}
-                  >
+                  <TableCell align="center" sx={{ color: brand.primary, fontWeight: 700, fontSize: "0.82rem" }}>
                     {item.anio}
                   </TableCell>
 
-                  <TableCell
-                    sx={{ color: brand.muted, fontSize: "0.8rem", lineHeight: 1.55 }}
-                  >
+                  <TableCell sx={{ color: brand.muted, fontSize: "0.8rem", lineHeight: 1.55 }}>
                     {item.resumen}
                   </TableCell>
 
@@ -290,7 +257,7 @@ export default function RegistryBrowser({
                       disabled={item.url === "#"}
                       size="small"
                       startIcon={<PictureAsPdfOutlinedIcon />}
-                      sx={{ fontSize: "0.74rem", px: 0.5 }}
+                      sx={{ fontSize: "0.72rem", px: 0.5 }}
                     >
                       {item.url === "#" ? "Próximamente" : "Ver PDF"}
                     </Button>

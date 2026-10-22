@@ -1,4 +1,5 @@
 import { MenuItem, TextField } from "@mui/material";
+import { brand } from "../../theme/brand";
 
 type FilterSelectProps = {
   label: string;
@@ -26,7 +27,7 @@ export default function FilterSelect({
       onChange={(event) => onChange(event.target.value)}
       sx={{
         minWidth,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: brand.whiteSoft,
         "& .MuiSelect-select": {
           fontSize: "0.88rem",
         },

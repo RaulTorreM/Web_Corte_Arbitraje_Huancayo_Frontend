@@ -1,390 +1,215 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
   Box,
   Button,
-  Checkbox,
   Container,
-  Divider,
-  FormControlLabel,
-  FormHelperText,
   Grid,
   Link,
-  MenuItem,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
-import { motion } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { motion } from "framer-motion";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import CtaBand from "../../components/common/CtaBand";
-import FormSuccess from "../../components/forms/FormSuccess";
-import { viewportOnce } from "../../utils/animations";
-import { brand } from "../../theme/brand";
+import SectionHeading from "../../components/common/SectionHeading";
+import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
+import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
-
-const contactoSchema = z.object({
-  nombre: z
-    .string()
-    .trim()
-    .min(3, "Ingresa tu nombre completo")
-    .max(100, "Máximo 100 caracteres"),
-  email: z
-    .string()
-    .trim()
-    .min(1, "Ingresa tu correo electrónico")
-    .email("Ingresa un correo válido"),
-  telefono: z
-    .string()
-    .trim()
-    .optional()
-    .refine(
-      (value) => !value || /^[0-9+()\s-]{6,20}$/.test(value),
-      "Ingresa un teléfono válido"
-    ),
-  tipo: z.string().min(1, "Selecciona un motivo de consulta"),
-  mensaje: z
-    .string()
-    .trim()
-    .min(20, "Cuéntanos un poco más (mínimo 20 caracteres)")
-    .max(1200, "Máximo 1200 caracteres"),
-  acepta: z
-    .boolean()
-    .refine((value) => value, "Debes aceptar el tratamiento de datos"),
-});
-
-type ContactoValues = z.infer<typeof contactoSchema>;
-
-const TIPOS = [
-  "Consulta general",
-  "Arbitraje",
-  "JPRD (en implementación)",
-  "Capacitaciones",
-  "Documentos y certificaciones",
-  "Otro",
-];
 
 const CANALES = [
   {
-    icon: PhoneOutlinedIcon,
     label: "Teléfono",
     value: SITE.contact.phone,
     href: SITE.contact.phoneHref,
+    icon: PhoneOutlinedIcon,
+    note: "Atención directa de la Secretaría General en horario de oficina.",
   },
   {
-    icon: MailOutlinedIcon,
-    label: "Correo institucional",
+    label: "Correo electrónico",
     value: SITE.contact.email,
     href: `mailto:${SITE.contact.email}`,
+    icon: MailOutlinedIcon,
+    note: "Para consultas, solicitudes y envío de documentación. Indica el número de expediente si corresponde.",
+  },
+  {
+    label: "WhatsApp",
+    value: "Escribir por WhatsApp",
+    href: `https://wa.me/${SITE.contact.whatsapp}`,
+    icon: WhatsAppIcon,
+    note: "Canal referencial para consultas breves. No reemplaza la presentación formal de documentos.",
   },
 ];
 
+const ANTES = [
+  "Revisa los requisitos y documentos de la sección correspondiente.",
+  "Si tu consulta está vinculada a un caso, indica el número de expediente.",
+  "No envíes datos confidenciales ni información sensible por canales no oficiales.",
+];
+
 export default function ContactoPage() {
-  const [sent, setSent] = useState(false);
-  const [nombre, setNombre] = useState("");
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactoValues>({
-    resolver: zodResolver(contactoSchema),
-    defaultValues: {
-      nombre: "",
-      email: "",
-      telefono: "",
-      tipo: "",
-      mensaje: "",
-      acepta: false,
-    },
-  });
-
-  const onSubmit = async (values: ContactoValues) => {
-    await new Promise((resolve) => window.setTimeout(resolve, 900));
-    setNombre(values.nombre.split(" ")[0]);
-    setSent(true);
-    reset();
-  };
-
   return (
     <>
       <PageMeta
         title="Contacto"
-        description="Comunícate con la Corte Superior de Arbitraje de la Cámara de Comercio de Huancayo: dirección, teléfonos, correo institucional, horarios y formulario de contacto."
+        description="Canales de atención de la Corte Superior de Arbitraje de Huancayo: teléfono, correo, WhatsApp, dirección y horarios."
       />
 
       <PageHero
-        kicker="Estamos para orientarte"
-        title="Contacto"
-        subtitle="Escríbenos, llámanos o visítanos. La Secretaría General atiende consultas sobre arbitraje, documentación institucional y capacitaciones. La JPRD se encuentra en implementación, por lo que aún no se reciben solicitudes para administrar juntas."
+        kicker="Atención institucional"
+        title="Canales de atención"
+        subtitle="La Secretaría General orienta consultas sobre arbitraje, documentación y capacitaciones. La JPRD se encuentra en implementación, por lo que aún no se reciben solicitudes para administrar juntas."
         crumbs={[{ label: "Contacto" }]}
         image="/images/ARBITRAJE_IMG_02-01.jpg"
-      />
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+      >
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2}>
+          <Button
+            href={`https://wa.me/${SITE.contact.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="contained"
+            startIcon={<WhatsAppIcon />}
+          >
+            Escribir por WhatsApp
+          </Button>
+          <Button
+            component={RouterLink}
+            to="/arbitraje/inicio"
+            variant="outlined"
+            endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+          >
+            Ver requisitos
+          </Button>
+        </Stack>
+      </PageHero>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "flex-start" }}>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 7 }}>
-              {sent ? (
-                <FormSuccess
-                  title={`Gracias, ${nombre || "por escribirnos"}`}
-                  text="Hemos registrado tu consulta de manera referencial. En esta versión del sitio el envío es simulado; cuando el canal esté habilitado, la Secretaría General te responderá al correo indicado."
-                  code="CT-2026-0042"
-                  onReset={() => setSent(false)}
-                  resetLabel="Enviar otra consulta"
-                />
-              ) : (
-                <Box
-                  component={motion.div}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.6 }}
-                  sx={{
-                    p: { xs: 2.5, md: 4 },
-                    backgroundColor: brand.white,
-                    border: `1px solid ${brand.line}`,
-                    borderTop: `4px solid ${brand.gold}`,
-                  }}
-                >
+              <SectionHeading
+                kicker="Canales"
+                title="Hablemos por el canal que prefieras"
+                subtitle="No usamos formularios con envío simulado. Cada consulta llega directamente a la Secretaría General por un canal real."
+              />
+
+              <Stack
+                component={motion.div}
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+                sx={{ borderTop: `1px solid ${brand.lineStrong}` }}
+              >
+                {CANALES.map((canal) => {
+                  const Icon = canal.icon;
+
+                  return (
+                    <Box
+                      key={canal.label}
+                      component={motion.a}
+                      variants={fadeUp}
+                      href={canal.href}
+                      target={canal.href.startsWith("http") ? "_blank" : undefined}
+                      rel={canal.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      sx={{
+                        display: "grid",
+                        gridTemplateColumns: "28px 1fr 24px",
+                        gap: 1.6,
+                        alignItems: "start",
+                        py: 2.4,
+                        borderBottom: `1px solid ${brand.line}`,
+                        textDecoration: "none",
+                        transition: "background-color 0.18s ease",
+                        "&:hover": { backgroundColor: brand.paper },
+                        "&:hover .canal-arrow": { color: brand.primary, transform: "translateX(3px)" },
+                      }}
+                    >
+                      <Icon sx={{ color: brand.goldDeep, fontSize: 20, mt: "3px" }} />
+
+                      <Box>
+                        <Typography
+                          sx={{
+                            color: brand.muted,
+                            fontSize: "0.64rem",
+                            fontWeight: 700,
+                            letterSpacing: "0.1em",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          {canal.label}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            mt: 0.4,
+                            color: brand.primaryDeep,
+                            fontFamily: fonts.display,
+                            fontSize: "1.18rem",
+                            fontWeight: 600,
+                            lineHeight: 1.3,
+                            wordBreak: "break-word",
+                          }}
+                        >
+                          {canal.value}
+                        </Typography>
+                        <Typography sx={{ mt: 0.6, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
+                          {canal.note}
+                        </Typography>
+                      </Box>
+
+                      <OpenInNewIcon
+                        className="canal-arrow"
+                        sx={{ fontSize: 17, color: brand.lineStrong, mt: "4px", transition: "all 0.18s ease" }}
+                      />
+                    </Box>
+                  );
+                })}
+              </Stack>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Stack spacing={3}>
+                <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2.2 }}>
                   <Typography
                     sx={{
                       color: brand.goldDeep,
-                      fontSize: "0.7rem",
-                      fontWeight: 750,
-                      letterSpacing: "0.15em",
+                      fontSize: "0.64rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       mb: 1.2,
                     }}
                   >
-                    Formulario de contacto
+                    Sede institucional
                   </Typography>
 
-                  <Typography
-                    variant="h3"
-                    sx={{ color: brand.primaryDark, fontSize: { xs: "1.6rem", md: "2rem" } }}
-                  >
-                    Cuéntanos cómo podemos ayudarte
+                  <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.55rem" }}>
+                    Visítanos en Huancayo
                   </Typography>
 
-                  <Typography sx={{ mt: 1.2, mb: 3, color: brand.muted, fontSize: "0.9rem", lineHeight: 1.7 }}>
-                    Completa los datos y describe tu consulta. Los campos marcados
-                    con <Box component="span" sx={{ color: "#A63A3A" }}>*</Box> son obligatorios.
-                  </Typography>
-
-                  <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-                    <Grid container spacing={2.2}>
-                      <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                          label="Nombre completo *"
-                          fullWidth
-                          autoComplete="name"
-                          {...register("nombre")}
-                          error={!!errors.nombre}
-                          helperText={errors.nombre?.message}
-                        />
-                      </Grid>
-
-                      <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                          label="Correo electrónico *"
-                          type="email"
-                          fullWidth
-                          autoComplete="email"
-                          {...register("email")}
-                          error={!!errors.email}
-                          helperText={errors.email?.message}
-                        />
-                      </Grid>
-
-                      <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                          label="Teléfono o celular"
-                          fullWidth
-                          autoComplete="tel"
-                          {...register("telefono")}
-                          error={!!errors.telefono}
-                          helperText={errors.telefono?.message}
-                        />
-                      </Grid>
-
-                      <Grid size={{ xs: 12, sm: 6 }}>
-                        <TextField
-                          select
-                          label="Motivo de consulta *"
-                          fullWidth
-                          {...register("tipo")}
-                          error={!!errors.tipo}
-                          helperText={errors.tipo?.message}
-                        >
-                          <MenuItem value="" disabled sx={{ display: "none" }} />
-                          {TIPOS.map((tipo) => (
-                            <MenuItem key={tipo} value={tipo}>
-                              {tipo}
-                            </MenuItem>
-                          ))}
-                        </TextField>
-                      </Grid>
-
-                      <Grid size={{ xs: 12 }}>
-                        <TextField
-                          label="Mensaje *"
-                          fullWidth
-                          multiline
-                          minRows={5}
-                          {...register("mensaje")}
-                          error={!!errors.mensaje}
-                          helperText={
-                            errors.mensaje?.message ??
-                            "No incluyas datos sensibles de terceros ni información confidencial del expediente."
-                          }
-                        />
-                      </Grid>
-
-                      <Grid size={{ xs: 12 }}>
-                        <FormControlLabel
-                          control={<Checkbox {...register("acepta")} />}
-                          label={
-                            <Typography sx={{ color: brand.muted, fontSize: "0.83rem", lineHeight: 1.6 }}>
-                              Acepto el tratamiento de mis datos personales para
-                              atender esta consulta, conforme a la normativa de
-                              protección de datos personales.
-                            </Typography>
-                          }
-                          sx={{ alignItems: "flex-start", m: 0 }}
-                        />
-
-                        {errors.acepta && (
-                          <FormHelperText error sx={{ ml: 0 }}>
-                            {errors.acepta.message}
-                          </FormHelperText>
-                        )}
-                      </Grid>
-
-                      <Grid size={{ xs: 12 }}>
-                        <Stack
-                          direction={{ xs: "column", sm: "row" }}
-                          spacing={2}
-                          sx={{ alignItems: { sm: "center" }, mt: 0.5 }}
-                        >
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            disabled={isSubmitting}
-                            endIcon={<SendOutlinedIcon sx={{ fontSize: "1rem" }} />}
-                          >
-                            {isSubmitting ? "Enviando..." : "Enviar consulta"}
-                          </Button>
-
-                          <Typography sx={{ color: brand.muted, fontSize: "0.76rem" }}>
-                            El envío es simulado en esta versión del sitio.
-                          </Typography>
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </Box>
-              )}
-            </Grid>
-
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Stack spacing={2.5}>
-                <Box
-                  component={motion.div}
-                  initial={{ opacity: 0, x: 18 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.6 }}
-                  sx={{
-                    p: { xs: 2.8, md: 3.2 },
-                    backgroundColor: brand.primaryDark,
-                    color: brand.white,
-                    borderTop: `4px solid ${brand.gold}`,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: brand.goldSoft,
-                      fontSize: "0.68rem",
-                      fontWeight: 750,
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      mb: 1,
-                    }}
-                  >
-                    Atención institucional
-                  </Typography>
-
-                  <Typography
-                    variant="h4"
-                    sx={{ color: brand.white, fontSize: "1.3rem", mb: 2.5 }}
-                  >
-                    Secretaría General
-                  </Typography>
-
-                  <Stack spacing={2.2}>
-                    <Stack direction="row" spacing={1.5} sx={{ alignItems: "flex-start" }}>
-                      <PlaceOutlinedIcon sx={{ color: brand.goldSoft, mt: "2px" }} />
-                      <Box>
-                        <Typography sx={{ color: "rgba(255,255,255,0.55)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                          Dirección
-                        </Typography>
-                        <Typography sx={{ color: "rgba(255,255,255,0.8)", fontSize: "0.86rem", lineHeight: 1.55, mt: 0.3 }}>
-                          {SITE.contact.address}
-                        </Typography>
-                      </Box>
+                  <Stack spacing={1.5} sx={{ mt: 2.2 }}>
+                    <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start" }}>
+                      <PlaceOutlinedIcon sx={{ fontSize: 18, color: brand.goldDeep, mt: "2px" }} />
+                      <Typography sx={{ color: brand.muted, fontSize: "0.88rem", lineHeight: 1.6 }}>
+                        {SITE.contact.address}
+                      </Typography>
                     </Stack>
 
-                    {CANALES.map((canal) => {
-                      const Icon = canal.icon;
-
-                      return (
-                        <Stack key={canal.label} direction="row" spacing={1.5} sx={{ alignItems: "flex-start" }}>
-                          <Icon sx={{ color: brand.goldSoft, mt: "2px" }} />
-                          <Box>
-                            <Typography sx={{ color: "rgba(255,255,255,0.55)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                              {canal.label}
-                            </Typography>
-                            <Link
-                              href={canal.href}
-                              underline="none"
-                              sx={{
-                                display: "block",
-                                mt: 0.3,
-                                color: "rgba(255,255,255,0.86)",
-                                fontSize: "0.86rem",
-                                wordBreak: "break-word",
-                                "&:hover": { color: brand.goldSoft },
-                              }}
-                            >
-                              {canal.value}
-                            </Link>
-                          </Box>
-                        </Stack>
-                      );
-                    })}
-
-                    <Stack direction="row" spacing={1.5} sx={{ alignItems: "flex-start" }}>
-                      <AccessTimeOutlinedIcon sx={{ color: brand.goldSoft, mt: "2px" }} />
+                    <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start" }}>
+                      <AccessTimeOutlinedIcon sx={{ fontSize: 18, color: brand.goldDeep, mt: "2px" }} />
                       <Box>
-                        <Typography sx={{ color: "rgba(255,255,255,0.55)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                          Horario de atención
-                        </Typography>
                         {SITE.contact.schedule.map((line) => (
                           <Typography
                             key={line}
-                            sx={{ color: "rgba(255,255,255,0.76)", fontSize: "0.8rem", lineHeight: 1.55, mt: 0.35 }}
+                            sx={{ color: brand.muted, fontSize: "0.84rem", lineHeight: 1.6 }}
                           >
                             {line}
                           </Typography>
@@ -393,47 +218,50 @@ export default function ContactoPage() {
                     </Stack>
                   </Stack>
 
-                  <Divider sx={{ my: 2.5, borderColor: "rgba(255,255,255,0.12)" }} />
-
-                  <Button
-                    href={`https://wa.me/${SITE.contact.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<WhatsAppIcon />}
-                    fullWidth
-                  >
-                    Escribir por WhatsApp
-                  </Button>
                 </Box>
 
-                <Box
-                  sx={{
-                    p: 2.8,
-                    backgroundColor: brand.white,
-                    border: `1px solid ${brand.line}`,
-                    borderLeft: `4px solid ${brand.gold}`,
-                  }}
-                >
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem" }}>
+                <Box sx={{ borderTop: `1px solid ${brand.line}`, pt: 2.2 }}>
+                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
                     Antes de escribirnos
                   </Typography>
 
                   <Stack spacing={1.2} sx={{ mt: 1.5 }}>
-                    {[
-                      "Revisa los requisitos y documentos de la sección correspondiente.",
-                      "Indica el número de expediente si tu consulta está vinculada a un caso.",
-                      "No compartas datos confidenciales por canales no oficiales.",
-                    ].map((item) => (
+                    {ANTES.map((item) => (
                       <Stack key={item} direction="row" spacing={1.1} sx={{ alignItems: "flex-start" }}>
-                        <Box sx={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: brand.goldDeep, mt: "7px", flexShrink: 0 }} />
+                        <Box
+                          sx={{
+                            width: 4,
+                            height: 4,
+                            backgroundColor: brand.goldDeep,
+                            mt: "8px",
+                            flexShrink: 0,
+                          }}
+                        />
                         <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
                           {item}
                         </Typography>
                       </Stack>
                     ))}
                   </Stack>
+
+                  <Link
+                    component={RouterLink}
+                    to="/arbitraje/inicio"
+                    underline="none"
+                    sx={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 0.5,
+                      mt: 2,
+                      color: brand.primary,
+                      fontSize: "0.82rem",
+                      fontWeight: 700,
+                      "&:hover": { color: brand.goldDeep },
+                    }}
+                  >
+                    Guía de requisitos
+                    <ArrowForwardIcon sx={{ fontSize: 15 }} />
+                  </Link>
                 </Box>
               </Stack>
             </Grid>
@@ -441,14 +269,7 @@ export default function ContactoPage() {
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 7, md: 9 },
-          backgroundColor: brand.white,
-          borderTop: `1px solid ${brand.line}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
           <Stack
             direction={{ xs: "column", sm: "row" }}
@@ -459,63 +280,79 @@ export default function ContactoPage() {
               <Typography
                 sx={{
                   color: brand.goldDeep,
-                  fontSize: "0.7rem",
-                  fontWeight: 750,
-                  letterSpacing: "0.15em",
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.13em",
                   textTransform: "uppercase",
                   mb: 1,
                 }}
               >
-                Nuestra ubicación
+                Ubicación
               </Typography>
 
-              <Typography
-                variant="h2"
-                sx={{ color: brand.primaryDark, fontSize: { xs: "1.8rem", md: "2.2rem" } }}
-              >
-                Visítanos en Huancayo
-              </Typography>
-
-              <Typography sx={{ color: brand.muted, fontSize: "0.92rem", mt: 1 }}>
-                {SITE.contact.address}
+              <Typography variant="h2" sx={{ color: brand.primaryDeep, fontSize: { xs: "1.8rem", md: "2.3rem" } }}>
+                Cómo llegar
               </Typography>
             </Box>
+
+            <Typography sx={{ color: brand.muted, fontSize: "0.74rem", maxWidth: 360 }}>
+              Confirma la ubicación y el horario de atención antes de tu visita.
+              El enlace abre la referencia directamente en Google Maps.
+            </Typography>
+          </Stack>
+
+          <Box
+            sx={{
+              mt: 3,
+              pt: 3,
+              borderTop: `2px solid ${brand.gold}`,
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) auto" },
+              gap: { xs: 3, md: 4 },
+              alignItems: { md: "end" },
+            }}
+          >
+            <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
+              <PlaceOutlinedIcon sx={{ fontSize: 30, color: brand.goldDeep, mt: "2px", flexShrink: 0 }} />
+
+              <Box>
+                <Typography
+                  sx={{
+                    color: brand.goldDeep,
+                    fontSize: "0.64rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Dirección
+                </Typography>
+
+                <Typography
+                  variant="h3"
+                  sx={{ mt: 0.6, color: brand.primaryDeep, fontSize: { xs: "1.35rem", md: "1.7rem" } }}
+                >
+                  {SITE.contact.address}
+                </Typography>
+
+                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65, maxWidth: 560 }}>
+                  La dirección corresponde a la sede institucional publicada por
+                  la Corte. Confirma el acceso y el horario antes de tu visita.
+                </Typography>
+              </Box>
+            </Stack>
 
             <Button
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${SITE.contact.mapQuery}, Huancayo, Perú`)}`}
               target="_blank"
               rel="noopener noreferrer"
               variant="outlined"
-              endIcon={<OpenInNewIcon sx={{ fontSize: "1rem" }} />}
-              sx={{ flexShrink: 0 }}
+              endIcon={<OpenInNewIcon sx={{ fontSize: 15 }} />}
+              sx={{ width: { xs: "100%", sm: "fit-content" }, justifySelf: { md: "end" } }}
             >
               Abrir en Google Maps
             </Button>
-          </Stack>
-
-          <Box
-            sx={{
-              border: `1px solid ${brand.line}`,
-              borderTop: `3px solid ${brand.gold}`,
-              overflow: "hidden",
-              "& iframe": { display: "block", width: "100%", border: 0 },
-            }}
-          >
-            <Box
-              component="iframe"
-              title="Mapa de ubicación de la Corte Superior de Arbitraje de Huancayo"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(`${SITE.contact.mapQuery}, Huancayo, Perú`)}&output=embed`}
-              height="430"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
           </Box>
-
-          <Typography sx={{ mt: 1.5, color: brand.muted, fontSize: "0.74rem", lineHeight: 1.6 }}>
-            El mapa se muestra con fines referenciales. Confirma la ubicación exacta
-            y el horario de atención antes de tu visita.
-          </Typography>
         </Container>
       </Box>
 

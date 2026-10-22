@@ -1,10 +1,7 @@
-import {
-  IconButton,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import { brand } from "../../theme/brand";
 
 type SearchInputProps = {
   value: string;
@@ -31,9 +28,7 @@ export default function SearchInput({
           "aria-label": label,
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon
-                sx={{ fontSize: "1.15rem", color: "text.secondary" }}
-              />
+              <SearchIcon sx={{ fontSize: 18, color: brand.muted }} />
             </InputAdornment>
           ),
           endAdornment: value ? (
@@ -43,7 +38,7 @@ export default function SearchInput({
                 aria-label="Limpiar búsqueda"
                 onClick={() => onChange("")}
               >
-                <CloseIcon sx={{ fontSize: "1rem" }} />
+                <CloseIcon sx={{ fontSize: 16 }} />
               </IconButton>
             </InputAdornment>
           ) : undefined,
@@ -51,7 +46,10 @@ export default function SearchInput({
       }}
       sx={{
         "& .MuiOutlinedInput-root": {
-          backgroundColor: "#FFFFFF",
+          backgroundColor: brand.whiteSoft,
+        },
+        "& .MuiInputBase-input": {
+          fontSize: "0.88rem",
         },
       }}
     />

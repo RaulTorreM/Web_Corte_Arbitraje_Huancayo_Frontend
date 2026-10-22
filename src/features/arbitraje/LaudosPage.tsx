@@ -11,8 +11,6 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
@@ -53,7 +51,7 @@ const POSTERIORES = [
   { solicitud: "Exclusión", pedir: "15 días", comentarios: "10 días", resolver: "15 días (+5)" },
 ];
 
-const celda = { fontSize: "0.82rem", py: 1.2, px: 1.3 };
+const celda = { fontSize: "0.8rem", py: 1.2, px: 1.3 };
 
 export default function LaudosPage() {
   return (
@@ -72,48 +70,49 @@ export default function LaudosPage() {
           { label: "Laudos" },
         ]}
         image="/images/ARBITRAJE_IMG_02-04.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Cómo se emite"
             title="De la deliberación a la notificación"
             subtitle="El tribunal decide; la Corte administra el trámite y notifica. Estos son los hitos que siguen al cierre de actuaciones."
-            centered
           />
 
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
+          <Grid container spacing={{ xs: 0, md: 5 }}>
             {EMISION.map((paso, index) => (
-              <Grid key={paso.title} size={{ xs: 12, sm: 6, md: 4 }}>
+              <Grid key={paso.title} size={{ xs: 12, md: 6 }}>
                 <Box
                   sx={{
-                    height: "100%",
-                    p: 3,
-                    backgroundColor: brand.paper,
-                    border: `1px solid ${brand.line}`,
-                    borderTop: `3px solid ${brand.gold}`,
+                    display: "grid",
+                    gridTemplateColumns: "34px 1fr",
+                    gap: 1.6,
+                    py: 1.8,
+                    borderTop: `1px solid ${brand.line}`,
                   }}
                 >
                   <Typography
                     sx={{
                       fontFamily: fonts.display,
-                      fontSize: "1.9rem",
-                      fontWeight: 600,
-                      color: brand.skyMid,
-                      lineHeight: 1,
+                      color: brand.goldDeep,
+                      fontSize: "0.9rem",
+                      lineHeight: 1.6,
                     }}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </Typography>
-                  <Typography variant="h4" sx={{ mt: 1.6, color: brand.primaryDark, fontSize: "1rem" }}>
-                    {paso.title}
-                  </Typography>
-                  <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.7 }}>
-                    {paso.text}
-                  </Typography>
+                  <Box>
+                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
+                      {paso.title}
+                    </Typography>
+                    <Typography sx={{ mt: 0.35, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
+                      {paso.text}
+                    </Typography>
+                  </Box>
                 </Box>
               </Grid>
             ))}
@@ -124,15 +123,14 @@ export default function LaudosPage() {
             spacing={1.3}
             sx={{
               mt: 4,
-              p: 2.4,
+              py: 2.2,
               alignItems: "flex-start",
-              backgroundColor: brand.skySoft,
-              border: `1px solid ${brand.skyMid}`,
-              borderLeft: `4px solid ${brand.gold}`,
+              borderTop: `1px solid ${brand.line}`,
+              borderBottom: `1px solid ${brand.line}`,
             }}
           >
-            <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.1rem", mt: "1px" }} />
-            <Typography sx={{ color: brand.primary, fontSize: "0.83rem", lineHeight: 1.65 }}>
+            <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
+            <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
               La Corte no revisa el fondo de la decisión. El escrutinio es una
               revisión formal opcional y no convierte a la institución en
               instancia jurisdiccional.
@@ -141,15 +139,7 @@ export default function LaudosPage() {
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.paper,
-          borderTop: `1px solid ${brand.line}`,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Después del laudo"
@@ -157,26 +147,21 @@ export default function LaudosPage() {
             subtitle="Dentro de los quince días siguientes a la notificación, cualquiera de las partes puede solicitar una actuación posterior. El tribunal también puede corregir de oficio en los diez días siguientes."
           />
 
-          <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
+          <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}`, overflowX: "auto" }}>
             <Table aria-label="Plazos posteriores al laudo" sx={{ minWidth: 620 }}>
               <TableHead>
-                <TableRow sx={{ backgroundColor: brand.primaryDark }}>
+                <TableRow>
                   {["Solicitud", "Plazo para pedir", "Comentarios de la otra parte", "Plazo de resolución"].map(
                     (header) => (
-                      <TableCell key={header} sx={{ color: brand.white, fontWeight: 700, fontSize: "0.78rem" }}>
-                        {header}
-                      </TableCell>
+                      <TableCell key={header}>{header}</TableCell>
                     )
                   )}
                 </TableRow>
               </TableHead>
               <TableBody>
                 {POSTERIORES.map((row) => (
-                  <TableRow
-                    key={row.solicitud}
-                    sx={{ "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" } }}
-                  >
-                    <TableCell sx={{ ...celda, fontWeight: 750, color: brand.primaryDark }}>
+                  <TableRow key={row.solicitud}>
+                    <TableCell sx={{ ...celda, fontWeight: 700, color: brand.primaryDeep }}>
                       {row.solicitud}
                     </TableCell>
                     <TableCell sx={{ ...celda, color: brand.primary }}>{row.pedir}</TableCell>
@@ -196,35 +181,35 @@ export default function LaudosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 5 }}>
+          <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <SectionHeading
-                kicker="Ejecución"
-                title="Cumplimiento del laudo"
-                subtitle="En arbitrajes nacionales, el tribunal puede realizar actos de requerimiento de cumplimiento a solicitud de la parte interesada, dentro de los treinta días posteriores a la notificación. Para la ejecución forzosa se acude al Poder Judicial."
-                sx={{ mb: 0 }}
-              />
+              <Box sx={{ borderTop: `2px solid ${brand.primary}`, pt: 2 }}>
+                <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
+                  Cumplimiento del laudo
+                </Typography>
+                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.9rem", lineHeight: 1.72 }}>
+                  En arbitrajes nacionales, el tribunal puede realizar actos de
+                  requerimiento de cumplimiento a solicitud de la parte interesada,
+                  dentro de los treinta días posteriores a la notificación. Para la
+                  ejecución forzosa se acude al Poder Judicial.
+                </Typography>
+              </Box>
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <Box sx={{ p: 3, backgroundColor: brand.paper, border: `1px solid ${brand.line}`, borderLeft: `4px solid ${brand.gold}` }}>
-                <Stack direction="row" spacing={1.2} sx={{ alignItems: "center", mb: 1.4 }}>
-                  <GavelOutlinedIcon sx={{ color: brand.goldDeep, fontSize: "1.3rem" }} />
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.95rem" }}>
-                    Publicación de laudos
-                  </Typography>
-                </Stack>
-
-                <Typography sx={{ color: brand.muted, fontSize: "0.84rem", lineHeight: 1.7 }}>
+              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
+                <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
+                  Publicación de laudos
+                </Typography>
+                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.88rem", lineHeight: 1.72 }}>
                   Se publican laudos y decisiones anonimizados, previa disociación
                   de datos personales, nombres de partes, montos y cualquier
-                  elemento identificable. No se publican casos en trámite, datos
-                  de menores ni información protegida por ley.
+                  elemento identificable. No se publican casos en trámite, datos de
+                  menores ni información protegida por ley.
                 </Typography>
-
-                <Typography sx={{ mt: 1.4, color: brand.muted, fontSize: "0.84rem", lineHeight: 1.7 }}>
+                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.88rem", lineHeight: 1.72 }}>
                   La confidencialidad alcanza a las partes, sus abogados,
                   representantes, testigos, peritos y personal de la Corte. Los
                   trabajos académicos requieren autorización y medidas de reserva.
@@ -238,7 +223,7 @@ export default function LaudosPage() {
       <Box
         component="section"
         sx={{
-          py: { xs: 8, md: 10 },
+          py: { xs: 7, md: 9 },
           backgroundColor: brand.paper,
           borderTop: `1px solid ${brand.line}`,
         }}
@@ -246,9 +231,8 @@ export default function LaudosPage() {
         <Container>
           <SectionHeading
             kicker="Buscador de laudos"
-            title="Repositorio de demostración"
+            title="Repositorio referencial"
             subtitle="Los registros que aparecen a continuación son datos de ejemplo. El repositorio oficial se habilitará cuando la institución publique los laudos anonimizados."
-            centered
           />
 
           <RegistryBrowser

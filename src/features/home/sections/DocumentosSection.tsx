@@ -1,13 +1,11 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { brand } from "../../../theme/brand";
+import { brand, fonts } from "../../../theme/brand";
 import { DOCUMENTOS } from "../../../data/documentos";
 import SectionHeading from "../../../components/common/SectionHeading";
-import { Stagger } from "../../../components/common/Reveal";
-import DocumentCard from "../../../components/common/DocumentCard";
 
-const IDS = ["d-05", "d-06", "d-08", "d-09"];
+const IDS = ["d-02", "d-07", "d-08", "d-09", "d-01"];
 
 export default function DocumentosSection() {
   const documentos = IDS.map((id) => DOCUMENTOS.find((doc) => doc.id === id)).filter(
@@ -15,84 +13,82 @@ export default function DocumentosSection() {
   );
 
   return (
-    <Box
-      component="section"
-      sx={{
-        py: { xs: 8, md: 11 },
-        backgroundColor: brand.paper,
-      }}
-    >
+    <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
       <Container>
+        <SectionHeading
+          kicker="Transparencia"
+          title="La normativa, a la vista"
+          subtitle="Reglamento, tarifas y formatos en un solo lugar. Las descargas estarán disponibles cuando la institución publique los PDFs definitivos."
+        />
+
+        <Box sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
+          {documentos.map((doc, index) => (
+            <Box
+              key={doc.id}
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { xs: "1fr", sm: "44px 1fr auto" },
+                gap: { xs: 0.5, sm: 2 },
+                alignItems: "center",
+                py: 2,
+                borderBottom: `1px solid ${brand.line}`,
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: fonts.display,
+                  color: brand.goldDeep,
+                  fontSize: "0.95rem",
+                  display: { xs: "none", sm: "block" },
+                }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </Typography>
+
+              <Box>
+                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.94rem" }}>
+                  {doc.titulo}
+                </Typography>
+                <Typography sx={{ mt: 0.25, color: brand.muted, fontSize: "0.76rem" }}>
+                  {doc.tipo} · Versión {doc.version} · {doc.peso}
+                </Typography>
+              </Box>
+
+              <Typography
+                sx={{
+                  color: brand.muted,
+                  fontSize: "0.7rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                  justifySelf: { xs: "start", sm: "end" },
+                }}
+              >
+                Próximamente
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+
         <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={3}
-          sx={{
-            alignItems: { xs: "flex-start", md: "flex-end" },
-            justifyContent: "space-between",
-            mb: { xs: 4.5, md: 6 },
-          }}
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ mt: 3.5, alignItems: { xs: "flex-start", sm: "center" }, justifyContent: "space-between" }}
         >
-          <SectionHeading
-            kicker="Documentos de consulta"
-            title="Información clara, disponible para todos"
-            subtitle="Consulta los reglamentos, tarifas, directivas y formatos que rigen nuestros procedimientos."
-            sx={{ mb: 0 }}
-          />
+          <Typography sx={{ color: brand.muted, fontSize: "0.8rem", maxWidth: 520 }}>
+            También puedes revisar el catálogo completo de documentos institucionales,
+            arbitraje y JPRD.
+          </Typography>
 
           <Button
             component={RouterLink}
             to="/documentos"
-            variant="outlined"
-            endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
-            sx={{ flexShrink: 0 }}
+            variant="text"
+            endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+            sx={{ px: 0, flexShrink: 0 }}
           >
             Ver todos los documentos
           </Button>
-        </Stack>
-
-        <Stagger>
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
-            {documentos.map((documento) => (
-              <Grid key={documento.id} size={{ xs: 12, sm: 6, lg: 3 }}>
-                <DocumentCard documento={documento} />
-              </Grid>
-            ))}
-          </Grid>
-        </Stagger>
-
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={1.5}
-          sx={{
-            mt: 4,
-            px: { xs: 2.5, md: 3 },
-            py: 2,
-            alignItems: { xs: "flex-start", sm: "center" },
-            justifyContent: "space-between",
-            backgroundColor: brand.white,
-            border: `1px solid ${brand.line}`,
-            borderLeft: `3px solid ${brand.gold}`,
-          }}
-        >
-          <Typography sx={{ color: brand.muted, fontSize: "0.86rem" }}>
-            ¿Buscas un documento específico? Explora el repositorio completo por
-            categoría.
-          </Typography>
-
-          <Typography
-            component={RouterLink}
-            to="/documentos"
-            sx={{
-              color: brand.primary,
-              fontSize: "0.84rem",
-              fontWeight: 700,
-              textDecoration: "none",
-              whiteSpace: "nowrap",
-              "&:hover": { color: brand.goldDeep },
-            }}
-          >
-            Ir al repositorio →
-          </Typography>
         </Stack>
       </Container>
     </Box>

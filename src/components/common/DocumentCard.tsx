@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Chip,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
@@ -17,10 +11,10 @@ import { fadeUp } from "../../utils/animations";
 import type { Documento } from "../../data/documentos";
 
 const iconByCategoria = {
-  institucional: <DescriptionOutlinedIcon />,
-  arbitraje: <GavelOutlinedIcon />,
-  jprd: <InsertDriveFileOutlinedIcon />,
-  certificacion: <VerifiedOutlinedIcon />,
+  institucional: <DescriptionOutlinedIcon sx={{ fontSize: 20 }} />,
+  arbitraje: <GavelOutlinedIcon sx={{ fontSize: 20 }} />,
+  jprd: <InsertDriveFileOutlinedIcon sx={{ fontSize: 20 }} />,
+  certificacion: <VerifiedOutlinedIcon sx={{ fontSize: 20 }} />,
 };
 
 const formatFecha = (iso: string) =>
@@ -45,59 +39,42 @@ export default function DocumentCard({
       component={motion.article}
       variants={fadeUp}
       sx={{
-        position: "relative",
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: brand.white,
-        border: `1px solid ${brand.line}`,
-        borderLeft: `3px solid ${brand.line}`,
-        p: { xs: 2.5, md: 3 },
-        transition:
-          "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
+        borderTop: `1px solid ${brand.lineStrong}`,
+        pt: 2,
+        pb: 1,
+        transition: "border-color 0.18s ease",
         "&:hover": {
-          transform: "translateY(-3px)",
-          borderLeftColor: brand.gold,
-          boxShadow: "0 16px 36px rgba(18,35,61,0.09)",
+          borderTopColor: brand.gold,
         },
       }}
     >
-      <Stack
-        direction="row"
-        sx={{ alignItems: "flex-start", justifyContent: "space-between", gap: 2 }}
-      >
-        <Box
-          sx={{
-            width: 42,
-            height: 42,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: brand.skySoft,
-            color: brand.primary,
-            flexShrink: 0,
-          }}
-        >
+      <Stack direction="row" spacing={1.2} sx={{ alignItems: "center" }}>
+        <Box sx={{ color: brand.goldDeep, display: "flex" }}>
           {iconByCategoria[documento.categoria]}
         </Box>
-
-        <Chip
-          label={documento.tipo}
-          size="small"
+        <Typography
           sx={{
-            backgroundColor: "rgba(45,73,121,0.07)",
-            color: brand.primary,
+            color: brand.muted,
+            fontSize: "0.64rem",
+            fontWeight: 700,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
           }}
-        />
+        >
+          {documento.tipo}
+        </Typography>
       </Stack>
 
       <Typography
         variant="h4"
         sx={{
-          mt: 2.2,
-          fontSize: "1.06rem",
-          lineHeight: 1.35,
-          color: brand.primaryDark,
+          mt: 1.4,
+          fontSize: "1.08rem",
+          lineHeight: 1.3,
+          color: brand.primaryDeep,
         }}
       >
         {documento.titulo}
@@ -105,11 +82,11 @@ export default function DocumentCard({
 
       <Typography
         sx={{
-          mt: 1,
-          mb: 2.5,
+          mt: 0.8,
+          mb: 2,
           color: brand.muted,
-          fontSize: "0.88rem",
-          lineHeight: 1.65,
+          fontSize: "0.86rem",
+          lineHeight: 1.6,
           flex: 1,
         }}
       >
@@ -118,29 +95,27 @@ export default function DocumentCard({
 
       <Stack
         direction="row"
-        sx={{ alignItems: "center", justifyContent: "space-between", gap: 1 }}
+        sx={{ alignItems: "center", justifyContent: "space-between", gap: 1.5 }}
       >
-        <Stack direction="row" spacing={1.4} sx={{ alignItems: "center" }}>
+        <Stack direction="row" spacing={1.4} sx={{ alignItems: "center", flexWrap: "wrap" }}>
           <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
-            <CalendarMonthOutlinedIcon
-              sx={{ fontSize: "0.95rem", color: brand.muted }}
-            />
-            <Typography sx={{ fontSize: "0.74rem", color: brand.muted }}>
+            <CalendarMonthOutlinedIcon sx={{ fontSize: 14, color: brand.muted }} />
+            <Typography sx={{ fontSize: "0.72rem", color: brand.muted }}>
               {formatFecha(documento.fecha)}
             </Typography>
           </Stack>
 
-          <Typography sx={{ fontSize: "0.74rem", color: brand.muted }}>
+          <Typography sx={{ fontSize: "0.72rem", color: brand.muted }}>
             {documento.peso}
           </Typography>
 
           {documento.estado && (
             <Typography
               sx={{
-                fontSize: "0.7rem",
-                color:
-                  documento.estado === "Vigente" ? brand.primary : brand.goldDeep,
+                fontSize: "0.68rem",
+                color: documento.estado === "Vigente" ? brand.primary : brand.accent,
                 fontWeight: 700,
+                letterSpacing: "0.03em",
               }}
             >
               {documento.estado}
@@ -156,7 +131,7 @@ export default function DocumentCard({
           variant="text"
           endIcon={
             documento.url !== "#" ? (
-              <DownloadOutlinedIcon sx={{ fontSize: "1rem" }} />
+              <DownloadOutlinedIcon sx={{ fontSize: 15 }} />
             ) : undefined
           }
           aria-label={
@@ -166,14 +141,15 @@ export default function DocumentCard({
           }
           sx={{
             minWidth: 0,
-            px: 0.5,
-            py: 0.4,
+            px: 0,
+            py: 0.3,
             color: documento.url === "#" ? brand.muted : brand.primary,
-            fontSize: "0.78rem",
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            whiteSpace: "nowrap",
             "&:hover": {
               backgroundColor: "transparent",
               color: brand.goldDeep,
-              transform: "none",
             },
           }}
         >

@@ -24,24 +24,24 @@ export default function PreliminaryNotice({
       sx={{
         p: { xs: 2.2, md: 2.6 },
         alignItems: "flex-start",
-        backgroundColor: brand.skySoft,
-        border: `1px solid ${brand.skyMid}`,
-        borderLeft: `4px solid ${brand.gold}`,
+        backgroundColor: brand.whiteSoft,
+        borderTop: `2px solid ${brand.accent}`,
+        borderBottom: `1px solid ${brand.line}`,
       }}
     >
-      <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.15rem", mt: "2px" }} />
+      <InfoOutlinedIcon sx={{ color: brand.accent, fontSize: 19, mt: "2px" }} />
       <Box>
         <Typography
           sx={{
-            color: brand.primaryDark,
-            fontWeight: 750,
+            color: brand.primaryDeep,
+            fontWeight: 700,
             fontSize: "0.82rem",
-            letterSpacing: "0.02em",
+            letterSpacing: "0.01em",
           }}
         >
           {title}
         </Typography>
-        <Typography sx={{ mt: 0.5, color: brand.primary, fontSize: "0.82rem", lineHeight: 1.65 }}>
+        <Typography sx={{ mt: 0.5, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
           {text}
         </Typography>
       </Box>
@@ -51,7 +51,7 @@ export default function PreliminaryNotice({
   if (!contained) return content;
 
   return (
-    <Box component="section" sx={{ pt: { xs: 3, md: 3.5 }, backgroundColor: brand.white }}>
+    <Box component="section" sx={{ pt: { xs: 3, md: 4 }, backgroundColor: brand.paper }}>
       <Container>{content}</Container>
     </Box>
   );

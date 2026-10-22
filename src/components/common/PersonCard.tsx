@@ -31,54 +31,35 @@ export default function PersonCard({
     <Stack
       component={motion.article}
       variants={fadeUp}
-      spacing={1.8}
+      spacing={1.5}
       sx={{
-        alignItems: "center",
-        textAlign: "center",
         height: "100%",
-        p: { xs: 2.5, md: 3 },
-        border: `1px solid ${featured ? "rgba(186,153,7,0.42)" : brand.line}`,
-        backgroundColor: featured ? "rgba(234,242,251,0.55)" : brand.white,
-        transition:
-          "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
-        "&:hover": {
-          transform: "translateY(-4px)",
-          borderColor: "rgba(186,153,7,0.5)",
-          boxShadow: "0 16px 38px rgba(18,35,61,0.10)",
-        },
+        pt: 1.5,
+        borderTop: `2px solid ${featured ? brand.gold : brand.lineStrong}`,
       }}
     >
       <Box
         sx={{
-          position: "relative",
-          width: featured ? 104 : 92,
-          height: featured ? 104 : 92,
-          flexShrink: 0,
+          width: "100%",
+          aspectRatio: "4 / 5",
+          overflow: "hidden",
+          backgroundColor: brand.primaryDeep,
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: -5,
-            right: -5,
-            width: 30,
-            height: 30,
-            borderTop: `2px solid ${brand.gold}`,
-            borderRight: `2px solid ${brand.gold}`,
-          }}
-        />
-
         {persona.foto ? (
           <Box
             component="img"
             src={persona.foto}
             alt={`Fotografía de ${persona.nombre}`}
+            loading="lazy"
             sx={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
               objectPosition: "center 12%",
               display: "block",
+              transition: "opacity 0.2s ease",
+              "&:hover": { opacity: 0.9 },
             }}
           />
         ) : (
@@ -87,38 +68,54 @@ export default function PersonCard({
               width: "100%",
               height: "100%",
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              background: `linear-gradient(145deg, ${brand.primary} 0%, ${brand.primaryDeep} 100%)`,
-              color: brand.sky,
-              fontFamily: fonts.display,
-              fontSize: featured ? "2rem" : "1.75rem",
-              fontWeight: 600,
+              gap: 1.2,
+              backgroundColor: brand.paperAlt,
+              border: `1px solid ${brand.line}`,
+              color: brand.primaryDeep,
             }}
           >
-            {initials(persona.nombre)}
+            <Box
+              component="span"
+              sx={{
+                fontFamily: fonts.display,
+                fontSize: "2.1rem",
+                fontWeight: 600,
+                lineHeight: 1,
+              }}
+            >
+              {initials(persona.nombre)}
+            </Box>
+
+            <Box sx={{ width: 26, height: "1px", backgroundColor: brand.gold }} />
+
+            <Typography
+              sx={{
+                px: 1.5,
+                color: brand.muted,
+                fontSize: "0.54rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                lineHeight: 1.4,
+                textAlign: "center",
+                textTransform: "uppercase",
+              }}
+            >
+              Fotografía no disponible
+            </Typography>
           </Box>
         )}
-
-        <Box
-          sx={{
-            position: "absolute",
-            left: "14%",
-            right: "14%",
-            bottom: -3,
-            height: 3,
-            backgroundColor: brand.gold,
-          }}
-        />
       </Box>
 
       <Box>
         <Typography
           variant="h4"
           sx={{
-            fontSize: featured ? "1.15rem" : "1.02rem",
-            lineHeight: 1.35,
-            color: brand.primaryDark,
+            fontSize: featured ? "1.18rem" : "1.06rem",
+            lineHeight: 1.25,
+            color: brand.primaryDeep,
           }}
         >
           {persona.nombre}
@@ -126,10 +123,10 @@ export default function PersonCard({
 
         <Typography
           sx={{
-            mt: 0.8,
+            mt: 0.6,
             color: brand.goldDeep,
-            fontSize: "0.68rem",
-            fontWeight: 750,
+            fontSize: "0.64rem",
+            fontWeight: 700,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
           }}
@@ -141,8 +138,8 @@ export default function PersonCard({
       <Typography
         sx={{
           color: brand.muted,
-          fontSize: "0.85rem",
-          lineHeight: 1.65,
+          fontSize: "0.84rem",
+          lineHeight: 1.62,
         }}
       >
         {persona.bio}

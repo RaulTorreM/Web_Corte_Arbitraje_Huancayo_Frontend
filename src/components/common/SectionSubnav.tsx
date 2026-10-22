@@ -19,17 +19,20 @@ export default function SectionSubnav({
       component="nav"
       aria-label={ariaLabel}
       sx={{
-        backgroundColor: brand.white,
+        position: "sticky",
+        top: { xs: 68, md: 78 },
+        zIndex: 1000,
+        backgroundColor: "rgba(244,240,231,0.97)",
+        backdropFilter: "blur(8px)",
         borderBottom: `1px solid ${brand.line}`,
-        boxShadow: "0 4px 14px rgba(18,35,61,0.035)",
       }}
     >
       <Container>
         <Stack
           direction="row"
-          spacing={{ xs: 2.2, md: 3.4 }}
+          spacing={{ xs: 2.2, md: 3.2 }}
           sx={{
-            minHeight: 54,
+            minHeight: 52,
             alignItems: "stretch",
             overflowX: "auto",
             scrollbarWidth: "none",
@@ -44,28 +47,29 @@ export default function SectionSubnav({
                 key={item.to}
                 component={RouterLink}
                 to={item.to}
+                aria-current={active ? "page" : undefined}
                 sx={{
                   position: "relative",
                   display: "inline-flex",
                   alignItems: "center",
                   flexShrink: 0,
-                  color: active ? brand.primaryDark : brand.muted,
-                  fontSize: { xs: "0.78rem", md: "0.82rem" },
-                  fontWeight: active ? 750 : 500,
+                  color: active ? brand.primaryDeep : brand.muted,
+                  fontSize: "0.78rem",
+                  fontWeight: active ? 700 : 500,
                   textDecoration: "none",
                   whiteSpace: "nowrap",
-                  transition: "color 0.2s ease",
+                  transition: "color 0.18s ease",
                   "&::after": {
                     content: '""',
                     position: "absolute",
                     left: 0,
                     right: 0,
-                    bottom: 0,
-                    height: 3,
+                    bottom: -1,
+                    height: 2,
                     backgroundColor: brand.gold,
                     transform: active ? "scaleX(1)" : "scaleX(0)",
                     transformOrigin: "left",
-                    transition: "transform 0.25s ease",
+                    transition: "transform 0.2s ease",
                   },
                   "&:hover": {
                     color: brand.primary,

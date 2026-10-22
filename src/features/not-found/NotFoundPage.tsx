@@ -1,12 +1,8 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
 import { brand, fonts } from "../../theme/brand";
-import { ease } from "../../utils/animations";
-import seal from "../../assets/brand/logo-corte.png";
 
 export default function NotFoundPage() {
   return (
@@ -19,110 +15,103 @@ export default function NotFoundPage() {
       <Box
         component="section"
         sx={{
-          position: "relative",
-          overflow: "hidden",
-          minHeight: { xs: "72vh", md: "76vh" },
+          minHeight: { xs: "68vh", md: "72vh" },
           display: "flex",
           alignItems: "center",
           backgroundColor: brand.paper,
-          borderBottom: `3px solid ${brand.gold}`,
+          borderBottom: `1px solid ${brand.line}`,
         }}
       >
-        <Box
-          aria-hidden
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            fontFamily: fonts.display,
-            fontSize: { xs: "18rem", md: "30rem" },
-            lineHeight: 1,
-            fontWeight: 700,
-            color: "rgba(45,73,121,0.05)",
-            userSelect: "none",
-            pointerEvents: "none",
-          }}
-        >
-          404
-        </Box>
-
-        <Container sx={{ position: "relative", zIndex: 1 }}>
-          <Stack
-            component={motion.div}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
-            spacing={2.5}
-            sx={{ alignItems: "center", textAlign: "center", py: 10 }}
-          >
-            <Box
-              component="img"
-              src={seal}
-              alt="Sello de la Corte Superior de Arbitraje de Huancayo"
-              sx={{ width: { xs: 74, md: 88 }, height: "auto", mb: 1 }}
-            />
-
-            <Typography
-              sx={{
-                color: brand.goldDeep,
-                fontSize: "0.72rem",
-                fontWeight: 750,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-              }}
-            >
-              Error 404
-            </Typography>
-
-            <Typography
-              variant="h1"
-              sx={{
-                color: brand.primaryDark,
-                fontSize: { xs: "2.2rem", md: "3.2rem" },
-                maxWidth: 720,
-              }}
-            >
-              La página que buscas no está aquí
-            </Typography>
-
-            <Typography
-              sx={{
-                color: brand.muted,
-                fontSize: "0.98rem",
-                lineHeight: 1.8,
-                maxWidth: 560,
-              }}
-            >
-              Es posible que el enlace haya cambiado o que la dirección esté
-              incompleta. Puedes volver al inicio o explorar las secciones
-              principales del sitio.
-            </Typography>
-
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={1.5}
-              sx={{ pt: 1 }}
-            >
-              <Button
-                component={RouterLink}
-                to="/"
-                variant="contained"
-                startIcon={<HomeOutlinedIcon />}
+        <Container sx={{ py: { xs: 8, md: 10 } }}>
+          <Grid container spacing={{ xs: 5, md: 8 }} sx={{ alignItems: "center" }}>
+            <Grid size={{ xs: 12, md: 7 }}>
+              <Typography
+                sx={{
+                  color: brand.goldDeep,
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  mb: 1.8,
+                }}
               >
-                Volver al inicio
-              </Button>
+                Error 404
+              </Typography>
 
-              <Button
-                component={RouterLink}
-                to="/contacto"
-                variant="outlined"
-                startIcon={<ArrowBackIcon />}
+              <Typography
+                variant="h1"
+                sx={{
+                  color: brand.primaryDeep,
+                  fontSize: { xs: "2.2rem", md: "3.3rem" },
+                  maxWidth: 660,
+                }}
               >
-                Ir a contacto
-              </Button>
-            </Stack>
-          </Stack>
+                Esta página no forma parte del expediente
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 2.2,
+                  color: brand.muted,
+                  fontSize: "0.98rem",
+                  lineHeight: 1.78,
+                  maxWidth: 560,
+                }}
+              >
+                Es posible que el enlace haya cambiado o que la dirección esté
+                incompleta. Puedes volver al inicio o explorar las secciones
+                principales del sitio.
+              </Typography>
+
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 3.5 }}>
+                <Button
+                  component={RouterLink}
+                  to="/"
+                  variant="contained"
+                  endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+                >
+                  Volver al inicio
+                </Button>
+
+                <Button component={RouterLink} to="/contacto" variant="outlined">
+                  Ir a contacto
+                </Button>
+              </Stack>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2.5 }}>
+                <Typography
+                  sx={{
+                    fontFamily: fonts.display,
+                    color: brand.primaryDeep,
+                    fontSize: { xs: "4.5rem", md: "6.5rem" },
+                    lineHeight: 0.9,
+                  }}
+                >
+                  404
+                </Typography>
+
+                <Typography
+                  sx={{
+                    mt: 2,
+                    color: brand.goldDeep,
+                    fontSize: "0.64rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Folio no encontrado
+                </Typography>
+
+                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
+                  La dirección solicitada no corresponde a ningún documento de
+                  este sitio.
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </>

@@ -8,23 +8,18 @@ import {
   Container,
   Grid,
   Stack,
+  Tab,
+  Tabs,
   Typography,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionHeading from "../../components/common/SectionHeading";
 import CtaBand from "../../components/common/CtaBand";
 import EventCard from "./EventCard";
-import { Stagger } from "../../components/common/Reveal";
-import { viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { EVENTOS } from "../../data/eventos";
 
@@ -34,6 +29,21 @@ const FILTROS: { value: Filtro; label: string }[] = [
   { value: "proximos", label: "Próximas" },
   { value: "realizados", label: "Realizadas" },
   { value: "todos", label: "Todas" },
+];
+
+const DATOS = [
+  {
+    value: "Abierta",
+    label: "Agenda referencial sujeta a confirmación",
+  },
+  {
+    value: "A medida",
+    label: "Programas para instituciones y empresas",
+  },
+  {
+    value: "3",
+    label: "Modalidades: presencial, virtual e híbrida",
+  },
 ];
 
 const FAQS = [
@@ -88,11 +98,12 @@ export default function CapacitacionesPage() {
         subtitle="Seminarios, talleres y conversatorios para fortalecer las competencias de profesionales, empresas y entidades públicas. La agenda publicada es referencial y se confirma en cada convocatoria."
         crumbs={[{ label: "Capacitaciones" }]}
         image="/images/ARBITRAJE_IMG_02-04.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "center" }}>
+          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-start" }}>
             <Grid size={{ xs: 12, md: 7 }}>
               <SectionHeading
                 kicker="Agenda académica"
@@ -103,132 +114,107 @@ export default function CapacitacionesPage() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 5 }}>
-              <Grid container spacing={2}>
-                {[
-                  { icon: SchoolOutlinedIcon, value: "Abierta", label: "Agenda referencial sujeta a confirmación" },
-                  { icon: GroupsOutlinedIcon, value: "A medida", label: "Programas para instituciones y empresas" },
-                  { icon: CalendarMonthOutlinedIcon, value: "3", label: "Modalidades: presencial, virtual e híbrida" },
-                ].map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <Grid key={item.label} size={{ xs: 12, sm: 4, md: 12 }}>
-                      <Stack
-                        direction="row"
-                        spacing={1.8}
-                        sx={{
-                          px: 2.2,
-                          py: 1.8,
-                          alignItems: "center",
-                          backgroundColor: brand.paper,
-                          border: `1px solid ${brand.line}`,
-                          borderLeft: `3px solid ${brand.gold}`,
-                        }}
-                      >
-                        <Icon sx={{ color: brand.primary, fontSize: "1.3rem" }} />
-                        <Box>
-                          <Typography
-                            sx={{
-                              fontFamily: fonts.display,
-                              fontSize: "1.35rem",
-                              fontWeight: 600,
-                              color: brand.primaryDark,
-                              lineHeight: 1,
-                            }}
-                          >
-                            {item.value}
-                          </Typography>
-                          <Typography sx={{ color: brand.muted, fontSize: "0.7rem", mt: 0.4 }}>
-                            {item.label}
-                          </Typography>
-                        </Box>
-                      </Stack>
-                    </Grid>
-                  );
-                })}
-              </Grid>
+              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
+                {DATOS.map((item) => (
+                  <Box
+                    key={item.label}
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: "110px 1fr",
+                      gap: 1.5,
+                      py: 1.4,
+                      borderBottom: `1px solid ${brand.line}`,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFamily: fonts.display,
+                        color: brand.primaryDeep,
+                        fontSize: "1.15rem",
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {item.value}
+                    </Typography>
+                    <Typography sx={{ color: brand.muted, fontSize: "0.78rem", lineHeight: 1.55 }}>
+                      {item.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Stack>
             </Grid>
           </Grid>
 
-          <Stack
-            direction="row"
-            spacing={1}
-            sx={{ mt: { xs: 4, md: 5 }, mb: 2, flexWrap: "wrap", gap: 1 }}
-          >
-            {FILTROS.map((item) => {
-              const active = filtro === item.value;
-              const count =
-                item.value === "todos"
-                  ? EVENTOS.length
-                  : EVENTOS.filter((e) =>
-                      item.value === "proximos"
-                        ? e.estado === "proximo"
-                        : e.estado === "realizado"
-                    ).length;
+          <Box sx={{ mt: { xs: 5, md: 7 }, borderBottom: `1px solid ${brand.lineStrong}` }}>
+            <Tabs
+              value={filtro}
+              onChange={(_event, value: Filtro) => setFiltro(value)}
+              variant="scrollable"
+              scrollButtons="auto"
+              allowScrollButtonsMobile
+              aria-label="Filtrar actividades"
+              sx={{
+                "& .MuiTabs-indicator": {
+                  backgroundColor: brand.gold,
+                  height: 2,
+                },
+                "& .MuiTab-root": {
+                  minHeight: 48,
+                  px: { xs: 1.2, md: 2 },
+                  color: brand.muted,
+                  fontSize: { xs: "0.76rem", md: "0.82rem" },
+                  textTransform: "none",
+                },
+                "& .Mui-selected": {
+                  color: brand.primaryDeep,
+                  fontWeight: 700,
+                },
+              }}
+            >
+              {FILTROS.map((item) => {
+                const count =
+                  item.value === "todos"
+                    ? EVENTOS.length
+                    : EVENTOS.filter((e) =>
+                        item.value === "proximos"
+                          ? e.estado === "proximo"
+                          : e.estado === "realizado"
+                      ).length;
 
-              return (
-                <Button
-                  key={item.value}
-                  onClick={() => setFiltro(item.value)}
-                  variant={active ? "contained" : "outlined"}
-                  size="small"
-                  sx={{
-                    px: 2,
-                    py: 0.8,
-                    fontSize: "0.8rem",
-                    ...(active
-                      ? {}
-                      : {
-                          borderColor: brand.line,
-                          color: brand.muted,
-                          "&:hover": {
-                            borderColor: brand.primary,
-                            color: brand.primary,
-                          },
-                        }),
-                  }}
-                >
-                  {item.label} ({count})
-                </Button>
-              );
-            })}
-          </Stack>
+                return (
+                  <Tab
+                    key={item.value}
+                    value={item.value}
+                    label={`${item.label} (${count})`}
+                  />
+                );
+              })}
+            </Tabs>
+          </Box>
 
-          <Typography sx={{ mb: 3, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.6 }}>
+          <Typography sx={{ mt: 2, mb: 1, color: brand.muted, fontSize: "0.78rem", lineHeight: 1.6 }}>
             Agenda de demostración. Las fechas, cupos y sedes se confirman en la
             convocatoria oficial de cada actividad.
           </Typography>
 
-          <Stagger amount={0.08}>
-            <Grid container spacing={{ xs: 3, md: 3 }}>
-              {filtrados.map((evento) => (
-                <Grid key={evento.id} size={{ xs: 12, md: 4 }}>
-                  <EventCard evento={evento} />
-                </Grid>
-              ))}
-            </Grid>
-          </Stagger>
+          <Stack>
+            {filtrados.map((evento) => (
+              <EventCard key={evento.id} evento={evento} />
+            ))}
+          </Stack>
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.primaryDark,
-          color: brand.white,
-          borderTop: `3px solid ${brand.gold}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "center" }}>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography
                 sx={{
-                  color: brand.goldSoft,
-                  fontSize: "0.72rem",
-                  fontWeight: 750,
-                  letterSpacing: "0.16em",
+                  color: brand.goldDeep,
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.13em",
                   textTransform: "uppercase",
                   mb: 1.5,
                 }}
@@ -236,14 +222,11 @@ export default function CapacitacionesPage() {
                 Programas a medida
               </Typography>
 
-              <Typography
-                variant="h2"
-                sx={{ color: brand.white, fontSize: { xs: "1.9rem", md: "2.4rem" } }}
-              >
+              <Typography variant="h2" sx={{ color: brand.primaryDeep }}>
                 Capacitación diseñada para tu institución
               </Typography>
 
-              <Typography sx={{ mt: 2.2, color: "rgba(255,255,255,0.72)", fontSize: "0.96rem", lineHeight: 1.8 }}>
+              <Typography sx={{ mt: 2.2, color: brand.muted, fontSize: "0.96rem", lineHeight: 1.78 }}>
                 Diseñamos programas cerrados para empresas, entidades públicas y
                 estudios profesionales. Definimos contenidos, duración y
                 modalidad según tus objetivos y el perfil de tu equipo.
@@ -252,48 +235,29 @@ export default function CapacitacionesPage() {
               <Button
                 component={RouterLink}
                 to="/contacto"
-                variant="outlined"
-                endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
-                sx={{
-                  mt: 3.5,
-                  color: brand.white,
-                  borderColor: "rgba(255,255,255,0.35)",
-                  "&:hover": {
-                    color: brand.goldSoft,
-                    borderColor: brand.goldSoft,
-                    backgroundColor: "rgba(255,255,255,0.04)",
-                  },
-                }}
+                variant="contained"
+                endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+                sx={{ mt: 3 }}
               >
                 Solicitar una propuesta
               </Button>
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <Stack spacing={1.6}>
-                {BENEFICIOS.map((beneficio, index) => (
-                  <Stack
+              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
+                {BENEFICIOS.map((beneficio) => (
+                  <Typography
                     key={beneficio}
-                    component={motion.div}
-                    initial={{ opacity: 0, x: 18 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.5, delay: index * 0.06 }}
-                    direction="row"
-                    spacing={1.5}
                     sx={{
-                      p: 2,
-                      alignItems: "center",
-                      backgroundColor: "rgba(255,255,255,0.045)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      borderLeft: `3px solid ${brand.gold}`,
+                      py: 1.4,
+                      borderBottom: `1px solid ${brand.line}`,
+                      color: brand.muted,
+                      fontSize: "0.88rem",
+                      lineHeight: 1.6,
                     }}
                   >
-                    <CheckCircleOutlineIcon sx={{ color: brand.goldSoft, fontSize: "1.15rem" }} />
-                    <Typography sx={{ color: "rgba(255,255,255,0.78)", fontSize: "0.88rem" }}>
-                      {beneficio}
-                    </Typography>
-                  </Stack>
+                    {beneficio}
+                  </Typography>
                 ))}
               </Stack>
             </Grid>
@@ -301,14 +265,15 @@ export default function CapacitacionesPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }}>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 4 }}>
               <SectionHeading
                 kicker="Preguntas frecuentes"
                 title="Resolvemos tus dudas"
                 subtitle="Si no encuentras lo que buscas, escríbenos y te responderemos a la brevedad."
+                stacked
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -318,9 +283,11 @@ export default function CapacitacionesPage() {
                 <Accordion
                   key={faq.question}
                   disableGutters
+                  elevation={0}
                   sx={{
-                    mb: 1.5,
-                    backgroundColor: brand.white,
+                    backgroundColor: "transparent",
+                    borderTop: `1px solid ${brand.line}`,
+                    borderBottom: index === FAQS.length - 1 ? `1px solid ${brand.line}` : "none",
                     "&:before": { display: "none" },
                   }}
                 >
@@ -328,15 +295,15 @@ export default function CapacitacionesPage() {
                     expandIcon={<ExpandMoreIcon sx={{ color: brand.goldDeep }} />}
                     aria-controls={`faq-${index}-content`}
                     id={`faq-${index}-header`}
-                    sx={{ px: 2.5, py: 0.5 }}
+                    sx={{ px: 0, py: 0.4 }}
                   >
-                    <Typography sx={{ color: brand.primaryDark, fontWeight: 650, fontSize: "0.92rem" }}>
+                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 600, fontSize: "0.92rem" }}>
                       {faq.question}
                     </Typography>
                   </AccordionSummary>
 
-                  <AccordionDetails sx={{ px: 2.5, pb: 2.5, pt: 0 }}>
-                    <Typography sx={{ color: brand.muted, fontSize: "0.88rem", lineHeight: 1.75 }}>
+                  <AccordionDetails sx={{ px: 0, pb: 2.2, pt: 0 }}>
+                    <Typography sx={{ color: brand.muted, fontSize: "0.86rem", lineHeight: 1.7 }}>
                       {faq.answer}
                     </Typography>
                   </AccordionDetails>

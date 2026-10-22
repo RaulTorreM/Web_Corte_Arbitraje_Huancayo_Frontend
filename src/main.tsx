@@ -4,10 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import "@fontsource/fraunces/latin-400.css";
-import "@fontsource/fraunces/latin-600.css";
-import "@fontsource/fraunces/latin-600-italic.css";
-import "@fontsource/fraunces/latin-700.css";
+import "@fontsource/source-serif-4/latin-400.css";
+import "@fontsource/source-serif-4/latin-600.css";
+import "@fontsource/source-serif-4/latin-600-italic.css";
+import "@fontsource/source-serif-4/latin-700.css";
 import "@fontsource/public-sans/latin-400.css";
 import "@fontsource/public-sans/latin-500.css";
 import "@fontsource/public-sans/latin-600.css";

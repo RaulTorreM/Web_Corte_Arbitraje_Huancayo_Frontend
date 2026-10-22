@@ -13,8 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import PaymentsOutlinedIcon from "@mui/icons-material/PaymentsOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
@@ -22,7 +20,6 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import CtaBand from "../../components/common/CtaBand";
-import { viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 import {
@@ -67,7 +64,7 @@ const PASOS_COSTO = [
   },
 ];
 
-const celda = { fontSize: "0.82rem", py: 1.1, px: 1.2 };
+const celda = { fontSize: "0.8rem", py: 1.1, px: 1.2 };
 
 export default function CostosPage() {
   return (
@@ -86,41 +83,27 @@ export default function CostosPage() {
           { label: "Costos y tarifas" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Qué incluye"
             title="Cuatro componentes del costo"
             subtitle="Los montos de los Anexos 1, 3 y 4 no incluyen IGV. La liquidación definitiva es emitida por la Secretaría General."
-            centered
           />
 
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
-            {COMPONENTES.map((componente, index) => (
+          <Grid container spacing={{ xs: 3, md: 4 }}>
+            {COMPONENTES.map((componente) => (
               <Grid key={componente.titulo} size={{ xs: 12, sm: 6, md: 3 }}>
-                <Box
-                  component={motion.article}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  sx={{
-                    height: "100%",
-                    p: 2.8,
-                    backgroundColor: brand.white,
-                    border: `1px solid ${brand.line}`,
-                    borderTop: `3px solid ${brand.gold}`,
-                  }}
-                >
-                  <PaymentsOutlinedIcon sx={{ color: brand.goldDeep, fontSize: "1.5rem" }} />
-                  <Typography variant="h4" sx={{ mt: 1.6, color: brand.primaryDark, fontSize: "1rem" }}>
+                <Box sx={{ height: "100%", pt: 2, borderTop: `1px solid ${brand.lineStrong}` }}>
+                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.92rem" }}>
                     {componente.titulo}
                   </Typography>
-                  <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.84rem", lineHeight: 1.65 }}>
+                  <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
                     {componente.texto}
                   </Typography>
                 </Box>
@@ -130,7 +113,7 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Anexo 1"
@@ -138,16 +121,15 @@ export default function CostosPage() {
             subtitle="Cuantía en soles. La columna “tribunal” corresponde al honorario de cada integrante; el presidente percibe el monto que fije el reglamento."
           />
 
-          <TableContainer sx={{ border: `1px solid ${brand.line}`, overflowX: "auto" }}>
+          <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}`, overflowX: "auto" }}>
             <Table aria-label="Anexo 1: honorarios y tasa administrativa" sx={{ minWidth: 760 }}>
               <TableHead>
-                <TableRow sx={{ backgroundColor: brand.primaryDark }}>
+                <TableRow>
                   {["Rubro", "Cuantía en controversia (S/)", "Tasa administrativa", "Honorarios tribunal", "Honorarios árbitro único"].map(
                     (header) => (
                       <TableCell
                         key={header}
                         align={header === "Rubro" ? "left" : "right"}
-                        sx={{ color: brand.white, fontWeight: 700, fontSize: "0.78rem" }}
                       >
                         {header}
                       </TableCell>
@@ -163,24 +145,21 @@ export default function CostosPage() {
                   return (
                     <TableRow
                       key={row.rubro}
-                      sx={{
-                        "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" },
-                        "&:hover": { backgroundColor: "rgba(157,196,239,0.16)" },
-                      }}
+                      sx={{ "&:hover": { backgroundColor: "rgba(176,138,46,0.06)" } }}
                     >
-                      <TableCell sx={{ ...celda, fontWeight: 750, color: brand.primaryDark }}>
+                      <TableCell sx={{ ...celda, fontWeight: 700, color: brand.primaryDeep }}>
                         {row.rubro}
                       </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: brand.primaryDark }}>
+                      <TableCell align="right" sx={{ ...celda, color: brand.ink }}>
                         {row.cuantia}
                       </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.goldDeep : brand.primary }}>
+                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.accent : brand.primary }}>
                         {row.admin}
                       </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.goldDeep : brand.primary }}>
+                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.accent : brand.primary }}>
                         {row.tribunal}
                       </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.goldDeep : brand.primary }}>
+                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.accent : brand.primary }}>
                         {row.unico}
                       </TableCell>
                     </TableRow>
@@ -190,8 +169,8 @@ export default function CostosPage() {
             </Table>
           </TableContainer>
 
-          <Stack direction="row" spacing={1.3} sx={{ mt: 2, alignItems: "flex-start" }}>
-            <InfoOutlinedIcon sx={{ color: brand.goldDeep, fontSize: "1.05rem", mt: "2px" }} />
+          <Stack direction="row" spacing={1.2} sx={{ mt: 2, alignItems: "flex-start" }}>
+            <InfoOutlinedIcon sx={{ color: brand.accent, fontSize: 17, mt: "2px" }} />
             <Typography sx={{ color: brand.muted, fontSize: "0.76rem", lineHeight: 1.6 }}>
               Los rubros G, I, J y K se encuentran en revisión y no se publican
               como montos aplicables. La tabla completa consta en el documento
@@ -201,50 +180,28 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.white,
-          borderTop: `1px solid ${brand.line}`,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <SectionHeading
-            kicker="Cómo se calcula"
-            title="Tres datos para estimar tu costo"
-            centered
-          />
+          <SectionHeading kicker="Cómo se calcula" title="Tres datos para estimar tu costo" />
 
           <Grid container spacing={{ xs: 3, md: 4 }}>
             {PASOS_COSTO.map((paso, index) => (
               <Grid key={paso.title} size={{ xs: 12, md: 4 }}>
-                <Box
-                  component={motion.article}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.55, delay: index * 0.07 }}
-                  sx={{ height: "100%", p: 3, backgroundColor: brand.paper, border: `1px solid ${brand.line}` }}
-                >
+                <Box sx={{ height: "100%", pt: 2, borderTop: `1px solid ${brand.lineStrong}` }}>
                   <Typography
                     sx={{
                       fontFamily: fonts.display,
-                      fontSize: "2rem",
-                      fontWeight: 600,
-                      color: brand.skyMid,
+                      fontSize: "1.3rem",
+                      color: brand.goldDeep,
                       lineHeight: 1,
                     }}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </Typography>
-
-                  <Typography variant="h4" sx={{ mt: 2, color: brand.primaryDark, fontSize: "1.05rem" }}>
+                  <Typography sx={{ mt: 1.4, color: brand.primaryDeep, fontWeight: 700, fontSize: "0.94rem" }}>
                     {paso.title}
                   </Typography>
-
-                  <Typography sx={{ mt: 1.1, color: brand.muted, fontSize: "0.87rem", lineHeight: 1.7 }}>
+                  <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.65 }}>
                     {paso.text}
                   </Typography>
                 </Box>
@@ -252,46 +209,32 @@ export default function CostosPage() {
             ))}
           </Grid>
 
-          <Box
-            sx={{
-              mt: { xs: 4, md: 5 },
-              p: { xs: 2.5, md: 3 },
-              backgroundColor: brand.skySoft,
-              border: `1px solid ${brand.skyMid}`,
-              borderLeft: `4px solid ${brand.gold}`,
-            }}
-          >
-            <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start", mb: 1.8 }}>
-              <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.2rem", mt: "1px" }} />
-              <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem" }}>
-                Consideraciones importantes
-              </Typography>
-            </Stack>
+          <Box sx={{ mt: 5, pt: 2.2, borderTop: `1px solid ${brand.line}` }}>
+            <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem", mb: 1.2 }}>
+              Consideraciones importantes
+            </Typography>
 
-            <Stack spacing={1.2}>
+            <Stack spacing={0.9}>
               {NOTAS_TARIFAS.map((nota) => (
-                <Stack key={nota} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
-                  <Box
-                    sx={{
-                      width: 5,
-                      height: 5,
-                      borderRadius: "50%",
-                      backgroundColor: brand.goldDeep,
-                      mt: "8px",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <Typography sx={{ color: brand.primary, fontSize: "0.84rem", lineHeight: 1.65 }}>
-                    {nota}
-                  </Typography>
-                </Stack>
+                <Typography
+                  key={nota}
+                  sx={{
+                    py: 0.9,
+                    borderTop: `1px solid ${brand.line}`,
+                    color: brand.muted,
+                    fontSize: "0.81rem",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {nota}
+                </Typography>
               ))}
             </Stack>
           </Box>
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Tasas y trámites"
@@ -301,23 +244,23 @@ export default function CostosPage() {
 
           <Grid container spacing={{ xs: 4, md: 5 }}>
             <Grid size={{ xs: 12, md: 7 }}>
-              <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1.05rem", mb: 1.5 }}>
+              <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem", mb: 1.2 }}>
                 Anexo 3 · Tasas administrativas
               </Typography>
-              <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
+              <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
                 <Table size="small" aria-label="Anexo 3: tasas administrativas">
                   <TableHead>
-                    <TableRow sx={{ backgroundColor: brand.skySoft }}>
-                      <TableCell sx={{ fontWeight: 750, fontSize: "0.76rem" }}>N.°</TableCell>
-                      <TableCell sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Concepto</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Monto</TableCell>
+                    <TableRow>
+                      <TableCell>N.°</TableCell>
+                      <TableCell>Concepto</TableCell>
+                      <TableCell align="right">Monto</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {ANEXO_3.map((tasa) => (
-                      <TableRow key={tasa.n} sx={{ "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" } }}>
+                      <TableRow key={tasa.n}>
                         <TableCell sx={celda}>{tasa.n}</TableCell>
-                        <TableCell sx={{ ...celda, color: brand.primaryDark }}>{tasa.concepto}</TableCell>
+                        <TableCell sx={{ ...celda, color: brand.primaryDeep }}>{tasa.concepto}</TableCell>
                         <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
                           {tasa.monto}
                         </TableCell>
@@ -329,21 +272,21 @@ export default function CostosPage() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 5 }}>
-              <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1.05rem", mb: 1.5 }}>
+              <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem", mb: 1.2 }}>
                 Anexo 4 · Arbitraje de emergencia
               </Typography>
-              <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
+              <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
                 <Table size="small" aria-label="Anexo 4: arbitraje de emergencia">
                   <TableHead>
-                    <TableRow sx={{ backgroundColor: brand.skySoft }}>
-                      <TableCell sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Concepto</TableCell>
-                      <TableCell align="right" sx={{ fontWeight: 750, fontSize: "0.76rem" }}>Monto</TableCell>
+                    <TableRow>
+                      <TableCell>Concepto</TableCell>
+                      <TableCell align="right">Monto</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {ANEXO_4.map((item) => (
                       <TableRow key={item.concepto}>
-                        <TableCell sx={{ ...celda, color: brand.primaryDark }}>{item.concepto}</TableCell>
+                        <TableCell sx={{ ...celda, color: brand.primaryDeep }}>{item.concepto}</TableCell>
                         <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
                           {item.monto}
                         </TableCell>
@@ -353,7 +296,7 @@ export default function CostosPage() {
                 </Table>
               </TableContainer>
 
-              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.78rem", lineHeight: 1.6 }}>
+              <Typography sx={{ mt: 1.5, color: brand.muted, fontSize: "0.76rem", lineHeight: 1.6 }}>
                 La solicitud de medida cautelar dentro del proceso tiene una
                 tasa de S/ 800, según el Anexo 3.
               </Typography>
@@ -362,31 +305,22 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Ejemplos"
             title="Estimaciones de referencia"
             subtitle="Los ejemplos no reemplazan la liquidación de la Secretaría General."
-            centered
           />
 
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
+          <Grid container spacing={{ xs: 3, md: 4 }}>
             {EJEMPLOS_COSTO.map((ejemplo) => (
               <Grid key={ejemplo.titulo} size={{ xs: 12, sm: 6 }}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    p: 3,
-                    backgroundColor: brand.paper,
-                    border: `1px solid ${brand.line}`,
-                    borderLeft: `3px solid ${brand.gold}`,
-                  }}
-                >
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem" }}>
+                <Box sx={{ pt: 2, borderTop: `1px solid ${brand.line}` }}>
+                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
                     {ejemplo.titulo}
                   </Typography>
-                  <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.7 }}>
+                  <Typography sx={{ mt: 0.5, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.65 }}>
                     {ejemplo.detalle}
                   </Typography>
                 </Box>
@@ -394,25 +328,16 @@ export default function CostosPage() {
             ))}
           </Grid>
 
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1.5}
-            sx={{ mt: 4, alignItems: { sm: "center" } }}
-          >
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 4 }}>
             <Button
               component={RouterLink}
               to="/contacto"
               variant="contained"
-              endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}
+              endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
             >
               Solicitar una liquidación
             </Button>
-
-            <Button
-              component={RouterLink}
-              to="/arbitraje/reglamentos"
-              variant="outlined"
-            >
+            <Button component={RouterLink} to="/arbitraje/reglamentos" variant="outlined">
               Ver la tabla normativa
             </Button>
           </Stack>

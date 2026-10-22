@@ -1,16 +1,11 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
-import { motion } from "framer-motion";
-import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
-import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import DocumentCard from "../../components/common/DocumentCard";
 import CtaBand from "../../components/common/CtaBand";
-import { Stagger } from "../../components/common/Reveal";
-import { viewportOnce } from "../../utils/animations";
-import { brand } from "../../theme/brand";
+import { brand, fonts } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 import { documentosPorCategoria } from "../../data/documentos";
 
@@ -56,157 +51,116 @@ export default function ReglamentosPage() {
           { label: "Reglamentos y directivas" },
         ]}
         image="/images/ARBITRAJE_IMG_02-04.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "flex-start" }}>
-            <Grid size={{ xs: 12, md: 7 }}>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
+            <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
                 kicker="Documentos oficiales"
                 title="Reglas claras para todas las partes"
                 subtitle="El Reglamento de Arbitraje V1 regula la solicitud, la designación de árbitros, las actuaciones procesales, los plazos y el laudo. El Estatuto define los órganos de gobierno y el Código de Ética los deberes de los profesionales."
-                sx={{ mb: 0 }}
+                sx={{ mb: 3 }}
               />
             </Grid>
 
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Stack
-                component={motion.div}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.6 }}
-                direction="row"
-                spacing={1.8}
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Box
                 sx={{
-                  p: 2.5,
-                  backgroundColor: brand.skySoft,
-                  border: `1px solid ${brand.skyMid}`,
-                  borderLeft: `4px solid ${brand.gold}`,
+                  borderTop: `2px solid ${brand.gold}`,
+                  pt: 2,
                 }}
               >
-                <MenuBookOutlinedIcon sx={{ color: brand.primary, mt: "2px" }} />
-
-                <Box>
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.88rem" }}>
-                    Versiones y vigencia
-                  </Typography>
-                  <Typography sx={{ color: brand.primary, fontSize: "0.82rem", mt: 0.5, lineHeight: 1.65 }}>
-                    Se publican el Reglamento V1 (21.09.2026), el Estatuto
-                    (21.09.2026) y el Código de Ética V2 (23.09.2026). Los
-                    documentos de la JPRD son preliminares y no forman parte de
-                    esta sección normativa.
-                  </Typography>
-                </Box>
-              </Stack>
+                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.86rem" }}>
+                  Versiones y vigencia
+                </Typography>
+                <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
+                  Se publican el Reglamento V1 (21.09.2026), el Estatuto
+                  (21.09.2026) y el Código de Ética V2 (23.09.2026). Los
+                  documentos de la JPRD son preliminares y no forman parte de
+                  esta sección normativa.
+                </Typography>
+              </Box>
             </Grid>
           </Grid>
 
-          <Stagger amount={0.08}>
-            <Grid container spacing={{ xs: 2.5, md: 3 }} sx={{ mt: 3 }}>
-              {documentos.map((documento) => (
-                <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                  <DocumentCard documento={documento} />
-                </Grid>
-              ))}
-            </Grid>
-          </Stagger>
+          <Grid container spacing={{ xs: 3, md: 4 }}>
+            {documentos.map((documento) => (
+              <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
+                <DocumentCard documento={documento} />
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.paper,
-          borderTop: `1px solid ${brand.line}`,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
-          <Grid container spacing={{ xs: 5, md: 7 }} sx={{ alignItems: "center" }}>
+          <Grid container spacing={{ xs: 5, md: 7 }}>
             <Grid size={{ xs: 12, md: 5 }}>
-              <Stack
-                component={motion.div}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.6 }}
-                spacing={2.2}
+              <Typography
+                sx={{
+                  color: brand.goldDeep,
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.13em",
+                  textTransform: "uppercase",
+                  mb: 1.5,
+                }}
               >
-                <Box
-                  sx={{
-                    width: 52,
-                    height: 52,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: brand.primaryDark,
-                    color: brand.goldSoft,
-                  }}
-                >
-                  <GavelOutlinedIcon />
-                </Box>
+                Normativa legal
+              </Typography>
 
-                <Typography
-                  variant="h2"
-                  sx={{ color: brand.primaryDark, fontSize: { xs: "1.8rem", md: "2.2rem" } }}
-                >
-                  Normativa legal aplicable
-                </Typography>
+              <Typography
+                variant="h2"
+                sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.4rem" } }}
+              >
+                Normativa legal aplicable
+              </Typography>
 
-                <Typography sx={{ color: brand.muted, fontSize: "0.94rem", lineHeight: 1.8 }}>
-                  El arbitraje administrado por la Corte se rige por la Ley de
-                  Arbitraje y por las normas que resulten aplicables según la
-                  naturaleza de la controversia.
-                </Typography>
-              </Stack>
+              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.94rem", lineHeight: 1.78 }}>
+                El arbitraje administrado por la Corte se rige por la Ley de
+                Arbitraje y por las normas que resulten aplicables según la
+                naturaleza de la controversia.
+              </Typography>
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }}>
-              <Stack spacing={1.6}>
+              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
                 {NORMAS.map((norma, index) => (
-                  <Stack
+                  <Box
                     key={norma.norma}
-                    component={motion.div}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.5, delay: index * 0.07 }}
-                    direction="row"
-                    spacing={2.2}
                     sx={{
-                      p: 2.4,
-                      alignItems: "center",
-                      backgroundColor: brand.white,
-                      border: `1px solid ${brand.line}`,
-                      borderLeft: `3px solid ${brand.gold}`,
+                      display: "grid",
+                      gridTemplateColumns: "34px 1fr",
+                      gap: 1.6,
+                      py: 1.8,
+                      borderBottom: `1px solid ${brand.line}`,
                     }}
                   >
                     <Typography
                       sx={{
-                        fontFamily: '"Fraunces", Georgia, serif',
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                        color: brand.skyMid,
-                        minWidth: 28,
+                        fontFamily: fonts.display,
+                        color: brand.goldDeep,
+                        fontSize: "0.9rem",
+                        lineHeight: 1.6,
                       }}
                     >
                       {String(index + 1).padStart(2, "0")}
                     </Typography>
-
                     <Box>
-                      <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.9rem" }}>
+                      <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
                         {norma.norma}
                       </Typography>
-                      <Typography sx={{ color: brand.muted, fontSize: "0.82rem", mt: 0.3 }}>
+                      <Typography sx={{ mt: 0.3, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.55 }}>
                         {norma.detalle}
                       </Typography>
                     </Box>
-                  </Stack>
+                  </Box>
                 ))}
               </Stack>
             </Grid>

@@ -18,7 +18,7 @@ export const theme = createTheme({
     },
     background: {
       default: brand.paper,
-      paper: brand.white,
+      paper: brand.whiteSoft,
     },
     text: {
       primary: brand.ink,
@@ -26,10 +26,13 @@ export const theme = createTheme({
     },
     divider: brand.line,
     success: {
-      main: "#2E7D5B",
+      main: "#2F6B52",
+    },
+    warning: {
+      main: "#8A5A16",
     },
     error: {
-      main: "#A63A3A",
+      main: brand.accent,
     },
   },
   typography: {
@@ -37,66 +40,82 @@ export const theme = createTheme({
     h1: {
       fontFamily: fonts.display,
       fontWeight: 600,
-      fontSize: "clamp(2.4rem, 5vw, 3.9rem)",
-      lineHeight: 1.05,
-      letterSpacing: "-0.02em",
+      fontSize: "clamp(2.7rem, 5.4vw, 4.6rem)",
+      lineHeight: 0.98,
+      letterSpacing: "-0.025em",
+      textWrap: "balance",
     },
     h2: {
       fontFamily: fonts.display,
       fontWeight: 600,
-      fontSize: "clamp(1.9rem, 3.2vw, 2.6rem)",
-      lineHeight: 1.13,
-      letterSpacing: "-0.015em",
+      fontSize: "clamp(2rem, 3.4vw, 3rem)",
+      lineHeight: 1.04,
+      letterSpacing: "-0.02em",
+      textWrap: "balance",
     },
     h3: {
       fontFamily: fonts.display,
       fontWeight: 600,
-      fontSize: "clamp(1.45rem, 2vw, 1.8rem)",
-      lineHeight: 1.22,
+      fontSize: "clamp(1.45rem, 2.2vw, 1.95rem)",
+      lineHeight: 1.16,
+      letterSpacing: "-0.012em",
     },
     h4: {
       fontFamily: fonts.display,
       fontWeight: 600,
-      fontSize: "1.3rem",
-      lineHeight: 1.3,
+      fontSize: "clamp(1.2rem, 1.6vw, 1.42rem)",
+      lineHeight: 1.24,
     },
     h5: {
       fontFamily: fonts.body,
       fontWeight: 700,
-      fontSize: "1.08rem",
-      lineHeight: 1.35,
+      fontSize: "1.02rem",
+      lineHeight: 1.38,
     },
     h6: {
       fontFamily: fonts.body,
       fontWeight: 700,
-      fontSize: "0.95rem",
+      fontSize: "0.88rem",
       lineHeight: 1.4,
     },
     subtitle1: {
-      fontSize: "1.08rem",
-      lineHeight: 1.7,
+      fontSize: "1.06rem",
+      lineHeight: 1.72,
       fontWeight: 500,
     },
+    subtitle2: {
+      fontSize: "0.92rem",
+      lineHeight: 1.6,
+      fontWeight: 600,
+    },
     body1: {
-      fontSize: "1.02rem",
-      lineHeight: 1.78,
+      fontSize: "1rem",
+      lineHeight: 1.76,
     },
     body2: {
-      fontSize: "0.93rem",
-      lineHeight: 1.68,
+      fontSize: "0.9rem",
+      lineHeight: 1.66,
     },
     caption: {
-      fontSize: "0.78rem",
+      fontSize: "0.76rem",
       lineHeight: 1.5,
+    },
+    overline: {
+      fontSize: "0.7rem",
+      fontWeight: 700,
+      letterSpacing: "0.14em",
+      lineHeight: 1.4,
+      textTransform: "uppercase",
     },
     button: {
       textTransform: "none",
-      fontWeight: 650,
-      letterSpacing: "0.01em",
+      fontWeight: 700,
+      letterSpacing: "0.005em",
+      fontSize: "0.86rem",
     },
   },
   shape: {
-    borderRadius: 4,
+    borderRadius: 0,
   },
   components: {
     MuiCssBaseline: {
@@ -111,11 +130,11 @@ export const theme = createTheme({
           MozOsxFontSmoothing: "grayscale",
         },
         "::selection": {
-          backgroundColor: brand.sky,
+          backgroundColor: brand.goldSoft,
           color: brand.primaryDeep,
         },
         ":focus-visible": {
-          outline: `2px solid ${brand.gold}`,
+          outline: `2px solid ${brand.goldDeep}`,
           outlineOffset: 3,
         },
         "img, svg": {
@@ -129,8 +148,9 @@ export const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          paddingLeft: "clamp(20px, 5vw, 40px)",
-          paddingRight: "clamp(20px, 5vw, 40px)",
+          maxWidth: 1240,
+          paddingLeft: "clamp(20px, 5vw, 48px)",
+          paddingRight: "clamp(20px, 5vw, 48px)",
         },
       },
     },
@@ -140,46 +160,39 @@ export const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 3,
-          paddingInline: "1.6rem",
-          paddingBlock: "0.78rem",
-          fontSize: "0.88rem",
+          borderRadius: 0,
+          minHeight: 44,
+          paddingInline: "1.35rem",
+          paddingBlock: "0.72rem",
           transition:
-            "transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-          "&:hover": {
-            transform: "translateY(-2px)",
-          },
+            "background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease",
         },
         outlined: {
+          borderColor: brand.primary,
+          color: brand.primary,
           borderWidth: 1,
           "&:hover": {
             borderWidth: 1,
+            borderColor: brand.primaryDeep,
+            backgroundColor: brand.primaryDeep,
+            color: brand.white,
+          },
+        },
+        text: {
+          paddingInline: "0.35rem",
+          minHeight: 36,
+          color: brand.primary,
+          "&:hover": {
+            backgroundColor: "transparent",
+            color: brand.goldDeep,
           },
         },
       },
     },
-    MuiOutlinedInput: {
+    MuiLink: {
       styleOverrides: {
         root: {
-          borderRadius: 3,
-          backgroundColor: brand.white,
-          "& fieldset": {
-            borderColor: brand.line,
-          },
-          "&:hover fieldset": {
-            borderColor: brand.primaryLight,
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: brand.primary,
-            borderWidth: 1.5,
-          },
-        },
-      },
-    },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          fontSize: "0.92rem",
+          transition: "color 0.18s ease",
         },
       },
     },
@@ -187,11 +200,9 @@ export const theme = createTheme({
       defaultProps: {
         elevation: 0,
       },
-    },
-    MuiLink: {
       styleOverrides: {
         root: {
-          transition: "color 0.2s ease",
+          backgroundImage: "none",
         },
       },
     },
@@ -199,20 +210,53 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 2,
-          fontWeight: 600,
-          fontSize: "0.72rem",
-          letterSpacing: "0.02em",
+          height: 26,
+          fontWeight: 700,
+          fontSize: "0.68rem",
+          letterSpacing: "0.04em",
+          textTransform: "uppercase",
+        },
+        outlined: {
+          borderColor: brand.lineStrong,
         },
       },
     },
     MuiAccordion: {
+      defaultProps: {
+        disableGutters: true,
+        elevation: 0,
+      },
       styleOverrides: {
         root: {
           boxShadow: "none",
-          border: `1px solid ${brand.line}`,
+          border: 0,
+          borderTop: `1px solid ${brand.line}`,
+          backgroundColor: "transparent",
           "&::before": {
             display: "none",
           },
+          "&:last-of-type": {
+            borderBottom: `1px solid ${brand.line}`,
+          },
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          paddingLeft: 0,
+          paddingRight: 0,
+          minHeight: 60,
+        },
+        content: {
+          margin: "16px 0",
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: "0 0 22px",
         },
       },
     },
@@ -227,8 +271,24 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          fontWeight: 650,
-          fontSize: "0.86rem",
+          fontWeight: 700,
+          fontSize: "0.82rem",
+          minHeight: 44,
+          paddingLeft: 0,
+          paddingRight: 0,
+          marginRight: 28,
+          color: brand.muted,
+          "&.Mui-selected": {
+            color: brand.primary,
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          height: 2,
+          backgroundColor: brand.gold,
         },
       },
     },
@@ -236,14 +296,60 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderColor: brand.line,
+          padding: "14px 16px",
+          fontSize: "0.9rem",
         },
         head: {
-          backgroundColor: brand.primaryDark,
-          color: brand.white,
-          fontWeight: 650,
-          fontSize: "0.78rem",
-          letterSpacing: "0.04em",
+          backgroundColor: brand.paper,
+          color: brand.ink,
+          fontWeight: 700,
+          fontSize: "0.7rem",
+          letterSpacing: "0.07em",
           textTransform: "uppercase",
+          borderBottom: `2px solid ${brand.primary}`,
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          "&:last-child td": {
+            borderBottom: 0,
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+          backgroundColor: brand.white,
+          "& fieldset": {
+            borderColor: brand.lineStrong,
+          },
+          "&:hover fieldset": {
+            borderColor: brand.primaryLight,
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: brand.primary,
+            borderWidth: 1.5,
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "0.9rem",
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: brand.primaryDeep,
+          fontSize: "0.76rem",
+          borderRadius: 2,
         },
       },
     },

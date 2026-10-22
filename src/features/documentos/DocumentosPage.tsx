@@ -10,14 +10,12 @@ import {
   Typography,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SearchInput from "../../components/common/SearchInput";
 import DocumentCard from "../../components/common/DocumentCard";
 import EmptyState from "../../components/common/EmptyState";
 import CtaBand from "../../components/common/CtaBand";
-import { Stagger } from "../../components/common/Reveal";
 import { brand } from "../../theme/brand";
 import {
   CATEGORIA_LABEL,
@@ -85,58 +83,53 @@ export default function DocumentosPage() {
         subtitle="Reglamentos, apéndices, formatos y documentos institucionales. Los PDFs se publicarán cuando la institución entregue las versiones firmadas; los documentos de la JPRD son preliminares."
         crumbs={[{ label: "Documentos" }]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <Box component="section" sx={{ py: { xs: 6, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
           <Stack
             direction="row"
-            spacing={1.2}
+            spacing={1.4}
             sx={{
-              mb: 2.5,
-              p: 2,
+              mb: 4,
+              py: 2,
               alignItems: "flex-start",
-              backgroundColor: brand.skySoft,
-              border: `1px solid ${brand.skyMid}`,
-              borderLeft: `3px solid ${brand.gold}`,
+              borderTop: `1px solid ${brand.lineStrong}`,
+              borderBottom: `1px solid ${brand.line}`,
             }}
           >
-            <DescriptionOutlinedIcon sx={{ color: brand.primary, fontSize: "1.05rem", mt: "2px" }} />
-            <Typography sx={{ color: brand.primary, fontSize: "0.82rem", lineHeight: 1.6 }}>
+            <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
+            <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
               Las descargas están marcadas como “Próximamente” mientras no exista
               el PDF oficial. Los documentos de la JPRD son borradores y no
               normativa vigente.
             </Typography>
           </Stack>
 
-          <Box
-            sx={{
-              backgroundColor: brand.white,
-              border: `1px solid ${brand.line}`,
-              mb: 3,
-            }}
-          >
+          <Box sx={{ borderBottom: `1px solid ${brand.lineStrong}`, mb: 2.5 }}>
             <Tabs
               value={categoria}
               onChange={(_event, value: FiltroCategoria) => setCategoria(value)}
               variant="scrollable"
               scrollButtons="auto"
               allowScrollButtonsMobile
+              aria-label="Categorías de documentos"
               sx={{
-                px: { xs: 1, md: 2 },
-                borderBottom: `1px solid ${brand.line}`,
                 "& .MuiTabs-indicator": {
                   backgroundColor: brand.gold,
-                  height: 3,
+                  height: 2,
                 },
                 "& .MuiTab-root": {
-                  minHeight: 56,
-                  px: { xs: 1.5, md: 2.2 },
+                  minHeight: 48,
+                  px: { xs: 1.2, md: 2 },
                   color: brand.muted,
-                  fontSize: { xs: "0.78rem", md: "0.84rem" },
+                  fontSize: { xs: "0.76rem", md: "0.82rem" },
+                  textTransform: "none",
                 },
                 "& .Mui-selected": {
-                  color: brand.primaryDark,
+                  color: brand.primaryDeep,
+                  fontWeight: 700,
                 },
               }}
             >
@@ -144,78 +137,51 @@ export default function DocumentosPage() {
                 <Tab
                   key={value}
                   value={value}
-                  label={
-                    <Stack direction="row" spacing={0.8} sx={{ alignItems: "center" }}>
-                      <span>
-                        {value === "todos"
-                          ? "Todos"
-                          : CATEGORIA_LABEL[value]}
-                      </span>
-                      <Box
-                        component="span"
-                        sx={{
-                          fontSize: "0.66rem",
-                          fontWeight: 700,
-                          color:
-                            categoria === value ? brand.goldDeep : brand.muted,
-                          backgroundColor:
-                            categoria === value
-                              ? "rgba(186,153,7,0.12)"
-                              : "rgba(45,73,121,0.06)",
-                          px: 0.7,
-                          py: 0.15,
-                          borderRadius: "2px",
-                        }}
-                      >
-                        {countByCategoria(value)}
-                      </Box>
-                    </Stack>
-                  }
+                  label={`${
+                    value === "todos" ? "Todos" : CATEGORIA_LABEL[value]
+                  } (${countByCategoria(value)})`}
                 />
               ))}
             </Tabs>
-
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={2}
-              sx={{
-                p: { xs: 2, md: 2.5 },
-                alignItems: { xs: "stretch", sm: "center" },
-                justifyContent: "space-between",
-              }}
-            >
-              <Box sx={{ flex: 1, maxWidth: { sm: 440 } }}>
-                <SearchInput
-                  value={query}
-                  onChange={setQuery}
-                  placeholder="Buscar por título, tipo o descripción"
-                  label="Buscar documentos"
-                />
-              </Box>
-
-              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-                <DescriptionOutlinedIcon
-                  sx={{ fontSize: "1.05rem", color: brand.goldDeep }}
-                />
-                <Typography sx={{ fontSize: "0.82rem", color: brand.muted }}>
-                  <Box component="span" sx={{ color: brand.primaryDark, fontWeight: 750 }}>
-                    {filtered.length}
-                  </Box>{" "}
-                  documentos
-                </Typography>
-
-                {(categoria !== "todos" || query) && (
-                  <Button
-                    size="small"
-                    onClick={clearFilters}
-                    sx={{ fontSize: "0.76rem", color: brand.primary }}
-                  >
-                    Limpiar
-                  </Button>
-                )}
-              </Stack>
-            </Stack>
           </Box>
+
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+            sx={{
+              mb: 4,
+              alignItems: { xs: "stretch", sm: "center" },
+              justifyContent: "space-between",
+            }}
+          >
+            <Box sx={{ flex: 1, maxWidth: { sm: 460 } }}>
+              <SearchInput
+                value={query}
+                onChange={setQuery}
+                placeholder="Buscar por título, tipo o descripción"
+                label="Buscar documentos"
+              />
+            </Box>
+
+            <Stack direction="row" spacing={1.2} sx={{ alignItems: "center" }}>
+              <Typography sx={{ fontSize: "0.8rem", color: brand.muted }}>
+                <Box component="span" sx={{ color: brand.primaryDeep, fontWeight: 700 }}>
+                  {filtered.length}
+                </Box>{" "}
+                {filtered.length === 1 ? "documento" : "documentos"}
+              </Typography>
+
+              {(categoria !== "todos" || query) && (
+                <Button
+                  size="small"
+                  onClick={clearFilters}
+                  sx={{ fontSize: "0.76rem", color: brand.primary, px: 0.8 }}
+                >
+                  Limpiar
+                </Button>
+              )}
+            </Stack>
+          </Stack>
 
           {filtered.length === 0 ? (
             <EmptyState
@@ -225,31 +191,27 @@ export default function DocumentosPage() {
               onAction={clearFilters}
             />
           ) : (
-            <Stagger amount={0.08}>
-              <Grid container spacing={{ xs: 2.5, md: 3 }}>
-                {filtered.map((documento) => (
-                  <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                    <DocumentCard documento={documento} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Stagger>
+            <Grid container spacing={{ xs: 3, md: 4 }}>
+              {filtered.map((documento) => (
+                <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
+                  <DocumentCard documento={documento} />
+                </Grid>
+              ))}
+            </Grid>
           )}
 
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={1.5}
             sx={{
-              mt: 4,
-              p: 2.5,
+              mt: 5,
+              py: 2.2,
               alignItems: { xs: "flex-start", sm: "center" },
               justifyContent: "space-between",
-              backgroundColor: brand.skySoft,
-              border: `1px solid ${brand.skyMid}`,
-              borderLeft: `3px solid ${brand.gold}`,
+              borderTop: `1px solid ${brand.lineStrong}`,
             }}
           >
-            <Typography sx={{ color: brand.primary, fontSize: "0.85rem", lineHeight: 1.6 }}>
+            <Typography sx={{ color: brand.muted, fontSize: "0.85rem", lineHeight: 1.6 }}>
               ¿No encuentras el documento que buscas? La Secretaría General puede
               orientarte.
             </Typography>
@@ -259,7 +221,7 @@ export default function DocumentosPage() {
               to="/contacto"
               variant="text"
               size="small"
-              sx={{ color: brand.primary, flexShrink: 0, fontSize: "0.8rem" }}
+              sx={{ color: brand.primary, flexShrink: 0, fontSize: "0.8rem", px: 0 }}
             >
               Contactar a la Corte
             </Button>

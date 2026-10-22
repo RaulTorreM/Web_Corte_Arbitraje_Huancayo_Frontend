@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import { brand } from "../../theme/brand";
@@ -49,9 +49,8 @@ export default function ClauseBlock({
     <Box
       component="article"
       sx={{
-        border: `1px solid ${brand.line}`,
-        backgroundColor: brand.white,
-        overflow: "hidden",
+        borderTop: `2px solid ${brand.primary}`,
+        backgroundColor: brand.whiteSoft,
       }}
     >
       <Stack
@@ -66,17 +65,12 @@ export default function ClauseBlock({
         }}
       >
         <Box>
-          <Typography
-            variant="h4"
-            sx={{ color: brand.primaryDark, fontSize: "1.12rem" }}
-          >
+          <Typography variant="h4" sx={{ color: brand.primaryDeep, fontSize: "1.12rem" }}>
             {title}
           </Typography>
 
           {description && (
-            <Typography
-              sx={{ mt: 0.8, color: brand.muted, fontSize: "0.86rem" }}
-            >
+            <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.86rem" }}>
               {description}
             </Typography>
           )}
@@ -89,12 +83,12 @@ export default function ClauseBlock({
           size="small"
           startIcon={
             copied ? (
-              <CheckOutlinedIcon sx={{ fontSize: "1rem" }} />
+              <CheckOutlinedIcon sx={{ fontSize: 16 }} />
             ) : (
-              <ContentCopyOutlinedIcon sx={{ fontSize: "1rem" }} />
+              <ContentCopyOutlinedIcon sx={{ fontSize: 16 }} />
             )
           }
-          sx={{ flexShrink: 0, fontSize: "0.78rem" }}
+          sx={{ flexShrink: 0, fontSize: "0.76rem" }}
         >
           {copied ? "Copiado" : "Copiar texto"}
         </Button>
@@ -104,21 +98,20 @@ export default function ClauseBlock({
         sx={{
           px: { xs: 2.5, md: 3.5 },
           py: { xs: 3, md: 4 },
-          backgroundColor: brand.primaryDeep,
-          color: "#E9F0FA",
-          borderLeft: `4px solid ${brand.gold}`,
+          backgroundColor: brand.white,
+          borderLeft: `3px solid ${brand.gold}`,
         }}
       >
         <Typography
           component="pre"
           sx={{
             margin: 0,
-            fontFamily:
-              '"Public Sans", "Segoe UI", Roboto, sans-serif',
-            fontSize: { xs: "0.86rem", md: "0.95rem" },
+            fontFamily: '"Public Sans", "Segoe UI", Roboto, sans-serif',
+            fontSize: { xs: "0.86rem", md: "0.94rem" },
             lineHeight: 1.85,
             whiteSpace: "pre-wrap",
             wordBreak: "break-word",
+            color: brand.ink,
           }}
         >
           {clause}
@@ -127,17 +120,9 @@ export default function ClauseBlock({
 
       {note && (
         <Box sx={{ px: { xs: 2.5, md: 3.5 }, py: 2 }}>
-          <Alert
-            severity="info"
-            sx={{
-              backgroundColor: brand.skySoft,
-              color: brand.primaryDark,
-              fontSize: "0.82rem",
-              border: `1px solid ${brand.skyMid}`,
-            }}
-          >
+          <Typography sx={{ color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
             {note}
-          </Alert>
+          </Typography>
         </Box>
       )}
     </Box>

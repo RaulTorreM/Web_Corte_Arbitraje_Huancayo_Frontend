@@ -18,22 +18,20 @@ export default function EmptyState({
   return (
     <Box
       sx={{
-        py: { xs: 6, md: 8 },
+        py: { xs: 5, md: 7 },
         px: 3,
         textAlign: "center",
-        border: `1px dashed ${brand.line}`,
-        backgroundColor: "rgba(234,242,251,0.45)",
+        borderTop: `1px solid ${brand.line}`,
+        borderBottom: `1px solid ${brand.line}`,
       }}
     >
-      <SearchOffOutlinedIcon
-        sx={{ fontSize: 42, color: brand.primaryLight, mb: 1.5 }}
-      />
+      <SearchOffOutlinedIcon sx={{ fontSize: 34, color: brand.lineStrong, mb: 1.2 }} />
 
-      <Typography variant="h4" sx={{ color: brand.primaryDark, mb: 1 }}>
+      <Typography variant="h4" sx={{ color: brand.primaryDeep, mb: 0.8 }}>
         {title}
       </Typography>
 
-      <Typography sx={{ color: brand.muted, fontSize: "0.92rem", mb: 2.5 }}>
+      <Typography sx={{ color: brand.muted, fontSize: "0.9rem", mb: 2.2 }}>
         {text}
       </Typography>
 

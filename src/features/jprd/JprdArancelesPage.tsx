@@ -13,7 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
@@ -21,7 +20,7 @@ import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
-import { brand } from "../../theme/brand";
+import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import {
   ARANCELES_JPRD_JUNTA,
@@ -56,7 +55,60 @@ const NOTAS = [
   "Los gastos de traslado, pericias y diligencias adicionales se comunican previamente a las partes.",
 ];
 
-const celda = { fontSize: "0.82rem", py: 1.1, px: 1.2 };
+const celda = { fontSize: "0.8rem", py: 1.1, px: 1.2 };
+
+function TablaHonorarios({
+  titulo,
+  data,
+  ariaLabel,
+}: {
+  titulo: string;
+  data: { rango: string; constitucion: string; prevencion: string; decision: string }[];
+  ariaLabel: string;
+}) {
+  return (
+    <Box sx={{ mt: 4 }}>
+      <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.92rem", mb: 1.2 }}>
+        {titulo}
+      </Typography>
+
+      <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}`, overflowX: "auto" }}>
+        <Table aria-label={ariaLabel} sx={{ minWidth: 680 }}>
+          <TableHead>
+            <TableRow>
+              {["Monto del contrato (S/)", "Constitución (S/)", "Prevención mensual (S/)", "Decisión (S/)"].map(
+                (header) => (
+                  <TableCell key={header} align={header.startsWith("Monto") ? "left" : "right"}>
+                    {header}
+                  </TableCell>
+                )
+              )}
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {data.map((row) => (
+              <TableRow key={row.rango}>
+                <TableCell sx={{ ...celda, color: brand.primaryDeep, fontWeight: 700 }}>
+                  {row.rango}
+                </TableCell>
+                <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
+                  {row.constitucion}
+                </TableCell>
+                <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
+                  {row.prevencion}
+                </TableCell>
+                <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
+                  {row.decision}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
+}
 
 export default function JprdArancelesPage() {
   return (
@@ -75,6 +127,7 @@ export default function JprdArancelesPage() {
           { label: "Aranceles preliminares" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
@@ -84,31 +137,32 @@ export default function JprdArancelesPage() {
         text="La JPRD no tiene aranceles aprobados. Los montos de esta página son una propuesta de trabajo y no deben usarse para calcular una contraprestación ni para suscribir un contrato."
       />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Principios de la propuesta"
             title="Una tarifa predecible y compartida"
             subtitle="La propuesta busca que las partes conozcan el costo antes de constituir la Junta y que el pago acompañe el avance del servicio."
-            centered
           />
 
-          <Grid container spacing={{ xs: 2.5, md: 3 }}>
-            {PRINCIPIOS.map((principio) => (
+          <Grid container spacing={{ xs: 3, md: 4 }}>
+            {PRINCIPIOS.map((principio, index) => (
               <Grid key={principio.title} size={{ xs: 12, sm: 6, md: 3 }}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    p: 2.8,
-                    backgroundColor: brand.paper,
-                    border: `1px solid ${brand.line}`,
-                    borderTop: `3px solid ${brand.gold}`,
-                  }}
-                >
-                  <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.92rem" }}>
+                <Box sx={{ height: "100%", pt: 2, borderTop: `1px solid ${brand.lineStrong}` }}>
+                  <Typography
+                    sx={{
+                      fontFamily: fonts.display,
+                      color: brand.goldDeep,
+                      fontSize: "0.85rem",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </Typography>
+                  <Typography sx={{ mt: 1.2, color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
                     {principio.title}
                   </Typography>
-                  <Typography sx={{ mt: 0.9, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
+                  <Typography sx={{ mt: 0.6, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
                     {principio.text}
                   </Typography>
                 </Box>
@@ -118,15 +172,7 @@ export default function JprdArancelesPage() {
         </Container>
       </Box>
 
-      <Box
-        component="section"
-        sx={{
-          py: { xs: 8, md: 10 },
-          backgroundColor: brand.paper,
-          borderTop: `1px solid ${brand.line}`,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      >
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Honorarios propuestos"
@@ -134,119 +180,77 @@ export default function JprdArancelesPage() {
             subtitle="Los tramos se determinan por el monto del contrato. Los valores no incluyen IGV."
           />
 
-          <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1rem", mb: 1.4 }}>
-            Adjudicador único
-          </Typography>
+          <TablaHonorarios
+            titulo="Adjudicador único"
+            data={ARANCELES_JPRD_UNICO}
+            ariaLabel="Propuesta de honorarios del adjudicador único"
+          />
 
-          <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
-            <Table aria-label="Propuesta de honorarios del adjudicador único" sx={{ minWidth: 680 }}>
-              <TableHead>
-                <TableRow sx={{ backgroundColor: brand.primaryDark }}>
-                  {["Monto del contrato (S/)", "Constitución (S/)", "Prevención mensual (S/)", "Decisión (S/)"].map(
-                    (header) => (
-                      <TableCell key={header} align={header.startsWith("Monto") ? "left" : "right"} sx={{ color: brand.white, fontWeight: 700, fontSize: "0.78rem" }}>
-                        {header}
+          <TablaHonorarios
+            titulo="Junta de tres integrantes"
+            data={ARANCELES_JPRD_JUNTA}
+            ariaLabel="Propuesta de honorarios de la junta de tres integrantes"
+          />
+
+          <Box sx={{ mt: 5 }}>
+            <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.92rem", mb: 1.2 }}>
+              Tasas administrativas propuestas
+            </Typography>
+
+            <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}`, overflowX: "auto" }}>
+              <Table aria-label="Propuesta de tasas administrativas JPRD">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Concepto</TableCell>
+                    <TableCell align="right">Monto</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {TASAS_JPRD.map((tasa) => (
+                    <TableRow key={tasa.concepto}>
+                      <TableCell sx={{ ...celda, color: brand.primaryDeep }}>
+                        {tasa.concepto}
                       </TableCell>
-                    )
-                  )}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {ARANCELES_JPRD_UNICO.map((row) => (
-                  <TableRow key={row.rango} sx={{ "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" } }}>
-                    <TableCell sx={{ ...celda, color: brand.primaryDark, fontWeight: 650 }}>{row.rango}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>{row.constitucion}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>{row.prevencion}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>{row.decision}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1rem", mt: 4, mb: 1.4 }}>
-            Junta de tres integrantes
-          </Typography>
-
-          <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
-            <Table aria-label="Propuesta de honorarios de la junta de tres integrantes" sx={{ minWidth: 680 }}>
-              <TableHead>
-                <TableRow sx={{ backgroundColor: brand.skySoft }}>
-                  {["Monto del contrato (S/)", "Constitución (S/)", "Prevención mensual (S/)", "Decisión (S/)"].map(
-                    (header) => (
-                      <TableCell key={header} align={header.startsWith("Monto") ? "left" : "right"} sx={{ fontWeight: 750, fontSize: "0.78rem" }}>
-                        {header}
+                      <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
+                        {tasa.monto}
                       </TableCell>
-                    )
-                  )}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {ARANCELES_JPRD_JUNTA.map((row) => (
-                  <TableRow key={row.rango} sx={{ "&:nth-of-type(odd)": { backgroundColor: "rgba(234,242,251,0.35)" } }}>
-                    <TableCell sx={{ ...celda, color: brand.primaryDark, fontWeight: 650 }}>{row.rango}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>{row.constitucion}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>{row.prevencion}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>{row.decision}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          <Typography variant="h4" sx={{ color: brand.primaryDark, fontSize: "1rem", mt: 4, mb: 1.4 }}>
-            Tasas administrativas propuestas
-          </Typography>
-
-          <TableContainer sx={{ border: `1px solid ${brand.line}`, backgroundColor: brand.white }}>
-            <Table aria-label="Propuesta de tasas administrativas JPRD">
-              <TableHead>
-                <TableRow sx={{ backgroundColor: brand.skySoft }}>
-                  <TableCell sx={{ fontWeight: 750, fontSize: "0.78rem" }}>Concepto</TableCell>
-                  <TableCell align="right" sx={{ fontWeight: 750, fontSize: "0.78rem" }}>Monto</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {TASAS_JPRD.map((tasa) => (
-                  <TableRow key={tasa.concepto}>
-                    <TableCell sx={{ ...celda, color: brand.primaryDark }}>{tasa.concepto}</TableCell>
-                    <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>{tasa.monto}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          <Box
-            sx={{
-              mt: 4,
-              p: { xs: 2.5, md: 3 },
-              backgroundColor: brand.skySoft,
-              border: `1px solid ${brand.skyMid}`,
-              borderLeft: `4px solid ${brand.gold}`,
-            }}
-          >
-            <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start", mb: 1.8 }}>
-              <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.2rem", mt: "1px" }} />
-              <Typography sx={{ color: brand.primaryDark, fontWeight: 750, fontSize: "0.9rem" }}>
-                Condiciones de la propuesta
-              </Typography>
-            </Stack>
-
-            <Stack spacing={1.1}>
-              {NOTAS.map((nota) => (
-                <Stack key={nota} direction="row" spacing={1.2} sx={{ alignItems: "flex-start" }}>
-                  <Box sx={{ width: 5, height: 5, borderRadius: "50%", backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
-                  <Typography sx={{ color: brand.primary, fontSize: "0.82rem", lineHeight: 1.65 }}>
-                    {nota}
-                  </Typography>
-                </Stack>
-              ))}
-            </Stack>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Box>
+        </Container>
+      </Box>
 
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 4, alignItems: { sm: "center" } }}>
-            <Button component={RouterLink} to="/contacto" variant="contained" endIcon={<ArrowForwardIcon sx={{ fontSize: "1rem" }} />}>
+      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+        <Container>
+          <SectionHeading kicker="Condiciones" title="Antes de usar estas cifras" />
+
+          <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
+            {NOTAS.map((nota) => (
+              <Typography
+                key={nota}
+                sx={{
+                  py: 1.2,
+                  borderBottom: `1px solid ${brand.line}`,
+                  color: brand.muted,
+                  fontSize: "0.83rem",
+                  lineHeight: 1.62,
+                }}
+              >
+                {nota}
+              </Typography>
+            ))}
+          </Stack>
+
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 4 }}>
+            <Button
+              component={RouterLink}
+              to="/contacto"
+              variant="contained"
+              endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+            >
               Enviar observaciones
             </Button>
 

@@ -1,6 +1,4 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import HandshakeOutlinedIcon from "@mui/icons-material/HandshakeOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
@@ -9,6 +7,13 @@ import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
+
+const PUBLICACION = [
+  "Decisiones anonimizadas, previa disociación de datos personales y comerciales.",
+  "Criterios de interpretación aplicados por el adjudicador.",
+  "Información suficiente para comprender el caso sin identificar a las partes.",
+  "Ningún registro de demostración que pueda confundirse con una decisión real.",
+];
 
 export default function JprdDecisionesPage() {
   return (
@@ -27,6 +32,7 @@ export default function JprdDecisionesPage() {
           { label: "Decisiones" },
         ]}
         image="/images/ARBITRAJE_IMG_02-03.jpg"
+        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
@@ -36,68 +42,61 @@ export default function JprdDecisionesPage() {
         text="No existen decisiones de JPRD que puedan publicarse. La JPRD no cuenta aún con reglamento ni procedimiento aprobado, por lo que no se ha emitido ninguna decisión institucional."
       />
 
-      <Box component="section" sx={{ py: { xs: 8, md: 10 }, backgroundColor: brand.white }}>
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Repositorio"
             title="Sin decisiones publicadas"
             subtitle="Cuando la JPRD entre en funcionamiento, publicaremos una selección de decisiones anonimizadas, previa disociación de datos personales y comerciales."
-            centered
           />
 
-          <Stack
-            spacing={2}
-            sx={{
-              maxWidth: 720,
-              mx: "auto",
-              p: { xs: 3, md: 4 },
-              alignItems: "center",
-              textAlign: "center",
-              backgroundColor: brand.paper,
-              border: `1px solid ${brand.line}`,
-              borderTop: `3px solid ${brand.gold}`,
-            }}
-          >
-            <Box
-              sx={{
-                width: 64,
-                height: 64,
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: brand.skySoft,
-                color: brand.primary,
-              }}
-            >
-              <HandshakeOutlinedIcon sx={{ fontSize: "1.8rem" }} />
-            </Box>
-
+          <Box sx={{ pt: 3, borderTop: `1px solid ${brand.lineStrong}`, maxWidth: 860 }}>
             <Typography
               sx={{
                 fontFamily: fonts.display,
-                fontSize: "1.35rem",
-                fontWeight: 600,
-                color: brand.primaryDark,
+                color: brand.goldDeep,
+                fontSize: { xs: "3rem", md: "4rem" },
+                lineHeight: 1,
+              }}
+            >
+              00
+            </Typography>
+
+            <Typography
+              sx={{
+                mt: 1.5,
+                fontFamily: fonts.display,
+                color: brand.primaryDeep,
+                fontSize: { xs: "1.4rem", md: "1.7rem" },
+                lineHeight: 1.3,
               }}
             >
               Aún no hay decisiones que mostrar
             </Typography>
 
-            <Typography sx={{ color: brand.muted, fontSize: "0.9rem", lineHeight: 1.75 }}>
+            <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.72 }}>
               La JPRD no ha sido implementada. No se publican registros de
               demostración para no confundirlos con decisiones reales. El banco
               se activará con la aprobación del reglamento y la primera decisión
               emitida.
             </Typography>
+          </Box>
 
-            <Stack direction="row" spacing={1.2} sx={{ alignItems: "flex-start", textAlign: "left", pt: 1 }}>
-              <InfoOutlinedIcon sx={{ color: brand.primary, fontSize: "1.05rem", mt: "2px" }} />
-              <Typography sx={{ color: brand.primary, fontSize: "0.8rem", lineHeight: 1.6 }}>
-                La publicación de una decisión no implicará la identificación de
-                las partes ni la divulgación de información protegida.
+          <Stack sx={{ mt: 4, borderTop: `1px solid ${brand.line}` }}>
+            {PUBLICACION.map((item) => (
+              <Typography
+                key={item}
+                sx={{
+                  py: 1.1,
+                  borderBottom: `1px solid ${brand.line}`,
+                  color: brand.muted,
+                  fontSize: "0.83rem",
+                  lineHeight: 1.62,
+                }}
+              >
+                {item}
               </Typography>
-            </Stack>
+            ))}
           </Stack>
         </Container>
       </Box>
