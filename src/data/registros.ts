@@ -12,6 +12,8 @@ export type Registro = {
  * El banco de laudos se publicará con datos anonimizados cuando la
  * institución habilite el repositorio oficial.
  */
+
+//FALTAN DATOS REALES!
 export const LAUDOS: Registro[] = [
   {
     id: "l-01",

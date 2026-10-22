@@ -29,6 +29,18 @@ const InicioArbitrajePage = lazy(
   () => import("../features/arbitraje/InicioArbitrajePage")
 );
 const LaudosPage = lazy(() => import("../features/arbitraje/LaudosPage"));
+const ConciliacionPage = lazy(
+  () => import("../features/conciliacion/ConciliacionPage")
+);
+const ConciliacionInicioPage = lazy(
+  () => import("../features/conciliacion/ConciliacionInicioPage")
+);
+const ConciliacionCostosPage = lazy(
+  () => import("../features/conciliacion/ConciliacionCostosPage")
+);
+const ConciliacionReglamentoPage = lazy(
+  () => import("../features/conciliacion/ConciliacionReglamentoPage")
+);
 const JprdPage = lazy(() => import("../features/jprd/JprdPage"));
 const JprdReglamentoPage = lazy(
   () => import("../features/jprd/JprdReglamentoPage")
@@ -88,6 +100,13 @@ export default function AppRouter() {
             <Route path="clausula" element={<ClausulaPage />} />
             <Route path="inicio" element={<InicioArbitrajePage />} />
             <Route path="laudos" element={<LaudosPage />} />
+          </Route>
+
+          <Route path="conciliacion">
+            <Route index element={<ConciliacionPage />} />
+            <Route path="inicio" element={<ConciliacionInicioPage />} />
+            <Route path="costos" element={<ConciliacionCostosPage />} />
+            <Route path="reglamento" element={<ConciliacionReglamentoPage />} />
           </Route>
 
           <Route path="jprd">

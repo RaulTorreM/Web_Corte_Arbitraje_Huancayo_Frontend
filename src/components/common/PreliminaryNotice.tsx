@@ -9,12 +9,13 @@ type PreliminaryNoticeProps = {
 };
 
 /**
- * Aviso visible para todo contenido de la JPRD. La JPRD se anuncia en el
- * Estatuto, pero aún no tiene reglamento, aranceles ni cláusulas aprobadas.
+ * Aviso visible para contenido en borrador o no vigente. Por defecto usa el
+ * texto de la JPRD, que se anuncia en el Estatuto pero aún no tiene reglamento,
+ * aranceles ni cláusulas aprobadas.
  */
 export default function PreliminaryNotice({
-  title = "Servicio en implementación",
-  text = "La Junta de Prevención y Resolución de Disputas se encuentra en implementación. No cuenta aún con reglamento ni aranceles aprobados. Los documentos y montos de esta sección son preliminares y no deben presentarse como normativa vigente.",
+  title = "Página Borrador",
+  text = "Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales.",
   contained = true,
 }: PreliminaryNoticeProps) {
   const content = (

@@ -17,6 +17,7 @@ import SectionHeading from "../../components/common/SectionHeading";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
+import { MEDIA } from "../../data/media";
 
 const TIPOS = [
   {
@@ -66,8 +67,7 @@ export default function ReclamacionesPage() {
         title="Libro de reclamaciones"
         subtitle="Registra un reclamo o queja sobre los servicios de la Corte. La Secretaría General evalúa cada hoja y responde dentro del plazo legal."
         crumbs={[{ label: "Libro de reclamaciones" }]}
-        image="/images/ARBITRAJE_IMG_02-01.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.sede}
       >
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2}>
           <Button href={mailto} variant="contained" startIcon={<MailOutlinedIcon />}>

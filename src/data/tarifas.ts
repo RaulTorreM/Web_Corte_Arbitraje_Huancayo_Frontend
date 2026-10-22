@@ -1,9 +1,8 @@
 /**
  * Tabla de Gastos Arbitrales (Anexos 1 al 4) y propuesta de aranceles JPRD.
  *
- * Los montos no incluyen IGV. La liquidación definitiva corresponde a la
- * Secretaría General. Los rubros marcados "En revisión" no deben usarse
- * para calcular costos hasta que el Consejo valide la versión oficial.
+ * Los montos del Anexo 1 se transcriben del Estatuto. No incluyen IGV. La
+ * liquidación definitiva corresponde a la Secretaría General.
  */
 
 export type TarifaAnexo1Row = {
@@ -83,9 +82,9 @@ export const ANEXO_1: TarifaAnexo1Row[] = [
   {
     rubro: "G",
     cuantia: "2,900,001 – 14,500,000",
-    admin: "En revisión",
-    tribunal: "En revisión",
-    unico: "En revisión",
+    admin: "S/ 16,500 + 0.35% del exceso",
+    tribunal: "S/ 57,142 + 0.80% del exceso",
+    unico: "S/ 22,857 + 0.70% del exceso",
     modalidad: "ordinario",
   },
   {
@@ -99,25 +98,25 @@ export const ANEXO_1: TarifaAnexo1Row[] = [
   {
     rubro: "I",
     cuantia: "80,000,001 – 160,000,000",
-    admin: "En revisión",
-    tribunal: "En revisión",
-    unico: "En revisión",
+    admin: "S/ 200,000 + 0.20% del exceso",
+    tribunal: "S/ 549,142 + 0.60% del exceso",
+    unico: "S/ 200,000 + 0.20% del exceso",
     modalidad: "ordinario",
   },
   {
     rubro: "J",
     cuantia: "160,000,001 – 320,000,000",
-    admin: "En revisión",
-    tribunal: "En revisión",
-    unico: "En revisión",
+    admin: "S/ 300,000 + 0.15% del exceso",
+    tribunal: "S/ 755,100 + 0.50% del exceso",
+    unico: "S/ 300,000 + 0.15% del exceso",
     modalidad: "ordinario",
   },
   {
     rubro: "K",
     cuantia: "320,000,001 – 640,000,000",
-    admin: "En revisión",
-    tribunal: "En revisión",
-    unico: "En revisión",
+    admin: "S/ 400,000 + 0.10% del exceso",
+    tribunal: "S/ 1,055,100 + 0.40% del exceso",
+    unico: "S/ 400,000 + 0.10% del exceso",
     modalidad: "ordinario",
   },
   {
@@ -181,7 +180,6 @@ export const NOTAS_TARIFAS = [
   "La cuantía indeterminada se calcula al 6.2% del monto del contrato original por cada pretensión. La suma de las pretensiones indeterminadas no puede superar el monto del contrato.",
   "No se consideran para el cálculo las pretensiones sobre costos y costas, ni las accesorias, subordinadas o alternativas.",
   "La liquidación definitiva es emitida por la Secretaría General luego de calificar la solicitud y determinar la cuantía.",
-  "Los rubros G, I, J y K se encuentran en revisión y no se muestran como montos aplicables. La versión publicada no debe usarse para calcular una liquidación.",
   "No incluye gastos de peritos, testigos, actuaciones fuera de la sede, tramitación posterior al laudo ni ejecución del laudo.",
 ] as const;
 

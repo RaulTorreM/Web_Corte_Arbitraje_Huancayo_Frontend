@@ -20,12 +20,13 @@ export default function BrandMark({
       to="/"
       onClick={onClick}
       direction="row"
-      spacing={compact ? 1 : 1.3}
+      spacing={compact ? 0.9 : { xs: 0.9, sm: 1, md: 1.15 }}
       sx={{
         alignItems: "center",
         textDecoration: "none",
         color: "inherit",
         flexShrink: 0,
+        minWidth: 0,
       }}
     >
       <Box
@@ -33,23 +34,32 @@ export default function BrandMark({
         src={logo}
         alt="Sello de la Corte Superior de Arbitraje de Huancayo"
         sx={{
-          width: compact ? 38 : { xs: 42, md: 48 },
-          height: compact ? 38 : { xs: 42, md: 48 },
+          width: compact ? 44 : { xs: 46, sm: 54, md: 62 },
+          height: compact ? 44 : { xs: 46, sm: 54, md: 62 },
           objectFit: "contain",
           display: "block",
+          flexShrink: 0,
         }}
       />
 
-      <Box sx={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          lineHeight: 1,
+          minWidth: 0,
+        }}
+      >
         <Typography
           sx={{
             fontFamily: fonts.body,
-            fontSize: compact ? "0.48rem" : "0.55rem",
+            fontSize: compact ? "0.53rem" : { xs: "0.55rem", md: "0.6rem" },
             fontWeight: 700,
-            letterSpacing: "0.18em",
+            lineHeight: 1.1,
+            letterSpacing: "0.17em",
             color: light ? brand.goldSoft : brand.goldDeep,
             textTransform: "uppercase",
-            mb: 0.45,
+            mb: compact ? 0.35 : { xs: 0.3, md: 0.4 },
           }}
         >
           Corte Superior
@@ -58,8 +68,9 @@ export default function BrandMark({
         <Typography
           sx={{
             fontFamily: fonts.display,
-            fontSize: compact ? "0.92rem" : { xs: "0.98rem", md: "1.08rem" },
+            fontSize: compact ? "1.02rem" : { xs: "1.06rem", md: "1.24rem" },
             fontWeight: 600,
+            lineHeight: 1.05,
             letterSpacing: "-0.012em",
             color: light ? brand.white : brand.primaryDark,
             whiteSpace: "nowrap",
@@ -71,12 +82,13 @@ export default function BrandMark({
         <Typography
           sx={{
             fontFamily: fonts.body,
-            fontSize: compact ? "0.49rem" : "0.55rem",
+            fontSize: compact ? "0.53rem" : { xs: "0.55rem", md: "0.6rem" },
             fontWeight: 600,
-            letterSpacing: "0.16em",
+            lineHeight: 1.1,
+            letterSpacing: "0.15em",
             color: light ? "rgba(255,255,255,0.66)" : brand.muted,
             textTransform: "uppercase",
-            mt: 0.45,
+            mt: compact ? 0.35 : { xs: 0.3, md: 0.4 },
           }}
         >
           Huancayo · Junín

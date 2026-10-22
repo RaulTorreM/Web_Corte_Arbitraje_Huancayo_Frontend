@@ -22,6 +22,7 @@ import {
   DOCUMENTOS,
   type DocumentoCategoria,
 } from "../../data/documentos";
+import { MEDIA } from "../../data/media";
 
 type FiltroCategoria = "todos" | DocumentoCategoria;
 
@@ -80,10 +81,9 @@ export default function DocumentosPage() {
       <PageHero
         kicker="Repositorio institucional"
         title="Documentos"
-        subtitle="Reglamentos, apéndices, formatos y documentos institucionales. Los PDFs se publicarán cuando la institución entregue las versiones firmadas; los documentos de la JPRD son preliminares."
+        subtitle="Reglamentos, apéndices, formatos y documentos institucionales. Los documentos disponibles se publican como versiones de trabajo en DOCX; los PDFs firmados se incorporarán cuando la institución los entregue. Los documentos de la JPRD son preliminares."
         crumbs={[{ label: "Documentos" }]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.documentos}
       />
 
       <Box component="section" sx={{ py: { xs: 6, md: 9 }, backgroundColor: brand.paper }}>
@@ -101,9 +101,9 @@ export default function DocumentosPage() {
           >
             <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
             <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
-              Las descargas están marcadas como “Próximamente” mientras no exista
-              el PDF oficial. Los documentos de la JPRD son borradores y no
-              normativa vigente.
+              Las descargas disponibles son versiones de trabajo en DOCX. Los
+              documentos sin archivo fuente aparecen como “Próximamente”. Los
+              documentos de la JPRD son borradores y no normativa vigente.
             </Typography>
           </Stack>
 

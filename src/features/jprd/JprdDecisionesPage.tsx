@@ -7,6 +7,7 @@ import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
+import { MEDIA } from "../../data/media";
 
 const PUBLICACION = [
   "Decisiones anonimizadas, previa disociación de datos personales y comerciales.",
@@ -19,27 +20,26 @@ export default function JprdDecisionesPage() {
   return (
     <>
       <PageMeta
-        title="Decisiones JPRD (en implementación)"
-        description="La JPRD de la Corte Superior de Arbitraje de Huancayo se encuentra en implementación y aún no registra decisiones publicables."
+        title="Decisiones JPRD (borrador)"
+        description="La JPRD de la Corte Superior de Arbitraje de Huancayo aún no registra decisiones publicables."
       />
 
       <PageHero
         kicker="Transparencia"
         title="Decisiones de la JPRD"
-        subtitle="La JPRD se encuentra en implementación y no ha emitido decisiones publicables. Este espacio se habilitará cuando exista reglamento aprobado y decisiones efectivamente emitidas."
+        subtitle="La JPRD está en borrador y no ha emitido decisiones publicables. Este espacio se habilita cuando exista reglamento aprobado y decisiones efectivamente emitidas."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
           { label: "Decisiones" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.jprd}
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
       <PreliminaryNotice
-        title="Servicio en implementación"
-        text="No existen decisiones de JPRD que puedan publicarse. La JPRD no cuenta aún con reglamento ni procedimiento aprobado, por lo que no se ha emitido ninguna decisión institucional."
+        title="Página Borrador"
+        text = "Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales."
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
@@ -75,7 +75,7 @@ export default function JprdDecisionesPage() {
             </Typography>
 
             <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.72 }}>
-              La JPRD no ha sido implementada. No se publican registros de
+              La JPRD está en borrador. No se publican registros de
               demostración para no confundirlos con decisiones reales. El banco
               se activará con la aprobación del reglamento y la primera decisión
               emitida.
@@ -103,10 +103,10 @@ export default function JprdDecisionesPage() {
 
       <CtaBand
         title="¿Tu contrato ya contempla una JPRD?"
-        subtitle="La Corte puede orientarte sobre la propuesta de implementación y los pasos previstos. Aún no se reciben solicitudes para administrar juntas."
+        subtitle="La Corte puede orientarte sobre la propuesta y los pasos previstos. Aún no se reciben solicitudes para administrar juntas."
         primaryLabel="Consultar con la Corte"
         primaryTo="/contacto"
-        secondaryLabel="Ver reglamento preliminar"
+        secondaryLabel="Ver reglamento"
         secondaryTo="/jprd/reglamento"
       />
     </>

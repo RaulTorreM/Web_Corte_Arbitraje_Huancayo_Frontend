@@ -23,6 +23,7 @@ import SectionHeading from "../../components/common/SectionHeading";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
+import { MEDIA } from "../../data/media";
 
 const CANALES = [
   {
@@ -65,10 +66,9 @@ export default function ContactoPage() {
       <PageHero
         kicker="Atención institucional"
         title="Canales de atención"
-        subtitle="La Secretaría General orienta consultas sobre arbitraje, documentación y capacitaciones. La JPRD se encuentra en implementación, por lo que aún no se reciben solicitudes para administrar juntas."
+        subtitle="La Secretaría General orienta consultas sobre arbitraje, documentación y capacitaciones. "
         crumbs={[{ label: "Contacto" }]}
-        image="/images/ARBITRAJE_IMG_02-01.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.sede}
       >
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2}>
           <Button

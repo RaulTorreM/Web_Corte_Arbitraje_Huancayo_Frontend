@@ -9,6 +9,7 @@ import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import { documentosPorCategoria } from "../../data/documentos";
+import { MEDIA } from "../../data/media";
 
 const PRINCIPIOS = [
   {
@@ -66,35 +67,35 @@ export default function JprdReglamentoPage() {
   return (
     <>
       <PageMeta
-        title="Reglamento JPRD (preliminar)"
+        title="Reglamento JPRD (borrador)"
         description="Estructura del futuro reglamento de Juntas de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
-        kicker="Documento preliminar — en proceso de aprobación"
+        kicker="Documento en borrador"
         title="Reglamento de la JPRD"
         subtitle="El reglamento que regirá las Juntas de Prevención y Resolución de Disputas se encuentra en elaboración. Esta página describe su estructura prevista y los criterios que se están considerando, para conocimiento de las partes y de los profesionales interesados."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
-          { label: "Reglamento preliminar" },
+          { label: "Reglamento" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.jprd}
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
       <PreliminaryNotice
-        title="Documento preliminar — no vigente"
-        text="El reglamento de la JPRD no ha sido aprobado. Esta sección es un documento de trabajo y no debe citarse como norma aplicable. Cuando el Consejo lo apruebe, se publicará el PDF firmado y se reemplazará esta etiqueta."
-      />
+        title="Página Borrador"
+        text="Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales.">
+
+      </PreliminaryNotice>
 
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
-                kicker="Documentos preliminares"
+                kicker="Documentos en borrador"
                 title="Estructura prevista del reglamento"
                 subtitle="El documento en elaboración desarrollará la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
                 sx={{ mb: 3 }}
@@ -223,7 +224,7 @@ export default function JprdReglamentoPage() {
         subtitle="Las observaciones de usuarios, árbitros, adjudicadores, entidades públicas y empresas serán recibidas por la Secretaría y puestas en conocimiento del Consejo."
         primaryLabel="Enviar observaciones"
         primaryTo="/contacto"
-        secondaryLabel="Ver aranceles preliminares"
+        secondaryLabel="Ver aranceles"
         secondaryTo="/jprd/aranceles"
       />
     </>

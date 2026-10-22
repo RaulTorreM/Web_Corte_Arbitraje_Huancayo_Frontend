@@ -1,8 +1,9 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+﻿import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import { brand, fonts } from "../../../theme/brand";
+import { MEDIA } from "../../../data/media";
 import { ease } from "../../../utils/animations";
 
 const TRAMITES = [
@@ -42,9 +43,9 @@ export default function HeroHome() {
         overflow: "hidden",
       }}
     >
-      <Container sx={{ py: { xs: 5, md: 8 }, pb: { xs: 6, md: 10 } }}>
+      <Container sx={{ pt: { xs: 5, md: 8 }, pb: { xs: 6, md: 9 } }}>
         <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "center" }}>
-          <Grid size={{ xs: 12, lg: 7 }}>
+          <Grid size={{ xs: 12, md: 7 }}>
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,8 +76,7 @@ export default function HeroHome() {
                 }}
               >
                 La Corte Superior de Arbitraje de Huancayo administra el
-                procedimiento con reglas públicas, plazos definidos y una
-                Secretaría que acompaña cada etapa.
+                procedimiento con reglas públicas y plazos definidos.
               </Typography>
 
               <Stack
@@ -112,7 +112,7 @@ export default function HeroHome() {
                   flexWrap: "wrap",
                 }}
               >
-                {["Reglamento único", "Tarifas públicas", "Nómina de árbitros"].map(
+                {/* {["Reglamento único", "Tarifas públicas", "Nómina de árbitros"].map(
                   (item) => (
                     <Typography
                       key={item}
@@ -126,117 +126,168 @@ export default function HeroHome() {
                       {item}
                     </Typography>
                   )
-                )}
+                )} */}
               </Stack>
             </motion.div>
           </Grid>
 
-          <Grid size={{ xs: 12, lg: 5 }}>
+          <Grid size={{ xs: 12, md: 5 }}>
             <Box
-              component={motion.div}
+              component={motion.figure}
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1, ease }}
+              transition={{ duration: 0.6, delay: 0.12, ease }}
               sx={{
-                backgroundColor: brand.whiteSoft,
-                borderTop: `2px solid ${brand.gold}`,
-                borderBottom: `1px solid ${brand.line}`,
+                m: 0,
+                width: "100%",
+                maxWidth: { sm: 560, md: "100%" },
               }}
             >
-              <Box
-                sx={{
-                  px: { xs: 2.2, md: 2.6 },
-                  py: 1.7,
-                  borderBottom: `1px solid ${brand.line}`,
-                }}
-              >
-                <Typography
+              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 1.5 }}>
+                <Box
                   sx={{
-                    fontFamily: fonts.body,
-                    fontSize: "0.66rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    color: brand.goldDeep,
+                    backgroundColor: brand.paperAlt,
+                    border: `1px solid ${brand.line}`,
+                    p: { xs: 2.5, md: 3 },
                   }}
                 >
-                  Índice de trámites
-                </Typography>
-              </Box>
-
-              <Box>
-                {TRAMITES.map((item) => (
                   <Box
-                    key={item.to}
-                    component={RouterLink}
-                    to={item.to}
+                    component="img"
+                    src={MEDIA.hero.src}
+                    alt={MEDIA.hero.alt}
+                    fetchPriority="high"
+                    width={320}
+                    height={320}
                     sx={{
-                      display: "grid",
-                      gridTemplateColumns: "40px 1fr 24px",
-                      gap: 1.5,
-                      alignItems: "start",
-                      px: { xs: 2.2, md: 2.6 },
-                      py: 2,
-                      borderBottom: `1px solid ${brand.line}`,
-                      textDecoration: "none",
-                      transition: "background-color 0.18s ease",
-                      "&:last-of-type": { borderBottom: 0 },
-                      "&:hover": { backgroundColor: brand.paper },
-                      "&:hover .tramite-arrow": {
-                        color: brand.primary,
-                        transform: "translateX(3px)",
-                      },
+                      display: "block",
+                      width: "100%",
+                      aspectRatio: { xs: "4 / 3", md: "16 / 10" },
+                      objectFit: "contain",
                     }}
-                  >
+                  />
+                </Box>
+
+                <Stack
+                  component="figcaption"
+                  direction="row"
+                  spacing={2}
+                  sx={{
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                    mt: 1.5,
+                    pt: 1.2,
+                    borderTop: `1px solid ${brand.line}`,
+                  }}
+                >
+           
+                </Stack>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Box
+          sx={{
+            mt: { xs: 5, md: 7 },
+            pt: { xs: 2.5, md: 3 },
+            borderTop: `1px solid ${brand.lineStrong}`,
+          }}
+        >
+          <Grid container spacing={0}>
+            {TRAMITES.map((item, index) => (
+              <Grid key={item.to} size={{ xs: 12, sm: 6, lg: 3 }}>
+                <Box
+                  component={RouterLink}
+                  to={item.to}
+                  sx={{
+                    display: "block",
+                    height: "100%",
+                    pb: { xs: 2, sm: 2.5, lg: 0 },
+                    pr: { lg: index === 3 ? 0 : 2.5 },
+                    pl: {
+                      lg: index === 0 ? 0 : 2.5,
+                      sm: index % 2 === 0 ? 0 : 2.2,
+                    },
+                    pt: {
+                      xs: index === 0 ? 0 : 2,
+                      sm: index < 2 ? 0 : 2.5,
+                      lg: 0,
+                    },
+                    borderTop: {
+                      xs: index === 0 ? 0 : `1px solid ${brand.line}`,
+                      sm: index < 2 ? 0 : `1px solid ${brand.line}`,
+                      lg: 0,
+                    },
+                    borderLeft: {
+                      lg: index === 0 ? 0 : `1px solid ${brand.line}`,
+                      sm: index % 2 === 0 ? 0 : `1px solid ${brand.line}`,
+                    },
+                    textDecoration: "none",
+                    "&:hover .tramite-title": { color: brand.goldDeep },
+                    "&:hover .tramite-arrow": {
+                      color: brand.primary,
+                      transform: "translateX(3px)",
+                    },
+                    "&:focus-visible": { outlineOffset: 4 },
+                  }}
+                >
+                  <Stack direction="row" spacing={1.2} sx={{ alignItems: "baseline" }}>
                     <Typography
                       sx={{
                         fontFamily: fonts.display,
-                        fontSize: "1rem",
+                        fontSize: "0.86rem",
                         color: brand.goldDeep,
                         lineHeight: 1.4,
                       }}
                     >
                       {item.number}
                     </Typography>
+                    <Typography
+                      className="tramite-title"
+                      sx={{
+                        color: brand.primaryDeep,
+                        fontSize: "0.94rem",
+                        fontWeight: 700,
+                        lineHeight: 1.35,
+                        transition: "color 0.18s ease",
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                  </Stack>
 
-                    <Box>
-                      <Typography
-                        sx={{
-                          color: brand.primaryDeep,
-                          fontSize: "0.98rem",
-                          fontWeight: 700,
-                          lineHeight: 1.35,
-                        }}
-                      >
-                        {item.title}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          mt: 0.35,
-                          color: brand.muted,
-                          fontSize: "0.8rem",
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {item.text}
-                      </Typography>
-                    </Box>
-
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ mt: 0.6, alignItems: "flex-start" }}
+                  >
+                    <Typography
+                      sx={{
+                        color: brand.muted,
+                        fontSize: "0.78rem",
+                        lineHeight: 1.55,
+                        maxWidth: 210,
+                      }}
+                    >
+                      {item.text}
+                    </Typography>
                     <ArrowForwardIcon
                       className="tramite-arrow"
                       sx={{
-                        fontSize: 18,
+                        fontSize: 16,
                         color: brand.lineStrong,
-                        mt: "3px",
+                        mt: "2px",
+                        ml: "auto",
+                        flexShrink: 0,
                         transition: "color 0.18s ease, transform 0.18s ease",
                       }}
                     />
-                  </Box>
-                ))}
-              </Box>
-            </Box>
+                  </Stack>
+                </Box>
+              </Grid>
+            ))}
           </Grid>
-        </Grid>
+        </Box>
       </Container>
     </Box>
   );

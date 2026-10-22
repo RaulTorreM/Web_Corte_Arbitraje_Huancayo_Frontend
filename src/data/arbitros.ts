@@ -16,6 +16,10 @@ export type Profesional = {
  * El Registro de Árbitros y el de Adjudicadores tienen vigencia de tres
  * años; la inscripción no equivale a una designación en un caso concreto.
  */
+
+
+
+//FALTAN DATOS REALES!
 export const PROFESIONALES: Profesional[] = [
   {
     id: "a-01",

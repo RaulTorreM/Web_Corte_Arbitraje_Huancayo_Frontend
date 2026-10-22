@@ -3,6 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import { brand, fonts } from "../../../theme/brand";
+import { MEDIA } from "../../../data/media";
 import { fadeUp, staggerContainer, viewportOnce } from "../../../utils/animations";
 import FramedImage from "../../../components/common/FramedImage";
 
@@ -31,8 +32,9 @@ export default function QueEsSection() {
         <Grid container spacing={{ xs: 4, md: 7 }} sx={{ alignItems: "center" }}>
           <Grid size={{ xs: 12, md: 5 }}>
             <FramedImage
-              src="/images/ARBITRAJE_IMG_02-02.jpg"
-              alt="Sede de la Corte Superior de Arbitraje en Huancayo"
+              src={MEDIA.sede.src}
+              alt={MEDIA.sede.alt}
+              fit={MEDIA.sede.fit}
               ratio="4 / 5"
             />
           </Grid>

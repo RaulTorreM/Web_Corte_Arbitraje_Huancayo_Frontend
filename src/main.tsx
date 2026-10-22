@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { MotionConfig } from "framer-motion";
 
 import "@fontsource/source-serif-4/latin-400.css";
 import "@fontsource/source-serif-4/latin-600.css";
@@ -25,11 +26,13 @@ if (!container) {
 
 createRoot(container).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
-    </ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
+      </ThemeProvider>
+    </MotionConfig>
   </StrictMode>
 );

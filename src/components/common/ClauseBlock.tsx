@@ -65,12 +65,25 @@ export default function ClauseBlock({
         }}
       >
         <Box>
-          <Typography variant="h4" sx={{ color: brand.primaryDeep, fontSize: "1.12rem" }}>
+          <Typography
+            component="h3"
+            variant="h4"
+            sx={{ color: brand.primaryDeep, fontSize: "1.12rem", textWrap: "balance" }}
+          >
             {title}
           </Typography>
 
           {description && (
-            <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.86rem" }}>
+            <Typography
+              sx={{
+                mt: 0.7,
+                color: brand.muted,
+                fontSize: "0.9rem",
+                lineHeight: 1.65,
+                maxWidth: "62ch",
+                textWrap: "pretty",
+              }}
+            >
               {description}
             </Typography>
           )}
@@ -88,10 +101,29 @@ export default function ClauseBlock({
               <ContentCopyOutlinedIcon sx={{ fontSize: 16 }} />
             )
           }
-          sx={{ flexShrink: 0, fontSize: "0.76rem" }}
+          sx={{ flexShrink: 0, fontSize: "0.8rem", minHeight: 44 }}
         >
           {copied ? "Copiado" : "Copiar texto"}
         </Button>
+
+        <Box
+          component="span"
+          role="status"
+          aria-live="polite"
+          sx={{
+            position: "absolute",
+            width: "1px",
+            height: "1px",
+            p: 0,
+            m: "-1px",
+            overflow: "hidden",
+            clip: "rect(0 0 0 0)",
+            whiteSpace: "nowrap",
+            border: 0,
+          }}
+        >
+          {copied ? "Texto copiado al portapapeles" : ""}
+        </Box>
       </Stack>
 
       <Box
@@ -120,7 +152,15 @@ export default function ClauseBlock({
 
       {note && (
         <Box sx={{ px: { xs: 2.5, md: 3.5 }, py: 2 }}>
-          <Typography sx={{ color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
+          <Typography
+            sx={{
+              color: brand.muted,
+              fontSize: "0.84rem",
+              lineHeight: 1.7,
+              maxWidth: "72ch",
+              textWrap: "pretty",
+            }}
+          >
             {note}
           </Typography>
         </Box>

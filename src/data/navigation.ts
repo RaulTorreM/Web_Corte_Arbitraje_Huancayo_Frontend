@@ -38,16 +38,27 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Banco de laudos", to: "/arbitraje/laudos" },
     ],
   },
+  
   {
     label: "JPRD",
     to: "/jprd",
     children: [
-      { label: "Presentación (en implementación)", to: "/jprd" },
-      { label: "Reglamento (preliminar)", to: "/jprd/reglamento" },
+      { label: "Presentación (borrador)", to: "/jprd" },
+      { label: "Reglamento (borrador)", to: "/jprd/reglamento" },
       { label: "Registro de adjudicadores", to: "/jprd/adjudicadores" },
-      { label: "Aranceles (preliminar)", to: "/jprd/aranceles" },
-      { label: "Cláusula modelo (preliminar)", to: "/jprd/clausula" },
-      { label: "Decisiones (en implementación)", to: "/jprd/decisiones" },
+      { label: "Aranceles (borrador)", to: "/jprd/aranceles" },
+      { label: "Cláusula modelo (borrador)", to: "/jprd/clausula" },
+      { label: "Decisiones (borrador)", to: "/jprd/decisiones" },
+    ],
+  },
+  {
+    label: "Conciliación",
+    to: "/conciliacion",
+    children: [
+      { label: "Presentación", to: "/conciliacion" },
+      { label: "Inicio de conciliación", to: "/conciliacion/inicio" },
+      { label: "Costos y tarifas", to: "/conciliacion/costos" },
+      { label: "Reglamento", to: "/conciliacion/reglamento" },
     ],
   },
   {
@@ -70,6 +81,9 @@ export const ARBITRAJE_SUBNAV =
 
 export const JPRD_SUBNAV =
   NAV_ITEMS.find((item) => item.to === "/jprd")?.children ?? [];
+
+export const CONCILIACION_SUBNAV =
+  NAV_ITEMS.find((item) => item.to === "/conciliacion")?.children ?? [];
 
 export const UTILITY_LINKS = [
   { label: "Canal de denuncias", to: "/denuncias" },

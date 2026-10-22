@@ -170,7 +170,9 @@ export default function EventCard({ evento }: { evento: Evento }) {
             display: "block",
             width: "100%",
             aspectRatio: { xs: "16 / 7", sm: "4 / 3" },
-            objectFit: "cover",
+            objectFit: "contain",
+            backgroundColor: brand.paperAlt,
+            p: 3,
             alignSelf: "start",
           }}
         />

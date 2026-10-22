@@ -29,6 +29,7 @@ import {
   EJEMPLOS_COSTO,
   NOTAS_TARIFAS,
 } from "../../data/tarifas";
+import { MEDIA } from "../../data/media";
 
 const COMPONENTES = [
   {
@@ -64,6 +65,25 @@ const PASOS_COSTO = [
   },
 ];
 
+const PAGO_ARBITRAJE = [
+  {
+    title: "Provisión y pago igualitario",
+    text: "La Secretaría fija la provisión de gastos. El demandante y el demandado la pagan en partes iguales dentro de los plazos que se indiquen; si los importes son muy distintos, pueden fijarse provisiones separadas.",
+  },
+  {
+    title: "Reliquidación",
+    text: "La provisión se calcula al presentar la solicitud y la contestación, y puede reajustarse con la demanda, la reconvención, sus modificaciones o por una mayor complejidad. La determinación es potestad exclusiva del Centro.",
+  },
+  {
+    title: "Liberación 30 / 30 / 40",
+    text: "Se libera el 30% de los honorarios provisionados al fijarse el calendario procesal; un 30% adicional al cierre de las actuaciones; y el 40% restante después de notificado el laudo final.",
+  },
+  {
+    title: "Impago y no devolución",
+    text: "Si no se paga la provisión, la Secretaría puede suspender el trámite y, si persiste el impago, tener por retirada la solicitud, la demanda o la reconvención, según la etapa. Constituido el tribunal, el plazo para pagar no puede ser inferior a 15 días. Los pagos de tasa administrativa y honorarios no generan devolución, salvo la excepción que apruebe el Consejo.",
+  },
+];
+
 const celda = { fontSize: "0.8rem", py: 1.1, px: 1.2 };
 
 export default function CostosPage() {
@@ -82,8 +102,7 @@ export default function CostosPage() {
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Costos y tarifas" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.arbitraje}
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
@@ -118,7 +137,7 @@ export default function CostosPage() {
           <SectionHeading
             kicker="Anexo 1"
             title="Honorarios y tasa administrativa"
-            subtitle="Cuantía en soles. La columna “tribunal” corresponde al honorario de cada integrante; el presidente percibe el monto que fije el reglamento."
+            subtitle="Cuantía en soles. La columna “tribunal” corresponde al honorario de cada integrante del tribunal arbitral."
           />
 
           <TableContainer sx={{ borderTop: `1px solid ${brand.lineStrong}`, overflowX: "auto" }}>
@@ -139,32 +158,28 @@ export default function CostosPage() {
               </TableHead>
 
               <TableBody>
-                {ANEXO_1.map((row) => {
-                  const revision = row.admin === "En revisión";
-
-                  return (
-                    <TableRow
-                      key={row.rubro}
-                      sx={{ "&:hover": { backgroundColor: "rgba(176,138,46,0.06)" } }}
-                    >
-                      <TableCell sx={{ ...celda, fontWeight: 700, color: brand.primaryDeep }}>
-                        {row.rubro}
-                      </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: brand.ink }}>
-                        {row.cuantia}
-                      </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.accent : brand.primary }}>
-                        {row.admin}
-                      </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.accent : brand.primary }}>
-                        {row.tribunal}
-                      </TableCell>
-                      <TableCell align="right" sx={{ ...celda, color: revision ? brand.accent : brand.primary }}>
-                        {row.unico}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                {ANEXO_1.map((row) => (
+                  <TableRow
+                    key={row.rubro}
+                    sx={{ "&:hover": { backgroundColor: "rgba(176,138,46,0.06)" } }}
+                  >
+                    <TableCell sx={{ ...celda, fontWeight: 700, color: brand.primaryDeep }}>
+                      {row.rubro}
+                    </TableCell>
+                    <TableCell align="right" sx={{ ...celda, color: brand.ink }}>
+                      {row.cuantia}
+                    </TableCell>
+                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
+                      {row.admin}
+                    </TableCell>
+                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
+                      {row.tribunal}
+                    </TableCell>
+                    <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
+                      {row.unico}
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -172,9 +187,9 @@ export default function CostosPage() {
           <Stack direction="row" spacing={1.2} sx={{ mt: 2, alignItems: "flex-start" }}>
             <InfoOutlinedIcon sx={{ color: brand.accent, fontSize: 17, mt: "2px" }} />
             <Typography sx={{ color: brand.muted, fontSize: "0.76rem", lineHeight: 1.6 }}>
-              Los rubros G, I, J y K se encuentran en revisión y no se publican
-              como montos aplicables. La tabla completa consta en el documento
-              normativo; no uses esta versión para una liquidación definitiva.
+              Los montos se transcriben del Anexo 1 del Estatuto. La Secretaría
+              General emite la liquidación definitiva una vez determinada la
+              cuantía.
             </Typography>
           </Stack>
         </Container>
@@ -230,6 +245,33 @@ export default function CostosPage() {
                 </Typography>
               ))}
             </Stack>
+          </Box>
+
+          <Box sx={{ mt: 5, pt: 2.2, borderTop: `1px solid ${brand.line}` }}>
+            <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem", mb: 1.2 }}>
+              Provisión y forma de pago
+            </Typography>
+
+            <Grid container spacing={{ xs: 3, md: 4 }}>
+              {PAGO_ARBITRAJE.map((item) => (
+                <Grid key={item.title} size={{ xs: 12, sm: 6 }}>
+                  <Box sx={{ pt: 1.5, borderTop: `1px solid ${brand.line}` }}>
+                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
+                      {item.title}
+                    </Typography>
+                    <Typography sx={{ mt: 0.5, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.65 }}>
+                      {item.text}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+
+            <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.76rem", lineHeight: 1.6 }}>
+              Si la cuantía está expresada en dólares, se aplica el tipo de cambio
+              vigente a la fecha de presentación de la solicitud. Los montos de los
+              Anexos 1, 3 y 4 no incluyen IGV.
+            </Typography>
           </Box>
         </Container>
       </Box>

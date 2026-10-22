@@ -19,7 +19,7 @@ const MECANISMOS = [
     label: "Ver arbitraje",
   },
   {
-    status: "En implementación",
+    status: "...",
     statusColor: brand.accent,
     title: "JPRD",
     text: "Junta de Prevención y Resolución de Disputas. Su reglamento, aranceles y cláusula modelo son preliminares.",

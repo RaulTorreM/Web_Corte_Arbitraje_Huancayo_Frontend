@@ -4,6 +4,7 @@ export type Persona = {
   cargo: string;
   bio: string;
   destacado?: boolean;
+  foto?: string;
 };
 
 /**
@@ -11,6 +12,10 @@ export type Persona = {
  * Reemplazar por los consejeros designados cuando la Cámara publique
  * la composición oficial. El Estatuto permite hasta siete titulares.
  */
+
+// const fototest = "../src/assets/brand/logo-corte.png"
+
+//FALTAN DATOS REALES!
 export const CONSEJO: Persona[] = [
   {
     id: "c-01",
@@ -18,6 +23,7 @@ export const CONSEJO: Persona[] = [
     cargo: "Presidenta del Consejo Superior",
     bio: "Abogada con maestría en Derecho Administrativo y 18 años de experiencia en arbitraje y contratación pública.",
     destacado: true,
+    // foto: fototest
   },
   {
     id: "c-02",
@@ -49,14 +55,10 @@ export const CONSEJO: Persona[] = [
     cargo: "Consejero",
     bio: "Abogado especialista en contrataciones del Estado y arbitraje de emergencia.",
   },
-  {
-    id: "c-07",
-    nombre: "Lucía Fernanda Torres Baldeón",
-    cargo: "Consejera",
-    bio: "Árbitra internacional y miembro extranjero del Consejo, con 16 años de experiencia.",
-  },
 ];
 
+
+//FALTAN DATOS REALES!
 export const EQUIPO: Persona[] = [
   {
     id: "e-01",

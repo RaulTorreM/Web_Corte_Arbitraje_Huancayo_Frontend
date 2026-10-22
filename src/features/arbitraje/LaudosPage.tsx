@@ -20,6 +20,7 @@ import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 import { LAUDOS } from "../../data/registros";
+import { MEDIA } from "../../data/media";
 
 const EMISION = [
   {
@@ -69,8 +70,7 @@ export default function LaudosPage() {
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Laudos" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-04.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.arbitraje}
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />

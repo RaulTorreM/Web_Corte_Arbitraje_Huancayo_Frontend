@@ -17,6 +17,7 @@ import PersonCard from "../../components/common/PersonCard";
 import { Stagger } from "../../components/common/Reveal";
 import { brand, fonts } from "../../theme/brand";
 import { CONSEJO } from "../../data/directivos";
+import { MEDIA } from "../../data/media";
 
 const COMISIONES = [
   {
@@ -56,6 +57,20 @@ const FUNCIONES_CONSEJO = [
   "Supervisa la capacitación de los árbitros y el cumplimiento del Código de Ética.",
 ];
 
+const ELECCION_CONSEJO = [
+  "El Consejo Directivo de la Cámara nombra hasta siete consejeros titulares y sus suplentes por períodos de tres años, renovables de forma indefinida.",
+  "Cuatro consejeros se eligen de una planilla de doce personas propuestas por los consejeros cuyo período termina; tres se eligen de una relación de nueve ofrecidas por el Consejo Directivo.",
+  "En su primera sesión, el Consejo elige entre sus miembros titulares al presidente y al vicepresidente.",
+  "Las sesiones requieren quórum de cuatro consejeros y se realizan como mínimo una vez por trimestre.",
+];
+
+const REQUISITOS_CONSEJO = [
+  "Presidente: abogado y/o ingeniero con al menos diez años de experiencia en arbitraje o medios alternativos de solución de controversias.",
+  "Vicepresidente: al menos cinco años de experiencia en arbitraje o medios alternativos de solución de controversias.",
+  "Título profesional y título de maestría; 120 horas académicas en arbitraje, contratación pública, derecho administrativo, junta de resolución de disputas o dispute board, o diez años de experiencia equivalente.",
+  "Composición con presencia de mujeres profesionales, de preferencia en un 30%; los miembros no deben figurar negativamente en centrales de riesgo.",
+];
+
 export default function ConsejoPage() {
   return (
     <>
@@ -72,8 +87,7 @@ export default function ConsejoPage() {
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Consejo Superior" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-04.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.equipo}
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
@@ -162,7 +176,11 @@ export default function ConsejoPage() {
               </Accordion>
             </Grid>
 
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Grid
+              id="comisiones"
+              size={{ xs: 12, md: 6 }}
+              sx={{ scrollMarginTop: { xs: 88, md: 102 } }}
+            >
               <Typography
                 sx={{
                   color: brand.goldDeep,
@@ -206,6 +224,71 @@ export default function ConsejoPage() {
               </Box>
             </Grid>
           </Grid>
+        </Container>
+      </Box>
+
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+        <Container>
+          <SectionHeading
+            kicker="Gobierno y transparencia"
+            title="Cómo se elige y qué se exige"
+            subtitle="Reglas estatutarias de composición, elección y calificación de los miembros del Consejo Superior."
+          />
+
+          <Grid container spacing={{ xs: 4, md: 7 }}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Typography sx={{ color: brand.goldDeep, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                Elección y período
+              </Typography>
+
+              <Stack sx={{ mt: 1.5, borderTop: `1px solid ${brand.lineStrong}` }}>
+                {ELECCION_CONSEJO.map((item) => (
+                  <Typography
+                    key={item}
+                    sx={{
+                      py: 1.4,
+                      borderBottom: `1px solid ${brand.line}`,
+                      color: brand.muted,
+                      fontSize: "0.84rem",
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+              </Stack>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Typography sx={{ color: brand.goldDeep, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                Requisitos
+              </Typography>
+
+              <Stack sx={{ mt: 1.5, borderTop: `1px solid ${brand.lineStrong}` }}>
+                {REQUISITOS_CONSEJO.map((item) => (
+                  <Typography
+                    key={item}
+                    sx={{
+                      py: 1.4,
+                      borderBottom: `1px solid ${brand.line}`,
+                      color: brand.muted,
+                      fontSize: "0.84rem",
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+              </Stack>
+            </Grid>
+          </Grid>
+
+          <Typography sx={{ mt: 3, color: brand.muted, fontSize: "0.78rem", lineHeight: 1.65 }}>
+            Los consejeros y miembros de comisiones deben revelar si intervienen
+            como representantes, peritos, asesores o abogados en un caso del Centro
+            y abstenerse de participar en las decisiones sobre ese caso. Quienes sean
+            designados árbitros deben inhibirse de las deliberaciones correspondientes.
+          </Typography>
         </Container>
       </Box>
 

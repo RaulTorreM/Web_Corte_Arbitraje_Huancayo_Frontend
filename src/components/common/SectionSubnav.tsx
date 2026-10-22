@@ -22,7 +22,7 @@ export default function SectionSubnav({
         position: "sticky",
         top: { xs: 68, md: 78 },
         zIndex: 1000,
-        backgroundColor: "rgba(244,240,231,0.97)",
+        backgroundColor: "rgba(233,223,202,0.97)",
         backdropFilter: "blur(8px)",
         borderBottom: `1px solid ${brand.line}`,
       }}

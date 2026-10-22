@@ -38,7 +38,7 @@ export default function Layout() {
 
       <Header />
 
-      <Box component="main" id="contenido" sx={{ flex: 1 }}>
+      <Box component="main" id="contenido" tabIndex={-1} sx={{ flex: 1 }}>
         <Suspense fallback={<PageFallback />}>
           <Outlet />
         </Suspense>

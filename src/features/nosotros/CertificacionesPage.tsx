@@ -4,13 +4,13 @@ import PageHero from "../../components/common/PageHero";
 import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import { brand, fonts } from "../../theme/brand";
+import { MEDIA } from "../../data/media";
 
-const CERTIFICACIONES = [
+const SISTEMAS = [
   {
-    norma: "ISO 9001:2015",
-    estado: "En implementación",
+    categoria: "Calidad",
     titulo: "Sistema de gestión de la calidad",
-    text: "La Corte se encuentra implementando un sistema de gestión de la calidad. Aún no cuenta con certificación otorgada; el diagnóstico y el mapa de procesos están concluidos.",
+    text: "La Corte orienta su gestión a la mejora continua de sus procesos, con criterios de calidad, seguimiento y revisión permanente.",
     items: [
       "Procesos documentados y auditables",
       "Seguimiento de la satisfacción de las partes",
@@ -18,10 +18,9 @@ const CERTIFICACIONES = [
     ],
   },
   {
-    norma: "ISO 37001:2016",
-    estado: "En implementación",
+    categoria: "Integridad",
     titulo: "Sistema de gestión antisoborno",
-    text: "La política antisoborno se encuentra aprobada y el sistema en implementación. No debe presentarse como certificación obtenida hasta que exista el certificado correspondiente.",
+    text: "La Corte promueve una actuación íntegra y transparente, con controles internos y canales de denuncia confidenciales.",
     items: [
       "Debida diligencia de terceros",
       "Canal de denuncias confidencial",
@@ -42,32 +41,31 @@ export default function CertificacionesPage() {
     <>
       <PageMeta
         title="Certificaciones"
-        description="Estado de implementación de los sistemas de gestión de calidad y antisoborno de la Corte Superior de Arbitraje de Huancayo."
+        description="Sistemas de gestión de la calidad y antisoborno de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Calidad e integridad"
-        title="Estándares en construcción"
-        subtitle="La Corte implementa sistemas de gestión de calidad y antisoborno. Publicamos su estado real: no presentamos como certificación obtenida lo que aún está en proceso."
+        title="Certificaciones"
+        subtitle="La Corte promueve estándares de calidad e integridad en la gestión de sus procedimientos."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Certificaciones" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.sede}
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
-            kicker="Estado de implementación"
+            kicker="Sistemas de gestión"
             title="Dos sistemas, un mismo compromiso institucional"
-            subtitle="Los sistemas de gestión se encuentran en implementación. Su avance se refleja en la política antisoborno, el mapa de procesos y los controles internos."
+            subtitle="La calidad y la integridad orientan la actuación de la Corte en cada procedimiento."
           />
 
           <Grid container spacing={{ xs: 4, md: 5 }}>
-            {CERTIFICACIONES.map((certificacion) => (
-              <Grid key={certificacion.norma} size={{ xs: 12, md: 6 }}>
+            {SISTEMAS.map((sistema) => (
+              <Grid key={sistema.titulo} size={{ xs: 12, md: 6 }}>
                 <Box
                   sx={{
                     height: "100%",
@@ -76,11 +74,7 @@ export default function CertificacionesPage() {
                   }}
                 >
                   <Stack
-                    direction={{ xs: "column", sm: "row" }}
-                    spacing={{ xs: 0.8, sm: 2 }}
                     sx={{
-                      alignItems: { xs: "flex-start", sm: "center" },
-                      justifyContent: "space-between",
                       mb: 1.6,
                     }}
                   >
@@ -92,19 +86,7 @@ export default function CertificacionesPage() {
                         fontWeight: 600,
                       }}
                     >
-                      {certificacion.norma}
-                    </Typography>
-
-                    <Typography
-                      sx={{
-                        color: brand.accent,
-                        fontSize: "0.64rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {certificacion.estado}
+                      {sistema.categoria}
                     </Typography>
                   </Stack>
 
@@ -112,7 +94,7 @@ export default function CertificacionesPage() {
                     variant="h3"
                     sx={{ color: brand.primaryDeep, fontSize: { xs: "1.5rem", md: "1.75rem" } }}
                   >
-                    {certificacion.titulo}
+                    {sistema.titulo}
                   </Typography>
 
                   <Typography
@@ -123,11 +105,11 @@ export default function CertificacionesPage() {
                       lineHeight: 1.75,
                     }}
                   >
-                    {certificacion.text}
+                    {sistema.text}
                   </Typography>
 
                   <Stack sx={{ mt: 2.5, borderTop: `1px solid ${brand.line}` }}>
-                    {certificacion.items.map((item) => (
+                    {sistema.items.map((item) => (
                       <Typography
                         key={item}
                         sx={{
@@ -181,10 +163,8 @@ export default function CertificacionesPage() {
                   lineHeight: 1.78,
                 }}
               >
-                Mientras los sistemas de gestión completan su implementación, la
-                Corte mantiene compromisos públicos de actuación. No se publican
-                números de registro ni certificados que no puedan acreditarse
-                documentalmente.
+                La Corte mantiene compromisos públicos de actuación orientados
+                a la transparencia, la independencia y la mejora continua.
               </Typography>
 
               <Box

@@ -10,6 +10,7 @@ import CtaBand from "../../components/common/CtaBand";
 import { brand } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 import { ARBITROS } from "../../data/arbitros";
+import { MEDIA } from "../../data/media";
 
 export default function ArbitrosPage() {
   return (
@@ -21,14 +22,13 @@ export default function ArbitrosPage() {
 
       <PageHero
         kicker="Registro institucional"
-        title="Árbitros acreditados, selección predecible"
+        title="Árbitros registrados, selección predecible"
         subtitle="El Registro de Árbitros tiene vigencia de tres años. La inscripción no equivale a una designación en un caso concreto: las partes pueden designar de común acuerdo y, a falta de acuerdo, la Corte aplica el procedimiento del Reglamento."
         crumbs={[
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Registro de árbitros" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-04.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.arbitraje}
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
@@ -72,11 +72,11 @@ export default function ArbitrosPage() {
               mt: 4,
               py: 2.2,
               alignItems: "flex-start",
-              borderTop: `1px solid ${brand.line}`,
-              borderBottom: `1px solid ${brand.line}`,
+              // borderTop: `1px solid ${brand.line}`,
+              // borderBottom: `1px solid ${brand.line}`,
             }}
           >
-            <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
+            {/* <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
             <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
               <Box component="strong" sx={{ color: brand.primaryDeep }}>
                 Registro de Árbitros:
@@ -85,7 +85,7 @@ export default function ArbitrosPage() {
               postulación o renovación nacional cuesta S/ 850 por año; la
               internacional, US$ 425. La nómina de esta página es referencial y no
               reemplaza el Registro oficial.
-            </Typography>
+            </Typography> */}
           </Stack>
 
           <Grid container spacing={{ xs: 3, md: 5 }}>

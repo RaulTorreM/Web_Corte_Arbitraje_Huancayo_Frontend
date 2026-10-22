@@ -11,18 +11,19 @@ export const SITE = {
   legalName:
     "Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín",
   description:
-    "Organizamos y administramos arbitrajes bajo un reglamento único, con plazos definidos, tarifas públicas y un registro de árbitros acreditados.",
+    "Organizamos y administramos arbitrajes bajo un reglamento único, con plazos definidos, tarifas públicas y un registro de árbitros.",
   url: "https://arbitraje.camarahuancayo.com.pe",
   mainSiteUrl: "https://camarahuancayo.com.pe",
   mainSiteLabel: "Cámara de Comercio de Huancayo",
 
   contact: {
+    // Datos de prueba: reemplazar por los canales oficiales de la Corte.
     address: "Av. Giráldez N° 634, Huancayo, Perú",
-    phone: "915 236 568",
-    phoneHref: "tel:+51915236568",
-    whatsapp: "51915236568",
-    email: "arbitraje@camarahuancayo.com.pe",
-    emailSecondary: "secretaria@cch.org.pe",
+    phone: "987 654 321",
+    phoneHref: "tel:+51987654321",
+    whatsapp: "51987654321",
+    email: "correo@gmail.com",
+    emailSecondary: "correo@gmail.com",
     schedule: [
       "Lunes a viernes: 8:30 a. m. – 1:00 p. m.",
       "Lunes a viernes: 2:30 p. m. – 6:00 p. m.",
@@ -67,12 +68,12 @@ export const VALORES = [
     text: "La Corte actúa con autonomía frente a las partes y frente a cualquier poder público o privado.",
   },
   {
-    title: "Neutralidad y predictibilidad",
-    text: "Las decisiones administrativas se adoptan con criterios uniformes, públicos y verificables.",
-  },
-  {
     title: "Transparencia",
     text: "Publicamos reglamentos, tarifas, plazos y criterios de designación de árbitros.",
+  },
+  {
+    title: "Neutralidad y predictibilidad",
+    text: "Las decisiones administrativas se adoptan con criterios uniformes, públicos y verificables.",
   },
   {
     title: "Confidencialidad",

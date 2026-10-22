@@ -19,13 +19,15 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
 import { NAV_ITEMS, UTILITY_LINKS, type NavItem } from "../../data/navigation";
 import BrandMark from "../common/BrandMark";
+
+const navId = (prefix: string, to: string) =>
+  `${prefix}-${to.replace(/[^a-z0-9]+/gi, "-")}`;
 
 function DesktopNavItem({
   item,
@@ -42,6 +44,7 @@ function DesktopNavItem({
   const active =
     pathname === item.to ||
     (item.to !== "/" && pathname.startsWith(`${item.to}/`));
+  const menuId = navId("nav-menu", item.to);
 
   if (!item.children) {
     return (
@@ -52,6 +55,8 @@ function DesktopNavItem({
         sx={{
           position: "relative",
           py: 3,
+          whiteSpace: "nowrap",
+          flexShrink: 0,
           color: active ? brand.primaryDeep : brand.ink,
           textDecoration: "none",
           fontSize: "0.82rem",
@@ -83,7 +88,21 @@ function DesktopNavItem({
     <Box
       sx={{ position: "relative" }}
       onMouseEnter={onOpen}
-      onMouseLeave={onClose}
+      onMouseLeave={() => {
+        const menu = document.getElementById(menuId);
+        if (!menu?.contains(document.activeElement)) onClose();
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          onClose();
+        }
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          onClose();
+          event.currentTarget.querySelector("button")?.focus();
+        }
+      }}
     >
       <Stack
         component="button"
@@ -92,7 +111,7 @@ function DesktopNavItem({
         spacing={0.4}
         onClick={open ? onClose : onOpen}
         aria-expanded={open}
-        aria-haspopup="true"
+        aria-controls={menuId}
         sx={{
           alignItems: "center",
           background: "none",
@@ -101,6 +120,8 @@ function DesktopNavItem({
           py: 3,
           fontFamily: "inherit",
           cursor: "pointer",
+          whiteSpace: "nowrap",
+          flexShrink: 0,
           color: active ? brand.primaryDeep : brand.ink,
           fontSize: "0.82rem",
           fontWeight: 700,
@@ -117,7 +138,7 @@ function DesktopNavItem({
       </Stack>
 
       <Box
-        role="menu"
+        id={menuId}
         sx={{
           position: "absolute",
           top: "calc(100% - 6px)",
@@ -140,7 +161,6 @@ function DesktopNavItem({
               key={child.to}
               component={RouterLink}
               to={child.to}
-              role="menuitem"
               onClick={onClose}
               sx={{
                 display: "block",
@@ -191,19 +211,25 @@ export default function Header() {
         sx={{
           top: 0,
           zIndex: 1200,
-          backgroundColor: "rgba(244,240,231,0.96)",
+          backgroundColor: "rgba(233,223,202,0.96)",
           backdropFilter: "blur(10px)",
-          borderBottom: `1px solid ${brand.line}`,
+          borderBottom: `2px solid ${brand.gold}`,
+          boxShadow: "0 1px 6px rgba(10,27,43,0.06)",
           color: brand.ink,
         }}
       >
-        <Container>
+        <Container
+          sx={{
+            pl: { xs: 2.5, md: 2.5 },
+            pr: { xs: 2.5, md: 3 },
+          }}
+        >
           <Toolbar
             disableGutters
             sx={{
-              minHeight: { xs: 68, md: 78 },
+              minHeight: { xs: 74, md: 92 },
               justifyContent: "space-between",
-              gap: 2,
+              gap: { xs: 1.5, md: 2.5 },
             }}
           >
             <BrandMark />
@@ -212,7 +238,7 @@ export default function Header() {
               component="nav"
               aria-label="Navegación principal"
               direction="row"
-              spacing={{ lg: 2.1, xl: 2.8 }}
+              spacing={{ lg: 1.9, xl: 2.6 }}
               sx={{ display: { xs: "none", lg: "flex" }, alignItems: "center" }}
             >
               {NAV_ITEMS.map((item) => (
@@ -228,16 +254,15 @@ export default function Header() {
 
             <Stack direction="row" spacing={0.6} sx={{ alignItems: "center" }}>
               <Button
-                component={RouterLink}
-                to="/arbitraje/inicio"
                 variant="contained"
-                endIcon={<ArrowForwardIcon sx={{ fontSize: "16px !important" }} />}
                 sx={{
                   display: { xs: "none", md: "inline-flex" },
                   whiteSpace: "nowrap",
+                  cursor: "default",
+                  "&:hover": { backgroundColor: "primary.main" },
                 }}
               >
-                Iniciar arbitraje
+                Intranet
               </Button>
 
               <IconButton
@@ -294,6 +319,12 @@ export default function Header() {
                   {...(item.children
                     ? { onClick: () => setMobileGroup(mobileGroup === item.to ? null : item.to) }
                     : { to: item.to, onClick: () => setMobileOpen(false) })}
+                  aria-expanded={
+                    item.children ? mobileGroup === item.to : undefined
+                  }
+                  aria-controls={
+                    item.children ? navId("mobile-nav", item.to) : undefined
+                  }
                   sx={{
                     px: 0,
                     py: 1.25,
@@ -325,7 +356,12 @@ export default function Header() {
                 </ListItemButton>
 
                 {item.children ? (
-                  <Collapse in={mobileGroup === item.to} timeout="auto" unmountOnExit>
+                  <Collapse
+                    id={navId("mobile-nav", item.to)}
+                    in={mobileGroup === item.to}
+                    timeout="auto"
+                    unmountOnExit
+                  >
                     <List disablePadding sx={{ pb: 1.2 }}>
                       {item.children.map((child) => (
                         <ListItemButton
@@ -358,14 +394,11 @@ export default function Header() {
 
           <Stack spacing={1.1}>
             <Button
-              component={RouterLink}
-              to="/arbitraje/inicio"
               variant="contained"
               fullWidth
-              endIcon={<ArrowForwardIcon />}
-              onClick={() => setMobileOpen(false)}
+              sx={{ cursor: "default", "&:hover": { backgroundColor: "primary.main" } }}
             >
-              Iniciar un arbitraje
+              Intranet
             </Button>
 
             <Stack direction="row" spacing={2} sx={{ pt: 0.5 }}>

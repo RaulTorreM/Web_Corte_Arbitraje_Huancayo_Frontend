@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { brand } from "../../theme/brand";
+import type { MediaAsset } from "../../data/media";
 import { ease } from "../../utils/animations";
 import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 
@@ -10,7 +11,7 @@ type PageHeroProps = {
   title: string;
   subtitle?: string;
   crumbs: Crumb[];
-  image?: string;
+  image?: MediaAsset;
   imageAlt?: string;
   children?: ReactNode;
 };
@@ -112,13 +113,17 @@ export default function PageHero({
               >
                 <Box
                   component="img"
-                  src={image}
-                  alt={imageAlt}
+                  src={image.src}
+                  alt={imageAlt ?? image.alt}
+                  fetchPriority="high"
                   sx={{
                     display: "block",
                     width: "100%",
                     aspectRatio: "4 / 3",
-                    objectFit: "cover",
+                    objectFit: image.fit,
+                    backgroundColor:
+                      image.fit === "contain" ? brand.paperAlt : "transparent",
+                    p: image.fit === "contain" ? { xs: 4, md: 5 } : 0,
                   }}
                 />
               </Box>

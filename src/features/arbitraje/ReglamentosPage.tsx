@@ -7,24 +7,29 @@ import DocumentCard from "../../components/common/DocumentCard";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
-import { documentosPorCategoria } from "../../data/documentos";
+import { DOCUMENTOS } from "../../data/documentos";
+import { MEDIA } from "../../data/media";
 
 const NORMAS = [
   {
     norma: "Reglamento de Arbitraje — V1",
-    detalle: "Aprobado el 21.09.2026. Rige la solicitud, la designación, el proceso y el laudo.",
+    detalle:
+      "Versión del 21.09.2026. Rige la solicitud, la designación, el proceso y el laudo; su texto está sujeto a revisión antes de la publicación definitiva.",
   },
   {
     norma: "Estatuto del Centro",
-    detalle: "Aprobado el 21.09.2026. Naturaleza, órganos de gobierno y comisiones.",
+    detalle:
+      "Versión del 21.09.2026. Naturaleza, órganos de gobierno y comisiones; su texto está sujeto a revisión antes de la publicación definitiva.",
   },
   {
     norma: "Código de Ética — V2",
-    detalle: "Aprobado el 23.09.2026. Deberes, denuncias y régimen sancionador.",
+    detalle:
+      "Versión del 23.09.2026. Deberes, denuncias y régimen sancionador; su texto está sujeto a revisión antes de la publicación definitiva.",
   },
   {
     norma: "Tabla de Gastos Arbitrales",
-    detalle: "Anexos 1 al 4: honorarios, tasas de trámite y arbitraje de emergencia.",
+    detalle:
+      "Anexos 1 al 4: tasa administrativa, honorarios por cuantía, tasas de trámite y aranceles de emergencia.",
   },
   {
     norma: "Decreto Legislativo N.° 1071",
@@ -33,7 +38,11 @@ const NORMAS = [
 ];
 
 export default function ReglamentosPage() {
-  const documentos = documentosPorCategoria("arbitraje");
+  const documentos = DOCUMENTOS.filter(
+    (documento) =>
+      documento.categoria === "institucional" ||
+      documento.categoria === "arbitraje"
+  );
 
   return (
     <>
@@ -44,14 +53,13 @@ export default function ReglamentosPage() {
 
       <PageHero
         kicker="Marco normativo"
-        title="Normativa que rige nuestros arbitrajes"
-        subtitle="Un reglamento único y público, con apéndices para el arbitraje acelerado, social y de emergencia, y una tabla de gastos aprobada por el Consejo."
+        title="Marco normativo del arbitraje"
+        subtitle="Un reglamento único y público, con apéndices para el arbitraje acelerado, social y de emergencia, y una tabla de gastos publicada."
         crumbs={[
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Reglamentos y directivas" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-04.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.arbitraje}
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
@@ -61,7 +69,7 @@ export default function ReglamentosPage() {
           <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
-                kicker="Documentos oficiales"
+                kicker="Documentos normativos"
                 title="Reglas claras para todas las partes"
                 subtitle="El Reglamento de Arbitraje V1 regula la solicitud, la designación de árbitros, las actuaciones procesales, los plazos y el laudo. El Estatuto define los órganos de gobierno y el Código de Ética los deberes de los profesionales."
                 sx={{ mb: 3 }}
@@ -79,8 +87,10 @@ export default function ReglamentosPage() {
                   Versiones y vigencia
                 </Typography>
                 <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
-                  Se publican el Reglamento V1 (21.09.2026), el Estatuto
-                  (21.09.2026) y el Código de Ética V2 (23.09.2026). Los
+                  Se publican versiones de trabajo en DOCX del Reglamento V1
+                  (21.09.2026), el Estatuto (21.09.2026) y el Código de Ética V2
+                  (23.09.2026), junto con los apéndices y la tabla de gastos. Los
+                  PDFs definitivos se incorporarán cuando estén firmados. Los
                   documentos de la JPRD son preliminares y no forman parte de
                   esta sección normativa.
                 </Typography>
@@ -95,6 +105,13 @@ export default function ReglamentosPage() {
               </Grid>
             ))}
           </Grid>
+
+          <Typography sx={{ mt: 3, color: brand.muted, fontSize: "0.78rem", lineHeight: 1.65 }}>
+            Los formatos de solicitud, declaración de independencia y postulación
+            al Registro se publicarán cuando la institución entregue los archivos
+            editables. Los documentos marcados “En revisión” son versiones de
+            trabajo y no sustituyen los PDFs firmados.
+          </Typography>
         </Container>
       </Box>
 

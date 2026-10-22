@@ -12,6 +12,7 @@ import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import { documentosPorCategoria } from "../../data/documentos";
+import { MEDIA } from "../../data/media";
 
 const BENEFICIOS = [
   {
@@ -57,20 +58,19 @@ export default function JprdPage() {
   return (
     <>
       <PageMeta
-        title="JPRD (en implementación)"
-        description="La Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo se encuentra en implementación. Reglamento y aranceles preliminares."
+        title="JPRD (borrador)"
+        description="La Junta de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo. Reglamento y aranceles en borrador."
       />
 
       <PageHero
         kicker="Prevención y resolución temprana"
         title="Junta de Prevención y Resolución de Disputas"
-        subtitle="Servicio anunciado en el Estatuto para prevenir y resolver desacuerdos durante la ejecución contractual. Su implementación será progresiva y aún no cuenta con reglamento ni aranceles aprobados."
+        subtitle="Servicio anunciado en el Estatuto para prevenir y resolver desacuerdos durante la ejecución contractual. Esta página es un borrador y aún no cuenta con reglamento ni aranceles aprobados."
         crumbs={[{ label: "JPRD" }]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.jprd}
       >
         <Typography sx={{ color: brand.accent, fontSize: "0.78rem", fontWeight: 700, lineHeight: 1.6 }}>
-          En implementación · Documentos preliminares · Sin aranceles vigentes
+          Página Borrador
         </Typography>
       </PageHero>
 
@@ -130,6 +130,33 @@ export default function JprdPage() {
                 aprobación del reglamento y de la designación de los adjudicadores.
               </Typography>
 
+              <Box sx={{ mt: 2.4, pl: 2, borderLeft: `2px solid ${brand.gold}` }}>
+                <Typography
+                  sx={{
+                    color: brand.muted,
+                    fontFamily: fonts.display,
+                    fontSize: "0.92rem",
+                    fontStyle: "italic",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  “El Consejo Superior de Arbitraje podrá proponer progresivamente
+                  la creación de nuevas comisiones u órganos permanentes y sus
+                  reglamentos aplicables sobre Junta de Prevención y Resolución de
+                  Disputas, Dispute Boards, Arbitraje Inmobiliario, Tribunales
+                  Arbitrales Permanentes, y otros.”
+                </Typography>
+                <Typography sx={{ mt: 0.8, color: brand.muted, fontSize: "0.72rem" }}>
+                  Estatuto, Tercera Disposición Final.
+                </Typography>
+              </Box>
+
+              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
+                El Estatuto menciona a los adjudicadores en el Registro, la
+                designación directa y residual, y el régimen de recusación y
+                remoción (artículos 21 y 22).
+              </Typography>
+
               <Stack sx={{ mt: 3, borderTop: `1px solid ${brand.line}` }}>
                 {[
                   "Figura prevista para contratos de obra, bienes y servicios.",
@@ -170,18 +197,19 @@ export default function JprdPage() {
                   variant="contained"
                   endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
                 >
-                  Ver cláusula preliminar
+                  Ver cláusula modelo
                 </Button>
                 <Button component={RouterLink} to="/jprd/reglamento" variant="outlined">
-                  Reglamento preliminar
+                  Reglamento
                 </Button>
               </Stack>
             </Grid>
 
             <Grid size={{ xs: 12, md: 5 }}>
               <FramedImage
-                src="/images/ARBITRAJE_IMG_02-03.jpg"
-                alt="Sala de reuniones de la Corte Superior de Arbitraje de Huancayo"
+                src={MEDIA.jprd.src}
+                alt={MEDIA.jprd.alt}
+                fit={MEDIA.jprd.fit}
                 maxWidth={460}
                 ratio="4 / 5"
               />
@@ -285,7 +313,7 @@ export default function JprdPage() {
           <Grid container spacing={{ xs: 3, md: 5 }} sx={{ alignItems: "flex-end", mb: 4 }}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
-                kicker="Documentos preliminares"
+                kicker="Documentos en borrador"
                 title="Reglamento, ética y aranceles"
                 subtitle="Documentos en proceso de aprobación. No son normativa vigente y no deben citarse como reglas aplicables."
                 sx={{ mb: 0 }}
@@ -317,7 +345,7 @@ export default function JprdPage() {
 
       <CtaBand
         title="¿Tu contrato necesita una JPRD?"
-        subtitle="La JPRD se encuentra en implementación. Podemos orientarte sobre la propuesta y su eventual incorporación contractual."
+        subtitle="Esta página es un borrador. Podemos orientarte sobre la propuesta y su eventual incorporación contractual."
         primaryLabel="Consultar con la Corte"
         primaryTo="/contacto"
         secondaryLabel="Ver registro de adjudicadores"

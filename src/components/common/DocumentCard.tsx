@@ -126,6 +126,7 @@ export default function DocumentCard({
         <Button
           component="a"
           href={documento.url}
+          download={documento.url !== "#" ? documento.titulo : undefined}
           onClick={handleClick}
           size="small"
           variant="text"

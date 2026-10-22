@@ -1,6 +1,17 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
@@ -13,12 +24,13 @@ import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { SITE, PASOS_ARBITRAJE, REQUISITOS } from "../../data/site";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
+import { MEDIA } from "../../data/media";
 
 const CANALES = [
   {
     icon: LaptopMacOutlinedIcon,
-    title: "Sistema de Arbitraje (en implementación)",
-    text: "El canal virtual está en implementación. Mientras tanto, presenta tu solicitud por mesa de partes o correo institucional.",
+    title: "Sistema de Arbitraje",
+    text: "Canal virtual.",
     action: "Consultar disponibilidad",
     href: "/contacto",
     external: false,
@@ -49,6 +61,39 @@ const CHECKLIST_RAPIDO = [
   "Comprobante de pago de S/ 800 o US$ 425.",
 ];
 
+const PREGUNTAS_FRECUENTES = [
+  {
+    question: "¿Quién designa al árbitro?",
+    answer:
+      "Si el convenio no fija el número de árbitros, el arbitraje está a cargo de un árbitro único. El Centro designa a los árbitros que integran su Registro mediante un procedimiento de selección aleatoria y, en la medida de lo posible, rotativa. En un tribunal de tres árbitros, cada parte designa al suyo y los árbitros designan al presidente; si una parte no designa, el Centro hace la designación residual. Los árbitros que no integran el Registro deben ser confirmados por el Centro.",
+  },
+  {
+    question: "¿Qué pasa si la otra parte no participa?",
+    answer:
+      "El arbitraje puede continuar. Si el demandado no presenta su contestación, el tribunal puede ordenar que continúen las actuaciones sin considerar esa omisión como una aceptación de las alegaciones. Si una parte debidamente citada no comparece a una audiencia, el tribunal puede celebrarla. Si el demandante no presenta su demanda sin motivo justificado, el tribunal puede dar por terminadas las actuaciones, salvo que la otra parte exprese su voluntad de continuar.",
+  },
+  {
+    question: "¿Dónde se realiza el arbitraje y en qué idioma?",
+    answer:
+      "Las partes pueden acordar la sede. A falta de acuerdo o en caso de duda, el Consejo fija la sede; una vez constituido el tribunal, este puede determinar otro lugar más apropiado luego de escuchar a las partes. El idioma o idiomas también se acuerdan entre las partes. A falta de acuerdo, el tribunal lo determina después de constituirse.",
+  },
+  {
+    question: "¿Puedo financiar el arbitraje con un tercero?",
+    answer:
+      "Sí, pero debe informarse. Si una parte recibe fondos o financiación de un tercero, debe comunicar esa circunstancia y la identidad del financiador a los árbitros, a la parte contraria y a la Corte tan pronto se produzca. El tribunal puede pedir información adicional sobre la financiación, con sujeción al secreto profesional.",
+  },
+  {
+    question: "¿Puedo pedir una medida cautelar antes de que se constituya el tribunal?",
+    answer:
+      "Sí, mediante el árbitro de emergencia, pero su competencia está limitada. El Apéndice de Reglas del Árbitro de Emergencia solo permite someterle medidas cautelares o provisionales vinculadas a la ejecución de cartas fianza u otras garantías, salvo que el Consejo amplíe los supuestos mediante Directiva. Si el tribunal ya está constituido, las medidas cautelares se solicitan directamente a él. También puede acudir a la autoridad judicial.",
+  },
+  {
+    question: "¿La Corte ofrece conciliación?",
+    answer:
+      "Los documentos publicados regulan el arbitraje institucional. La conciliación no aparece regulada como servicio de la Corte: solo se menciona en el artículo 5 del Reglamento, que permite aplicar sus reglas a convenios o conciliaciones que hagan referencia al Centro, sin crear un procedimiento de conciliación. Si estás evaluando esa vía, consulta primero con la Secretaría General y, de no existir servicio, acude a un centro de conciliación autorizado.",
+  },
+];
+
 export default function InicioArbitrajePage() {
   return (
     <>
@@ -65,8 +110,7 @@ export default function InicioArbitrajePage() {
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Inicio de arbitraje" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-04.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.arbitraje}
       >
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2}>
           <Button
@@ -180,12 +224,12 @@ export default function InicioArbitrajePage() {
                     </Typography>
                   </Box>
 
-                  <Box sx={{ py: 1.4, borderTop: `1px solid ${brand.line}` }}>
+                  {/* <Box sx={{ py: 1.4, borderTop: `1px solid ${brand.line}` }}>
                     <Typography sx={{ color: brand.muted, fontSize: "0.78rem", lineHeight: 1.55 }}>
                       El sistema virtual está en implementación. La mesa de partes
                       y el correo institucional siguen disponibles.
                     </Typography>
-                  </Box>
+                  </Box> */}
 
                   <Box sx={{ py: 1.4, borderTop: `1px solid ${brand.line}` }}>
                     <Typography sx={{ color: brand.muted, fontSize: "0.78rem", lineHeight: 1.55 }}>
@@ -242,6 +286,84 @@ export default function InicioArbitrajePage() {
                 </Box>
               </Grid>
             ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      <Box
+        component="section"
+        sx={{
+          py: { xs: 7, md: 9 },
+          backgroundColor: brand.whiteSoft,
+          borderTop: `1px solid ${brand.line}`,
+        }}
+      >
+        <Container>
+          <Grid container spacing={{ xs: 4, md: 7 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
+              <Typography
+                sx={{
+                  color: brand.goldDeep,
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.13em",
+                  textTransform: "uppercase",
+                  mb: 1.5,
+                }}
+              >
+                Preguntas frecuentes
+              </Typography>
+
+              <Typography
+                variant="h2"
+                sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.4rem" } }}
+              >
+                Dudas antes de presentar
+              </Typography>
+
+              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.9rem", lineHeight: 1.7 }}>
+                Respuestas basadas en el Reglamento y el Estatuto. No reemplazan
+                la calificación de la Secretaría General.
+              </Typography>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 8 }}>
+              <Stack>
+                {PREGUNTAS_FRECUENTES.map((faq) => (
+                  <Accordion
+                    key={faq.question}
+                    disableGutters
+                    elevation={0}
+                    sx={{
+                      backgroundColor: "transparent",
+                      borderBottom: `1px solid ${brand.line}`,
+                      "&:before": { display: "none" },
+                    }}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon sx={{ color: brand.goldDeep }} />}
+                      sx={{ px: 0 }}
+                    >
+                      <Typography
+                        sx={{
+                          color: brand.primaryDeep,
+                          fontWeight: 700,
+                          fontSize: "0.9rem",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {faq.question}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails sx={{ px: 0, pt: 0, pb: 2 }}>
+                      <Typography sx={{ color: brand.muted, fontSize: "0.84rem", lineHeight: 1.7 }}>
+                        {faq.answer}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
+              </Stack>
+            </Grid>
           </Grid>
         </Container>
       </Box>
@@ -366,13 +488,13 @@ export default function InicioArbitrajePage() {
               </Grid>
 
               <Grid size={{ xs: 12, sm: 6 }}>
-                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.82rem" }}>
+                {/* <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.82rem" }}>
                   Presentación
                 </Typography>
                 <Typography sx={{ mt: 0.4, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.6 }}>
                   Mesa de partes de la sede institucional o correo
                   institucional. El sistema virtual está en implementación.
-                </Typography>
+                </Typography> */}
               </Grid>
             </Grid>
           </Box>
@@ -389,7 +511,7 @@ export default function InicioArbitrajePage() {
           <SectionHeading
             kicker="Canales de atención"
             title="Elige cómo presentar tu solicitud"
-            subtitle="El sistema virtual está en implementación. La mesa de partes y el correo institucional siguen disponibles."
+            // subtitle="El sistema virtual está en implementación. La mesa de partes y el correo institucional siguen disponibles."
           />
 
           <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>

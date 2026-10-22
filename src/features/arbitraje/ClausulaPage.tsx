@@ -6,8 +6,9 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import ClauseBlock from "../../components/common/ClauseBlock";
+import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
-import { brand } from "../../theme/brand";
+import { brand, fonts } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
 
 const ELEMENTOS = [
@@ -91,14 +92,14 @@ export default function ClausulaPage() {
   return (
     <>
       <PageMeta
-        title="Cláusula arbitral modelo"
-        description="Cláusulas modelo para someter controversias a la Corte Superior de Arbitraje de la Cámara de Comercio de Huancayo, con recomendaciones y errores frecuentes."
+        title="Cláusulas arbitrales (temporales)"
+        description="Redacciones de referencia provisionales para someter controversias a la Corte Superior de Arbitraje de Huancayo, con recomendaciones y errores frecuentes."
       />
 
       <PageHero
         kicker="Prevención y seguridad jurídica"
         title="La cláusula que evita un arbitraje mal encaminado"
-        subtitle="Todo empieza por el convenio arbitral. Una cláusula imprecisa puede dejar tu controversia fuera del arbitraje o remitirla a una institución que no elegiste. Usa uno de nuestros modelos y adáptalo con tu abogado."
+        subtitle="Todo empieza por el convenio arbitral. Una cláusula imprecisa puede dejar tu controversia fuera del arbitraje o remitirla a una institución que no elegiste. Revisa las redacciones de referencia y adáptalas con tu abogado; su versión definitiva está pendiente de validación."
         crumbs={[
           { label: "Arbitraje", to: "/arbitraje" },
           { label: "Cláusula arbitral" },
@@ -106,6 +107,12 @@ export default function ClausulaPage() {
       />
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
+
+      <PreliminaryNotice
+        title="Página Borrador"
+        text="Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales.">
+
+      </PreliminaryNotice>
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
@@ -125,9 +132,10 @@ export default function ClausulaPage() {
                   Una cláusula completa debe contener:
                 </Typography>
 
-                <Stack sx={{ mt: 1.2 }}>
+                <Box component="ul" sx={{ m: 0, mt: 1.2, p: 0, listStyle: "none" }}>
                   {ELEMENTOS.map((elemento) => (
                     <Typography
+                      component="li"
                       key={elemento}
                       sx={{
                         py: 0.95,
@@ -140,15 +148,15 @@ export default function ClausulaPage() {
                       {elemento}
                     </Typography>
                   ))}
-                </Stack>
+                </Box>
               </Box>
             </Grid>
           </Grid>
 
           <Box sx={{ mt: { xs: 4.5, md: 6 } }}>
             <ClauseBlock
-              title="Cláusula modelo 1 — Recomendada"
-              description="Texto completo para someter las controversias al Reglamento de la Corte. Es la redacción que recomendamos para contratos nuevos."
+              title="Cláusula 1 (Temporal)"
+              description="Texto completo para someter las controversias al Reglamento de la Corte. Redacción de referencia para contratos nuevos, pendiente de validación."
               clause={CLAUSULA_RECOMENDADA}
               note="No modifiques el nombre de la institución ni la sede sin verificar previamente su conformidad con el reglamento vigente."
             />
@@ -156,7 +164,7 @@ export default function ClausulaPage() {
 
           <Box sx={{ mt: 3 }}>
             <ClauseBlock
-              title="Cláusula modelo 2 — Referencia general"
+              title="Cláusula 2 (Temporal)"
               description="Alternativa breve para actos jurídicos o contratos que no identifican una materia específica."
               clause={CLAUSULA_GENERAL}
             />
@@ -172,43 +180,80 @@ export default function ClausulaPage() {
             subtitle="Cada elemento debe quedar claro en el texto. Si falta alguno, el reglamento suple el vacío, pero puede no coincidir con lo que las partes esperaban."
           />
 
-          <Grid container spacing={{ xs: 0, md: 5 }}>
+          <Box
+            component="ul"
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "repeat(2, minmax(0, 1fr))",
+                lg: "repeat(3, minmax(0, 1fr))",
+              },
+              columnGap: { sm: 4, lg: 5 },
+              m: 0,
+              p: 0,
+              listStyle: "none",
+            }}
+          >
             {ADAPTACION.map((item, index) => (
-              <Grid key={item.elemento} size={{ xs: 12, md: 6 }}>
-                <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: "34px 150px 1fr",
-                    gap: 1.4,
-                    py: 1.6,
-                    borderTop: `1px solid ${brand.line}`,
-                  }}
-                >
+              <Box
+                component="li"
+                key={item.elemento}
+                sx={{
+                  pt: 2.2,
+                  pb: 2.8,
+                  borderTop: `1px solid ${brand.line}`,
+                }}
+              >
+                <Stack direction="row" spacing={1.4} sx={{ alignItems: "baseline" }}>
                   <Typography
+                    aria-hidden="true"
                     sx={{
-                      fontFamily: '"Source Serif 4", Georgia, serif',
+                      flexShrink: 0,
+                      fontFamily: fonts.display,
                       color: brand.goldDeep,
-                      fontSize: "0.86rem",
-                      lineHeight: 1.6,
+                      fontSize: "1.5rem",
+                      fontVariantNumeric: "tabular-nums",
+                      lineHeight: 1.1,
                     }}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </Typography>
-                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.83rem" }}>
+                  <Typography
+                    component="h3"
+                    sx={{
+                      color: brand.primaryDeep,
+                      fontFamily: fonts.display,
+                      fontWeight: 600,
+                      fontSize: "1.08rem",
+                      lineHeight: 1.35,
+                      textWrap: "balance",
+                    }}
+                  >
                     {item.elemento}
                   </Typography>
-                  <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.55 }}>
-                    {item.recomendacion}
-                  </Typography>
-                </Box>
-              </Grid>
+                </Stack>
+
+                <Typography
+                  sx={{
+                    mt: 1,
+                    color: brand.muted,
+                    fontSize: "0.93rem",
+                    lineHeight: 1.7,
+                    maxWidth: "46ch",
+                    textWrap: "pretty",
+                  }}
+                >
+                  {item.recomendacion}
+                </Typography>
+              </Box>
             ))}
-          </Grid>
+          </Box>
 
           <Box sx={{ mt: 4 }}>
             <ClauseBlock
-              title="Cláusula con detalles (plantilla editable)"
-              description="Reemplaza los corchetes por la opción que corresponda. Este texto permite precisar la materia, el número de árbitros, la sede y el idioma."
+              title="Cláusula 3 (Temporal)"
+              description="Plantilla editable para precisar la materia, el número de árbitros, la sede y el idioma. Reemplaza los corchetes por la opción que corresponda."
               clause={CLAUSULA_DETALLADA}
               note="El laudo es definitivo, vinculante e inapelable, sin perjuicio del recurso de anulación previsto por ley."
             />
@@ -224,33 +269,72 @@ export default function ClausulaPage() {
             subtitle="Una cláusula defectuosa no siempre se corrige con el reglamento: puede abrir un incidente de competencia antes de que el caso empiece."
           />
 
-          <Grid container spacing={{ xs: 0, md: 5 }}>
+          <Box
+            component="ul"
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "repeat(2, minmax(0, 1fr))" },
+              columnGap: { md: 5 },
+              borderTop: `2px solid ${brand.accent}`,
+              m: 0,
+              p: 0,
+              listStyle: "none",
+            }}
+          >
             {ERRORES.map((error, index) => (
-              <Grid key={error.title} size={{ xs: 12, md: 6 }}>
-                <Box sx={{ py: 1.8, borderTop: `1px solid ${brand.line}` }}>
-                  <Stack direction="row" spacing={1.2} sx={{ alignItems: "baseline" }}>
-                    <Typography
-                      sx={{
-                        fontFamily: '"Source Serif 4", Georgia, serif',
-                        color: brand.accent,
-                        fontSize: "0.82rem",
-                        lineHeight: 1.6,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </Typography>
-                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
-                      {error.title}
-                    </Typography>
-                  </Stack>
-                  <Typography sx={{ mt: 0.5, pl: 3.2, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
+              <Box
+                component="li"
+                key={error.title}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "36px minmax(0, 1fr)",
+                  columnGap: 1.5,
+                  py: 2.2,
+                  borderBottom: `1px solid ${brand.line}`,
+                }}
+              >
+                <Typography
+                  aria-hidden="true"
+                  sx={{
+                    fontFamily: fonts.display,
+                    color: brand.accent,
+                    fontSize: "1.05rem",
+                    fontVariantNumeric: "tabular-nums",
+                    lineHeight: 1.35,
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </Typography>
+
+                <Box>
+                  <Typography
+                    component="h3"
+                    sx={{
+                      color: brand.primaryDeep,
+                      fontWeight: 700,
+                      fontSize: "0.98rem",
+                      lineHeight: 1.45,
+                      textWrap: "balance",
+                    }}
+                  >
+                    {error.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      mt: 0.6,
+                      color: brand.muted,
+                      fontSize: "0.93rem",
+                      lineHeight: 1.7,
+                      maxWidth: "52ch",
+                      textWrap: "pretty",
+                    }}
+                  >
                     {error.text}
                   </Typography>
                 </Box>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
         </Container>
       </Box>
 
@@ -268,9 +352,18 @@ export default function ClausulaPage() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }}>
-              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
+              <Box
+                component="ul"
+                sx={{
+                  borderTop: `1px solid ${brand.lineStrong}`,
+                  m: 0,
+                  p: 0,
+                  listStyle: "none",
+                }}
+              >
                 {CHECKLIST.map((item) => (
                   <Typography
+                    component="li"
                     key={item}
                     sx={{
                       py: 1.2,
@@ -283,19 +376,19 @@ export default function ClausulaPage() {
                     {item}
                   </Typography>
                 ))}
-              </Stack>
+              </Box>
 
               <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 3 }}>
                 <Button
                   component={RouterLink}
-                  to="/arbitraje/inicio"
+                  to="/contacto"
                   variant="contained"
                   endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
                 >
-                  Cómo iniciar un arbitraje
-                </Button>
-                <Button component={RouterLink} to="/contacto" variant="outlined">
                   Validar mi cláusula
+                </Button>
+                <Button component={RouterLink} to="/arbitraje/inicio" variant="outlined">
+                  Cómo iniciar un arbitraje
                 </Button>
               </Stack>
             </Grid>
@@ -304,10 +397,12 @@ export default function ClausulaPage() {
       </Box>
 
       <CtaBand
-        title="Llévate la cláusula lista para tu contrato"
+        title="Valida tu cláusula antes de firmar"
         subtitle="El formato en Word estará disponible cuando la institución publique la biblioteca normativa. Mientras tanto, podemos revisar tu cláusula contigo."
-        secondaryLabel="Validar mi cláusula"
-        secondaryTo="/contacto"
+        primaryLabel="Validar mi cláusula"
+        primaryTo="/contacto"
+        secondaryLabel="Cómo iniciar un arbitraje"
+        secondaryTo="/arbitraje/inicio"
       />
     </>
   );

@@ -27,6 +27,7 @@ import {
   ARANCELES_JPRD_UNICO,
   TASAS_JPRD,
 } from "../../data/tarifas";
+import { MEDIA } from "../../data/media";
 
 const PRINCIPIOS = [
   {
@@ -48,7 +49,7 @@ const PRINCIPIOS = [
 ];
 
 const NOTAS = [
-  "Propuesta preliminar. No constituye tarifa oficial hasta su aprobación por el Consejo Superior.",
+  "Borrador. No constituye tarifa oficial hasta su aprobación por el Consejo Superior.",
   "Montos en soles y sin IGV.",
   "El monto del contrato determina el tramo aplicable.",
   "El adjudicador único y la junta de tres integrantes tienen estructuras distintas.",
@@ -114,27 +115,26 @@ export default function JprdArancelesPage() {
   return (
     <>
       <PageMeta
-        title="Aranceles JPRD (propuesta preliminar)"
+        title="Aranceles JPRD (borrador)"
         description="Propuesta de aranceles para Juntas de Prevención y Resolución de Disputas de la Corte Superior de Arbitraje de Huancayo. No vigente."
       />
 
       <PageHero
-        kicker="Propuesta preliminar — no vigente"
+        kicker="Borrador — no vigente"
         title="Aranceles de la JPRD"
         subtitle="La siguiente es una propuesta de estructura tarifaria, elaborada sobre la lógica de la Tabla de Gastos Arbitrales. No constituye tarifa oficial hasta su aprobación por el Consejo Superior."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
-          { label: "Aranceles preliminares" },
+          { label: "Aranceles" },
         ]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.jprd}
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
       <PreliminaryNotice
-        title="Propuesta preliminar — no vigente"
-        text="La JPRD no tiene aranceles aprobados. Los montos de esta página son una propuesta de trabajo y no deben usarse para calcular una contraprestación ni para suscribir un contrato."
+        title="Página Borrador"
+        text = "Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales."
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
@@ -255,18 +255,18 @@ export default function JprdArancelesPage() {
             </Button>
 
             <Button component={RouterLink} to="/jprd/reglamento" variant="outlined">
-              Ver reglamento preliminar
+              Ver reglamento
             </Button>
           </Stack>
         </Container>
       </Box>
 
       <CtaBand
-        title="La JPRD se encuentra en implementación"
+        title="Página Borrador"
         subtitle="Los aranceles son una propuesta. Si tu contrato ya contempla una junta, conversemos sobre cómo podría administrarse cuando el servicio esté disponible."
         primaryLabel="Enviar observaciones"
         primaryTo="/contacto"
-        secondaryLabel="Ver reglamento preliminar"
+        secondaryLabel="Ver reglamento"
         secondaryTo="/jprd/reglamento"
       />
     </>

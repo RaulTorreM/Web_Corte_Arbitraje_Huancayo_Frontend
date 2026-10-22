@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { brand } from "../../theme/brand";
+import type { MediaAsset } from "../../data/media";
 
 type FramedImageProps = {
   src: string;
@@ -7,6 +8,7 @@ type FramedImageProps = {
   side?: "left" | "right";
   maxWidth?: number;
   ratio?: string;
+  fit?: MediaAsset["fit"];
 };
 
 export default function FramedImage({
@@ -14,6 +16,7 @@ export default function FramedImage({
   alt,
   maxWidth = 560,
   ratio = "4 / 3",
+  fit = "contain",
 }: FramedImageProps) {
   return (
     <Box
@@ -32,8 +35,9 @@ export default function FramedImage({
           display: "block",
           width: "100%",
           aspectRatio: ratio,
-          objectFit: "cover",
-          backgroundColor: brand.paperAlt,
+          objectFit: fit,
+          backgroundColor: fit === "contain" ? brand.paperAlt : "transparent",
+          p: fit === "contain" ? { xs: 4, md: 5 } : 0,
         }}
       />
     </Box>

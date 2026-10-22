@@ -4,12 +4,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --paper: #f4f0e7;
-  --paper-alt: #eae4d8;
+  --paper: #e9dfca;
+  --paper-alt: #dfd2b8;
   --ink: #17212c;
   --navy: #17324f;
   --gold: #b08a2e;
-  --line: #d7d0c3;
+  --line: #cfc0a5;
 }
 
 *,
@@ -49,12 +49,12 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #eae4d8;
+  background-color: #dfd2b8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #b8af9e;
-  border: 2px solid #eae4d8;
+  background-color: #8f7e5e;
+  border: 2px solid #dfd2b8;
   border-radius: 8px;
 }
 

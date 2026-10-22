@@ -10,6 +10,7 @@ import FramedImage from "../../components/common/FramedImage";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { VALORES } from "../../data/site";
+import { MEDIA } from "../../data/media";
 
 const ESTRUCTURA = [
   {
@@ -20,17 +21,12 @@ const ESTRUCTURA = [
   {
     title: "Comisiones especializadas",
     text: "Registro y Designación, Confirmación, Recusación y Remoción, Ética, Arbitraje de Emergencia y Buenas Prácticas.",
-    to: "/quienes-somos/consejo",
+    to: "/quienes-somos/consejo#comisiones",
   },
   {
-    title: "Secretaría General",
+    title: "Equipo de Trabajo",
     text: "Conduce la operación diaria de los casos, liquida gastos, notifica y designa secretarios arbitrales.",
     to: "/quienes-somos/equipo",
-  },
-  {
-    title: "Certificaciones",
-    text: "Sistemas de gestión en implementación. No se presentan como certificaciones obtenidas hasta contar con el documento que las acredite.",
-    to: "/quienes-somos/certificaciones",
   },
 ];
 
@@ -46,22 +42,21 @@ export default function QuienesSomosPage() {
     <>
       <PageMeta
         title="Quiénes somos"
-        description="Conoce la naturaleza, finalidad y órganos de gobierno de la Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín."
+        description="Conoce la naturaleza, la misión, la visión y los órganos de gobierno de la Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín."
       />
 
       <PageHero
         kicker="La institución"
-        title="Administramos el arbitraje, no la controversia"
+        title="Un centro especializado en arbitraje"
         subtitle="Somos el órgano de la Cámara de Comercio y Producción de Huancayo y de la Región Junín encargado de organizar y administrar arbitrajes. No resolvemos las controversias: aseguramos que se tramiten bajo reglas claras, plazos ciertos y árbitros idóneos."
         crumbs={[{ label: "Quiénes somos" }]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.sede}
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 7 }} sx={{ alignItems: "center" }}>
-            <Grid size={{ xs: 12, md: 7 }}>
+            <Grid size={{ xs: 12, md: 7 }} sx={{ order: { xs: 1, md: 2 } }}>
               <Box
                 component={motion.div}
                 variants={staggerContainer}
@@ -75,25 +70,36 @@ export default function QuienesSomosPage() {
                   variant="h2"
                   sx={{ color: brand.primaryDeep, maxWidth: 620 }}
                 >
-                  Una institución arbitral al servicio de la región
+                  Un espacio especializado para la solución de controversias
                 </Typography>
 
                 <Typography
                   component={motion.p}
                   variants={fadeUp}
-                  sx={{ mt: 2.2, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620 }}
+                  sx={{ mt: 2.2, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
                 >
-                  La Corte es el órgano de la Cámara de Comercio y Producción de
-                  Huancayo y de la Región Junín encargado de organizar y administrar
-                  arbitrajes. Su actuación se rige por el Estatuto y por los principios
-                  de independencia, neutralidad, transparencia, confidencialidad y
-                  celeridad.
+                  La Corte Superior de Arbitraje de la Cámara de Comercio y Producción
+                  de Huancayo y de la Región Junín es el órgano encargado de organizar
+                  y administrar arbitrajes. Su labor contribuye al adecuado desarrollo
+                  de los procedimientos arbitrales.
                 </Typography>
 
                 <Typography
                   component={motion.p}
                   variants={fadeUp}
-                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620 }}
+                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
+                >
+                  Su actuación se rige por el Estatuto y por los principios de
+                  independencia, neutralidad, transparencia, confidencialidad y
+                  celeridad, con respeto al debido proceso. Procura brindar a las
+                  partes un espacio técnico y confiable para la solución de sus
+                  controversias.
+                </Typography>
+
+                <Typography
+                  component={motion.p}
+                  variants={fadeUp}
+                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
                 >
                   Desde Huancayo, acompaña a empresas, entidades públicas y
                   profesionales de la región Junín en la administración ordenada de
@@ -135,10 +141,11 @@ export default function QuienesSomosPage() {
               </Box>
             </Grid>
 
-            <Grid size={{ xs: 12, md: 5 }}>
+            <Grid size={{ xs: 12, md: 5 }} sx={{ order: { xs: 2, md: 1 } }}>
               <FramedImage
-                src="/images/ARBITRAJE_IMG_02.png"
-                alt="Representantes de la Corte Superior de Arbitraje de Huancayo"
+                src={MEDIA.sede.src}
+                alt={MEDIA.sede.alt}
+                fit={MEDIA.sede.fit}
                 maxWidth={460}
                 ratio="4 / 5"
               />
@@ -155,12 +162,12 @@ export default function QuienesSomosPage() {
                 <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
                   Nuestra misión
                 </Typography>
-                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75 }}>
+                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, textWrap: "pretty" }}>
                   Salvaguardar la correcta aplicación de los reglamentos y prestar
                   los servicios de administración necesarios para la organización y
                   funcionamiento del arbitraje.
                 </Typography>
-                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.74rem" }}>
+                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.76rem" }}>
                   Estatuto, Art. 2
                 </Typography>
               </Box>
@@ -169,16 +176,16 @@ export default function QuienesSomosPage() {
             <Grid size={{ xs: 12, md: 6 }}>
               <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
                 <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
-                  Nuestra finalidad
+                  Nuestra visión
                 </Typography>
-                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75 }}>
-                  Contribuir a la solución de controversias mediante el desarrollo y
-                  fomento del arbitraje institucional, realizando las acciones
-                  necesarias para su generalización, agilización, perfeccionamiento y
-                  divulgación.
+                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, textWrap: "pretty" }}>
+                  Consolidar el arbitraje institucional como un mecanismo de
+                  referencia para la solución de controversias en la región Junín,
+                  mediante la generalización, agilización, perfeccionamiento y
+                  divulgación de nuestros servicios.
                 </Typography>
-                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.74rem" }}>
-                  Estatuto, Art. 1
+                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.76rem" }}>
+                  Basada en el Estatuto, Art. 1
                 </Typography>
               </Box>
             </Grid>
@@ -221,7 +228,7 @@ export default function QuienesSomosPage() {
                     <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.92rem" }}>
                       {valor.title}
                     </Typography>
-                    <Typography sx={{ mt: 0.4, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
+                    <Typography sx={{ mt: 0.4, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62, textWrap: "pretty" }}>
                       {valor.text}
                     </Typography>
                   </Box>
@@ -249,6 +256,10 @@ export default function QuienesSomosPage() {
                 sx={{
                   display: "grid",
                   gridTemplateColumns: { xs: "1fr 24px", md: "240px 1fr 24px" },
+                  gridTemplateAreas: {
+                    xs: '"title arrow" "text text"',
+                    md: '"title text arrow"',
+                  },
                   gap: { xs: 0.8, md: 3 },
                   alignItems: "center",
                   py: 2.4,
@@ -261,6 +272,7 @@ export default function QuienesSomosPage() {
                 <Typography
                   className="estructura-title"
                   sx={{
+                    gridArea: "title",
                     color: brand.primaryDeep,
                     fontFamily: fonts.display,
                     fontSize: "1.2rem",
@@ -270,12 +282,12 @@ export default function QuienesSomosPage() {
                 >
                   {item.title}
                 </Typography>
-                <Typography sx={{ color: brand.muted, fontSize: "0.86rem", lineHeight: 1.6 }}>
+                <Typography sx={{ gridArea: "text", color: brand.muted, fontSize: "0.86rem", lineHeight: 1.6 }}>
                   {item.text}
                 </Typography>
                 <ArrowForwardIcon
                   className="estructura-arrow"
-                  sx={{ fontSize: 18, color: brand.lineStrong, transition: "all 0.18s ease" }}
+                  sx={{ gridArea: "arrow", fontSize: 18, color: brand.lineStrong, transition: "all 0.18s ease" }}
                 />
               </Box>
             ))}

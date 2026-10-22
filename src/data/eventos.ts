@@ -1,3 +1,5 @@
+import { MEDIA } from "./media";
+
 export type Evento = {
   id: string;
   titulo: string;
@@ -21,7 +23,7 @@ export const EVENTOS: Evento[] = [
     hora: "5:00 p. m. – 8:00 p. m.",
     lugar: "Auditorio de la Cámara de Comercio de Huancayo",
     modalidad: "Híbrido",
-    imagen: "/images/ARBITRAJE_IMG_02-04.jpg",
+    imagen: MEDIA.capacitaciones.src,
     estado: "proximo",
     cupos: "80 cupos",
   },
@@ -34,7 +36,7 @@ export const EVENTOS: Evento[] = [
     hora: "6:00 p. m. – 7:30 p. m.",
     lugar: "Plataforma virtual de la Corte",
     modalidad: "Virtual",
-    imagen: "/images/ARBITRAJE_IMG_04.png",
+    imagen: MEDIA.capacitaciones.src,
     estado: "proximo",
     cupos: "150 cupos",
   },
@@ -47,7 +49,7 @@ export const EVENTOS: Evento[] = [
     hora: "9:00 a. m. – 1:00 p. m.",
     lugar: "Sede institucional, Av. Giráldez 634",
     modalidad: "Presencial",
-    imagen: "/images/ARBITRAJE_IMG_02-03.jpg",
+    imagen: MEDIA.capacitaciones.src,
     estado: "proximo",
     cupos: "60 cupos",
   },
@@ -60,7 +62,7 @@ export const EVENTOS: Evento[] = [
     hora: "6:30 p. m. – 8:00 p. m.",
     lugar: "Auditorio de la Cámara de Comercio de Huancayo",
     modalidad: "Híbrido",
-    imagen: "/images/ARBITRAJE_IMG_02-04.jpg",
+    imagen: MEDIA.capacitaciones.src,
     estado: "realizado",
   },
   {
@@ -72,7 +74,7 @@ export const EVENTOS: Evento[] = [
     hora: "4:00 p. m. – 7:00 p. m.",
     lugar: "Cámara de Comercio de Huancayo",
     modalidad: "Presencial",
-    imagen: "/images/ARBITRAJE_IMG_02-04.jpg",
+    imagen: MEDIA.capacitaciones.src,
     estado: "realizado",
   },
 ];

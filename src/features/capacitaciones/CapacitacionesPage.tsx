@@ -22,6 +22,8 @@ import CtaBand from "../../components/common/CtaBand";
 import EventCard from "./EventCard";
 import { brand, fonts } from "../../theme/brand";
 import { EVENTOS } from "../../data/eventos";
+import { MEDIA } from "../../data/media";
+import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 
 type Filtro = "proximos" | "realizados" | "todos";
 
@@ -97,9 +99,14 @@ export default function CapacitacionesPage() {
         title="Capacitaciones"
         subtitle="Seminarios, talleres y conversatorios para fortalecer las competencias de profesionales, empresas y entidades públicas. La agenda publicada es referencial y se confirma en cada convocatoria."
         crumbs={[{ label: "Capacitaciones" }]}
-        image="/images/ARBITRAJE_IMG_02-04.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.capacitaciones}
       />
+
+      <PreliminaryNotice
+        title="Página Borrador"
+        text="Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales.">
+
+      </PreliminaryNotice>
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
@@ -176,10 +183,10 @@ export default function CapacitacionesPage() {
                   item.value === "todos"
                     ? EVENTOS.length
                     : EVENTOS.filter((e) =>
-                        item.value === "proximos"
-                          ? e.estado === "proximo"
-                          : e.estado === "realizado"
-                      ).length;
+                      item.value === "proximos"
+                        ? e.estado === "proximo"
+                        : e.estado === "realizado"
+                    ).length;
 
                 return (
                   <Tab

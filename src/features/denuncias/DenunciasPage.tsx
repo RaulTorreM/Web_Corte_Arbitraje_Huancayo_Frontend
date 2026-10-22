@@ -26,6 +26,7 @@ import CtaBand from "../../components/common/CtaBand";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
+import { MEDIA } from "../../data/media";
 
 const GARANTIAS = [
   {
@@ -98,8 +99,7 @@ export default function DenunciasPage() {
         title="Canal de denuncias de ética"
         subtitle="Cualquier persona natural o jurídica que tenga conocimiento de una violación al Código de Ética puede denunciarla ante el Consejo Superior, a través de la Secretaría General. La denuncia se tramita de forma reservada."
         crumbs={[{ label: "Canal de denuncias" }]}
-        image="/images/ARBITRAJE_IMG_02-03.jpg"
-        imageAlt="Sede de la Corte Superior de Arbitraje en Huancayo"
+        image={MEDIA.sede}
       >
         <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2}>
           <Button href={mailto} variant="contained" startIcon={<MailOutlinedIcon />}>

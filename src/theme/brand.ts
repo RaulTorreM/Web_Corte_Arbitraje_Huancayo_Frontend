@@ -21,16 +21,16 @@ export const brand = {
   goldDeep: "#725311",
   goldBright: "#C9A84C",
 
-  paper: "#F4F0E7",
-  paperAlt: "#EAE4D8",
-  paperDeep: "#DED6C6",
+  paper: "#E9DFCA",
+  paperAlt: "#DFD2B8",
+  paperDeep: "#D2C3A5",
   white: "#FFFFFF",
-  whiteSoft: "#FBF8F2",
+  whiteSoft: "#F7F2E7",
 
   ink: "#17212C",
-  muted: "#5A6470",
-  line: "#D7D0C3",
-  lineStrong: "#B8AF9E",
+  muted: "#5D5646",
+  line: "#CFC0A5",
+  lineStrong: "#8A7957",
 
   accent: "#8D3B2D",
   accentSoft: "#F1E0DA",
