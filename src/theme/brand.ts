@@ -19,9 +19,9 @@ export const brand = {
   skyMid: "#C9DEF6",
 
   // Acento cálido. No proviene del sello; se mantiene como contrapunto.
-  gold: "#B08A2E",
+  gold: "#f3bb39",
   goldSoft: "#E7D8AE",
-  goldDeep: "#725311",
+  goldDeep: "#c0af1c",
   goldBright: "#C9A84C",
 
   // Fondos: blanco del sello con carga azul, del más cálido al más profundo.
