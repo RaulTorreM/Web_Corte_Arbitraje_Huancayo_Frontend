@@ -57,19 +57,19 @@ const FUNCIONES_CONSEJO = [
   "Supervisa la capacitación de los árbitros y el cumplimiento del Código de Ética.",
 ];
 
-const ELECCION_CONSEJO = [
-  "El Consejo Directivo de la Cámara nombra hasta siete consejeros titulares y sus suplentes por períodos de tres años, renovables de forma indefinida.",
-  "Cuatro consejeros se eligen de una planilla de doce personas propuestas por los consejeros cuyo período termina; tres se eligen de una relación de nueve ofrecidas por el Consejo Directivo.",
-  "En su primera sesión, el Consejo elige entre sus miembros titulares al presidente y al vicepresidente.",
-  "Las sesiones requieren quórum de cuatro consejeros y se realizan como mínimo una vez por trimestre.",
-];
+// const ELECCION_CONSEJO = [
+//   "El Consejo Directivo de la Cámara nombra hasta siete consejeros titulares y sus suplentes por períodos de tres años, renovables de forma indefinida.",
+//   "Cuatro consejeros se eligen de una planilla de doce personas propuestas por los consejeros cuyo período termina; tres se eligen de una relación de nueve ofrecidas por el Consejo Directivo.",
+//   "En su primera sesión, el Consejo elige entre sus miembros titulares al presidente y al vicepresidente.",
+//   "Las sesiones requieren quórum de cuatro consejeros y se realizan como mínimo una vez por trimestre.",
+// ];
 
-const REQUISITOS_CONSEJO = [
-  "Presidente: abogado y/o ingeniero con al menos diez años de experiencia en arbitraje o medios alternativos de solución de controversias.",
-  "Vicepresidente: al menos cinco años de experiencia en arbitraje o medios alternativos de solución de controversias.",
-  "Título profesional y título de maestría; 120 horas académicas en arbitraje, contratación pública, derecho administrativo, junta de resolución de disputas o dispute board, o diez años de experiencia equivalente.",
-  "Composición con presencia de mujeres profesionales, de preferencia en un 30%; los miembros no deben figurar negativamente en centrales de riesgo.",
-];
+// const REQUISITOS_CONSEJO = [
+//   "Presidente: abogado y/o ingeniero con al menos diez años de experiencia en arbitraje o medios alternativos de solución de controversias.",
+//   "Vicepresidente: al menos cinco años de experiencia en arbitraje o medios alternativos de solución de controversias.",
+//   "Título profesional y título de maestría; 120 horas académicas en arbitraje, contratación pública, derecho administrativo, junta de resolución de disputas o dispute board, o diez años de experiencia equivalente.",
+//   "Composición con presencia de mujeres profesionales, de preferencia en un 30%; los miembros no deben figurar negativamente en centrales de riesgo.",
+// ];
 
 export default function ConsejoPage() {
   return (
@@ -227,7 +227,7 @@ export default function ConsejoPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      {/* <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Gobierno y transparencia"
@@ -290,7 +290,7 @@ export default function ConsejoPage() {
             designados árbitros deben inhibirse de las deliberaciones correspondientes.
           </Typography>
         </Container>
-      </Box>
+      </Box> */}
 
       <CtaBand
         title="Conoce al equipo que acompaña cada expediente"

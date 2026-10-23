@@ -24,26 +24,26 @@ const PROCESOS = [
   },
 ];
 
-const FUNCIONES_ORGANOS = [
-  {
-    title: "Secretaría General",
-    text: "Recibe y califica las solicitudes de arbitraje y de árbitro de emergencia; liquida los gastos y gestiona los cobros; emite constancias y certificaciones; supervisa los casos y elabora el Plan Operativo, el presupuesto y los reportes estadísticos trimestrales.",
-  },
-  {
-    title: "Secretaría del Consejo",
-    text: "Convoca las sesiones del Consejo y de las Comisiones, lleva el Registro de Actas, verifica el cumplimiento de las decisiones y puede actuar como secretario arbitral en casos complejos por encargo expreso.",
-  },
-  {
-    title: "Secretarios arbitrales",
-    text: "Asisten a los árbitros, elaboran proyectos de órdenes procesales y actas de audiencia, notifican las decisiones y emiten razones de secretaría, con deber de confidencialidad.",
-  },
-];
+// const FUNCIONES_ORGANOS = [
+//   {
+//     title: "Secretaría General",
+//     text: "Recibe y califica las solicitudes de arbitraje y de árbitro de emergencia; liquida los gastos y gestiona los cobros; emite constancias y certificaciones; supervisa los casos y elabora el Plan Operativo, el presupuesto y los reportes estadísticos trimestrales.",
+//   },
+//   {
+//     title: "Secretaría del Consejo",
+//     text: "Convoca las sesiones del Consejo y de las Comisiones, lleva el Registro de Actas, verifica el cumplimiento de las decisiones y puede actuar como secretario arbitral en casos complejos por encargo expreso.",
+//   },
+//   {
+//     title: "Secretarios arbitrales",
+//     text: "Asisten a los árbitros, elaboran proyectos de órdenes procesales y actas de audiencia, notifican las decisiones y emiten razones de secretaría, con deber de confidencialidad.",
+//   },
+// ];
 
-const REQUISITOS_EQUIPO = [
-  "Secretario General: abogado con conocimientos y experiencia en mecanismos alternativos de solución de controversias.",
-  "Secretario del Consejo: formación en derecho y experiencia en mecanismos alternativos de solución de controversias.",
-  "Secretarios arbitrales: abogados con al menos un año de experiencia en arbitraje y 120 horas de capacitación universitaria en arbitraje y contratación pública.",
-];
+// const REQUISITOS_EQUIPO = [
+//   "Secretario General: abogado con conocimientos y experiencia en mecanismos alternativos de solución de controversias.",
+//   "Secretario del Consejo: formación en derecho y experiencia en mecanismos alternativos de solución de controversias.",
+//   "Secretarios arbitrales: abogados con al menos un año de experiencia en arbitraje y 120 horas de capacitación universitaria en arbitraje y contratación pública.",
+// ];
 
 export default function EquipoPage() {
   return (
@@ -84,7 +84,7 @@ export default function EquipoPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+      {/* <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Funciones por órgano"
@@ -136,7 +136,7 @@ export default function EquipoPage() {
             </Typography>
           </Box>
         </Container>
-      </Box>
+      </Box> */}
 
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
