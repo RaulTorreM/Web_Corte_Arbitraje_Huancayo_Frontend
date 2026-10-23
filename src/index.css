@@ -10,6 +10,38 @@
   --navy: #17324f;
   --gold: #b08a2e;
   --line: #cfc0a5;
+
+  /*
+   * Altura del encabezado: única fuente de verdad para el subnavegador
+   * pegajoso, el ancla lateral de la página de arbitraje y los scroll-margin
+   * de las anclas. El Header define su propia altura con estas mismas
+   * variables, así que no pueden desalinearse entre sí.
+   *
+   *   --header-topbar-h  barra de contacto (oculta en móvil)
+   *   --header-bar-h     barra principal + su borde inferior de 2px
+   *   --subnav-h         barra de secciones pegajosa
+   */
+  --header-topbar-h: 0px;
+  --header-bar-h: 76px;
+  --header-h: calc(var(--header-topbar-h) + var(--header-bar-h));
+  --subnav-h: 52px;
+}
+
+/*
+ * 600px = `sm` de MUI: solo cambia la altura de la barra principal.
+ * 900px = `md` de MUI: aparece la barra de contacto.
+ */
+@media (min-width: 600px) {
+  :root {
+    --header-bar-h: 82px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-topbar-h: 40px;
+    --header-bar-h: 94px;
+  }
 }
 
 *,

@@ -464,7 +464,7 @@ export default function ArbitrajePage() {
               <Box
                 sx={{
                   position: { md: "sticky" },
-                  top: { md: 146 },
+                  top: { md: "calc(var(--header-h) + var(--subnav-h))" },
                   pt: { xs: 2, md: 2.5 },
                   borderTop: `1px solid ${brand.lineStrong}`,
                 }}

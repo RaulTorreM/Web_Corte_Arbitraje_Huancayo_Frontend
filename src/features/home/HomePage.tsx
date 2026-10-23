@@ -1,10 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
-import CtaBand from "../../components/common/CtaBand";
 import HeroHome from "./sections/HeroHome";
-import QueEsSection from "./sections/QueEsSection";
-import MecanismosSection from "./sections/MecanismosSection";
-import RutaSection from "./sections/RutaSection";
-import DocumentosSection from "./sections/DocumentosSection";
+import ServiciosHome from "./sections/ServiciosHome";
+import QuienesHome from "./sections/QuienesHome";
 
 export default function HomePage() {
   return (
@@ -15,11 +12,8 @@ export default function HomePage() {
       />
 
       <HeroHome />
-      <QueEsSection />
-      <MecanismosSection />
-      <RutaSection />
-      <DocumentosSection />
-      <CtaBand />
+      <ServiciosHome />
+      <QuienesHome />
     </>
   );
 }

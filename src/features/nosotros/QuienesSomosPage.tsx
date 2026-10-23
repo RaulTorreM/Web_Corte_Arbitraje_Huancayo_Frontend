@@ -156,9 +156,24 @@ export default function QuienesSomosPage() {
 
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 6 }}>
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Box sx={{ borderTop: `2px solid ${brand.primary}`, pt: 2 }}>
+          <Grid container spacing={{ xs: 5, md: 8 }}>
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Typography
+                sx={{
+                  color: brand.goldDeep,
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.13em",
+                  textTransform: "uppercase",
+                  mb: 1.5,
+                  pt: 2,
+                  borderTop: `1px solid ${brand.lineStrong}`,
+                }}
+              >
+                Propósito institucional
+              </Typography>
+
+              <Box sx={{ mt: 3, borderTop: `2px solid ${brand.primary}`, pt: 2 }}>
                 <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
                   Nuestra misión
                 </Typography>
@@ -171,10 +186,8 @@ export default function QuienesSomosPage() {
                   Estatuto, Art. 2
                 </Typography>
               </Box>
-            </Grid>
 
-            <Grid size={{ xs: 12, md: 6 }}>
-              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
+              <Box sx={{ mt: 5, borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
                 <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
                   Nuestra visión
                 </Typography>
@@ -189,52 +202,69 @@ export default function QuienesSomosPage() {
                 </Typography>
               </Box>
             </Grid>
-          </Grid>
-        </Container>
-      </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
-        <Container>
-          <SectionHeading
-            kicker="Principios"
-            title="Lo que guía cada actuación"
-            subtitle="Principios que orientan la conducta de los órganos de gobierno, árbitros, adjudicadores y equipo administrativo."
-          />
+            <Grid size={{ xs: 12, md: 7 }}>
+              <Typography
+                sx={{
+                  color: brand.goldDeep,
+                  fontSize: "0.66rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.13em",
+                  textTransform: "uppercase",
+                  mb: 1.5,
+                  pt: 2,
+                  borderTop: `1px solid ${brand.lineStrong}`,
+                }}
+              >
+                Principios
+              </Typography>
 
-          <Grid container spacing={0}>
-            {VALORES.map((valor, index) => (
-              <Grid key={valor.title} size={{ xs: 12, sm: 6 }}>
-                <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: "34px 1fr",
-                    gap: 1.6,
-                    py: 2,
-                    pr: { sm: 3 },
-                    borderTop: `1px solid ${brand.line}`,
-                  }}
-                >
-                  <Typography
+              <Typography
+                variant="h2"
+                sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.3rem" } }}
+              >
+                Lo que guía cada actuación
+              </Typography>
+
+              <Typography sx={{ mt: 1.6, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, maxWidth: 620, textWrap: "pretty" }}>
+                Principios que orientan la conducta de los órganos de gobierno,
+                árbitros, adjudicadores y equipo administrativo.
+              </Typography>
+
+              <Box sx={{ mt: 3.5, borderTop: `1px solid ${brand.lineStrong}` }}>
+                {VALORES.map((valor, index) => (
+                  <Box
+                    key={valor.title}
                     sx={{
-                      fontFamily: fonts.display,
-                      color: brand.goldDeep,
-                      fontSize: "1rem",
-                      lineHeight: 1.5,
+                      display: "grid",
+                      gridTemplateColumns: "34px 1fr",
+                      gap: 1.8,
+                      py: 2,
+                      borderBottom: `1px solid ${brand.line}`,
                     }}
                   >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
-                  <Box>
-                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.92rem" }}>
-                      {valor.title}
+                    <Typography
+                      sx={{
+                        fontFamily: fonts.display,
+                        color: brand.goldDeep,
+                        fontSize: "1rem",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
                     </Typography>
-                    <Typography sx={{ mt: 0.4, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62, textWrap: "pretty" }}>
-                      {valor.text}
-                    </Typography>
+                    <Box>
+                      <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.95rem" }}>
+                        {valor.title}
+                      </Typography>
+                      <Typography sx={{ mt: 0.4, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.65, textWrap: "pretty" }}>
+                        {valor.text}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              </Grid>
-            ))}
+                ))}
+              </Box>
+            </Grid>
           </Grid>
         </Container>
       </Box>

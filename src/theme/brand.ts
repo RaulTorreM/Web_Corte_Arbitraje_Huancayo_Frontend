@@ -1,37 +1,44 @@
 /**
  * Identidad de la Corte Superior de Arbitraje de Huancayo.
  *
- * El sistema parte del sello institucional, pero lo usa con moderación:
- * papel cálido, tinta azul profunda y dorado como acento. El dorado no
- * funciona como color de fondo ni como decoración; marca reglas, estados
- * y el detalle que guía la lectura.
+ * La paleta de relleno se deriva del sello institucional: el azul del anillo,
+ * el azul cielo del campo y el blanco del disco, con carga azul en los fondos.
+ * La tinta y las líneas conservan su tono original, y el dorado se mantiene
+ * como único acento cálido para reglas, kickers y estados.
  */
 export const brand = {
-  primary: "#17324F",
-  primaryDark: "#0F2438",
-  primaryDeep: "#0A1B2B",
-  primaryLight: "#43617F",
+  // Anillo del sello: azul medio y azules profundos del trazo.
+  primary: "#2D4B7A",
+  primaryDark: "#234171",
+  primaryDeep: "#092354",
+  primaryLight: "#5B7FB0",
 
-  sky: "#A9C1D6",
-  skySoft: "#E8EEF2",
-  skyMid: "#D3DFE8",
+  // Campo del sello: el azul cielo que domina el disco.
+  sky: "#9DC4EF",
+  skySoft: "#E3EFFC",
+  skyMid: "#C9DEF6",
 
+  // Acento cálido. No proviene del sello; se mantiene como contrapunto.
   gold: "#B08A2E",
   goldSoft: "#E7D8AE",
   goldDeep: "#725311",
   goldBright: "#C9A84C",
 
-  paper: "#E9DFCA",
-  paperAlt: "#DFD2B8",
-  paperDeep: "#D2C3A5",
+  // Fondos: blanco del sello con carga azul, del más cálido al más profundo.
+  paper: "#EFF4FB",
+  paperAlt: "#E1EBF7",
+  paperDeep: "#CFDFF2",
   white: "#FFFFFF",
-  whiteSoft: "#F7F2E7",
+  whiteSoft: "#F7FAFE",
 
+  // Tinta: conserva la tinta cálida original; el enfriamiento se reserva
+  // para los fondos.
   ink: "#17212C",
   muted: "#5D5646",
   line: "#CFC0A5",
   lineStrong: "#8A7957",
 
+  // Estado: reservado para avisos, no para la marca.
   accent: "#8D3B2D",
   accentSoft: "#F1E0DA",
 } as const;

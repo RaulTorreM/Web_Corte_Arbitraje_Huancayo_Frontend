@@ -20,11 +20,16 @@ export default function SectionSubnav({
       aria-label={ariaLabel}
       sx={{
         position: "sticky",
-        top: { xs: 68, md: 78 },
+        top: "var(--header-h)",
         zIndex: 1000,
-        backgroundColor: "rgba(233,223,202,0.97)",
+        backgroundColor: "rgba(239,244,251,0.97)",
         backdropFilter: "blur(8px)",
-        borderBottom: `1px solid ${brand.line}`,
+        /*
+         * Separador con sombra interna en lugar de `borderBottom`: así la
+         * barra mide exactamente `--subnav-h` y los offsets que la usan
+         * (columna pegajosa del procedimiento) no quedan 1 px corridos.
+         */
+        boxShadow: `inset 0 -1px 0 ${brand.line}`,
       }}
     >
       <Container>

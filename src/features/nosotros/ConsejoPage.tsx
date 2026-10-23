@@ -179,7 +179,7 @@ export default function ConsejoPage() {
             <Grid
               id="comisiones"
               size={{ xs: 12, md: 6 }}
-              sx={{ scrollMarginTop: { xs: 88, md: 102 } }}
+              sx={{ scrollMarginTop: "calc(var(--header-h) + 12px)" }}
             >
               <Typography
                 sx={{

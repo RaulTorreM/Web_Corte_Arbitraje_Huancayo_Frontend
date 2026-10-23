@@ -19,11 +19,14 @@ export const SITE = {
   contact: {
     // Datos de prueba: reemplazar por los canales oficiales de la Corte.
     address: "Av. Giráldez N° 634, Huancayo, Perú",
-    phone: "987 654 321",
-    phoneHref: "tel:+51987654321",
-    whatsapp: "51987654321",
-    email: "correo@gmail.com",
-    emailSecondary: "correo@gmail.com",
+    phone: "999 999 999",
+    phoneHref: "tel:+51999999999",
+    // Teléfono fijo oficial. Déjalo vacío mientras no se confirme: la barra
+    // de contacto del encabezado oculta el ítem automáticamente.
+    phoneFixed: "" as string,
+    whatsapp: "51999 999 999",
+    email: "arbitraje2@camarahuancayo.org.pe",
+    emailSecondary: "arbitraje2@camarahuancayo.org.pe",
     schedule: [
       "Lunes a viernes: 8:30 a. m. – 1:00 p. m.",
       "Lunes a viernes: 2:30 p. m. – 6:00 p. m.",
