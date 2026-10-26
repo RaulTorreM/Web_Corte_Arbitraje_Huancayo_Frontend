@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Container,
-  Grid,
   Stack,
   Table,
   TableBody,
@@ -18,9 +17,7 @@ import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
-import PreliminaryNotice from "../../components/common/PreliminaryNotice";
-import CtaBand from "../../components/common/CtaBand";
-import { brand, fonts } from "../../theme/brand";
+import { brand } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import {
   ARANCELES_JPRD_JUNTA,
@@ -29,27 +26,7 @@ import {
 } from "../../data/tarifas";
 import { MEDIA } from "../../data/media";
 
-const PRINCIPIOS = [
-  {
-    title: "Costo predecible",
-    text: "Tarifa fija por tramo del monto del contrato, conocida desde la constitución de la Junta.",
-  },
-  {
-    title: "Reparto equitativo",
-    text: "Las partes comparten los honorarios de la junta, salvo pacto distinto.",
-  },
-  {
-    title: "Pago por etapas",
-    text: "Constitución, prevención y decisión. Cada componente se devenga en un momento distinto.",
-  },
-  {
-    title: "Reembolso controlado",
-    text: "Si el procedimiento no se realiza, se devuelve el componente no devengado.",
-  },
-];
-
 const NOTAS = [
-  "Borrador. No constituye tarifa oficial hasta su aprobación por el Consejo Superior.",
   "Montos en soles y sin IGV.",
   "El monto del contrato determina el tramo aplicable.",
   "El adjudicador único y la junta de tres integrantes tienen estructuras distintas.",
@@ -131,46 +108,6 @@ export default function JprdArancelesPage() {
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
-
-      <PreliminaryNotice
-        title="Página Borrador"
-        text = "Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales."
-      />
-
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
-        <Container>
-          <SectionHeading
-            kicker="Principios de la propuesta"
-            title="Una tarifa predecible y compartida"
-            subtitle="La propuesta busca que las partes conozcan el costo antes de constituir la Junta y que el pago acompañe el avance del servicio."
-          />
-
-          <Grid container spacing={{ xs: 3, md: 4 }}>
-            {PRINCIPIOS.map((principio, index) => (
-              <Grid key={principio.title} size={{ xs: 12, sm: 6, md: 3 }}>
-                <Box sx={{ height: "100%", pt: 2, borderTop: `1px solid ${brand.lineStrong}` }}>
-                  <Typography
-                    sx={{
-                      fontFamily: fonts.display,
-                      color: brand.goldDeep,
-                      fontSize: "0.85rem",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
-                  <Typography sx={{ mt: 1.2, color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
-                    {principio.title}
-                  </Typography>
-                  <Typography sx={{ mt: 0.6, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
-                    {principio.text}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
         <Container>
@@ -261,14 +198,6 @@ export default function JprdArancelesPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="Página Borrador"
-        subtitle="Los aranceles son una propuesta. Si tu contrato ya contempla una junta, conversemos sobre cómo podría administrarse cuando el servicio esté disponible."
-        primaryLabel="Enviar observaciones"
-        primaryTo="/contacto"
-        secondaryLabel="Ver reglamento"
-        secondaryTo="/jprd/reglamento"
-      />
     </>
   );
 }

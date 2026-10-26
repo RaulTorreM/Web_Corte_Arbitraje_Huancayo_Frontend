@@ -3,7 +3,6 @@ import {
   Button,
   Container,
   Grid,
-  Link,
   Stack,
   Typography,
 } from "@mui/material";
@@ -18,7 +17,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
-import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
@@ -47,12 +45,6 @@ const CANALES = [
     icon: WhatsAppIcon,
     note: "Canal referencial para consultas breves. No reemplaza la presentación formal de documentos.",
   },
-];
-
-const ANTES = [
-  "Revisa los requisitos y documentos de la sección correspondiente.",
-  "Si tu consulta está vinculada a un caso, indica el número de expediente.",
-  "No envíes datos confidenciales ni información sensible por canales no oficiales.",
 ];
 
 export default function ContactoPage() {
@@ -188,21 +180,14 @@ export default function ContactoPage() {
                       mb: 1.2,
                     }}
                   >
-                    Sede institucional
+                    Horario de atención
                   </Typography>
 
                   <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.55rem" }}>
-                    Visítanos en Huancayo
+                    Secretaría General
                   </Typography>
 
                   <Stack spacing={1.5} sx={{ mt: 2.2 }}>
-                    <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start" }}>
-                      <PlaceOutlinedIcon sx={{ fontSize: 18, color: brand.goldDeep, mt: "2px" }} />
-                      <Typography sx={{ color: brand.muted, fontSize: "0.88rem", lineHeight: 1.6 }}>
-                        {SITE.contact.address}
-                      </Typography>
-                    </Stack>
-
                     <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start" }}>
                       <AccessTimeOutlinedIcon sx={{ fontSize: 18, color: brand.goldDeep, mt: "2px" }} />
                       <Box>
@@ -220,49 +205,6 @@ export default function ContactoPage() {
 
                 </Box>
 
-                <Box sx={{ borderTop: `1px solid ${brand.line}`, pt: 2.2 }}>
-                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
-                    Antes de escribirnos
-                  </Typography>
-
-                  <Stack spacing={1.2} sx={{ mt: 1.5 }}>
-                    {ANTES.map((item) => (
-                      <Stack key={item} direction="row" spacing={1.1} sx={{ alignItems: "flex-start" }}>
-                        <Box
-                          sx={{
-                            width: 4,
-                            height: 4,
-                            backgroundColor: brand.goldDeep,
-                            mt: "8px",
-                            flexShrink: 0,
-                          }}
-                        />
-                        <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
-                          {item}
-                        </Typography>
-                      </Stack>
-                    ))}
-                  </Stack>
-
-                  <Link
-                    component={RouterLink}
-                    to="/arbitraje/inicio"
-                    underline="none"
-                    sx={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 0.5,
-                      mt: 2,
-                      color: brand.primary,
-                      fontSize: "0.82rem",
-                      fontWeight: 700,
-                      "&:hover": { color: brand.goldDeep },
-                    }}
-                  >
-                    Guía de requisitos
-                    <ArrowForwardIcon sx={{ fontSize: 15 }} />
-                  </Link>
-                </Box>
               </Stack>
             </Grid>
           </Grid>
@@ -296,8 +238,7 @@ export default function ContactoPage() {
             </Box>
 
             <Typography sx={{ color: brand.muted, fontSize: "0.74rem", maxWidth: 360 }}>
-              Confirma la ubicación y el horario de atención antes de tu visita.
-              El enlace abre la referencia directamente en Google Maps.
+              Ubicación de la sede institucional.
             </Typography>
           </Stack>
 
@@ -335,10 +276,6 @@ export default function ContactoPage() {
                   {SITE.contact.address}
                 </Typography>
 
-                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65, maxWidth: 560 }}>
-                  La dirección corresponde a la sede institucional publicada por
-                  la Corte. Confirma el acceso y el horario antes de tu visita.
-                </Typography>
               </Box>
             </Stack>
 
@@ -356,14 +293,6 @@ export default function ContactoPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="¿Ya cuentas con una cláusula arbitral?"
-        subtitle="Revisa los requisitos, los plazos y el derecho de presentación antes de acudir a la Secretaría General."
-        primaryLabel="Cómo iniciar un arbitraje"
-        primaryTo="/arbitraje/inicio"
-        secondaryLabel="Revisar mi cláusula"
-        secondaryTo="/arbitraje/clausula"
-      />
     </>
   );
 }

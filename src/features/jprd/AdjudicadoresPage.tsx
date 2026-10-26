@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import PageMeta from "../../components/common/PageMeta";
@@ -6,7 +6,6 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import ProfessionalDirectory from "../../components/common/ProfessionalDirectory";
-import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { brand } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
@@ -33,11 +32,6 @@ export default function AdjudicadoresPage() {
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
-
-      <PreliminaryNotice
-        title="Página Borrador"
-        text = "Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales."
-      />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
@@ -70,29 +64,6 @@ export default function AdjudicadoresPage() {
               searchPlaceholder="Buscar por nombre o especialidad"
             />
           </Box>
-
-          <Stack
-            direction="row"
-            spacing={1.4}
-            sx={{
-              mt: 4,
-              py: 2.2,
-              alignItems: "flex-start",
-              // borderTop: `1px solid ${brand.line}`,
-              // borderBottom: `1px solid ${brand.line}`,
-            }}
-          >
-            {/* <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
-            <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
-              <Box component="strong" sx={{ color: brand.primaryDeep }}>
-                Registro de Adjudicadores:
-              </Box>{" "}
-              la inscripción tendrá vigencia de tres años y deberá renovarse. La
-              postulación o renovación nacional cuesta S/ 850 por año; la
-              internacional, US$ 425. La nómina de esta página es referencial y no
-              reemplaza el Registro oficial.
-            </Typography> */}
-          </Stack>
 
           <Grid container spacing={{ xs: 3, md: 5 }}>
             <Grid size={{ xs: 12, md: 6 }}>

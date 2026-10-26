@@ -7,50 +7,10 @@ import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import FramedImage from "../../components/common/FramedImage";
 import DocumentCard from "../../components/common/DocumentCard";
-import PreliminaryNotice from "../../components/common/PreliminaryNotice";
-import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import { documentosPorCategoria } from "../../data/documentos";
 import { MEDIA } from "../../data/media";
-
-const BENEFICIOS = [
-  {
-    title: "Decisiones oportunas",
-    text: "El adjudicador resuelve durante la ejecución, sin esperar el final del contrato.",
-  },
-  {
-    title: "Continuidad del proyecto",
-    text: "Se evita la paralización de la obra o del servicio mientras se resuelve la discrepancia.",
-  },
-  {
-    title: "Enfoque preventivo",
-    text: "La Junta puede emitir opiniones para prevenir conflictos antes de que escalen.",
-  },
-  {
-    title: "Ahorro de tiempo y costos",
-    text: "Un mecanismo ágil frente a un procedimiento arbitral o judicial prolongado.",
-  },
-];
-
-const PASOS_JPRD = [
-  {
-    title: "Incorpora la cláusula",
-    text: "Incluye en el contrato la cláusula modelo que somete las disputas a la JPRD de la Corte.",
-  },
-  {
-    title: "Designa al adjudicador",
-    text: "Las partes designan al adjudicador o tribunal de adjudicación conforme al reglamento.",
-  },
-  {
-    title: "Presenta la consulta",
-    text: "La parte interesada presenta la consulta o disputa con los antecedentes y su posición técnica.",
-  },
-  {
-    title: "Recibe la decisión",
-    text: "El adjudicador emite una decisión motivada y oportuna para mantener la continuidad contractual.",
-  },
-];
 
 export default function JprdPage() {
   const documentos = documentosPorCategoria("jprd").slice(0, 4);
@@ -68,15 +28,9 @@ export default function JprdPage() {
         subtitle="Servicio anunciado en el Estatuto para prevenir y resolver desacuerdos durante la ejecución contractual. Esta página es un borrador y aún no cuenta con reglamento ni aranceles aprobados."
         crumbs={[{ label: "JPRD" }]}
         image={MEDIA.jprd}
-      >
-        <Typography sx={{ color: brand.accent, fontSize: "0.78rem", fontWeight: 700, lineHeight: 1.6 }}>
-          Página Borrador
-        </Typography>
-      </PageHero>
+      />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
-
-      <PreliminaryNotice />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
@@ -151,45 +105,6 @@ export default function JprdPage() {
                 </Typography>
               </Box>
 
-              <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
-                El Estatuto menciona a los adjudicadores en el Registro, la
-                designación directa y residual, y el régimen de recusación y
-                remoción (artículos 21 y 22).
-              </Typography>
-
-              <Stack sx={{ mt: 3, borderTop: `1px solid ${brand.line}` }}>
-                {[
-                  "Figura prevista para contratos de obra, bienes y servicios.",
-                  "Decisiones durante la ejecución, no al final del contrato.",
-                  "Adjudicadores con experiencia técnica y legal.",
-                ].map((item, index) => (
-                  <Box
-                    key={item}
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "30px 1fr",
-                      gap: 1.2,
-                      py: 1.2,
-                      borderBottom: `1px solid ${brand.line}`,
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontFamily: fonts.display,
-                        color: brand.goldDeep,
-                        fontSize: "0.88rem",
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      0{index + 1}
-                    </Typography>
-                    <Typography sx={{ color: brand.ink, fontSize: "0.88rem", lineHeight: 1.55 }}>
-                      {item}
-                    </Typography>
-                  </Box>
-                ))}
-              </Stack>
-
               <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2} sx={{ mt: 3 }}>
                 <Button
                   component={RouterLink}
@@ -214,96 +129,6 @@ export default function JprdPage() {
                 ratio="4 / 5"
               />
             </Grid>
-          </Grid>
-        </Container>
-      </Box>
-
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
-        <Container>
-          <SectionHeading
-            kicker="Beneficios esperados"
-            title="Qué busca la propuesta de JPRD"
-            subtitle="Ventajas del mecanismo una vez aprobado e implementado. No describen un servicio actualmente disponible."
-          />
-
-          <Grid container spacing={{ xs: 0, md: 5 }}>
-            {BENEFICIOS.map((beneficio, index) => (
-              <Grid key={beneficio.title} size={{ xs: 12, md: 6 }}>
-                <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: "34px 1fr",
-                    gap: 1.6,
-                    py: 1.8,
-                    borderTop: `1px solid ${brand.line}`,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontFamily: fonts.display,
-                      color: brand.goldDeep,
-                      fontSize: "0.9rem",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
-                  <Box>
-                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
-                      {beneficio.title}
-                    </Typography>
-                    <Typography sx={{ mt: 0.35, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
-                      {beneficio.text}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
-        <Container>
-          <SectionHeading
-            kicker="Cómo funcionará"
-            title="Cuatro pasos previstos"
-            subtitle="Secuencia propuesta, sujeta a la aprobación del reglamento de la JPRD."
-          />
-
-          <Grid container spacing={{ xs: 0, md: 5 }}>
-            {PASOS_JPRD.map((paso, index) => (
-              <Grid key={paso.title} size={{ xs: 12, md: 6 }}>
-                <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: "34px 1fr",
-                    gap: 1.6,
-                    py: 1.8,
-                    borderTop: `1px solid ${brand.line}`,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontFamily: fonts.display,
-                      color: brand.goldDeep,
-                      fontSize: "0.9rem",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
-                  <Box>
-                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
-                      {paso.title}
-                    </Typography>
-                    <Typography sx={{ mt: 0.35, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
-                      {paso.text}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            ))}
           </Grid>
         </Container>
       </Box>
@@ -343,14 +168,6 @@ export default function JprdPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="¿Tu contrato necesita una JPRD?"
-        subtitle="Esta página es un borrador. Podemos orientarte sobre la propuesta y su eventual incorporación contractual."
-        primaryLabel="Consultar con la Corte"
-        primaryTo="/contacto"
-        secondaryLabel="Ver registro de adjudicadores"
-        secondaryTo="/jprd/adjudicadores"
-      />
     </>
   );
 }

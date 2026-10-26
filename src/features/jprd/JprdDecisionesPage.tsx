@@ -1,20 +1,12 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
-import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import { MEDIA } from "../../data/media";
-
-const PUBLICACION = [
-  "Decisiones anonimizadas, previa disociación de datos personales y comerciales.",
-  "Criterios de interpretación aplicados por el adjudicador.",
-  "Información suficiente para comprender el caso sin identificar a las partes.",
-  "Ningún registro de demostración que pueda confundirse con una decisión real.",
-];
 
 export default function JprdDecisionesPage() {
   return (
@@ -36,11 +28,6 @@ export default function JprdDecisionesPage() {
       />
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
-
-      <PreliminaryNotice
-        title="Página Borrador"
-        text = "Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales."
-      />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
@@ -82,22 +69,6 @@ export default function JprdDecisionesPage() {
             </Typography>
           </Box>
 
-          <Stack sx={{ mt: 4, borderTop: `1px solid ${brand.line}` }}>
-            {PUBLICACION.map((item) => (
-              <Typography
-                key={item}
-                sx={{
-                  py: 1.1,
-                  borderBottom: `1px solid ${brand.line}`,
-                  color: brand.muted,
-                  fontSize: "0.83rem",
-                  lineHeight: 1.62,
-                }}
-              >
-                {item}
-              </Typography>
-            ))}
-          </Stack>
         </Container>
       </Box>
 

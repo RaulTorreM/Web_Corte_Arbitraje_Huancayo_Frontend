@@ -15,7 +15,6 @@ import PageHero from "../../components/common/PageHero";
 import SearchInput from "../../components/common/SearchInput";
 import DocumentCard from "../../components/common/DocumentCard";
 import EmptyState from "../../components/common/EmptyState";
-import CtaBand from "../../components/common/CtaBand";
 import { brand } from "../../theme/brand";
 import {
   CATEGORIA_LABEL,
@@ -81,7 +80,7 @@ export default function DocumentosPage() {
       <PageHero
         kicker="Repositorio institucional"
         title="Documentos"
-        subtitle="Reglamentos, apéndices, formatos y documentos institucionales. Los documentos disponibles se publican como versiones de trabajo en DOCX; los PDFs firmados se incorporarán cuando la institución los entregue. Los documentos de la JPRD son preliminares."
+        subtitle="Consulta los reglamentos, formatos y documentos institucionales disponibles."
         crumbs={[{ label: "Documentos" }]}
         image={MEDIA.documentos}
       />
@@ -229,14 +228,6 @@ export default function DocumentosPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="¿Necesitas iniciar un procedimiento?"
-        subtitle="Revisa los requisitos, los plazos y el derecho de presentación antes de acudir a la Secretaría General."
-        primaryLabel="Cómo iniciar un arbitraje"
-        primaryTo="/arbitraje/inicio"
-        secondaryLabel="Ver reglamentos"
-        secondaryTo="/arbitraje/reglamentos"
-      />
     </>
   );
 }

@@ -4,31 +4,11 @@ import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import DocumentCard from "../../components/common/DocumentCard";
-import PreliminaryNotice from "../../components/common/PreliminaryNotice";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
 import { documentosPorCategoria } from "../../data/documentos";
 import { MEDIA } from "../../data/media";
-
-const PRINCIPIOS = [
-  {
-    title: "Independencia",
-    text: "El adjudicador actúa con autonomía frente a las partes y frente a cualquier interés externo.",
-  },
-  {
-    title: "Imparcialidad",
-    text: "Se garantiza igualdad de trato y la oportunidad de presentar la posición técnica de cada parte.",
-  },
-  {
-    title: "Confidencialidad",
-    text: "La información del procedimiento se mantiene reservada y se usa únicamente para la decisión.",
-  },
-  {
-    title: "Oportunidad",
-    text: "Las decisiones se emiten en plazos breves para no afectar la ejecución contractual.",
-  },
-];
 
 const ESTRUCTURA = [
   {
@@ -84,83 +64,19 @@ export default function JprdReglamentoPage() {
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
-      <PreliminaryNotice
-        title="Página Borrador"
-        text="Esta sección es un borrador de trabajo. Los documentos, montos y perfiles que aparecen aquí necesitan ser reemplazados por datos reales.">
-
-      </PreliminaryNotice>
-
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 6 }}>
-            <Grid size={{ xs: 12, md: 8 }}>
-              <SectionHeading
-                kicker="Documentos en borrador"
-                title="Estructura prevista del reglamento"
-                subtitle="El documento en elaboración desarrollará la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
-                sx={{ mb: 3 }}
-              />
-            </Grid>
-
-            <Grid size={{ xs: 12, md: 4 }}>
-              <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
-                <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.86rem" }}>
-                  Documento de trabajo
-                </Typography>
-                <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
-                  Los documentos de esta sección son borradores. No han sido
-                  aprobados por el Consejo Superior ni publicados como normativa
-                  vigente. Las observaciones pueden enviarse a la Secretaría.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+          <SectionHeading
+            kicker="Documentos en borrador"
+            title="Estructura prevista del reglamento"
+            subtitle="El documento en elaboración desarrollará la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
+            sx={{ mb: 3 }}
+          />
 
           <Grid container spacing={{ xs: 3, md: 4 }}>
             {documentos.map((documento) => (
               <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 3 }}>
                 <DocumentCard documento={documento} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
-        <Container>
-          <SectionHeading kicker="Principios" title="Criterios que se están considerando" />
-
-          <Grid container spacing={{ xs: 0, md: 5 }}>
-            {PRINCIPIOS.map((principio, index) => (
-              <Grid key={principio.title} size={{ xs: 12, md: 6 }}>
-                <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: "34px 1fr",
-                    gap: 1.6,
-                    py: 1.8,
-                    borderTop: `1px solid ${brand.line}`,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      fontFamily: fonts.display,
-                      color: brand.goldDeep,
-                      fontSize: "0.9rem",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
-                  <Box>
-                    <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
-                      {principio.title}
-                    </Typography>
-                    <Typography sx={{ mt: 0.35, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
-                      {principio.text}
-                    </Typography>
-                  </Box>
-                </Box>
               </Grid>
             ))}
           </Grid>

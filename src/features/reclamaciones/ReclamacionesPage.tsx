@@ -14,7 +14,6 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionHeading from "../../components/common/SectionHeading";
-import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
 import { MEDIA } from "../../data/media";
@@ -196,13 +195,11 @@ export default function ReclamacionesPage() {
                   <Stack direction="row" spacing={1.1} sx={{ alignItems: "center", mb: 1.2 }}>
                     <ScheduleOutlinedIcon sx={{ color: brand.goldDeep, fontSize: 18 }} />
                     <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
-                      Plazo y seguimiento
+                      Seguimiento
                     </Typography>
                   </Stack>
                   <Typography sx={{ color: brand.muted, fontSize: "0.83rem", lineHeight: 1.68 }}>
-                    La respuesta se comunica al correo indicado dentro del plazo legal
-                    de quince (15) días hábiles. Si necesitas identificar tu hoja,
-                    conserva el correo de confirmación.
+                    Conserva el correo de confirmación para consultar el estado de tu hoja.
                   </Typography>
                 </Box>
 
@@ -287,13 +284,6 @@ export default function ReclamacionesPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="¿Tu consulta no es un reclamo?"
-        subtitle="Para consultas sobre requisitos, expedientes o capacitaciones, usa el canal de contacto. Te orientaremos hacia el área correspondiente."
-        showPrimary={false}
-        secondaryLabel="Ir a Contacto"
-        secondaryTo="/contacto"
-      />
     </>
   );
 }

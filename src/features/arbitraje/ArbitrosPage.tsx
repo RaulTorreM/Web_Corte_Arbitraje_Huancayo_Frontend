@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import PageMeta from "../../components/common/PageMeta";
@@ -64,29 +64,6 @@ export default function ArbitrosPage() {
               searchPlaceholder="Buscar por nombre o especialidad"
             />
           </Box>
-
-          <Stack
-            direction="row"
-            spacing={1.4}
-            sx={{
-              mt: 4,
-              py: 2.2,
-              alignItems: "flex-start",
-              // borderTop: `1px solid ${brand.line}`,
-              // borderBottom: `1px solid ${brand.line}`,
-            }}
-          >
-            {/* <Box sx={{ width: 5, height: 5, backgroundColor: brand.goldDeep, mt: "8px", flexShrink: 0 }} />
-            <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.65 }}>
-              <Box component="strong" sx={{ color: brand.primaryDeep }}>
-                Registro de Árbitros:
-              </Box>{" "}
-              la inscripción tiene vigencia de tres años y debe renovarse. La
-              postulación o renovación nacional cuesta S/ 850 por año; la
-              internacional, US$ 425. La nómina de esta página es referencial y no
-              reemplaza el Registro oficial.
-            </Typography> */}
-          </Stack>
 
           <Grid container spacing={{ xs: 3, md: 5 }}>
             <Grid size={{ xs: 12, md: 6 }}>

@@ -22,7 +22,6 @@ import { motion } from "framer-motion";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionHeading from "../../components/common/SectionHeading";
-import CtaBand from "../../components/common/CtaBand";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
@@ -378,13 +377,6 @@ export default function DenunciasPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="¿Necesitas orientación sobre un procedimiento?"
-        subtitle="La Secretaría General atiende consultas sobre expedientes, requisitos y trámites. Para reportar conductas indebidas usa los canales de esta página."
-        showPrimary={false}
-        secondaryLabel="Ir a Contacto"
-        secondaryTo="/contacto"
-      />
     </>
   );
 }
