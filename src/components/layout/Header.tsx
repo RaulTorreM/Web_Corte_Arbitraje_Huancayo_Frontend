@@ -461,6 +461,7 @@ export default function Header() {
               minWidth: 0,
               mr: { xs: "auto", xl: 0 },
               textDecoration: "none",
+              paddingLeft: 5
             }}
           >
             <BrandMark light />
