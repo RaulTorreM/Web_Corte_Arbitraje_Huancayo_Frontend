@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
-import CtaBand from "../../components/common/CtaBand";
+// import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import PersonCard from "../../components/common/PersonCard";
 import { Stagger } from "../../components/common/Reveal";
@@ -123,14 +123,14 @@ export default function EquipoPage() {
         </Container>
       </Box> */}
 
-      <CtaBand
+      {/* <CtaBand
         title="Hablemos de tu controversia"
         subtitle="Nuestro equipo puede orientarte sobre la vía procesal, los plazos y los requisitos para presentar una solicitud."
         primaryLabel="Ir a contacto"
         primaryTo="/contacto"
         secondaryLabel="Conocer el Consejo"
         secondaryTo="/quienes-somos/consejo"
-      />
+      /> */}
     </>
   );
 }

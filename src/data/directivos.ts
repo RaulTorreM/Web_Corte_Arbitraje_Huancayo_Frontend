@@ -17,39 +17,44 @@ export type Persona = {
 export const CONSEJO: Persona[] = [
   {
     id: "c-01",
+    nombre: "José Luis García Terrazos",
+    cargo: "Consejero",
+    bio: "Economista",
+    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_01.webp"
+  },
+  {
+    id: "c-02",
+    nombre: "Fanny Galván Muñico",
+    cargo: "Consejera",
+    bio: "Ingeniero",
+    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_09.webp"
+   
+  },
+  {
+    id: "c-03",
+    nombre: "Gerardo Zenón Porras Doloirier",
+    cargo: "Consejero",
+    bio: "Abogado",
+    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_03.webp"
+   
+  },
+  {
+    id: "c-04",
     nombre: "Diego Fernando García Vizcarra",
     cargo: "Consejero",
     bio: "Abogado",
   },
   {
-    id: "c-02",
-    nombre: "Emerson Edson Francisco Lizárraga Peña",
+    id: "c-05",
+     nombre: "Emerson Edson Francisco Lizárraga Peña",
     cargo: "Consejero",
     bio: "Abogado",
-  },
-  {
-    id: "c-03",
-    nombre: "Alicia Eugenia Peña Olano",
-    cargo: "Consejera",
-    bio: "Abogada",
-  },
-  {
-    id: "c-04",
-    nombre: "José Luis García Terrazos",
-    cargo: "Consejero",
-    bio: "Economista",
-  },
-  {
-    id: "c-05",
-    nombre: "Fanny Galván Muñico",
-    cargo: "Consejera",
-    bio: "Ingeniero",
   },
   {
     id: "c-06",
-    nombre: "Gerardo Zenón Porras Doloirier",
-    cargo: "Consejero",
-    bio: "Abogado",
+     nombre: "Alicia Eugenia Peña Olano",
+    cargo: "Consejera",
+    bio: "Abogada",
   },
 ];
 
@@ -59,33 +64,45 @@ export const CONSEJO: Persona[] = [
 export const EQUIPO: Persona[] = [
   {
     id: "e-01",
-    nombre: "[Nombre]",
+    nombre: "Patricia Palomino Cortijo",
     cargo: "Secretario General",
     bio: "Conduce la operación diaria de los casos, las liquidaciones de gastos y las notificaciones.",
     destacado: true,
   },
   {
     id: "e-02",
-    nombre: "[Nombre]",
-    cargo: "Secretaria del Consejo",
+    nombre: "Luis Enrique Ramos Vivas",
+    cargo: "Encargado de Secretaría de Consejo",
     bio: "Coordina las sesiones del Consejo Superior, lleva las actas y verifica el cumplimiento de sus decisiones.",
   },
   {
     id: "e-03",
-    nombre: "[Nombre]",
-    cargo: "Secretario Arbitral Senior",
-    bio: "Acompaña los casos ordinarios y coordina la constitución de los tribunales arbitrales.",
+    nombre: "Klaus Castro Pimentel",
+    cargo: "Coordinación Administrativa",
+    bio: "Coordina la gestión administrativa y operativa de la Corte, velando por el adecuado desarrollo de los procedimientos arbitrales.",
   },
   {
     id: "e-04",
-    nombre: "[Nombre]",
-    cargo: "Secretaria Arbitral",
-    bio: "Gestiona los casos acelerados y sociales, y el flujo documentario de cada expediente.",
+    nombre: "Teresa Moale Espíritu",
+    cargo: "Asistencia de Secretaría",
+    bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
   },
   {
     id: "e-05",
-    nombre: "[Nombre]",
-    cargo: "Coordinadora administrativa",
-    bio: "Administra liquidaciones, pagos y la atención de requerimientos de las partes.",
+    nombre: "Alejandro Chuquimantari Mucha",
+    cargo: "Asistencia de Secretaría",
+    bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
+  },
+  {
+    id: "e-06",
+    nombre: "Omar Paolo Huaman Cordova",
+    cargo: "Asistencia de Secretaría",
+    bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
+  },
+  {
+    id: "e-07",
+    nombre: "Guisel",
+    cargo: "Asistencia de Secretaría",
+    bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
   },
 ];

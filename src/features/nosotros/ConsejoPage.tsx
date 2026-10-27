@@ -11,7 +11,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
-import CtaBand from "../../components/common/CtaBand";
+// import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import PersonCard from "../../components/common/PersonCard";
 import { Stagger } from "../../components/common/Reveal";
@@ -291,7 +291,7 @@ export default function ConsejoPage() {
           </Typography>
         </Container>
       </Box> */}
-
+{/* 
       <CtaBand
         title="Conoce al equipo que acompaña cada expediente"
         subtitle="La Secretaría General y el equipo administrativo garantizan el debido curso de los procedimientos."
@@ -299,7 +299,7 @@ export default function ConsejoPage() {
         primaryTo="/quienes-somos/equipo"
         secondaryLabel="Ver reglamentos"
         secondaryTo="/arbitraje/reglamentos"
-      />
+      /> */}
     </>
   );
 }
