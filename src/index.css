@@ -21,10 +21,16 @@
    *   --header-bar-h     barra principal + su borde inferior de 2px
    *   --subnav-h         barra de secciones pegajosa
    */
-  --header-topbar-h: 0px;
+  --header-topbar-h: 48px;
   --header-bar-h: 76px;
   --header-h: calc(var(--header-topbar-h) + var(--header-bar-h));
   --subnav-h: 52px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --header-topbar-h: 40px;
+  }
 }
 
 /*

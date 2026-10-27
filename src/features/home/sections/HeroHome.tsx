@@ -106,7 +106,22 @@ export default function HeroHome() {
               textShadow: "0 2px 24px rgba(0,0,0,0.25)",
             }}
           >
-            Un marco de confianza para la resolución de controversias
+            Garantizamos la resolución eficiente de sus conflictos
+          </Typography>
+
+          <Typography
+            sx={{
+              mt: { xs: 2, md: 2.5 },
+              maxWidth: 720,
+              color: "rgba(255,255,255,0.84)",
+              fontSize: { xs: "0.98rem", md: "1.1rem" },
+              lineHeight: 1.7,
+              textAlign: "center",
+              textWrap: "pretty",
+            }}
+          >
+            Uniendo la celeridad que su empresa necesita con la imparcialidad
+            que la justicia exige.
           </Typography>
 
           {/* <Typography

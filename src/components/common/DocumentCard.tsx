@@ -3,6 +3,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import GavelOutlinedIcon from "@mui/icons-material/GavelOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import { motion } from "framer-motion";
@@ -23,12 +24,20 @@ const formatFecha = (iso: string) =>
     year: "numeric",
   });
 
+type DocumentCardProps = {
+  documento: Documento;
+  onOpen?: (documento: Documento) => void;
+};
+
 export default function DocumentCard({
   documento,
-}: {
-  documento: Documento;
-}) {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  onOpen,
+}: DocumentCardProps) {
+  const isReadable = Boolean(onOpen && documento.url !== "#");
+
+  const handleDownloadClick = (
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => {
     if (documento.url === "#") {
       event.preventDefault();
     }
@@ -51,6 +60,27 @@ export default function DocumentCard({
         },
       }}
     >
+      {documento.portada && (
+        <Box
+          component="img"
+          src={documento.portada}
+          alt={`Portada de ${documento.titulo}`}
+          loading="lazy"
+          decoding="async"
+          sx={{
+            display: "block",
+            width: "100%",
+            maxWidth: 250,
+            aspectRatio: "5 / 7",
+            objectFit: "cover",
+            mx: "auto",
+            mb: 2.4,
+            border: `1px solid ${brand.line}`,
+            backgroundColor: brand.white,
+          }}
+        />
+      )}
+
       <Stack direction="row" spacing={1.2} sx={{ alignItems: "center" }}>
         <Box sx={{ color: brand.goldDeep, display: "flex" }}>
           {iconByCategoria[documento.categoria]}
@@ -58,7 +88,7 @@ export default function DocumentCard({
         <Typography
           sx={{
             color: brand.muted,
-            fontSize: "0.64rem",
+            fontSize: "0.7rem",
             fontWeight: 700,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -69,6 +99,7 @@ export default function DocumentCard({
       </Stack>
 
       <Typography
+        component="h3"
         variant="h4"
         sx={{
           mt: 1.4,
@@ -93,13 +124,16 @@ export default function DocumentCard({
         {documento.descripcion}
       </Typography>
 
-      <Stack
-        direction="row"
-        sx={{ alignItems: "center", justifyContent: "space-between", gap: 1.5 }}
-      >
-        <Stack direction="row" spacing={1.4} sx={{ alignItems: "center", flexWrap: "wrap" }}>
+      <Stack spacing={1.2} sx={{ alignItems: "flex-start" }}>
+        <Stack
+          direction="row"
+          spacing={1.4}
+          sx={{ alignItems: "center", flexWrap: "wrap" }}
+        >
           <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
-            <CalendarMonthOutlinedIcon sx={{ fontSize: 14, color: brand.muted }} />
+            <CalendarMonthOutlinedIcon
+              sx={{ fontSize: 14, color: brand.muted }}
+            />
             <Typography sx={{ fontSize: "0.72rem", color: brand.muted }}>
               {formatFecha(documento.fecha)}
             </Typography>
@@ -112,8 +146,11 @@ export default function DocumentCard({
           {documento.estado && (
             <Typography
               sx={{
-                fontSize: "0.68rem",
-                color: documento.estado === "Vigente" ? brand.primary : brand.accent,
+                fontSize: "0.72rem",
+                color:
+                  documento.estado === "Vigente"
+                    ? brand.primary
+                    : brand.accent,
                 fontWeight: 700,
                 letterSpacing: "0.03em",
               }}
@@ -123,39 +160,64 @@ export default function DocumentCard({
           )}
         </Stack>
 
-        <Button
-          component="a"
-          href={documento.url}
-          download={documento.url !== "#" ? documento.titulo : undefined}
-          onClick={handleClick}
-          size="small"
-          variant="text"
-          endIcon={
-            documento.url !== "#" ? (
-              <DownloadOutlinedIcon sx={{ fontSize: 15 }} />
-            ) : undefined
-          }
-          aria-label={
-            documento.url === "#"
-              ? `${documento.titulo}: descarga próxima`
-              : `Descargar ${documento.titulo}`
-          }
-          sx={{
-            minWidth: 0,
-            px: 0,
-            py: 0.3,
-            color: documento.url === "#" ? brand.muted : brand.primary,
-            fontSize: "0.75rem",
-            fontWeight: 700,
-            whiteSpace: "nowrap",
-            "&:hover": {
-              backgroundColor: "transparent",
-              color: brand.goldDeep,
-            },
-          }}
-        >
-          {documento.url === "#" ? "Próximamente" : "Descargar"}
-        </Button>
+        {isReadable ? (
+          <Button
+            onClick={() => onOpen?.(documento)}
+            size="small"
+            variant="text"
+            endIcon={<MenuBookOutlinedIcon sx={{ fontSize: 15 }} />}
+            aria-label={`Leer ${documento.titulo}`}
+            sx={{
+              minWidth: 0,
+              px: 0,
+              py: 0.3,
+              color: brand.primary,
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              whiteSpace: "nowrap",
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: brand.goldDeep,
+              },
+            }}
+          >
+            Leer documento
+          </Button>
+        ) : (
+          <Button
+            component="a"
+            href={documento.url}
+            download={documento.url !== "#" ? documento.titulo : undefined}
+            onClick={handleDownloadClick}
+            size="small"
+            variant="text"
+            endIcon={
+              documento.url !== "#" ? (
+                <DownloadOutlinedIcon sx={{ fontSize: 15 }} />
+              ) : undefined
+            }
+            aria-label={
+              documento.url === "#"
+                ? `${documento.titulo}: descarga próxima`
+                : `Descargar ${documento.titulo}`
+            }
+            sx={{
+              minWidth: 0,
+              px: 0,
+              py: 0.3,
+              color: documento.url === "#" ? brand.muted : brand.primary,
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              whiteSpace: "nowrap",
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: brand.goldDeep,
+              },
+            }}
+          >
+            {documento.url === "#" ? "Próximamente" : "Descargar"}
+          </Button>
+        )}
       </Stack>
     </Box>
   );

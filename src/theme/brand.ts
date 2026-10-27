@@ -23,6 +23,8 @@ export const brand = {
   goldSoft: "#E7D8AE",
   goldDeep: "#c0af1c",
   goldBright: "#C9A84C",
+  // Dorado para texto sobre fondos claros: goldDeep no alcanza AA.
+  goldInk: "#725311",
 
   // Fondos: blanco del sello con carga azul, del más cálido al más profundo.
   paper: "#EFF4FB",

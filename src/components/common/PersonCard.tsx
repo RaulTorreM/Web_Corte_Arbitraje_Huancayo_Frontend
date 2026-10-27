@@ -41,7 +41,7 @@ export default function PersonCard({
       <Box
         sx={{
           width: "100%",
-          aspectRatio: "4 / 5",
+          aspectRatio: persona.foto ? "4 / 5" : "1 / 1",
           overflow: "hidden",
           backgroundColor: brand.primaryDeep,
         }}
@@ -95,7 +95,7 @@ export default function PersonCard({
               sx={{
                 px: 1.5,
                 color: brand.muted,
-                fontSize: "0.54rem",
+                fontSize: "0.7rem",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 lineHeight: 1.4,
@@ -103,7 +103,7 @@ export default function PersonCard({
                 textTransform: "uppercase",
               }}
             >
-              Fotografía no disponible
+              Imagen pendiente
             </Typography>
           </Box>
         )}
@@ -111,6 +111,7 @@ export default function PersonCard({
 
       <Box>
         <Typography
+          component="h3"
           variant="h4"
           sx={{
             fontSize: featured ? "1.18rem" : "1.06rem",
@@ -124,8 +125,8 @@ export default function PersonCard({
         <Typography
           sx={{
             mt: 0.6,
-            color: brand.goldDeep,
-            fontSize: "0.64rem",
+            color: brand.goldInk,
+            fontSize: "0.7rem",
             fontWeight: 700,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
@@ -135,15 +136,17 @@ export default function PersonCard({
         </Typography>
       </Box>
 
-      <Typography
-        sx={{
-          color: brand.muted,
-          fontSize: "0.84rem",
-          lineHeight: 1.62,
-        }}
-      >
-        {persona.bio}
-      </Typography>
+      {persona.bio && (
+        <Typography
+          sx={{
+            color: brand.muted,
+            fontSize: "0.84rem",
+            lineHeight: 1.62,
+          }}
+        >
+          {persona.bio}
+        </Typography>
+      )}
     </Stack>
   );
 }

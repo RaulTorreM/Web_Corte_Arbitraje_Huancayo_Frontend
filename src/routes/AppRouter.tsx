@@ -7,6 +7,9 @@ const HomePage = lazy(() => import("../features/home/HomePage"));
 const QuienesSomosPage = lazy(
   () => import("../features/nosotros/QuienesSomosPage")
 );
+const ConsejoDirectivoPage = lazy(
+  () => import("../features/nosotros/ConsejoDirectivoPage")
+);
 const ConsejoPage = lazy(() => import("../features/nosotros/ConsejoPage"));
 const EquipoPage = lazy(() => import("../features/nosotros/EquipoPage"));
 const CertificacionesPage = lazy(
@@ -87,6 +90,7 @@ export default function AppRouter() {
 
           <Route path="quienes-somos">
             <Route index element={<QuienesSomosPage />} />
+            <Route path="consejo-directivo" element={<ConsejoDirectivoPage />} />
             <Route path="consejo" element={<ConsejoPage />} />
             <Route path="equipo" element={<EquipoPage />} />
             <Route path="certificaciones" element={<CertificacionesPage />} />

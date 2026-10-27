@@ -28,7 +28,7 @@ export default function SectionHeading({
   const titleColor = light ? brand.white : brand.primaryDeep;
   const subtitleColor = light ? "rgba(255,255,255,0.72)" : brand.muted;
   const ruleColor = light ? "rgba(255,255,255,0.24)" : brand.lineStrong;
-  const kickerColor = light ? "rgba(255,255,255,0.62)" : brand.goldDeep;
+  const kickerColor = light ? "rgba(255,255,255,0.62)" : brand.goldInk;
 
   if (centered) {
     return (
@@ -54,7 +54,7 @@ export default function SectionHeading({
           sx={{
             mb: 1.2,
             color: kickerColor,
-            fontSize: "0.64rem",
+            fontSize: "0.7rem",
             fontWeight: 700,
             letterSpacing: "0.13em",
             textTransform: "uppercase",
@@ -113,7 +113,7 @@ export default function SectionHeading({
             sx={{
               mb: 1.2,
               color: kickerColor,
-              fontSize: "0.64rem",
+              fontSize: "0.7rem",
               fontWeight: 700,
               letterSpacing: "0.13em",
               textTransform: "uppercase",

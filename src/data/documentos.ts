@@ -15,6 +15,7 @@ export type Documento = {
   fecha: string;
   peso: string;
   url: string;
+  portada?: string;
 };
 
 export const CATEGORIA_LABEL: Record<DocumentoCategoria, string> = {
@@ -40,8 +41,9 @@ export const DOCUMENTOS: Documento[] = [
     version: "1.0",
     estado: "En revisión",
     fecha: "2026-09-21",
-    peso: "DOCX",
-    url: "/documentos/estatuto-corte-superior-arbitraje.docx",
+    peso: "PDF",
+    url: "/documentos/estatuto-corte-superior-arbitraje.pdf",
+    portada: "/documentos/portadas/estatuto.webp",
   },
   {
     id: "d-02",
@@ -53,8 +55,9 @@ export const DOCUMENTOS: Documento[] = [
     version: "V1",
     estado: "En revisión",
     fecha: "2026-09-21",
-    peso: "DOCX",
-    url: "/documentos/reglamento-arbitraje-v1.docx",
+    peso: "PDF",
+    url: "/documentos/reglamento-arbitraje-v1.pdf",
+    portada: "/documentos/portadas/reglamento-arbitraje.webp",
   },
   {
     id: "d-03",
@@ -66,8 +69,9 @@ export const DOCUMENTOS: Documento[] = [
     version: "V2",
     estado: "En revisión",
     fecha: "2026-09-23",
-    peso: "DOCX",
-    url: "/documentos/codigo-etica-v2.docx",
+    peso: "PDF",
+    url: "/documentos/codigo-etica-v2.pdf",
+    portada: "/documentos/portadas/codigo-etica.webp",
   },
   {
     id: "d-15",
@@ -230,3 +234,15 @@ export const DOCUMENTOS: Documento[] = [
 export const documentosPorCategoria = (
   categoria: DocumentoCategoria
 ): Documento[] => DOCUMENTOS.filter((d) => d.categoria === categoria);
+
+/**
+ * Los tres documentos que se publican en /documentos, en el orden pedido por
+ * la institución: Reglamento, Estatuto y Código de Ética.
+ */
+export const DOCUMENTOS_INSTITUCIONALES: Documento[] = [
+  "d-02",
+  "d-01",
+  "d-03",
+]
+  .map((id) => DOCUMENTOS.find((doc) => doc.id === id))
+  .filter((doc): doc is Documento => Boolean(doc));

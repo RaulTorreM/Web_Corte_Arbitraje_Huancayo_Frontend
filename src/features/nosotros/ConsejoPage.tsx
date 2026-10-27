@@ -95,7 +95,7 @@ export default function ConsejoPage() {
           <SectionHeading
             kicker="Integrantes"
             title="Experiencia y compromiso al servicio de la institución"
-            subtitle="Un presidente, un vicepresidente y hasta cinco consejeros, con sus respectivos suplentes, nombrados por el Consejo Directivo de la Cámara por períodos de tres años. Las sesiones requieren quórum de cuatro consejeros y se realizan como mínimo una vez por trimestre."
+            subtitle=""
           />
 
           <Stagger>
@@ -116,8 +116,8 @@ export default function ConsejoPage() {
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -160,7 +160,7 @@ export default function ConsejoPage() {
                         <Typography
                           sx={{
                             fontFamily: fonts.display,
-                            color: brand.goldDeep,
+                            color: brand.goldInk,
                             fontSize: "0.82rem",
                           }}
                         >
@@ -183,8 +183,8 @@ export default function ConsejoPage() {
             >
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -237,7 +237,7 @@ export default function ConsejoPage() {
 
           <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 6 }}>
-              <Typography sx={{ color: brand.goldDeep, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              <Typography sx={{ color: brand.goldInk, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                 Elección y período
               </Typography>
 
@@ -260,7 +260,7 @@ export default function ConsejoPage() {
             </Grid>
 
             <Grid size={{ xs: 12, md: 6 }}>
-              <Typography sx={{ color: brand.goldDeep, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              <Typography sx={{ color: brand.goldInk, fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                 Requisitos
               </Typography>
 

@@ -14,6 +14,11 @@ import { MEDIA } from "../../data/media";
 
 const ESTRUCTURA = [
   {
+    title: "Consejo Directivo",
+    text: "Órgano de gobierno de la Cámara de Comercio de Huancayo, encargado de conducir su gestión institucional y representar a los agremiados.",
+    to: "/quienes-somos/consejo-directivo",
+  },
+  {
     title: "Consejo Superior de Arbitraje",
     text: "Máximo órgano de gobierno administrativo, no jurisdiccional. Hasta siete consejeros con sus suplentes, por períodos de tres años.",
     to: "/quienes-somos/consejo",
@@ -90,10 +95,10 @@ export default function QuienesSomosPage() {
                   sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
                 >
                   Su actuación se rige por el Estatuto y por los principios de
-                  independencia, neutralidad, transparencia, confidencialidad y
-                  celeridad, con respeto al debido proceso. Procura brindar a las
-                  partes un espacio técnico y confiable para la solución de sus
-                  controversias.
+                  imparcialidad, independencia, transparencia, confidencialidad,
+                  diligencia y probidad, con respeto al debido proceso. Procura
+                  brindar a las partes un espacio técnico y confiable para la
+                  solución de sus controversias.
                 </Typography>
 
                 <Typography
@@ -125,7 +130,7 @@ export default function QuienesSomosPage() {
                       <Typography
                         sx={{
                           fontFamily: fonts.display,
-                          color: brand.goldDeep,
+                          color: brand.goldInk,
                           fontSize: "0.9rem",
                           lineHeight: 1.5,
                         }}
@@ -160,8 +165,8 @@ export default function QuienesSomosPage() {
             <Grid size={{ xs: 12, md: 5 }}>
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -206,8 +211,8 @@ export default function QuienesSomosPage() {
             <Grid size={{ xs: 12, md: 7 }}>
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -246,7 +251,7 @@ export default function QuienesSomosPage() {
                     <Typography
                       sx={{
                         fontFamily: fonts.display,
-                        color: brand.goldDeep,
+                        color: brand.goldInk,
                         fontSize: "1rem",
                         lineHeight: 1.5,
                       }}
@@ -295,7 +300,7 @@ export default function QuienesSomosPage() {
                   py: 2.4,
                   borderBottom: `1px solid ${brand.line}`,
                   textDecoration: "none",
-                  "&:hover .estructura-title": { color: brand.goldDeep },
+                  "&:hover .estructura-title": { color: brand.goldInk },
                   "&:hover .estructura-arrow": { color: brand.primary, transform: "translateX(3px)" },
                 }}
               >

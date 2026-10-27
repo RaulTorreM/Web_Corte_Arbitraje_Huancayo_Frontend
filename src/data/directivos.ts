@@ -8,56 +8,48 @@ export type Persona = {
 };
 
 /**
- * Perfiles del Consejo Superior de Arbitraje.
+ * Composición del Consejo Superior de Arbitraje.
  *
- * FALTAN DATOS REALES: el nombre de cada persona se muestra como
- * "[Nombre]" hasta que la Cámara publique la composición
- * oficial. Reemplazar ese texto por los consejeros designados.
- * El Estatuto permite hasta siete titulares.
+ * Los seis miembros titulares fueron proporcionados por la institución. Las
+ * fotografías quedan pendientes; PersonCard muestra las iniciales mientras
+ * tanto. El DNI no se publica en el sitio.
  */
-
-// const fototest = "../src/assets/brand/logo-corte.png"
-
-// FALTAN DATOS REALES: el campo `nombre` usa un texto de ejemplo para
-// identificar que la composición oficial aún no se ha publicado.
 export const CONSEJO: Persona[] = [
   {
     id: "c-01",
-    nombre: "[Nombre]",
-    cargo: "Presidenta del Consejo Superior",
-    bio: "Abogada con maestría en Derecho Administrativo y 18 años de experiencia en arbitraje y contratación pública.",
-    destacado: true,
-    // foto: fototest
+    nombre: "Diego Fernando García Vizcarra",
+    cargo: "Consejero",
+    bio: "Abogado",
   },
   {
     id: "c-02",
-    nombre: "[Nombre]",
-    cargo: "Vicepresidente",
-    bio: "Ingeniero civil especialista en contratos FIDIC, JPRD y dispute boards, con 15 años de experiencia.",
+    nombre: "Emerson Edson Francisco Lizárraga Peña",
+    cargo: "Consejero",
+    bio: "Abogado",
   },
   {
     id: "c-03",
-    nombre: "[Nombre]",
+    nombre: "Alicia Eugenia Peña Olano",
     cargo: "Consejera",
-    bio: "Árbitra registrada en materia comercial y societaria, con 12 años de experiencia.",
+    bio: "Abogada",
   },
   {
     id: "c-04",
-    nombre: "[Nombre]",
+    nombre: "José Luis García Terrazos",
     cargo: "Consejero",
-    bio: "Ingeniero civil y perito en valorizaciones y ampliaciones de plazo, con 20 años de experiencia.",
+    bio: "Economista",
   },
   {
     id: "c-05",
-    nombre: "[Nombre]",
+    nombre: "Fanny Galván Muñico",
     cargo: "Consejera",
-    bio: "Abogada especializada en derecho laboral y seguridad social; árbitra única en arbitraje social.",
+    bio: "Ingeniero",
   },
   {
     id: "c-06",
-    nombre: "[Nombre]",
+    nombre: "Gerardo Zenón Porras Doloirier",
     cargo: "Consejero",
-    bio: "Abogado especialista en contrataciones del Estado y arbitraje de emergencia.",
+    bio: "Abogado",
   },
 ];
 

@@ -67,24 +67,28 @@ export const STATS = [
 
 export const VALORES = [
   {
+    title: "Imparcialidad",
+    text: "Actuación libre de favoritismos o prejuicios frente a las partes involucradas.",
+  },
+  {
     title: "Independencia",
-    text: "La Corte actúa con autonomía frente a las partes y frente a cualquier poder público o privado.",
+    text: "Criterio autónomo y libre de presiones externas en todas las decisiones y actuaciones.",
   },
   {
     title: "Transparencia",
-    text: "Publicamos reglamentos, tarifas, plazos y criterios de designación de árbitros.",
-  },
-  {
-    title: "Neutralidad y predictibilidad",
-    text: "Las decisiones administrativas se adoptan con criterios uniformes, públicos y verificables.",
+    text: "Claridad y accesibilidad en las reglas, procedimientos y costos del servicio.",
   },
   {
     title: "Confidencialidad",
-    text: "Las actuaciones y el laudo son reservados, salvo las excepciones legales para ejecutar o impugnar el laudo.",
+    text: "Reserva absoluta sobre la información y los documentos debatidos durante el proceso.",
   },
   {
-    title: "Celeridad",
-    text: "Plazos escritos y seguimiento permanente de la Secretaría, como estándar de gestión y no como promesa.",
+    title: "Diligencia",
+    text: "Eficiencia y celeridad en la tramitación de los expedientes y cumplimiento de plazos.",
+  },
+  {
+    title: "Probidad y Ética",
+    text: "Conducta íntegra y honesta exigida tanto a los órganos del centro como a los árbitros y las partes.",
   },
 ] as const;
 

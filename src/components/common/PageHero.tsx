@@ -47,8 +47,8 @@ export default function PageHero({
           <Breadcrumbs items={crumbs} light={false} />
           <Typography
             sx={{
-              color: brand.goldDeep,
-              fontSize: "0.66rem",
+              color: brand.goldInk,
+              fontSize: "0.7rem",
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",

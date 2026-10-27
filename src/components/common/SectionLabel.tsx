@@ -20,7 +20,7 @@ export default function SectionLabel({
       component={motion.p}
       variants={fadeUpFast}
       sx={{
-        color: light ? brand.goldSoft : brand.goldDeep,
+        color: light ? brand.goldSoft : brand.goldInk,
         fontWeight: 750,
         fontSize: "0.74rem",
         letterSpacing: "0.17em",

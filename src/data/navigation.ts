@@ -5,6 +5,7 @@ export type NavChild = {
 
 export type NavItem = {
   label: string;
+  shortLabel?: string;
   to: string;
   children?: NavChild[];
   highlight?: boolean;
@@ -19,11 +20,17 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Quiénes somos",
     to: "/quienes-somos",
     children: [
-      { label: "Presentación", to: "/quienes-somos" },
+      { label: "Quiénes somos", to: "/quienes-somos" },
+      { label: "Consejo Directivo", to: "/quienes-somos/consejo-directivo" },
       { label: "Consejo Superior", to: "/quienes-somos/consejo" },
       { label: "Equipo de trabajo", to: "/quienes-somos/equipo" },
       { label: "Certificaciones", to: "/quienes-somos/certificaciones" },
     ],
+  },
+  {
+    label: "Documentos institucionales",
+    shortLabel: "Documentos",
+    to: "/documentos",
   },
   {
     label: "Arbitraje",
@@ -38,21 +45,21 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Banco de laudos", to: "/arbitraje/laudos" },
     ],
   },
-  
   {
     label: "JPRD",
     to: "/jprd",
     children: [
       { label: "Presentación (borrador)", to: "/jprd" },
-      { label: "Reglamento (borrador)", to: "/jprd/reglamento" },
-      { label: "Registro de adjudicadores", to: "/jprd/adjudicadores" },
-      { label: "Aranceles (borrador)", to: "/jprd/aranceles" },
-      { label: "Cláusula modelo (borrador)", to: "/jprd/clausula" },
-      { label: "Decisiones (borrador)", to: "/jprd/decisiones" },
+      { label: "Reglamento y directivas (borrador)", to: "/jprd/reglamento" },
+      { label: "Nómina de adjudicadores", to: "/jprd/adjudicadores" },
+      { label: "Tabla de aranceles JRD y JPRD (borrador)", to: "/jprd/aranceles" },
+      { label: "Cláusula (borrador)", to: "/jprd/clausula" },
+      { label: "Banco de decisiones (borrador)", to: "/jprd/decisiones" },
     ],
   },
   {
-    label: "Conciliación",
+    label: "Centro de conciliación",
+    shortLabel: "Conciliación",
     to: "/conciliacion",
     children: [
       { label: "Presentación", to: "/conciliacion" },
@@ -62,16 +69,13 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Documentos",
-    to: "/documentos",
-  },
-  {
-    label: "Capacitaciones",
+    label: "Capacitaciones y eventos",
+    shortLabel: "Capacitaciones",
     to: "/capacitaciones",
     highlight: true,
   },
   {
-    label: "Contacto",
+    label: "Contáctanos",
     to: "/contacto",
   },
 ];

@@ -18,7 +18,7 @@ export default function Breadcrumbs({
   light = true,
 }: BreadcrumbsProps) {
   const baseColor = light ? "rgba(255,255,255,0.62)" : brand.muted;
-  const hoverColor = light ? brand.goldSoft : brand.goldDeep;
+  const hoverColor = light ? brand.goldSoft : brand.goldInk;
   const currentColor = light ? brand.goldSoft : brand.primary;
 
   return (
@@ -36,7 +36,7 @@ export default function Breadcrumbs({
         component={RouterLink}
         to="/"
         sx={{
-          fontSize: "0.66rem",
+          fontSize: "0.7rem",
           fontWeight: 700,
           letterSpacing: "0.1em",
           textTransform: "uppercase",
@@ -69,7 +69,7 @@ export default function Breadcrumbs({
                 component={RouterLink}
                 to={item.to}
                 sx={{
-                  fontSize: "0.66rem",
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
@@ -83,7 +83,7 @@ export default function Breadcrumbs({
             ) : (
               <Typography
                 sx={{
-                  fontSize: "0.66rem",
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",

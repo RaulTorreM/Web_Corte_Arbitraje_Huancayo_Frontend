@@ -14,6 +14,7 @@ import {
   Stack,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -43,6 +44,7 @@ type ContactItem = {
   icon: ReactNode;
   label: string;
   href?: string;
+  hideOnMobile?: boolean;
 };
 
 const CONTACT_ITEMS: ContactItem[] = [
@@ -68,6 +70,7 @@ const CONTACT_ITEMS: ContactItem[] = [
   {
     icon: <PlaceOutlinedIcon />,
     label: SITE.contact.address,
+    hideOnMobile: true,
   },
 ];
 
@@ -99,11 +102,13 @@ const contactItemSx = {
 
 function DesktopNavItem({
   item,
+  label,
   open,
   onOpen,
   onClose,
 }: {
   item: NavItem;
+  label: string;
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
@@ -133,7 +138,7 @@ function DesktopNavItem({
           flexShrink: 1,
           color: active ? brand.white : "rgba(242,242,247,0.88)",
           textDecoration: "none",
-          fontSize: { lg: "0.86rem", xl: "0.86rem" },
+          fontSize: { lg: "0.8rem", xl: "0.84rem" },
           fontWeight: 700,
           lineHeight: 1.35,
           letterSpacing: "0.005em",
@@ -160,7 +165,7 @@ function DesktopNavItem({
           },
         }}
       >
-        {item.label}
+        {label}
       </Box>
     );
   }
@@ -230,7 +235,7 @@ function DesktopNavItem({
           color: active || open
             ? brand.white
             : "rgba(242,242,247,0.88)",
-          fontSize: "0.86rem",
+          fontSize: { lg: "0.8rem", xl: "0.84rem" },
           fontWeight: 700,
           lineHeight: 1.35,
           letterSpacing: "0.005em",
@@ -247,7 +252,7 @@ function DesktopNavItem({
           },
         }}
       >
-        {item.label}
+        {label}
         <ExpandMoreIcon />
       </Stack>
 
@@ -333,6 +338,7 @@ export default function Header() {
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
 
   const { pathname } = useLocation();
+  const wideNav = useMediaQuery("(min-width:1400px)");
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -375,7 +381,7 @@ export default function Header() {
 
       <Box
         sx={{
-          display: { xs: "none", md: "flex" },
+          display: "flex",
           backgroundColor: brand.primaryDark,
           boxShadow: "inset 0 -1px 0 rgba(255,255,255,0.14)",
         }}
@@ -383,24 +389,22 @@ export default function Header() {
         <Box
           sx={{
             width: "100%",
-            px: { md: 3, lg: 4, xl: 5 },
+            px: { xs: 1.5, sm: 2, md: 3, lg: 4, xl: 5 },
           }}
         >
           <Stack
-            direction="row"
-
-
+            direction={{ xs: "column", sm: "row" }}
             sx={{
               width: "100%",
               minHeight: "var(--header-topbar-h)",
               flexWrap: "nowrap",
-              gap: { md: 1.5, lg: 2, xl: 3 },
+              rowGap: 0.2,
+              columnGap: { sm: 2, md: 1.5, lg: 2, xl: 3 },
+              py: { xs: 0.55, sm: 0.35 },
               overflow: "hidden",
-              whiteSpace: "nowrap",
               alignItems: "center",
               justifyContent: "center",
             }}
-
           >
             {CONTACT_ITEMS.map((item) => {
               const content = (
@@ -415,17 +419,26 @@ export default function Header() {
                 </>
               );
 
+              const itemSx = {
+                ...contactItemSx,
+                fontSize: { xs: "0.72rem", sm: "0.78rem", md: "0.84rem" },
+                display: {
+                  xs: item.hideOnMobile ? "none" : "inline-flex",
+                  sm: "inline-flex",
+                },
+              } as const;
+
               return item.href ? (
                 <Box
                   key={item.label}
                   component="a"
                   href={item.href}
-                  sx={contactItemSx}
+                  sx={itemSx}
                 >
                   {content}
                 </Box>
               ) : (
-                <Box key={item.label} sx={contactItemSx}>
+                <Box key={item.label} sx={itemSx}>
                   {content}
                 </Box>
               );
@@ -480,8 +493,8 @@ export default function Header() {
               minWidth: 0,
               alignItems: "center",
               justifyContent: "center",
-              columnGap: { lg: 0.8, xl: 1.4 },
-              mx: { lg: 0.8, xl: 1.5 },
+              columnGap: { lg: 0.7, xl: 1.0 },
+              mx: { lg: 0.6, xl: 1.2 },
             }}
 
           >
@@ -489,6 +502,7 @@ export default function Header() {
               <DesktopNavItem
                 key={item.to}
                 item={item}
+                label={wideNav ? item.label : item.shortLabel ?? item.label}
                 open={openMenu === item.to}
                 onOpen={() => setOpenMenu(item.to)}
                 onClose={() => setOpenMenu(null)}
@@ -804,7 +818,7 @@ export default function Header() {
                   },
                 }}
               >
-                Intranet
+                Mesa de Partes
               </Button>
 
               <Stack spacing={1.5} sx={{ pt: 0.5 }}>

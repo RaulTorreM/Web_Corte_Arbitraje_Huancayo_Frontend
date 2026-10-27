@@ -1,11 +1,9 @@
-
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import { brand, fonts } from "../../../theme/brand";
 import { MEDIA } from "../../../data/media";
-import FramedImage from "../../../components/common/FramedImage";
 import {
   fadeUp,
   staggerContainer,
@@ -16,7 +14,6 @@ type Servicio = {
   title: string;
   concept: string;
   text: string;
-  status?: string;
   to: string;
   cta: string;
   image: { src: string; alt: string };
@@ -27,7 +24,8 @@ const SERVICIOS: Servicio[] = [
     title: "Arbitraje",
     concept:
       "El arbitraje es un mecanismo alternativo de resolución de conflictos (MARC) mediante el cual dos o más partes deciden, de común acuerdo, someter una controversia presente o futura a la decisión de uno o varios terceros imparciales e independientes, denominados árbitros.",
-    text: "La Corte administra el procedimiento: requisitos, designación del tribunal, plazos y expediente. El tribunal arbitral decide la controversia.",
+    // text: "La Corte administra el procedimiento: requisitos, designación del tribunal, plazos y expediente. El tribunal arbitral decide la controversia.",
+    text: "",
     to: "/arbitraje",
     cta: "Conocer el arbitraje",
     image: {
@@ -39,8 +37,8 @@ const SERVICIOS: Servicio[] = [
     title: "JPRD",
     concept:
       "Las Juntas de Prevención y Resolución de Disputas acompañan la ejecución del contrato y buscan resolver los desacuerdos en su origen, antes de que escalen a un arbitraje.",
-    text: "Mecanismo previsto en el Estatuto para obras, bienes y servicios, con decisiones durante la ejecución y no al final del contrato.",
-    status: "-",
+    // text: "Mecanismo previsto en el Estatuto para obras, bienes y servicios, con decisiones durante la ejecución y no al final del contrato.",
+    text: "",
     to: "/jprd",
     cta: "Conocer las JPRD",
     image: {
@@ -52,8 +50,8 @@ const SERVICIOS: Servicio[] = [
     title: "Centro de conciliación",
     concept:
       "La conciliación es un medio alternativo de solución de conflictos en el que las partes, con la ayuda de un conciliador imparcial, buscan un acuerdo voluntario para poner fin a su controversia.",
-    text: "Las partes exponen su posición y negocian con asistencia del conciliador; si llegan a un acuerdo, este se eleva a escritura pública.",
-    status: "-",
+    // text: "Las partes exponen su posición y negocian con asistencia del conciliador; si llegan a un acuerdo, este se eleva a escritura pública.",
+    text: "",
     to: "/conciliacion",
     cta: "Conocer la conciliación",
     image: {
@@ -63,6 +61,10 @@ const SERVICIOS: Servicio[] = [
   },
 ];
 
+/**
+ * Una sola franja editorial con los tres servicios. Sin tarjetas ni sombras:
+ * la continuidad la dan el fondo, el filete dorado y las separaciones.
+ */
 export default function ServiciosHome() {
   return (
     <Box
@@ -73,7 +75,6 @@ export default function ServiciosHome() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Encabezado */}
         <Box
           component={motion.div}
           variants={staggerContainer}
@@ -81,49 +82,18 @@ export default function ServiciosHome() {
           whileInView="visible"
           viewport={viewportOnce}
           sx={{
-            mb: { xs: 4, md: 6 },
+            mb: { xs: 4, md: 5 },
             pt: { xs: 2.5, md: 3 },
             borderTop: `1px solid ${brand.lineStrong}`,
           }}
         >
-          <Box
-            component={motion.div}
-            variants={fadeUp}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1.2,
-              mb: 2,
-            }}
-          >
-            <Box
-              sx={{
-                width: 28,
-                height: 2,
-                flexShrink: 0,
-                bgcolor: brand.gold ?? "#BA9907",
-              }}
-            />
-            <Typography
-              sx={{
-                color: brand.muted,
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-              }}
-            >
-              Centro de arbitraje
-            </Typography>
-          </Box>
-
           <Typography
             component={motion.h2}
             variants={fadeUp}
             variant="h2"
             sx={{
               color: brand.primaryDeep,
-              maxWidth: 760,
+              maxWidth: 820,
               fontSize: {
                 xs: "2rem",
                 md: "clamp(2.3rem, 3.5vw, 3rem)",
@@ -133,7 +103,7 @@ export default function ServiciosHome() {
               textWrap: "balance",
             }}
           >
-            Mecanismos para resolver controversias
+            Mecanismos alternativos de Resolución de Conflictos
           </Typography>
 
           <Typography
@@ -148,221 +118,117 @@ export default function ServiciosHome() {
               textWrap: "pretty",
             }}
           >
-            Conoce los mecanismos que promovemos para gestionar desacuerdos
-            mediante procedimientos claros, especializados y confiables.
+            Brindamos servicios especializados en:
           </Typography>
         </Box>
 
-        {/* Servicios */}
-        <Grid
-          container
-          spacing={{ xs: 2.5, md: 3 }}
-          sx={{alignItems:"stretch"}}
+        <Box
+          sx={{
+            backgroundColor: brand.whiteSoft,
+            borderTop: `2px solid ${brand.gold}`,
+            borderBottom: `1px solid ${brand.line}`,
+          }}
         >
-          {SERVICIOS.map((servicio, index) => (
-            <Grid
-              key={servicio.title}
-              size={{ xs: 12, md: 4 }}
-              sx={{ display: "flex" }}
-            >
-              <Box
-                component={motion.article}
-                variants={fadeUp}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "100%",
-                  minWidth: 0,
-                  bgcolor: "#FFFFFF",
-                  border: `1px solid ${brand.line}`,
-                  borderRadius: "3px",
-                  overflow: "hidden",
-                  transition:
-                    "border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease",
-                  "&:hover": {
-                    borderColor: brand.gold ?? "#BA9907",
-                    transform: { xs: "none", md: "translateY(-4px)" },
-                    boxShadow: {
-                      xs: "none",
-                      md: "0 12px 30px rgba(7,31,58,0.07)",
-                    },
-                  },
-                }}
-              >
-                {/* Imagen uniforme */}
+          <Grid container spacing={0}>
+            {SERVICIOS.map((servicio, index) => (
+              <Grid key={servicio.title} size={{ xs: 12, md: 4 }}>
                 <Box
-                  sx={{
-                    position: "relative",
-                    p: { xs: 1.5, md: 1.7 },
-                    pb: 0,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      position: "relative",
-                      overflow: "hidden",
-                      aspectRatio: "5 / 3",
-                      bgcolor: brand.primaryDeep,
-                      "& img": {
-                        transition: "transform 450ms ease",
-                      },
-                      "&:hover img": {
-                        transform: "scale(1.035)",
-                      },
-                    }}
-                  >
-                    <FramedImage
-                      src={servicio.image.src}
-                      alt={servicio.image.alt}
-                      fit="cover"
-                      ratio="5 / 3"
-                    />
-                  </Box>
-
-                  <Box
-                    aria-hidden="true"
-                    sx={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: { xs: 24, md: 26 },
-                      width: 34,
-                      height: 3,
-                      bgcolor: brand.gold ?? "#BA9907",
-                    }}
-                  />
-                </Box>
-
-                {/* Contenido */}
-                <Box
+                  component={motion.article}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    flexGrow: 1,
-                    p: { xs: 2.5, md: 2.7 },
-                    pt: 2.3,
+                    height: "100%",
+                    p: { xs: 2.5, md: 3 },
+                    pt: { xs: index === 0 ? 2.5 : 3.5, md: 3 },
+                    borderTop: {
+                      xs: index === 0 ? 0 : `1px solid ${brand.line}`,
+                      md: 0,
+                    },
+                    borderLeft: {
+                      md: index === 0 ? 0 : `1px solid ${brand.line}`,
+                    },
                   }}
                 >
                   <Box
                     sx={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "space-between",
-                      gap: 1,
-                      minHeight: { md: 40 },
+                      overflow: "hidden",
+                      aspectRatio: "5 / 3",
+                      backgroundColor: brand.primaryDeep,
+                      "& img": { transition: "transform 450ms ease" },
+                      "&:hover img": { transform: "scale(1.035)" },
                     }}
                   >
-                    <Typography
-                      component="h3"
+                    <Box
+                      component="img"
+                      src={servicio.image.src}
+                      alt={servicio.image.alt}
+                      loading="lazy"
+                      decoding="async"
                       sx={{
-                        color: brand.primaryDeep,
-                        fontFamily: fonts.display,
-                        fontWeight: 600,
-                        fontSize: {
-                          xs: "1.3rem",
-                          md: "clamp(1.2rem, 1.7vw, 1.45rem)",
-                        },
-                        lineHeight: 1.3,
-                        letterSpacing: "-0.02em",
-                        overflowWrap: "anywhere",
+                        display: "block",
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
                       }}
-                    >
-                      {servicio.title}
-                    </Typography>
-
-                    <Typography
-                      component="span"
-                      sx={{
-                        color: brand.muted,
-                        fontSize: "0.7rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.06em",
-                        pt: 0.5,
-                        flexShrink: 0,
-                      }}
-                    >
-                      0{index + 1}
-                    </Typography>
+                    />
                   </Box>
 
-                  {servicio.status && (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 0.9,
-                        mt: 1.2,
-                        mb: 0.2,
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          width: 6,
-                          height: 6,
-                          borderRadius: "50%",
-                          bgcolor: brand.gold ?? "#BA9907",
-                          flexShrink: 0,
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          color: brand.accent,
-                          fontSize: "0.68rem",
-                          fontWeight: 700,
-                          letterSpacing: "0.065em",
-                          textTransform: "uppercase",
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {servicio.status}
-                      </Typography>
-                    </Box>
-                  )}
+                  <Typography
+                    component="h3"
+                    sx={{
+                      mt: 2.4,
+                      color: brand.primaryDeep,
+                      fontFamily: fonts.display,
+                      fontWeight: 600,
+                      fontSize: {
+                        xs: "1.3rem",
+                        md: "clamp(1.2rem, 1.7vw, 1.45rem)",
+                      },
+                      lineHeight: 1.3,
+                      letterSpacing: "-0.02em",
+                      textWrap: "balance",
+                    }}
+                  >
+                    {servicio.title}
+                  </Typography>
 
                   <Typography
                     sx={{
-                      mt: servicio.status ? 1.3 : 1.7,
+                      mt: 1.2,
                       color: brand.ink,
                       fontSize: "0.9rem",
                       lineHeight: 1.8,
                       textWrap: "pretty",
+                      minHeight: 160
                     }}
                   >
                     {servicio.concept}
                   </Typography>
 
-                  <Box
+                  <Typography
                     sx={{
                       mt: 2,
                       pt: 1.8,
                       borderTop: `1px solid ${brand.line}`,
+                      color: brand.muted,
+                      fontSize: "0.83rem",
+                      lineHeight: 1.75,
+                      textWrap: "pretty",
                     }}
                   >
-                    <Typography
-                      sx={{
-                        color: brand.muted,
-                        fontSize: "0.83rem",
-                        lineHeight: 1.75,
-                        textWrap: "pretty",
-                      }}
-                    >
-                      {servicio.text}
-                    </Typography>
-                  </Box>
+                    {servicio.text}
+                  </Typography>
 
-                  {/* Enlace alineado al pie de cada tarjeta */}
-                  <Box
-                    sx={{
-                      mt: "auto",
-                      pt: 2.5,
-                    }}
-                  >
+                  <Box sx={{ mt: "auto", pt: 2 }}>
                     <Button
                       component={RouterLink}
                       to={servicio.to}
                       variant="text"
-                      endIcon={
-                        <ArrowForwardIcon sx={{ fontSize: 17 }} />
-                      }
+                      endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
                       sx={{
                         px: 0,
                         py: 0.8,
@@ -390,10 +256,10 @@ export default function ServiciosHome() {
                     </Button>
                   </Box>
                 </Box>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </Container>
     </Box>
   );
