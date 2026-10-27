@@ -81,8 +81,8 @@ export default function QuienesHome() {
                 Somos el órgano especializado de la Cámara de Comercio y
                 Producción de Huancayo y de la Región Junín, encargado de
                 promover la seguridad jurídica y el desarrollo económico
-                regional a través de la administración transparente de medios de
-                solución de conflictos.
+                regional a través de la administración transparente de mecanismos 
+                alternativos de solución de conflictos.
               </Typography>
 
               <Typography

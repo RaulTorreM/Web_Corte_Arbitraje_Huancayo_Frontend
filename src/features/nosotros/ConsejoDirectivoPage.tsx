@@ -2,7 +2,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import PersonCard from "../../components/common/PersonCard";
-import CtaBand from "../../components/common/CtaBand";
+// import CtaBand from "../../components/common/CtaBand";
 import { Stagger } from "../../components/common/Reveal";
 import { brand, fonts } from "../../theme/brand";
 import { CONSEJO_DIRECTIVO } from "../../data/consejoDirectivo";
@@ -24,7 +24,7 @@ export default function ConsejoDirectivoPage() {
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Consejo Directivo" },
         ]}
-        image={MEDIA.equipo}
+        image={MEDIA.consejoDirectivo}
       />
 
       <Box
@@ -89,14 +89,14 @@ export default function ConsejoDirectivoPage() {
         </Container>
       </Box>
 
-      <CtaBand
+      {/* <CtaBand
         title="Conoce también el Consejo Superior de Arbitraje"
         subtitle="El Consejo Superior es la máxima autoridad institucional de gobierno administrativo de la Corte."
         primaryLabel="Ver Consejo Superior"
         primaryTo="/quienes-somos/consejo"
         secondaryLabel="Contactar a la Cámara"
         secondaryTo="/contacto"
-      />
+      /> */}
     </>
   );
 }

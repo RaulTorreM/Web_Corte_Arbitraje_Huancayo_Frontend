@@ -3,8 +3,8 @@ import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import PageMeta from "../../components/common/PageMeta";
-import PageHero from "../../components/common/PageHero";
-import CtaBand from "../../components/common/CtaBand";
+// import PageHero from "../../components/common/PageHero";
+// import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import FramedImage from "../../components/common/FramedImage";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
@@ -50,13 +50,13 @@ export default function QuienesSomosPage() {
         description="Conoce la naturaleza, la misión, la visión y los órganos de gobierno de la Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín."
       />
 
-      <PageHero
+      {/* <PageHero
         kicker="La institución"
         title="Un centro especializado en arbitraje"
         subtitle="Somos el órgano de la Cámara de Comercio y Producción de Huancayo y de la Región Junín encargado de organizar y administrar arbitrajes. No resolvemos las controversias: aseguramos que se tramiten bajo reglas claras, plazos ciertos y árbitros idóneos."
         crumbs={[{ label: "Quiénes somos" }]}
         image={MEDIA.sede}
-      />
+      /> */}
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>
@@ -159,10 +159,30 @@ export default function QuienesSomosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+
+      <Box
+        component="section"
+        sx={{
+          py: { xs: 7, md: 10 },
+          backgroundColor: brand.paper,
+        }}
+      >
         <Container>
-          <Grid container spacing={{ xs: 5, md: 8 }}>
-            <Grid size={{ xs: 12, md: 5 }}>
+          <Grid
+            container
+            spacing={{ xs: 6, md: 8 }}
+            sx={{ alignItems: "start" }}
+          >
+
+            {/* Columna izquierda: misión y visión */}
+            <Grid
+              size={{ xs: 12, md: 5 }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignSelf: "stretch",
+              }}
+            >
               <Typography
                 sx={{
                   color: brand.goldInk,
@@ -178,36 +198,107 @@ export default function QuienesSomosPage() {
                 Propósito institucional
               </Typography>
 
-              <Box sx={{ mt: 3, borderTop: `2px solid ${brand.primary}`, pt: 2 }}>
-                <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
-                  Nuestra misión
-                </Typography>
-                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, textWrap: "pretty" }}>
-                  Salvaguardar la correcta aplicación de los reglamentos y prestar
-                  los servicios de administración necesarios para la organización y
-                  funcionamiento del arbitraje.
-                </Typography>
-                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.76rem" }}>
-                  Estatuto, Art. 2
-                </Typography>
-              </Box>
+              <Stack
+                spacing={0}
+                sx={{
+                  flex: 1,
+                  mt: 1.5,
+                  justifyContent: "space-between",
+                }}
+              >
+                {/* Misión */}
+                <Box
+                  sx={{
+                    py: { xs: 1, md: 2.5 },
+                    borderTop: `2px solid ${brand.primary}`,
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      color: brand.primaryDeep,
+                      fontSize: { xs: "1.45rem", md: "1.6rem" },
+                      fontWeight: 600,
+                    }}
+                  >
+                    Nuestra misión
+                  </Typography>
 
-              <Box sx={{ mt: 5, borderTop: `2px solid ${brand.gold}`, pt: 2 }}>
-                <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.5rem" }}>
-                  Nuestra visión
-                </Typography>
-                <Typography sx={{ mt: 1.2, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, textWrap: "pretty" }}>
-                  Consolidar el arbitraje institucional como un mecanismo de
-                  referencia para la solución de controversias en la región Junín,
-                  mediante la generalización, agilización, perfeccionamiento y
-                  divulgación de nuestros servicios.
-                </Typography>
-                <Typography sx={{ mt: 1, color: brand.muted, fontSize: "0.76rem" }}>
-                  Basada en el Estatuto, Art. 1
-                </Typography>
-              </Box>
+                  <Typography
+                    sx={{
+                      mt: 1.5,
+                      color: brand.muted,
+                      fontSize: "0.93rem",
+                      lineHeight: 1.9,
+                      textWrap: "pretty",
+                    }}
+                  >
+                    Salvaguardar la correcta aplicación de los reglamentos y prestar
+                    los servicios de administración necesarios para la organización
+                    y funcionamiento del arbitraje.
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mt: 1.8,
+                      color: brand.goldInk,
+                      fontSize: "0.76rem",
+                    }}
+                  >
+                    Estatuto, Art. 2
+                  </Typography>
+                </Box>
+
+                {/* Visión */}
+                <Box
+                  sx={{
+                    mt: { xs: 4, md: 0 },
+                    py: { xs: 1, md: 2.5 },
+                    borderTop: `2px solid ${brand.gold}`,
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      color: brand.primaryDeep,
+                      fontSize: { xs: "1.45rem", md: "1.6rem" },
+                      fontWeight: 600,
+                    }}
+                  >
+                    Nuestra visión
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mt: 1.5,
+                      color: brand.muted,
+                      fontSize: "0.93rem",
+                      lineHeight: 1.9,
+                      textWrap: "pretty",
+                    }}
+                  >
+                    Consolidar el arbitraje institucional como un mecanismo de
+                    referencia para la solución de controversias en la región Junín,
+                    mediante la generalización, agilización, perfeccionamiento y
+                    divulgación de nuestros servicios.
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mt: 1.8,
+                      color: brand.goldInk,
+                      fontSize: "0.76rem",
+                    }}
+                  >
+                    Basada en el Estatuto, Art. 1
+                  </Typography>
+                </Box>
+              </Stack>
             </Grid>
 
+
+
+            {/* Columna derecha: principios */}
             <Grid size={{ xs: 12, md: 7 }}>
               <Typography
                 sx={{
@@ -216,7 +307,6 @@ export default function QuienesSomosPage() {
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
-                  mb: 1.5,
                   pt: 2,
                   borderTop: `1px solid ${brand.lineStrong}`,
                 }}
@@ -226,53 +316,101 @@ export default function QuienesSomosPage() {
 
               <Typography
                 variant="h2"
-                sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.3rem" } }}
+                sx={{
+                  mt: 3,
+                  color: brand.primaryDeep,
+                  fontSize: { xs: "1.9rem", md: "2.3rem" },
+                  fontWeight: 600,
+                  lineHeight: 1.2,
+                  maxWidth: 540,
+                  textWrap: "balance",
+                }}
               >
                 Lo que guía cada actuación
               </Typography>
 
-              <Typography sx={{ mt: 1.6, color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, maxWidth: 620, textWrap: "pretty" }}>
-                Principios que orientan la conducta de los órganos de gobierno,
-                árbitros, adjudicadores y equipo administrativo.
+              <Typography
+                sx={{
+                  mt: 1.5,
+                  color: brand.muted,
+                  fontSize: "0.92rem",
+                  lineHeight: 1.8,
+                  maxWidth: 580,
+                  textWrap: "pretty",
+                }}
+              >
+                Principios que orientan la conducta de los órganos de
+                gobierno, árbitros, adjudicadores y equipo administrativo.
               </Typography>
 
-              <Box sx={{ mt: 3.5, borderTop: `1px solid ${brand.lineStrong}` }}>
+              <Grid
+                container
+                columnSpacing={{ xs: 0, md: 3.5 }}
+                sx={{
+                  mt: 3.5,
+                  borderTop: `1px solid ${brand.lineStrong}`,
+                }}
+              >
                 {VALORES.map((valor, index) => (
-                  <Box
+                  <Grid
                     key={valor.title}
+                    size={{ xs: 12, md: 6 }}
                     sx={{
-                      display: "grid",
-                      gridTemplateColumns: "34px 1fr",
-                      gap: 1.8,
-                      py: 2,
+                      pt: 2.5,
+                      pb: 2.5,
                       borderBottom: `1px solid ${brand.line}`,
                     }}
                   >
-                    <Typography
+                    <Box
                       sx={{
-                        fontFamily: fonts.display,
-                        color: brand.goldInk,
-                        fontSize: "1rem",
-                        lineHeight: 1.5,
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: 1.2,
+                        mb: 1.2,
                       }}
                     >
-                      {String(index + 1).padStart(2, "0")}
-                    </Typography>
-                    <Box>
-                      <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.95rem" }}>
+                      <Typography
+                        sx={{
+                          color: brand.goldInk,
+                          fontFamily: fonts.display,
+                          fontSize: "0.85rem",
+                          flexShrink: 0,
+                        }}
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </Typography>
+
+                      <Typography
+                        sx={{
+                          color: brand.primaryDeep,
+                          fontSize: "0.94rem",
+                          fontWeight: 700,
+                          lineHeight: 1.45,
+                        }}
+                      >
                         {valor.title}
                       </Typography>
-                      <Typography sx={{ mt: 0.4, color: brand.muted, fontSize: "0.85rem", lineHeight: 1.65, textWrap: "pretty" }}>
-                        {valor.text}
-                      </Typography>
                     </Box>
-                  </Box>
+
+                    <Typography
+                      sx={{
+                        color: brand.muted,
+                        fontSize: "0.85rem",
+                        lineHeight: 1.75,
+                        textWrap: "pretty",
+                      }}
+                    >
+                      {valor.text}
+                    </Typography>
+                  </Grid>
                 ))}
-              </Box>
+              </Grid>
             </Grid>
+
           </Grid>
         </Container>
       </Box>
+
 
       <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
         <Container>
@@ -330,14 +468,14 @@ export default function QuienesSomosPage() {
         </Container>
       </Box>
 
-      <CtaBand
+      {/* <CtaBand
         title="¿Quieres conocer más sobre nuestra labor?"
         subtitle="Conversa con la Secretaría General y recibe orientación sobre los mecanismos que administramos."
         primaryLabel="Ver documentos institucionales"
         primaryTo="/documentos"
         secondaryLabel="Contactar a la Corte"
         secondaryTo="/contacto"
-      />
+      /> */}
     </>
   );
 }
