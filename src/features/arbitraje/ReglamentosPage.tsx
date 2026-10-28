@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import DocumentCard from "../../components/common/DocumentCard";
+import PdfViewerDialog from "../../components/common/PdfViewerDialog";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { ARBITRAJE_SUBNAV } from "../../data/navigation";
-import { DOCUMENTOS } from "../../data/documentos";
+import { DOCUMENTOS, type Documento } from "../../data/documentos";
 import { MEDIA } from "../../data/media";
 
 const NORMAS = [
@@ -43,6 +45,15 @@ export default function ReglamentosPage() {
       documento.categoria === "institucional" ||
       documento.categoria === "arbitraje"
   );
+  const [selected, setSelected] = useState<Documento | null>(null);
+
+  const handleOpen = (documento: Documento) => {
+    if (!documento.url.toLowerCase().endsWith(".pdf")) {
+      window.open(documento.url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    setSelected(documento);
+  };
 
   return (
     <>
@@ -71,7 +82,7 @@ export default function ReglamentosPage() {
               <SectionHeading
                 kicker="Documentos normativos"
                 title="Reglas claras para todas las partes"
-                subtitle="El Reglamento de Arbitraje V1 regula la solicitud, la designación de árbitros, las actuaciones procesales, los plazos y el laudo. El Estatuto define los órganos de gobierno y el Código de Ética los deberes de los profesionales."
+                subtitle="El Reglamento de Arbitraje V1 regula la solicitud, la designación de árbitros, las actuaciones procesales, los plazos y el laudo. El Estatuto define los órganos de gobierno y el Código de Ética los deberes de los profesionales. Haz clic en la portada para leer los documentos disponibles."
                 sx={{ mb: 3 }}
               />
             </Grid>
@@ -87,10 +98,9 @@ export default function ReglamentosPage() {
                   Versiones y vigencia
                 </Typography>
                 <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
-                  Se publican versiones de trabajo en DOCX del Reglamento V1
-                  (21.09.2026), el Estatuto (21.09.2026) y el Código de Ética V2
-                  (23.09.2026), junto con los apéndices y la tabla de gastos. Los
-                  PDFs definitivos se incorporarán cuando estén firmados. Los
+                  Se publican el Reglamento, el Estatuto y el Código de Ética
+                  en PDF. Los apéndices, la tabla de gastos y los formatos se
+                  incorporarán cuando la institución los entregue. Los
                   documentos de la JPRD son preliminares y no forman parte de
                   esta sección normativa.
                 </Typography>
@@ -101,7 +111,7 @@ export default function ReglamentosPage() {
           <Grid container spacing={{ xs: 3, md: 4 }}>
             {documentos.map((documento) => (
               <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                <DocumentCard documento={documento} />
+                <DocumentCard documento={documento} onOpen={handleOpen} />
               </Grid>
             ))}
           </Grid>
@@ -121,8 +131,8 @@ export default function ReglamentosPage() {
             <Grid size={{ xs: 12, md: 5 }}>
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -162,7 +172,7 @@ export default function ReglamentosPage() {
                     <Typography
                       sx={{
                         fontFamily: fonts.display,
-                        color: brand.goldDeep,
+                        color: brand.goldInk,
                         fontSize: "0.9rem",
                         lineHeight: 1.6,
                       }}
@@ -192,6 +202,13 @@ export default function ReglamentosPage() {
         primaryTo="/contacto"
         secondaryLabel="Ver costos"
         secondaryTo="/arbitraje/costos"
+      />
+
+      <PdfViewerDialog
+        open={Boolean(selected)}
+        title={selected?.titulo ?? ""}
+        url={selected?.url ?? ""}
+        onClose={() => setSelected(null)}
       />
     </>
   );

@@ -3,13 +3,15 @@ import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
 import PageMeta from "../../components/common/PageMeta";
-// import PageHero from "../../components/common/PageHero";
+import PageHero from "../../components/common/PageHero";
+import SectionSubnav from "../../components/common/SectionSubnav";
 // import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import FramedImage from "../../components/common/FramedImage";
 import { fadeUp, staggerContainer, viewportOnce } from "../../utils/animations";
 import { brand, fonts } from "../../theme/brand";
 import { VALORES } from "../../data/site";
+import { QUIENES_SUBNAV } from "../../data/navigation";
 import { MEDIA } from "../../data/media";
 
 const ESTRUCTURA = [
@@ -50,13 +52,17 @@ export default function QuienesSomosPage() {
         description="Conoce la naturaleza, la misión, la visión y los órganos de gobierno de la Corte Superior de Arbitraje de la Cámara de Comercio y Producción de Huancayo y de la Región Junín."
       />
 
-      {/* <PageHero
+      <PageHero
         kicker="La institución"
         title="Un centro especializado en arbitraje"
-        subtitle="Somos el órgano de la Cámara de Comercio y Producción de Huancayo y de la Región Junín encargado de organizar y administrar arbitrajes. No resolvemos las controversias: aseguramos que se tramiten bajo reglas claras, plazos ciertos y árbitros idóneos."
+        subtitle="Somos el órgano de la Cámara de Comercio de Huancayo encargado de organizar y administrar arbitrajes."
         crumbs={[{ label: "Quiénes somos" }]}
-        image={MEDIA.sede}
-      /> */}
+      />
+
+      <SectionSubnav
+        items={QUIENES_SUBNAV}
+        ariaLabel="Secciones de Quiénes somos"
+      />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
         <Container>

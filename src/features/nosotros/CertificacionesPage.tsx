@@ -1,220 +1,424 @@
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+// import PictureAsPdfOutlinedIcon from "@mui/icons-mate?rial/PictureAsPdfOutlined";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
-import CtaBand from "../../components/common/CtaBand";
+import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
+import PdfViewerDialog from "../../components/common/PdfViewerDialog";
 import { brand, fonts } from "../../theme/brand";
-import { MEDIA } from "../../data/media";
+import { QUIENES_SUBNAV } from "../../data/navigation";
+import { LICENCIA_FUNCIONAMIENTO_URL } from "../../data/documentos";
 
-const SISTEMAS = [
+const CERTIFICACIONES = [
   {
-    categoria: "Calidad",
-    titulo: "Sistema de gestión de la calidad",
-    text: "La Corte orienta su gestión a la mejora continua de sus procesos, con criterios de calidad, seguimiento y revisión permanente.",
-    items: [
-      "Procesos documentados y auditables",
-      "Seguimiento de la satisfacción de las partes",
-      "Revisión periódica por la alta dirección",
-    ],
+    codigo: "9001",
+    anio: "2015",
+    titulo: "Gestión de la calidad",
+    texto:
+      "Procesos documentados, seguimiento de la satisfacción de las partes y mejora continua de la gestión institucional.",
+    estado: "Certificación vigente",
   },
   {
-    categoria: "Integridad",
-    titulo: "Sistema de gestión antisoborno",
-    text: "La Corte promueve una actuación íntegra y transparente, con controles internos y canales de denuncia confidenciales.",
-    items: [
-      "Debida diligencia de terceros",
-      "Canal de denuncias confidencial",
-      "Cultura de integridad y transparencia",
-    ],
+    codigo: "37001",
+    anio: "2016",
+    titulo: "Gestión antisoborno",
+    texto:
+      "Debida diligencia de terceros, canal de denuncias confidencial y una cultura institucional de integridad.",
+    estado: "Certificación vigente",
   },
-];
-
-const COMPROMISOS = [
-  "Actuar con independencia, imparcialidad y transparencia en cada procedimiento.",
-  "Proteger la confidencialidad de la información de las partes.",
-  "Cumplir los requisitos legales, reglamentarios y de nuestros usuarios.",
-  "Mejorar de forma continua la eficacia del sistema integrado de gestión.",
+  {
+    codigo: "27001",
+    anio: "2022",
+    titulo: "Seguridad de la información",
+    texto:
+      "Protección de la información de las partes, controles de acceso y continuidad de los servicios arbitrales.",
+    estado: "En implementación",
+  },
 ];
 
 export default function CertificacionesPage() {
+  const [licenciaDisponible, setLicenciaDisponible] = useState<boolean | null>(
+    null
+  );
+  const [licenciaOpen, setLicenciaOpen] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const checkLicencia = async () => {
+      try {
+        const response = await fetch(LICENCIA_FUNCIONAMIENTO_URL, {
+          method: "HEAD",
+        });
+        const contentType = response.headers.get("content-type") ?? "";
+        if (!cancelled) {
+          setLicenciaDisponible(
+            response.ok &&
+              !contentType.toLowerCase().includes("text/html")
+          );
+        }
+      } catch {
+        if (!cancelled) setLicenciaDisponible(false);
+      }
+    };
+
+    void checkLicencia();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <>
       <PageMeta
         title="Certificaciones"
-        description="Sistemas de gestión de la calidad y antisoborno de la Corte Superior de Arbitraje de Huancayo."
+        description="Licencia de funcionamiento de la Cámara de Comercio y Producción de Huancayo y certificaciones ISO de la Corte Superior de Arbitraje de Huancayo."
       />
 
       <PageHero
         kicker="Calidad e integridad"
         title="Certificaciones"
-        subtitle="La Corte promueve estándares de calidad e integridad en la gestión de sus procedimientos."
+        subtitle="Certificaciones internacionales y licencia de funcionamiento de la Cámara de Comercio y Producción de Huancayo."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Certificaciones" },
         ]}
-        image={MEDIA.sede}
       />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <SectionSubnav
+        items={QUIENES_SUBNAV}
+        ariaLabel="Secciones de Quiénes somos"
+      />
+
+      <Box
+        component="section"
+        sx={{
+          py: { xs: 7, md: 10 },
+          backgroundColor: brand.whiteSoft,
+        }}
+      >
         <Container>
           <SectionHeading
-            kicker="Sistemas de gestión"
-            title="Dos sistemas, un mismo compromiso institucional"
-            subtitle="La calidad y la integridad orientan la actuación de la Corte en cada procedimiento."
+            kicker="Respaldo institucional"
+            title="Certificaciones y licencia de funcionamiento"
+            subtitle="La Corte sustenta su gestión en certificaciones internacionales y en la licencia de funcionamiento de la Cámara de Comercio y Producción de Huancayo."
+            sx={{ mb: { xs: 3.5, md: 4.5 } }}
           />
 
-          <Grid container spacing={{ xs: 4, md: 5 }}>
-            {SISTEMAS.map((sistema) => (
-              <Grid key={sistema.titulo} size={{ xs: 12, md: 6 }}>
-                <Box
-                  sx={{
-                    height: "100%",
-                    pt: 2.2,
-                    borderTop: `2px solid ${brand.accent}`,
-                  }}
-                >
-                  <Stack
-                    sx={{
-                      mb: 1.6,
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: brand.primaryDeep,
-                        fontFamily: fonts.display,
-                        fontSize: "1.05rem",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {sistema.categoria}
-                    </Typography>
-                  </Stack>
-
-                  <Typography
-                    variant="h3"
-                    sx={{ color: brand.primaryDeep, fontSize: { xs: "1.5rem", md: "1.75rem" } }}
-                  >
-                    {sistema.titulo}
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      mt: 1.5,
-                      color: brand.muted,
-                      fontSize: "0.92rem",
-                      lineHeight: 1.75,
-                    }}
-                  >
-                    {sistema.text}
-                  </Typography>
-
-                  <Stack sx={{ mt: 2.5, borderTop: `1px solid ${brand.line}` }}>
-                    {sistema.items.map((item) => (
-                      <Typography
-                        key={item}
-                        sx={{
-                          py: 0.95,
-                          borderBottom: `1px solid ${brand.line}`,
-                          color: brand.ink,
-                          fontSize: "0.84rem",
-                          lineHeight: 1.55,
-                        }}
-                      >
-                        {item}
-                      </Typography>
-                    ))}
-                  </Stack>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
-        <Container>
-          <Grid container spacing={{ xs: 5, md: 8 }}>
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Typography
-                sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.13em",
-                  textTransform: "uppercase",
-                  mb: 1.5,
-                }}
-              >
-                Nuestro compromiso
-              </Typography>
-
-              <Typography
-                variant="h2"
-                sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.4rem" } }}
-              >
-                La confianza se construye con hechos verificables
-              </Typography>
-
-              <Typography
-                sx={{
-                  mt: 2,
-                  color: brand.muted,
-                  fontSize: "0.94rem",
-                  lineHeight: 1.78,
-                }}
-              >
-                La Corte mantiene compromisos públicos de actuación orientados
-                a la transparencia, la independencia y la mejora continua.
-              </Typography>
-
+          <Grid
+            container
+            spacing={{ xs: 4, md: 4.5 }}
+            sx={{ alignItems: "stretch" }}
+          >
+            <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
               <Box
                 sx={{
-                  mt: 3.5,
-                  pt: 2.2,
-                  borderTop: `1px solid ${brand.lineStrong}`,
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: brand.white,
+                  border: `1px solid ${brand.line}`,
+                  borderTop: `3px solid ${brand.gold}`,
                 }}
               >
-                <Typography
+                <Box
                   sx={{
-                    fontFamily: fonts.display,
-                    fontSize: { xs: "1.2rem", md: "1.38rem" },
-                    fontStyle: "italic",
-                    color: brand.primaryDeep,
-                    lineHeight: 1.6,
+                    p: { xs: 2.5, md: 3 },
+                    borderBottom: `1px solid ${brand.line}`,
                   }}
                 >
-                  “Administramos arbitrajes con rigor técnico, protegiendo la
-                  confianza de las partes y actuando siempre con integridad.”
-                </Typography>
+                  <Typography
+                    sx={{
+                      color: brand.goldInk,
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.13em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Cámara de Comercio y Producción de Huancayo
+                  </Typography>
+
+                  <Typography
+                    component="h3"
+                    sx={{
+                      mt: 1,
+                      color: brand.primaryDeep,
+                      fontFamily: fonts.display,
+                      fontWeight: 600,
+                      fontSize: { xs: "1.35rem", md: "1.55rem" },
+                      lineHeight: 1.2,
+                      textWrap: "balance",
+                    }}
+                  >
+                    Licencia de funcionamiento
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mt: 1,
+                      color: brand.muted,
+                      fontSize: "0.86rem",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Documento que acredita el funcionamiento del local
+                    institucional de la Cámara.
+                  </Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    flex: 1,
+                    minHeight: { xs: 380, md: 460 },
+                    p: { xs: 1.2, md: 1.5 },
+                    backgroundColor: brand.paperAlt,
+                  }}
+                >
+                  {licenciaDisponible ? (
+                    <Box
+                      component="iframe"
+                      title="Licencia de funcionamiento de la Cámara de Comercio y Producción de Huancayo"
+                      src={LICENCIA_FUNCIONAMIENTO_URL}
+                      sx={{
+                        display: "block",
+                        width: "100%",
+                        height: "100%",
+                        minHeight: { xs: 356, md: 436 },
+                        border: 0,
+                        backgroundColor: brand.white,
+                      }}
+                    />
+                  ) : (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        height: "100%",
+                        minHeight: { xs: 356, md: 436 },
+                        p: { xs: 3, md: 4 },
+                        textAlign: "center",
+                        backgroundColor: brand.white,
+                        border: `1px solid ${brand.line}`,
+                      }}
+                    >
+                      
+
+                      <Typography
+                        sx={{
+                          color: brand.goldInk,
+                          fontSize: "0.7rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.12em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        Documento institucional
+                      </Typography>
+
+                      <Typography
+                        sx={{
+                          mt: 1.2,
+                          color: brand.primaryDeep,
+                          fontFamily: fonts.display,
+                          fontSize: { xs: "1.15rem", md: "1.3rem" },
+                          fontWeight: 600,
+                          lineHeight: 1.25,
+                        }}
+                      >
+                        Licencia de funcionamiento
+                      </Typography>
+
+                    </Box>
+                  )}
+                </Box>
+
+                <Stack
+                  direction={{ xs: "column", sm: "row" }}
+                  spacing={1.2}
+                  sx={{
+                    p: { xs: 2, md: 2.5 },
+                    alignItems: { xs: "flex-start", sm: "center" },
+                    justifyContent: "space-between",
+                    borderTop: `1px solid ${brand.line}`,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: brand.muted,
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {licenciaDisponible
+                      ? "PDF · Documento oficial"
+                      : "Documento en incorporación"}
+                  </Typography>
+
+                  {licenciaDisponible && (
+                    <Stack direction="row" spacing={1}>
+                      <Button
+                        component="a"
+                        href={LICENCIA_FUNCIONAMIENTO_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        size="small"
+                        variant="text"
+                        endIcon={<OpenInNewOutlinedIcon sx={{ fontSize: 15 }} />}
+                        sx={{ color: brand.primary, fontSize: "0.75rem" }}
+                      >
+                        Abrir PDF
+                      </Button>
+
+                      <Button
+                        size="small"
+                        variant="contained"
+                        startIcon={
+                          <DescriptionOutlinedIcon sx={{ fontSize: 15 }} />
+                        }
+                        onClick={() => setLicenciaOpen(true)}
+                        sx={{ fontSize: "0.75rem", whiteSpace: "nowrap" }}
+                      >
+                        Ver documento
+                      </Button>
+                    </Stack>
+                  )}
+                </Stack>
               </Box>
             </Grid>
 
-            <Grid size={{ xs: 12, md: 7 }}>
-              <Stack sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
-                {COMPROMISOS.map((compromiso, index) => (
+            <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
+              <Stack
+                spacing={2}
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                {CERTIFICACIONES.map((certificacion) => (
                   <Box
-                    key={compromiso}
+                    key={certificacion.codigo}
                     sx={{
-                      display: "grid",
-                      gridTemplateColumns: "34px 1fr",
-                      gap: 1.6,
-                      py: 2,
-                      borderBottom: `1px solid ${brand.line}`,
+                      flex: 1,
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: { xs: 2, md: 2.5 },
+                      p: { xs: 2.2, md: 2.8 },
+                      backgroundColor: brand.white,
+                      border: `1px solid ${brand.line}`,
+                      borderTop: `2px solid ${brand.gold}`,
                     }}
                   >
-                    <Typography
+                    <Box
                       sx={{
-                        fontFamily: fonts.display,
-                        color: brand.goldDeep,
-                        fontSize: "0.95rem",
-                        lineHeight: 1.5,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                        width: { xs: 58, md: 70 },
+                        height: { xs: 58, md: 70 },
+                        border: `1px solid ${brand.lineStrong}`,
+                        backgroundColor: brand.whiteSoft,
                       }}
                     >
-                      {String(index + 1).padStart(2, "0")}
-                    </Typography>
-                    <Typography sx={{ color: brand.muted, fontSize: "0.9rem", lineHeight: 1.65 }}>
-                      {compromiso}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          color: brand.goldInk,
+                          fontSize: "0.7rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.12em",
+                        }}
+                      >
+                        ISO
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: brand.primaryDeep,
+                          fontFamily: fonts.display,
+                          fontSize: { xs: "1.05rem", md: "1.18rem" },
+                          fontWeight: 600,
+                          lineHeight: 1.1,
+                        }}
+                      >
+                        {certificacion.codigo}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: brand.muted,
+                          fontSize: "0.7rem",
+                          lineHeight: 1.2,
+                        }}
+                      >
+                        {certificacion.anio}
+                      </Typography>
+                    </Box>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        minWidth: 0,
+                        height: "100%",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          color: brand.primaryDeep,
+                          fontFamily: fonts.display,
+                          fontSize: { xs: "1.06rem", md: "1.18rem" },
+                          fontWeight: 600,
+                          lineHeight: 1.25,
+                        }}
+                      >
+                        {certificacion.titulo}
+                      </Typography>
+
+                      <Typography
+                        sx={{
+                          mt: 0.8,
+                          color: brand.muted,
+                          fontSize: { xs: "0.82rem", md: "0.86rem" },
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        {certificacion.texto}
+                      </Typography>
+
+                      <Typography
+                        sx={{
+                          mt: "auto",
+                          pt: 1.2,
+                          color:
+                            certificacion.estado === "En implementación"
+                              ? brand.accent
+                              : brand.goldInk,
+                          fontSize: "0.7rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {certificacion.estado}
+                      </Typography>
+                    </Box>
                   </Box>
                 ))}
               </Stack>
@@ -223,13 +427,11 @@ export default function CertificacionesPage() {
         </Container>
       </Box>
 
-      <CtaBand
-        title="La confianza se construye con hechos"
-        subtitle="Conoce nuestros reglamentos, políticas y canales de atención institucional."
-        primaryLabel="Contactar a la Corte"
-        primaryTo="/contacto"
-        secondaryLabel="Ver documentos"
-        secondaryTo="/documentos"
+      <PdfViewerDialog
+        open={licenciaOpen}
+        title="Licencia de funcionamiento"
+        url={LICENCIA_FUNCIONAMIENTO_URL}
+        onClose={() => setLicenciaOpen(false)}
       />
     </>
   );

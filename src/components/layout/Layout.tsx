@@ -2,7 +2,9 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Box, Link } from "@mui/material";
 import Header from "./Header";
+import BreadcrumbBar from "./BreadcrumbBar";
 import Footer from "./Footer";
+import PageNavigator from "./PageNavigator";
 import PageFallback from "../common/PageFallback";
 import { brand } from "../../theme/brand";
 
@@ -37,12 +39,24 @@ export default function Layout() {
       </Link>
 
       <Header />
+      <BreadcrumbBar />
 
-      <Box component="main" id="contenido" tabIndex={-1} sx={{ flex: 1 }}>
+      <Box
+        component="main"
+        id="contenido"
+        tabIndex={-1}
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Suspense fallback={<PageFallback />}>
           <Outlet />
         </Suspense>
       </Box>
+
+      <PageNavigator />
 
       <Footer />
     </Box>

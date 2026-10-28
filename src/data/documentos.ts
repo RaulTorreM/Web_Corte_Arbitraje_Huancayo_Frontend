@@ -16,6 +16,8 @@ export type Documento = {
   peso: string;
   url: string;
   portada?: string;
+  /** El archivo todavía no está publicado en /public. */
+  disponible?: boolean;
 };
 
 export const CATEGORIA_LABEL: Record<DocumentoCategoria, string> = {
@@ -26,9 +28,9 @@ export const CATEGORIA_LABEL: Record<DocumentoCategoria, string> = {
 };
 
 /**
- * Biblioteca normativa. Los documentos disponibles se publican como DOCX de
- * trabajo extraídos de los archivos entregados por la institución. Los
- * formatos que aún no tienen archivo fuente se mantienen en "#".
+ * Biblioteca normativa. Los documentos disponibles se publican en PDF. Los
+ * apéndices y formatos que aún no tienen archivo fuente se mantienen como
+ * pendientes ("Próximamente") hasta que la institución los entregue.
  */
 export const DOCUMENTOS: Documento[] = [
   {
@@ -85,6 +87,7 @@ export const DOCUMENTOS: Documento[] = [
     fecha: "2026-09-21",
     peso: "DOCX",
     url: "/documentos/reglas-codigo-etica.docx",
+    disponible: false,
   },
   {
     id: "d-04",
@@ -98,6 +101,7 @@ export const DOCUMENTOS: Documento[] = [
     fecha: "2026-09-21",
     peso: "DOCX",
     url: "/documentos/reglas-arbitraje-acelerado.docx",
+    disponible: false,
   },
   {
     id: "d-05",
@@ -111,6 +115,7 @@ export const DOCUMENTOS: Documento[] = [
     fecha: "2026-09-21",
     peso: "DOCX",
     url: "/documentos/reglas-arbitraje-social.docx",
+    disponible: false,
   },
   {
     id: "d-06",
@@ -124,6 +129,7 @@ export const DOCUMENTOS: Documento[] = [
     fecha: "2026-09-21",
     peso: "DOCX",
     url: "/documentos/reglas-arbitro-emergencia.docx",
+    disponible: false,
   },
   {
     id: "d-07",
@@ -137,6 +143,7 @@ export const DOCUMENTOS: Documento[] = [
     fecha: "2026-09-21",
     peso: "DOCX",
     url: "/documentos/tabla-gastos-arbitrales.docx",
+    disponible: false,
   },
   {
     id: "d-08",
@@ -150,6 +157,7 @@ export const DOCUMENTOS: Documento[] = [
     fecha: "2026-09-21",
     peso: "DOCX",
     url: "/documentos/clausula-arbitral-modelo.docx",
+    disponible: false,
   },
   {
     id: "d-09",
@@ -234,6 +242,15 @@ export const DOCUMENTOS: Documento[] = [
 export const documentosPorCategoria = (
   categoria: DocumentoCategoria
 ): Documento[] => DOCUMENTOS.filter((d) => d.categoria === categoria);
+
+/**
+ * PDF oficial de la Licencia de Funcionamiento de la Cámara de Comercio y
+ * Producción de Huancayo. Copia el archivo en:
+ * public/documentos/licencia-funcionamiento-camara.pdf
+ * La página de Certificaciones lo detecta y lo muestra automáticamente.
+ */
+export const LICENCIA_FUNCIONAMIENTO_URL =
+  "/documentos/licencia-funcionamiento-camara.pdf";
 
 /**
  * Los tres documentos que se publican en /documentos, en el orden pedido por

@@ -17,10 +17,10 @@ export const NAV_ITEMS: NavItem[] = [
     to: "/",
   },
   {
-    label: "Quiénes somos",
+    label: "Nosotros",
     to: "/quienes-somos",
     children: [
-      { label: "Quiénes somos", to: "/quienes-somos" },
+      { label: "Nosotros", to: "/quienes-somos" },
       { label: "Consejo Directivo", to: "/quienes-somos/consejo-directivo" },
       { label: "Consejo Superior", to: "/quienes-somos/consejo" },
       { label: "Equipo de trabajo", to: "/quienes-somos/equipo" },
@@ -88,6 +88,9 @@ export const JPRD_SUBNAV =
 
 export const CONCILIACION_SUBNAV =
   NAV_ITEMS.find((item) => item.to === "/conciliacion")?.children ?? [];
+
+export const QUIENES_SUBNAV =
+  NAV_ITEMS.find((item) => item.to === "/quienes-somos")?.children ?? [];
 
 export const UTILITY_LINKS = [
   { label: "Canal de denuncias", to: "/denuncias" },

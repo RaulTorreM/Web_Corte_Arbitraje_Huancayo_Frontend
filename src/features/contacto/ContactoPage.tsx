@@ -125,13 +125,13 @@ export default function ContactoPage() {
                         "&:hover .canal-arrow": { color: brand.primary, transform: "translateX(3px)" },
                       }}
                     >
-                      <Icon sx={{ color: brand.goldDeep, fontSize: 20, mt: "3px" }} />
+                      <Icon sx={{ color: brand.goldInk, fontSize: 20, mt: "3px" }} />
 
                       <Box>
                         <Typography
                           sx={{
                             color: brand.muted,
-                            fontSize: "0.64rem",
+                            fontSize: "0.7rem",
                             fontWeight: 700,
                             letterSpacing: "0.1em",
                             textTransform: "uppercase",
@@ -172,8 +172,8 @@ export default function ContactoPage() {
                 <Box sx={{ borderTop: `2px solid ${brand.gold}`, pt: 2.2 }}>
                   <Typography
                     sx={{
-                      color: brand.goldDeep,
-                      fontSize: "0.64rem",
+                      color: brand.goldInk,
+                      fontSize: "0.7rem",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -189,7 +189,7 @@ export default function ContactoPage() {
 
                   <Stack spacing={1.5} sx={{ mt: 2.2 }}>
                     <Stack direction="row" spacing={1.3} sx={{ alignItems: "flex-start" }}>
-                      <AccessTimeOutlinedIcon sx={{ fontSize: 18, color: brand.goldDeep, mt: "2px" }} />
+                      <AccessTimeOutlinedIcon sx={{ fontSize: 18, color: brand.goldInk, mt: "2px" }} />
                       <Box>
                         {SITE.contact.schedule.map((line) => (
                           <Typography
@@ -221,8 +221,8 @@ export default function ContactoPage() {
             <Box>
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.68rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -254,13 +254,13 @@ export default function ContactoPage() {
             }}
           >
             <Stack direction="row" spacing={2} sx={{ alignItems: "flex-start" }}>
-              <PlaceOutlinedIcon sx={{ fontSize: 30, color: brand.goldDeep, mt: "2px", flexShrink: 0 }} />
+              <PlaceOutlinedIcon sx={{ fontSize: 30, color: brand.goldInk, mt: "2px", flexShrink: 0 }} />
 
               <Box>
                 <Typography
                   sx={{
-                    color: brand.goldDeep,
-                    fontSize: "0.64rem",
+                    color: brand.goldInk,
+                    fontSize: "0.7rem",
                     fontWeight: 700,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
@@ -289,6 +289,32 @@ export default function ContactoPage() {
             >
               Abrir en Google Maps
             </Button>
+          </Box>
+
+          <Box
+            sx={{
+              mt: 4,
+              border: `1px solid ${brand.line}`,
+              backgroundColor: brand.white,
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              component="iframe"
+              title="Mapa de ubicación de la sede de la Corte Superior de Arbitraje de Huancayo"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                `${SITE.contact.mapQuery}, Huancayo, Perú`
+              )}&z=16&output=embed`}
+              loading="eager"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              sx={{
+                display: "block",
+                width: "100%",
+                height: { xs: 300, md: 420 },
+                border: 0,
+              }}
+            />
           </Box>
         </Container>
       </Box>

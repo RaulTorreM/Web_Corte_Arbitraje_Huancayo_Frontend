@@ -1,13 +1,14 @@
 import { Box, Container, Grid } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
+import SectionSubnav from "../../components/common/SectionSubnav";
 // import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import PersonCard from "../../components/common/PersonCard";
 import { Stagger } from "../../components/common/Reveal";
 import { brand } from "../../theme/brand";
 import { EQUIPO } from "../../data/directivos";
-import { MEDIA } from "../../data/media";
+import { QUIENES_SUBNAV } from "../../data/navigation";
 
 // const FUNCIONES_ORGANOS = [
 //   {
@@ -41,12 +42,16 @@ export default function EquipoPage() {
       <PageHero
         kicker="Nuestro equipo"
         title="El equipo que hace funcionar el arbitraje"
-        subtitle="Detrás de cada expediente hay un equipo técnico que recibe la solicitud, liquida los gastos, controla los plazos y notifica las decisiones. No resuelve la controversia: asegura que el proceso avance conforme al reglamento."
+        subtitle="El equipo técnico que conduce la operación diaria de los casos."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Equipo de trabajo" },
         ]}
-        image={MEDIA.equipo}
+      />
+
+      <SectionSubnav
+        items={QUIENES_SUBNAV}
+        ariaLabel="Secciones de Quiénes somos"
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>

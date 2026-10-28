@@ -116,11 +116,26 @@ export default function InicioArbitrajePage() {
           <Button
             href="#guia-requisitos"
             variant="contained"
+            color="secondary"
             endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
           >
             Ver guía de requisitos
           </Button>
-          <Button component={RouterLink} to="/arbitraje/costos" variant="outlined">
+          <Button
+            component={RouterLink}
+            to="/arbitraje/costos"
+            variant="outlined"
+            sx={{
+              color: brand.white,
+              borderColor: "rgba(255,255,255,0.6)",
+              "&:hover": {
+                borderWidth: 1,
+                borderColor: brand.goldSoft,
+                backgroundColor: "rgba(233,223,202,0.14)",
+                color: brand.white,
+              },
+            }}
+          >
             Calcular el costo
           </Button>
         </Stack>

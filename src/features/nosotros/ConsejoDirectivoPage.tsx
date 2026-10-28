@@ -1,11 +1,13 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
+import SectionSubnav from "../../components/common/SectionSubnav";
 import PersonCard from "../../components/common/PersonCard";
 // import CtaBand from "../../components/common/CtaBand";
 import { Stagger } from "../../components/common/Reveal";
 import { brand, fonts } from "../../theme/brand";
 import { CONSEJO_DIRECTIVO } from "../../data/consejoDirectivo";
+import { QUIENES_SUBNAV } from "../../data/navigation";
 import { MEDIA } from "../../data/media";
 
 export default function ConsejoDirectivoPage() {
@@ -19,12 +21,17 @@ export default function ConsejoDirectivoPage() {
       <PageHero
         kicker="Organización institucional"
         title="Consejo Directivo"
-        subtitle="El Consejo Directivo conduce la gestión institucional de la Cámara de Comercio de Huancayo y representa a sus agremiados ante las autoridades locales, regionales y nacionales."
+        subtitle="Órgano de gobierno de la Cámara de Comercio de Huancayo."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Consejo Directivo" },
         ]}
         image={MEDIA.consejoDirectivo}
+      />
+
+      <SectionSubnav
+        items={QUIENES_SUBNAV}
+        ariaLabel="Secciones de Quiénes somos"
       />
 
       <Box

@@ -7,7 +7,7 @@ import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import { motion } from "framer-motion";
-import { brand } from "../../theme/brand";
+import { brand, fonts } from "../../theme/brand";
 import { fadeUp } from "../../utils/animations";
 import type { Documento } from "../../data/documentos";
 
@@ -33,7 +33,10 @@ export default function DocumentCard({
   documento,
   onOpen,
 }: DocumentCardProps) {
-  const isReadable = Boolean(onOpen && documento.url !== "#");
+  const isAvailable =
+    documento.url !== "#" && documento.disponible !== false;
+  const isReadable = Boolean(onOpen && isAvailable);
+  const hasCoverAction = Boolean(isReadable && documento.portada);
 
   const handleDownloadClick = (
     event: React.MouseEvent<HTMLAnchorElement>
@@ -43,6 +46,86 @@ export default function DocumentCard({
     }
   };
 
+  const genericCoverSx = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    maxWidth: 250,
+    mx: "auto",
+    mb: 2.4,
+    aspectRatio: "5 / 7",
+    p: 3,
+    textAlign: "center",
+    backgroundColor: brand.primaryDeep,
+    border: `1px solid ${brand.line}`,
+    color: "inherit",
+    font: "inherit",
+  } as const;
+
+  const genericCover = (
+    <>
+      <DescriptionOutlinedIcon
+        sx={{ fontSize: 30, color: brand.goldSoft, mb: 1.5 }}
+      />
+      <Typography
+        sx={{
+          color: brand.goldSoft,
+          fontSize: "0.7rem",
+          fontWeight: 700,
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+        }}
+      >
+        {documento.tipo}
+      </Typography>
+      <Box
+        aria-hidden="true"
+        sx={{ width: 32, height: 2, backgroundColor: brand.gold, my: 1.5 }}
+      />
+      <Typography
+        sx={{
+          color: brand.white,
+          fontFamily: fonts.display,
+          fontWeight: 600,
+          fontSize: "1.05rem",
+          lineHeight: 1.25,
+          textWrap: "balance",
+        }}
+      >
+        {documento.titulo}
+      </Typography>
+
+      {isReadable && (
+        <Stack
+          className="cover-open"
+          direction="row"
+          spacing={0.5}
+          sx={{
+            mt: 2,
+            alignItems: "center",
+            color: brand.goldSoft,
+            opacity: 0.75,
+            transition: "opacity 0.18s ease",
+          }}
+        >
+          <MenuBookOutlinedIcon sx={{ fontSize: 15 }} />
+          <Typography
+            sx={{
+              fontSize: "0.7rem",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            Abrir documento
+          </Typography>
+        </Stack>
+      )}
+    </>
+  );
+
   return (
     <Box
       component={motion.article}
@@ -51,34 +134,100 @@ export default function DocumentCard({
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        borderTop: `1px solid ${brand.lineStrong}`,
-        pt: 2,
-        pb: 1,
-        transition: "border-color 0.18s ease",
+        backgroundColor: brand.white,
+        border: `1px solid ${brand.line}`,
+        borderTop: `2px solid ${brand.gold}`,
+        p: { xs: 2, md: 2.5 },
+        transition: "border-color 0.18s ease, transform 0.18s ease",
         "&:hover": {
-          borderTopColor: brand.gold,
+          borderColor: brand.goldSoft,
+          transform: { md: "translateY(-2px)" },
         },
       }}
     >
-      {documento.portada && (
+      {documento.portada ? (
+        hasCoverAction ? (
+          <Box
+            component="button"
+            type="button"
+            onClick={() => onOpen?.(documento)}
+            aria-label={`Abrir ${documento.titulo}`}
+            sx={{
+              display: "block",
+              width: "100%",
+              maxWidth: 250,
+              mx: "auto",
+              mb: 2.4,
+              p: 0,
+              border: `1px solid ${brand.line}`,
+              backgroundColor: brand.white,
+              cursor: "pointer",
+              overflow: "hidden",
+              "& img": { transition: "opacity 0.18s ease" },
+              "&:hover img": { opacity: 0.9 },
+              "&:focus-visible": {
+                outline: `2px solid ${brand.goldDeep}`,
+                outlineOffset: 3,
+              },
+            }}
+          >
+            <Box
+              component="img"
+              src={documento.portada}
+              alt={`Portada de ${documento.titulo}`}
+              loading="lazy"
+              decoding="async"
+              sx={{
+                display: "block",
+                width: "100%",
+                aspectRatio: "5 / 7",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
+        ) : (
+          <Box
+            component="img"
+            src={documento.portada}
+            alt={`Portada de ${documento.titulo}`}
+            loading="lazy"
+            decoding="async"
+            sx={{
+              display: "block",
+              width: "100%",
+              maxWidth: 250,
+              aspectRatio: "5 / 7",
+              objectFit: "cover",
+              mx: "auto",
+              mb: 2.4,
+              border: `1px solid ${brand.line}`,
+              backgroundColor: brand.white,
+            }}
+          />
+        )
+      ) : isReadable ? (
         <Box
-          component="img"
-          src={documento.portada}
-          alt={`Portada de ${documento.titulo}`}
-          loading="lazy"
-          decoding="async"
+          component="button"
+          type="button"
+          onClick={() => onOpen?.(documento)}
+          aria-label={`Abrir ${documento.titulo}`}
           sx={{
-            display: "block",
-            width: "100%",
-            maxWidth: 250,
-            aspectRatio: "5 / 7",
-            objectFit: "cover",
-            mx: "auto",
-            mb: 2.4,
-            border: `1px solid ${brand.line}`,
-            backgroundColor: brand.white,
+            ...genericCoverSx,
+            cursor: "pointer",
+            "&:hover": {
+              borderColor: brand.goldSoft,
+              "& .cover-open": { opacity: 1 },
+            },
+            "&:focus-visible": {
+              outline: `2px solid ${brand.goldDeep}`,
+              outlineOffset: 3,
+            },
           }}
-        />
+        >
+          {genericCover}
+        </Box>
+      ) : (
+        <Box sx={genericCoverSx}>{genericCover}</Box>
       )}
 
       <Stack direction="row" spacing={1.2} sx={{ alignItems: "center" }}>
@@ -160,64 +309,54 @@ export default function DocumentCard({
           )}
         </Stack>
 
-        {isReadable ? (
-          <Button
-            onClick={() => onOpen?.(documento)}
-            size="small"
-            variant="text"
-            endIcon={<MenuBookOutlinedIcon sx={{ fontSize: 15 }} />}
-            aria-label={`Leer ${documento.titulo}`}
-            sx={{
-              minWidth: 0,
-              px: 0,
-              py: 0.3,
-              color: brand.primary,
-              fontSize: "0.75rem",
-              fontWeight: 700,
-              whiteSpace: "nowrap",
-              "&:hover": {
-                backgroundColor: "transparent",
-                color: brand.goldDeep,
-              },
-            }}
-          >
-            Leer documento
-          </Button>
-        ) : (
-          <Button
-            component="a"
-            href={documento.url}
-            download={documento.url !== "#" ? documento.titulo : undefined}
-            onClick={handleDownloadClick}
-            size="small"
-            variant="text"
-            endIcon={
-              documento.url !== "#" ? (
-                <DownloadOutlinedIcon sx={{ fontSize: 15 }} />
-              ) : undefined
-            }
-            aria-label={
-              documento.url === "#"
-                ? `${documento.titulo}: descarga próxima`
-                : `Descargar ${documento.titulo}`
-            }
-            sx={{
-              minWidth: 0,
-              px: 0,
-              py: 0.3,
-              color: documento.url === "#" ? brand.muted : brand.primary,
-              fontSize: "0.75rem",
-              fontWeight: 700,
-              whiteSpace: "nowrap",
-              "&:hover": {
-                backgroundColor: "transparent",
-                color: brand.goldDeep,
-              },
-            }}
-          >
-            {documento.url === "#" ? "Próximamente" : "Descargar"}
-          </Button>
-        )}
+        {!isReadable &&
+          (isAvailable ? (
+            <Button
+              component="a"
+              href={documento.url}
+              download={documento.titulo}
+              onClick={handleDownloadClick}
+              size="small"
+              variant="text"
+              endIcon={<DownloadOutlinedIcon sx={{ fontSize: 15 }} />}
+              aria-label={`Descargar ${documento.titulo}`}
+              sx={{
+                minWidth: 0,
+                px: 0,
+                py: 0.3,
+                color: brand.primary,
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                whiteSpace: "nowrap",
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  color: brand.goldDeep,
+                },
+              }}
+            >
+              Descargar
+            </Button>
+          ) : (
+            <Button
+              component="span"
+              aria-disabled="true"
+              size="small"
+              variant="text"
+              sx={{
+                minWidth: 0,
+                px: 0,
+                py: 0.3,
+                color: brand.muted,
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                whiteSpace: "nowrap",
+                cursor: "default",
+                "&:hover": { backgroundColor: "transparent" },
+              }}
+            >
+              Próximamente
+            </Button>
+          ))}
       </Stack>
     </Box>
   );

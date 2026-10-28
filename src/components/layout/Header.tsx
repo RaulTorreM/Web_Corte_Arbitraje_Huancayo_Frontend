@@ -1,10 +1,8 @@
-
 import { useEffect, useState, type ReactNode } from "react";
 import {
   AppBar,
   Box,
   Button,
-  Collapse,
   Divider,
   Drawer,
   IconButton,
@@ -19,7 +17,6 @@ import {
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
@@ -32,9 +29,7 @@ import {
   type NavItem,
 } from "../../data/navigation";
 import BrandMark from "../common/BrandMark";
-
-const navId = (prefix: string, to: string) =>
-  `${prefix}-${to.replace(/[^a-z0-9]+/gi, "-")}`;
+import SectionSearch from "../common/SectionSearch";
 
 /* ------------------------------------------------------------------ */
 /* Barra de contacto superior                                         */
@@ -100,230 +95,69 @@ const contactItemSx = {
 /* Ítem de navegación de escritorio                                   */
 /* ------------------------------------------------------------------ */
 
-function DesktopNavItem({
-  item,
-  label,
-  open,
-  onOpen,
-  onClose,
-}: {
-  item: NavItem;
-  label: string;
-  open: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-}) {
+function DesktopNavItem({ item, label }: { item: NavItem; label: string }) {
   const { pathname } = useLocation();
 
   const active =
     pathname === item.to ||
     (item.to !== "/" && pathname.startsWith(`${item.to}/`));
 
-  const menuId = navId("nav-menu", item.to);
-
-  if (!item.children) {
-    return (
-      <Box
-        component={RouterLink}
-        to={item.to}
-        onClick={onClose}
-        sx={{
-          position: "relative",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          py: 1.5,
-          px: 0.4,
-          minWidth: 0,
-          flexShrink: 1,
-          color: active ? brand.white : "rgba(242,242,247,0.88)",
-          textDecoration: "none",
-          fontSize: { lg: "0.8rem", xl: "0.84rem" },
-          fontWeight: 700,
-          lineHeight: 1.35,
-          letterSpacing: "0.005em",
-          textAlign: "center",
-          overflowWrap: "normal",
-          transition: "color 0.18s ease",
-          "&:hover": {
-            color: brand.white,
-          },
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 7,
-            height: 2,
-            backgroundColor: brand.goldBright,
-            transform: active ? "scaleX(1)" : "scaleX(0)",
-            transformOrigin: "left",
-            transition: "transform 0.2s ease",
-          },
-          "&:hover::after": {
-            transform: "scaleX(1)",
-          },
-        }}
-      >
-        {label}
-      </Box>
-    );
-  }
-
   return (
     <Box
+      component={RouterLink}
+      to={item.to}
+      aria-current={active ? "page" : undefined}
       sx={{
         position: "relative",
-        display: "flex",
+        display: "inline-flex",
         alignItems: "center",
+        py: 1.5,
+        px: 0.4,
         minWidth: 0,
         flexShrink: 1,
-      }}
-      onMouseEnter={onOpen}
-      onMouseLeave={(event) => {
-        const related = event.relatedTarget;
-
-        if (
-          related instanceof Node &&
-          event.currentTarget.contains(related)
-        ) {
-          return;
-        }
-
-        const menu = document.getElementById(menuId);
-
-        if (!menu?.contains(document.activeElement)) {
-          onClose();
-        }
-      }}
-      onBlur={(event) => {
-        if (
-          !event.currentTarget.contains(
-            event.relatedTarget as Node | null
-          )
-        ) {
-          onClose();
-        }
-      }}
-      onKeyDown={(event) => {
-        if (event.key === "Escape") {
-          onClose();
-          event.currentTarget.querySelector("button")?.focus();
-        }
+        color: active ? brand.gold : "rgba(242,242,247,0.88)",
+        textDecoration: "none",
+        fontSize: { lg: "0.8rem", xl: "0.84rem" },
+        fontWeight: 700,
+        lineHeight: 1.35,
+        letterSpacing: "0.005em",
+        textAlign: "center",
+        overflowWrap: "normal",
+        transition:
+          "color 0.18s ease, background-color 0.22s ease, transform 0.22s ease",
+        "&:hover": {
+          color: brand.white,
+          backgroundColor: "rgba(243,187,57,0.08)",
+          transform: "translateY(-1px)",
+          "& .nav-subsection-line": {
+            width: "100%",
+            opacity: 1,
+            backgroundColor: brand.goldSoft,
+          },
+        },
       }}
     >
-      <Stack
-        component="button"
-        type="button"
-        direction="row"
-        spacing={0.3}
-        onClick={open ? onClose : onOpen}
-        aria-expanded={open}
-        aria-controls={menuId}
-        sx={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "none",
-          border: 0,
-          p: 0.4,
-          py: 1.5,
-          minWidth: 0,
-          flexShrink: 1,
-          fontFamily: "inherit",
-          cursor: "pointer",
-          color: active || open
-            ? brand.white
-            : "rgba(242,242,247,0.88)",
-          fontSize: { lg: "0.8rem", xl: "0.84rem" },
-          fontWeight: 700,
-          lineHeight: 1.35,
-          letterSpacing: "0.005em",
-          textAlign: "center",
-          transition: "color 0.18s ease",
-          "&:hover": {
-            color: brand.white,
-          },
-          "& svg": {
-            fontSize: 16,
-            flexShrink: 0,
-            transition: "transform 0.18s ease",
-            transform: open ? "rotate(180deg)" : "none",
-          },
-        }}
-      >
-        {label}
-        <ExpandMoreIcon />
-      </Stack>
-
-      <Box
-        id={menuId}
-        sx={{
-          position: "absolute",
-          top: "calc(100% - 2px)",
-          left: "50%",
-          zIndex: 1300,
-          width: 290,
-          maxWidth: "calc(100vw - 24px)",
-          py: 1,
-          backgroundColor: brand.white,
-          border: "1px solid rgba(10,36,75,0.10)",
-          borderTop: `2px solid ${brand.gold}`,
-          boxShadow: "0 16px 34px rgba(4,15,38,0.20)",
-          opacity: open ? 1 : 0,
-          visibility: open ? "visible" : "hidden",
-          pointerEvents: open ? "auto" : "none",
-          transform: open
-            ? "translate(-50%, 0)"
-            : "translate(-50%, -4px)",
-          transition:
-            "opacity 0.16s ease, transform 0.16s ease, visibility 0.16s",
-        }}
-      >
-        {item.children.map((child) => {
-          const childActive =
-            pathname === child.to ||
-            pathname.startsWith(`${child.to}/`);
-
-          return (
-            <Box
-              key={child.to}
-              component={RouterLink}
-              to={child.to}
-              onClick={onClose}
-              sx={{
-                position: "relative",
-                display: "block",
-                px: 2.2,
-                py: 1.2,
-                color: childActive ? brand.primaryDeep : brand.ink,
-                textDecoration: "none",
-                fontSize: "0.85rem",
-                fontWeight: childActive ? 700 : 500,
-                lineHeight: 1.5,
-                borderLeft: `2px solid ${childActive ? brand.gold : "transparent"
-                  }`,
-                backgroundColor: childActive
-                  ? brand.skySoft
-                  : "transparent",
-                transition:
-                  "background-color 0.16s ease, color 0.16s ease",
-                "&:hover": {
-                  backgroundColor: brand.paper,
-                  color: brand.primaryDeep,
-                  borderLeftColor: brand.gold,
-                },
-                "&:focus-visible": {
-                  outline: `2px solid ${brand.gold}`,
-                  outlineOffset: "-2px",
-                },
-              }}
-            >
-              {child.label}
-            </Box>
-          );
-        })}
-      </Box>
+      {item.children ? (
+        <Box
+          component="span"
+          aria-hidden="true"
+          className="nav-subsection-line"
+          sx={{
+            position: "absolute",
+            left: "50%",
+            bottom: 2,
+            width: active ? "100%" : 14,
+            height: 2,
+            transform: "translateX(-50%)",
+            borderRadius: "2px",
+            backgroundColor: active ? brand.goldSoft : brand.gold,
+            opacity: active ? 1 : 0.5,
+            transition:
+              "width 0.26s ease, opacity 0.22s ease, background-color 0.22s ease",
+          }}
+        />
+      ) : null}
+      {label}
     </Box>
   );
 }
@@ -333,19 +167,9 @@ function DesktopNavItem({
 /* ------------------------------------------------------------------ */
 
 export default function Header() {
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileGroup, setMobileGroup] = useState<string | null>(null);
-
   const { pathname } = useLocation();
   const wideNav = useMediaQuery("(min-width:1400px)");
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setOpenMenu(null);
-    setMobileOpen(false);
-    setMobileGroup(null);
-  }, [pathname]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -353,7 +177,6 @@ export default function Header() {
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMobileOpen(false);
-        setMobileGroup(null);
       }
     };
 
@@ -378,7 +201,6 @@ export default function Header() {
       }}
     >
       {/* BARRA DE CONTACTO SUPERIOR */}
-
       <Box
         sx={{
           display: "flex",
@@ -406,6 +228,10 @@ export default function Header() {
               justifyContent: "center",
             }}
           >
+            <Box sx={{ display: { xs: "none", md: "block" }, flexShrink: 0 }}>
+              <SectionSearch />
+            </Box>
+
             {CONTACT_ITEMS.map((item) => {
               const content = (
                 <>
@@ -448,7 +274,6 @@ export default function Header() {
       </Box>
 
       {/* BARRA PRINCIPAL */}
-
       <Box
         sx={{
           width: "100%",
@@ -465,7 +290,6 @@ export default function Header() {
           }}
         >
           {/* LOGOTIPO */}
-
           <Box
             sx={{
               display: "flex",
@@ -474,19 +298,17 @@ export default function Header() {
               minWidth: 0,
               mr: { xs: "auto", xl: 0 },
               textDecoration: "none",
-              paddingLeft: 5
+              paddingLeft: 5,
             }}
           >
             <BrandMark light />
           </Box>
 
           {/* NAVEGACIÓN DESKTOP */}
-
           <Stack
             component="nav"
             aria-label="Navegación principal"
             direction="row"
-
             sx={{
               display: { xs: "none", lg: "flex" },
               flex: "1 1 auto",
@@ -496,22 +318,17 @@ export default function Header() {
               columnGap: { lg: 0.7, xl: 1.0 },
               mx: { lg: 0.6, xl: 1.2 },
             }}
-
           >
             {NAV_ITEMS.map((item) => (
               <DesktopNavItem
                 key={item.to}
                 item={item}
                 label={wideNav ? item.label : item.shortLabel ?? item.label}
-                open={openMenu === item.to}
-                onOpen={() => setOpenMenu(item.to)}
-                onClose={() => setOpenMenu(null)}
               />
             ))}
           </Stack>
 
           {/* ACCIONES */}
-
           <Stack
             direction="row"
             spacing={{ xs: 0.7, md: 1 }}
@@ -523,8 +340,6 @@ export default function Header() {
               zIndex: 2,
             }}
           >
-
-
             <Button
               variant="contained"
               sx={{
@@ -539,21 +354,18 @@ export default function Header() {
                 whiteSpace: "nowrap",
                 cursor: "default",
                 borderRadius: "4px",
-
                 color: "#071F3A",
                 backgroundColor: "#E0AD19",
                 border: "1px solid #F0C94F",
                 boxShadow: "0 2px 5px rgba(0, 0, 0, 0.15)",
                 transition:
                   "background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease",
-
                 "&:hover": {
                   backgroundColor: "#F0C443",
                   color: "#071F3A",
                   boxShadow: "0 3px 8px rgba(0, 0, 0, 0.2)",
                   transform: "translateY(-1px)",
                 },
-
                 "&:focus-visible": {
                   outline: "2px solid #F7D875",
                   outlineOffset: "3px",
@@ -563,16 +375,14 @@ export default function Header() {
               Mesa de Partes
             </Button>
 
-
+            <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
+              <SectionSearch compact />
+            </Box>
 
             <IconButton
               aria-label="Abrir menú"
               aria-expanded={mobileOpen}
-              onClick={() => {
-                setOpenMenu(null);
-                setMobileGroup(null);
-                setMobileOpen(true);
-              }}
+              onClick={() => setMobileOpen(true)}
               sx={{
                 display: { xs: "inline-flex", lg: "none" },
                 color: brand.white,
@@ -594,14 +404,10 @@ export default function Header() {
       </Box>
 
       {/* MENÚ MÓVIL */}
-
       <Drawer
         anchor="right"
         open={mobileOpen}
-        onClose={() => {
-          setMobileOpen(false);
-          setMobileGroup(null);
-        }}
+        onClose={() => setMobileOpen(false)}
         slotProps={{
           paper: {
             sx: {
@@ -621,7 +427,6 @@ export default function Header() {
           }}
         >
           {/* CABECERA DRAWER */}
-
           <Box
             sx={{
               minHeight: 76,
@@ -643,10 +448,7 @@ export default function Header() {
 
             <IconButton
               aria-label="Cerrar menú"
-              onClick={() => {
-                setMobileOpen(false);
-                setMobileGroup(null);
-              }}
+              onClick={() => setMobileOpen(false)}
               sx={{
                 color: brand.white,
                 width: 42,
@@ -661,7 +463,6 @@ export default function Header() {
           </Box>
 
           {/* NAVEGACIÓN */}
-
           <Stack
             sx={{
               flex: 1,
@@ -673,7 +474,6 @@ export default function Header() {
           >
             <List disablePadding sx={{ flex: 1 }}>
               {NAV_ITEMS.map((item) => {
-                const groupOpen = mobileGroup === item.to;
                 const itemActive =
                   pathname === item.to ||
                   (item.to !== "/" && pathname.startsWith(`${item.to}/`));
@@ -686,32 +486,25 @@ export default function Header() {
                     }}
                   >
                     <ListItemButton
-                      component={item.children ? "button" : RouterLink}
-                      {...(item.children
-                        ? {
-                          onClick: () =>
-                            setMobileGroup(groupOpen ? null : item.to),
-                        }
-                        : {
-                          to: item.to,
-                          onClick: () => setMobileOpen(false),
-                        })}
-                      aria-expanded={
-                        item.children ? groupOpen : undefined
-                      }
-                      aria-controls={
-                        item.children
-                          ? navId("mobile-nav", item.to)
-                          : undefined
-                      }
+                      component={RouterLink}
+                      to={item.to}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={itemActive ? "page" : undefined}
                       sx={{
                         width: "100%",
                         px: 0,
                         py: 1.35,
                         color: itemActive ? brand.primaryDeep : brand.ink,
                         textAlign: "left",
+                        backgroundColor: itemActive
+                          ? "rgba(243,187,57,0.1)"
+                          : "transparent",
+                        boxShadow: itemActive
+                          ? `inset 2px 0 0 ${brand.gold}`
+                          : "none",
+                        transition: "background-color 0.18s ease",
                         "&:hover": {
-                          backgroundColor: "transparent",
+                          backgroundColor: "rgba(243,187,57,0.06)",
                           color: brand.primary,
                         },
                       }}
@@ -731,78 +524,25 @@ export default function Header() {
                       />
 
                       {item.children ? (
-                        <ExpandMoreIcon
+                        <Box
+                          aria-hidden="true"
                           sx={{
-                            color: brand.muted,
-                            transform: groupOpen
-                              ? "rotate(180deg)"
-                              : "none",
-                            transition: "transform 0.18s ease",
+                            width: 5,
+                            height: 5,
+                            flexShrink: 0,
+                            transform: "rotate(45deg)",
+                            backgroundColor: brand.gold,
+                            opacity: itemActive ? 1 : 0.85,
                           }}
                         />
                       ) : null}
                     </ListItemButton>
-
-                    {item.children ? (
-                      <Collapse
-                        id={navId("mobile-nav", item.to)}
-                        in={groupOpen}
-                        timeout="auto"
-                        unmountOnExit
-                      >
-                        <List disablePadding sx={{ pb: 1.2 }}>
-                          {item.children.map((child) => {
-                            const childActive =
-                              pathname === child.to ||
-                              pathname.startsWith(`${child.to}/`);
-
-                            return (
-                              <ListItemButton
-                                key={child.to}
-                                component={RouterLink}
-                                to={child.to}
-                                onClick={() => setMobileOpen(false)}
-                                sx={{
-                                  py: 0.8,
-                                  pl: 1.5,
-                                  borderLeft: `2px solid ${childActive
-                                    ? brand.gold
-                                    : brand.lineStrong
-                                    }`,
-                                  color: childActive
-                                    ? brand.primaryDeep
-                                    : brand.muted,
-                                  "&:hover": {
-                                    backgroundColor: "transparent",
-                                    color: brand.primary,
-                                  },
-                                }}
-                              >
-                                <ListItemText
-                                  primary={child.label}
-                                  slotProps={{
-                                    primary: {
-                                      sx: {
-                                        fontSize: "0.88rem",
-                                        lineHeight: 1.5,
-                                        fontWeight: childActive ? 700 : 400,
-                                      },
-                                    },
-                                  }}
-                                />
-                              </ListItemButton>
-                            );
-                          })}
-                        </List>
-                      </Collapse>
-                    ) : null}
                   </Box>
                 );
               })}
             </List>
 
             {/* ACCIONES Y CONTACTO MÓVIL */}
-
             <Stack spacing={1.5} sx={{ pt: 1 }}>
               <Button
                 variant="contained"
@@ -838,9 +578,7 @@ export default function Header() {
                     },
                   }}
                 >
-                  <PhoneOutlinedIcon
-                    sx={{ fontSize: 17, flexShrink: 0 }}
-                  />
+                  <PhoneOutlinedIcon sx={{ fontSize: 17, flexShrink: 0 }} />
                   {SITE.contact.phone}
                 </Box>
 
@@ -860,9 +598,7 @@ export default function Header() {
                     },
                   }}
                 >
-                  <MailOutlinedIcon
-                    sx={{ fontSize: 17, flexShrink: 0 }}
-                  />
+                  <MailOutlinedIcon sx={{ fontSize: 17, flexShrink: 0 }} />
                   {SITE.contact.email}
                 </Box>
 
@@ -877,11 +613,7 @@ export default function Header() {
                   }}
                 >
                   <PlaceOutlinedIcon
-                    sx={{
-                      fontSize: 17,
-                      mt: 0.2,
-                      flexShrink: 0,
-                    }}
+                    sx={{ fontSize: 17, mt: 0.2, flexShrink: 0 }}
                   />
                   {SITE.contact.address}
                 </Box>
@@ -894,7 +626,7 @@ export default function Header() {
                 sx={{
                   flexWrap: "wrap",
                   columnGap: 2,
-                  rowGap: 1
+                  rowGap: 1,
                 }}
               >
                 {UTILITY_LINKS.map((link) => (

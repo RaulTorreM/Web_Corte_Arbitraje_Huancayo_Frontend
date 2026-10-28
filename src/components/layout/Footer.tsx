@@ -23,7 +23,7 @@ import BrandMark from "../common/BrandMark";
 import TikTokIcon from "../icons/TikTokIcon";
 
 const CORTE = [
-  { label: "Quiénes somos", to: "/quienes-somos" },
+  { label: "Nosotros", to: "/quienes-somos" },
   { label: "Consejo Directivo", to: "/quienes-somos/consejo-directivo" },
   { label: "Consejo Superior", to: "/quienes-somos/consejo" },
   { label: "Certificaciones", to: "/quienes-somos/certificaciones" },
@@ -96,7 +96,14 @@ export default function Footer() {
         borderTop: `2px solid ${brand.gold}`,
       }}
     >
-      <Container sx={{ py: { xs: 4, md: 5 } }}>
+      <Container
+        maxWidth={false}
+        sx={{
+          maxWidth: "none",
+          px: { xs: 2, sm: 3, md: 4, lg: 5 },
+          py: { xs: 4, md: 5 },
+        }}
+      >
         <Grid container spacing={{ xs: 3, md: 3 }}>
           <Grid size={{ xs: 12, md: 3.5 }}>
             <BrandMark light />
@@ -260,7 +267,8 @@ export default function Footer() {
           sx={{
             alignItems: { xs: "flex-start", md: "center" },
             justifyContent: "space-between",
-            width: 1200
+            flexWrap: "wrap",
+            rowGap: 1.2,
           }}
         >
           <Typography
@@ -269,6 +277,8 @@ export default function Footer() {
               fontSize: "0.72rem",
               lineHeight: 1.5,
               maxWidth: 820,
+              flex: "1 1 520px",
+              minWidth: 0,
             }}
           >
             © {new Date().getFullYear()} {SITE.legalName}. Todos los derechos reservados.

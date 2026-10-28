@@ -11,13 +11,14 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
+import SectionSubnav from "../../components/common/SectionSubnav";
 // import CtaBand from "../../components/common/CtaBand";
 import SectionHeading from "../../components/common/SectionHeading";
 import PersonCard from "../../components/common/PersonCard";
 import { Stagger } from "../../components/common/Reveal";
 import { brand, fonts } from "../../theme/brand";
 import { CONSEJO } from "../../data/directivos";
-import { MEDIA } from "../../data/media";
+import { QUIENES_SUBNAV } from "../../data/navigation";
 
 const COMISIONES = [
   {
@@ -82,12 +83,16 @@ export default function ConsejoPage() {
       <PageHero
         kicker="Gobierno institucional"
         title="Consejo Superior de Arbitraje"
-        subtitle="Es la máxima autoridad institucional de gobierno administrativo no jurisdiccional. Asegura la aplicación de los reglamentos y, a pedido de parte, resuelve en última instancia los temas administrativos e incidentes procesales del arbitraje."
+        subtitle="Máxima autoridad de gobierno administrativo de la Corte, integrada por seis consejeros."
         crumbs={[
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Consejo Superior" },
         ]}
-        image={MEDIA.equipo}
+      />
+
+      <SectionSubnav
+        items={QUIENES_SUBNAV}
+        ariaLabel="Secciones de Quiénes somos"
       />
 
       <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>

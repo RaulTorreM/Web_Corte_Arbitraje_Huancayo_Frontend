@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import { brand } from "../../theme/brand";
 import type { MediaAsset } from "../../data/media";
-import { ease } from "../../utils/animations";
-import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
+import { MEDIA } from "../../data/media";
+import type { Crumb } from "./Breadcrumbs";
+import PageHeader from "./PageHeader";
+import SectionHero from "./SectionHero";
 
 type PageHeroProps = {
   kicker: string;
@@ -20,11 +22,59 @@ export default function PageHero({
   kicker,
   title,
   subtitle,
-  crumbs,
   image,
   imageAlt = "",
   children,
 }: PageHeroProps) {
+  const { pathname } = useLocation();
+
+  if (!pathname.startsWith("/quienes-somos")) {
+    if (pathname === "/arbitraje" || pathname.startsWith("/arbitraje/")) {
+      return (
+        <SectionHero
+          title={title}
+          subtitle={subtitle}
+          image={MEDIA.servicioArbitraje}
+          imageAlt={MEDIA.servicioArbitraje.alt}
+          children={children}
+        />
+      );
+    }
+
+    if (pathname === "/jprd" || pathname.startsWith("/jprd/")) {
+      return (
+        <SectionHero
+          title={title}
+          subtitle={subtitle}
+          image={MEDIA.servicioJprd}
+          imageAlt={MEDIA.servicioJprd.alt}
+          children={children}
+        />
+      );
+    }
+
+    if (
+      pathname === "/conciliacion" ||
+      pathname.startsWith("/conciliacion/")
+    ) {
+      return (
+        <SectionHero
+          title={title}
+          subtitle={subtitle}
+          image={MEDIA.servicioConciliacion}
+          imageAlt={MEDIA.servicioConciliacion.alt}
+          children={children}
+        />
+      );
+    }
+
+    return (
+      <PageHeader title={title} subtitle={subtitle}>
+        {children}
+      </PageHeader>
+    );
+  }
+
   return (
     <Box
       component="header"
@@ -33,18 +83,17 @@ export default function PageHero({
         borderBottom: `1px solid ${brand.line}`,
       }}
     >
-      <Container sx={{ pt: { xs: 2.5, md: 3.5 }, pb: { xs: 5, md: 7 } }}>
+      <Container sx={{ pt: { xs: 2.5, md: 3 }, pb: { xs: 4, md: 5 } }}>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             gap: 2,
             flexWrap: "wrap",
-            mb: { xs: 4, md: 5.5 },
+            mb: { xs: 3, md: 4 },
           }}
         >
-          <Breadcrumbs items={crumbs} light={false} />
           <Typography
             sx={{
               color: brand.goldInk,
@@ -58,55 +107,55 @@ export default function PageHero({
           </Typography>
         </Box>
 
-        <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "flex-end" }}>
-          <Grid size={{ xs: 12, md: image ? 7 : 9 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease }}
+        <Grid
+          container
+          spacing={{ xs: 4, md: 6 }}
+          sx={{
+            alignItems: "center",
+            height: { xs: "auto", md: 240 },
+          }}
+        >
+          <Grid size={{ xs: 12, md: image ? 7 : 12 }}>
+            <Typography
+              component="h1"
+              variant="h1"
+              sx={{
+                fontSize: {
+                  xs: "clamp(2.1rem, 9.4vw, 2.9rem)",
+                  md: "clamp(2.4rem, 4vw, 3.4rem)",
+                },
+                maxWidth: 760,
+                color: brand.primaryDeep,
+                textWrap: "balance",
+              }}
             >
+              {title}
+            </Typography>
+
+            {subtitle && (
               <Typography
-                component="h1"
-                variant="h1"
                 sx={{
-                  fontSize: {
-                    xs: "clamp(2.15rem, 10vw, 3rem)",
-                    md: "clamp(2.8rem, 4.7vw, 4.2rem)",
-                  },
-                  maxWidth: 820,
-                  color: brand.primaryDeep,
+                  mt: 2,
+                  maxWidth: 620,
+                  color: brand.muted,
+                  fontSize: { xs: "0.96rem", md: "1.02rem" },
+                  lineHeight: 1.66,
+                  textWrap: "pretty",
                 }}
               >
-                {title}
+                {subtitle}
               </Typography>
+            )}
 
-              {subtitle && (
-                <Typography
-                  sx={{
-                    mt: 2.5,
-                    maxWidth: 660,
-                    color: brand.muted,
-                    fontSize: { xs: "0.98rem", md: "1.06rem" },
-                    lineHeight: 1.72,
-                  }}
-                >
-                  {subtitle}
-                </Typography>
-              )}
-
-              {children && <Box sx={{ mt: 3.5 }}>{children}</Box>}
-            </motion.div>
+            {children && <Box sx={{ mt: 3 }}>{children}</Box>}
           </Grid>
 
           {image && (
             <Grid size={{ xs: 12, md: 5 }}>
               <Box
-                component={motion.div}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.55, delay: 0.1, ease }}
                 sx={{
-                  position: "relative",
+                  maxWidth: { md: 460 },
+                  ml: { md: "auto" },
                   borderTop: `2px solid ${brand.gold}`,
                   pt: 1.5,
                 }}
@@ -114,16 +163,17 @@ export default function PageHero({
                 <Box
                   component="img"
                   src={image.src}
-                  alt={imageAlt ?? image.alt}
+                  alt={imageAlt || image.alt}
                   fetchPriority="high"
+                  decoding="async"
                   sx={{
                     display: "block",
                     width: "100%",
-                    aspectRatio: "4 / 3",
+                    height: { xs: 180, md: 226 },
                     objectFit: image.fit,
                     backgroundColor:
                       image.fit === "contain" ? brand.paperAlt : "transparent",
-                    p: image.fit === "contain" ? { xs: 4, md: 5 } : 0,
+                    p: image.fit === "contain" ? { xs: 3, md: 4 } : 0,
                   }}
                 />
               </Box>

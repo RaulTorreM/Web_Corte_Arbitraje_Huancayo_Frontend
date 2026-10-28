@@ -19,16 +19,7 @@ export default function SectionSubnav({
       component="nav"
       aria-label={ariaLabel}
       sx={{
-        position: "sticky",
-        top: "var(--header-h)",
-        zIndex: 1000,
-        backgroundColor: "rgba(239,244,251,0.97)",
-        backdropFilter: "blur(8px)",
-        /*
-         * Separador con sombra interna en lugar de `borderBottom`: así la
-         * barra mide exactamente `--subnav-h` y los offsets que la usan
-         * (columna pegajosa del procedimiento) no quedan 1 px corridos.
-         */
+        backgroundColor: brand.paper,
         boxShadow: `inset 0 -1px 0 ${brand.line}`,
       }}
     >
@@ -52,6 +43,7 @@ export default function SectionSubnav({
                 key={item.to}
                 component={RouterLink}
                 to={item.to}
+                state={{ preserveScroll: true }}
                 aria-current={active ? "page" : undefined}
                 sx={{
                   position: "relative",

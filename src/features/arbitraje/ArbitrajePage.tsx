@@ -93,8 +93,8 @@ export default function ArbitrajePage() {
             <Grid size={{ xs: 12, md: 7 }}>
               <Typography
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -160,7 +160,7 @@ export default function ArbitrajePage() {
                     <Typography
                       sx={{
                         fontFamily: fonts.display,
-                        color: brand.goldDeep,
+                        color: brand.goldInk,
                         fontSize: "0.88rem",
                         lineHeight: 1.5,
                       }}
@@ -206,8 +206,8 @@ export default function ArbitrajePage() {
                 <Typography
                   sx={{
                     mb: 1.2,
-                    color: brand.goldDeep,
-                    fontSize: "0.64rem",
+                    color: brand.goldInk,
+                    fontSize: "0.7rem",
                     fontWeight: 700,
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",
@@ -258,8 +258,8 @@ export default function ArbitrajePage() {
               <Typography
                 component="h3"
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
@@ -305,7 +305,7 @@ export default function ArbitrajePage() {
                     aria-hidden="true"
                     sx={{
                       fontFamily: fonts.display,
-                      color: brand.gold,
+                      color: brand.goldInk,
                       fontSize: "2.05rem",
                       lineHeight: 0.95,
                       fontVariantNumeric: "tabular-nums",
@@ -362,8 +362,8 @@ export default function ArbitrajePage() {
               <Typography
                 component="h3"
                 sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.66rem",
+                  color: brand.goldInk,
+                  fontSize: "0.7rem",
                   fontWeight: 700,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
@@ -410,7 +410,7 @@ export default function ArbitrajePage() {
                     aria-hidden="true"
                     sx={{
                       fontFamily: fonts.display,
-                      color: brand.goldDeep,
+                      color: brand.goldInk,
                       fontSize: "1.4rem",
                       lineHeight: 1.1,
                       fontVariantNumeric: "tabular-nums",
@@ -472,8 +472,8 @@ export default function ArbitrajePage() {
                 <Typography
                   sx={{
                     mb: 1.2,
-                    color: brand.goldDeep,
-                    fontSize: "0.64rem",
+                    color: brand.goldInk,
+                    fontSize: "0.7rem",
                     fontWeight: 700,
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",
@@ -550,7 +550,7 @@ export default function ArbitrajePage() {
                       aria-hidden="true"
                       sx={{
                         fontFamily: fonts.display,
-                        color: brand.goldDeep,
+                        color: brand.goldInk,
                         fontSize: { xs: "1.35rem", md: "1.6rem" },
                         lineHeight: 1.1,
                         fontVariantNumeric: "tabular-nums",
@@ -606,8 +606,8 @@ export default function ArbitrajePage() {
           >
             <Typography
               sx={{
-                color: brand.goldDeep,
-                fontSize: "0.66rem",
+                color: brand.goldInk,
+                fontSize: "0.7rem",
                 fontWeight: 700,
                 letterSpacing: "0.13em",
                 textTransform: "uppercase",

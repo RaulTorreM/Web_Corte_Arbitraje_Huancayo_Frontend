@@ -18,6 +18,10 @@ type CtaBandProps = {
   secondaryTo?: string;
 };
 
+// Se deja el componente disponible, pero desactivado en todas las páginas.
+// Para volver a mostrarlo, cambia este valor a true.
+const CTA_BAND_ENABLED = false;
+
 export default function CtaBand({
   title = "Conversemos antes de presentar tu caso",
   subtitle = "La Secretaría General revisa los requisitos, la cláusula arbitral y el paso que corresponde. Si ya tienes un expediente, indícanos el número de caso al escribirnos.",
@@ -27,6 +31,8 @@ export default function CtaBand({
   secondaryLabel = "Ver canales de atención",
   secondaryTo = "/contacto",
 }: CtaBandProps) {
+  if (!CTA_BAND_ENABLED) return null;
+
   return (
     <Box
       component="section"

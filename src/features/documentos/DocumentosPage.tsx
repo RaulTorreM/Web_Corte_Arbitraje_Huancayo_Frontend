@@ -5,7 +5,7 @@ import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import DocumentCard from "../../components/common/DocumentCard";
 import PdfViewerDialog from "../../components/common/PdfViewerDialog";
-import { brand } from "../../theme/brand";
+import { brand, fonts } from "../../theme/brand";
 import {
   DOCUMENTOS_INSTITUCIONALES,
   type Documento,
@@ -18,58 +18,90 @@ export default function DocumentosPage() {
   return (
     <>
       <PageMeta
-        title="Documentos institucionales"
+        title="Documentos Institucionales"
         description="Estatuto, Reglamento de Arbitraje y Código de Ética de la Corte Superior de Arbitraje de Huancayo, disponibles para lectura y descarga."
       />
 
       <PageHero
         kicker="Repositorio institucional"
-        title="Documentos institucionales"
-        subtitle="Estatuto, Reglamento de Arbitraje y Código de Ética de la Corte, disponibles para lectura y descarga."
-        crumbs={[{ label: "Documentos institucionales" }]}
+        title="Documentos Institucionales"
+        subtitle="Estatuto, Reglamento de Arbitraje y Código de Ética para consulta y descarga."
+        crumbs={[{ label: "Documentos Institucionales" }]}
         image={MEDIA.documentos}
       />
 
       <Box
         component="section"
-        sx={{ py: { xs: 6, md: 9 }, backgroundColor: brand.paper }}
+        sx={{ py: { xs: 6, md: 9 }, backgroundColor: brand.whiteSoft }}
       >
         <Container>
-          <Stack
-            direction="row"
-            spacing={1.4}
-            sx={{
-              mb: 5,
-              py: 2,
-              alignItems: "flex-start",
-              borderTop: `1px solid ${brand.lineStrong}`,
-              borderBottom: `1px solid ${brand.line}`,
-            }}
-          >
-            <Box
-              sx={{
-                width: 5,
-                height: 5,
-                backgroundColor: brand.goldDeep,
-                mt: "8px",
-                flexShrink: 0,
-              }}
-            />
-            <Typography
-              sx={{ color: brand.muted, fontSize: "0.84rem", lineHeight: 1.65 }}
-            >
-              Haz clic en «Leer documento» para abrirlo sin salir de la página.
-              También puedes descargar cada archivo en formato PDF.
-            </Typography>
-          </Stack>
-
           <Typography
             component="h2"
-            variant="h3"
-            sx={{ mb: 3.5, color: brand.primaryDeep }}
+            sx={{
+              position: "absolute",
+              width: "1px",
+              height: "1px",
+              p: 0,
+              m: "-1px",
+              overflow: "hidden",
+              clip: "rect(0 0 0 0)",
+              whiteSpace: "nowrap",
+              border: 0,
+            }}
           >
-            Documentos disponibles
+            Documentos institucionales disponibles
           </Typography>
+
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                md: "minmax(0, 1.1fr) minmax(0, 0.9fr)",
+              },
+              gap: { xs: 2.5, md: 6 },
+              alignItems: "end",
+              borderTop: `1px solid ${brand.lineStrong}`,
+              pt: 2.5,
+              mb: 4.5,
+            }}
+          >
+            <Box>
+              <Box
+                aria-hidden="true"
+                sx={{
+                  width: 54,
+                  height: 3,
+                  mb: 1.8,
+                  backgroundColor: brand.gold,
+                }}
+              />
+              <Typography
+                sx={{
+                  color: brand.primaryDeep,
+                  fontFamily: fonts.display,
+                  fontWeight: 600,
+                  fontSize: { xs: "1.5rem", md: "1.8rem" },
+                  lineHeight: 1.2,
+                  textWrap: "balance",
+                }}
+              >
+                Documentos para consultar y descargar
+              </Typography>
+            </Box>
+
+            <Typography
+              sx={{
+                color: brand.muted,
+                fontSize: "0.84rem",
+                lineHeight: 1.65,
+                textWrap: "pretty",
+              }}
+            >
+              Haz clic en la portada de cada documento para leerlo sin salir de
+              la página. También puedes descargarlo en formato PDF.
+            </Typography>
+          </Box>
 
           <Grid container spacing={{ xs: 4, md: 5 }}>
             {DOCUMENTOS_INSTITUCIONALES.map((documento) => (

@@ -1,7 +1,7 @@
 import PageMeta from "../../components/common/PageMeta";
 import HeroHome from "./sections/HeroHome";
 import ServiciosHome from "./sections/ServiciosHome";
-import QuienesHome from "./sections/QuienesHome";
+import FraseHome from "./sections/FraseHome";
 
 export default function HomePage() {
   return (
@@ -13,7 +13,7 @@ export default function HomePage() {
 
       <HeroHome />
       <ServiciosHome />
-      <QuienesHome />
+      <FraseHome />
     </>
   );
 }

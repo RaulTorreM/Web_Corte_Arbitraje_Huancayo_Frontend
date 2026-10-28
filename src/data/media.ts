@@ -24,7 +24,7 @@ const sello: MediaAsset = {
 
 const fotoConsejoDirectivo: MediaAsset = {
   src: "/images/CONSEJODIRECTIVO_IMG_01.jpeg",
-  alt: "Consejo directivo de la Corte Superior de Arbitraje de Huancayo",
+  alt: "Consejo Directivo de la Cámara de Comercio de Huancayo",
   fit: "cover",
 };
 
