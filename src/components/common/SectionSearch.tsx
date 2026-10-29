@@ -20,6 +20,7 @@ type SearchItem = {
   label: string;
   to: string;
   group: string;
+  section: string;
 };
 
 const cleanLabel = (label: string) =>
@@ -36,17 +37,19 @@ const SECTION_INDEX: SearchItem[] = (() => {
   const seen = new Set<string>();
   const candidates: SearchItem[] = [
     ...NAV_ITEMS.flatMap((item) => [
-      { label: cleanLabel(item.label), to: item.to, group: "" },
+      { label: cleanLabel(item.label), to: item.to, group: "", section: "" },
       ...(item.children ?? []).map((child) => ({
         label: cleanLabel(child.label),
         to: child.to,
         group: cleanLabel(item.label),
+        section: cleanLabel(item.shortLabel ?? item.label),
       })),
     ]),
     ...UTILITY_LINKS.map((link) => ({
       label: link.label,
       to: link.to,
       group: "Servicios",
+      section: "Servicios",
     })),
   ];
 
@@ -55,6 +58,21 @@ const SECTION_INDEX: SearchItem[] = (() => {
     seen.add(item.to);
     return true;
   });
+})();
+
+const DUPLICATE_LABELS = (() => {
+  const counts = new Map<string, number>();
+
+  for (const item of SECTION_INDEX) {
+    const key = normalize(item.label);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+
+  return new Set(
+    [...counts.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([label]) => label)
+  );
 })();
 
 function SearchField({
@@ -96,6 +114,9 @@ function SearchField({
       }}
       renderOption={(props, option) => {
         const { key, ...optionProps } = props;
+        const showSection =
+          Boolean(option.section) &&
+          DUPLICATE_LABELS.has(normalize(option.label));
 
         return (
           <Box
@@ -114,10 +135,11 @@ function SearchField({
           >
             <Typography
               sx={{
-                minWidth: 0,
+                minWidth: 223,
+                ...(showSection ? { minWidth: 0, flex: 1 } : {}),
                 color: brand.primaryDeep,
                 fontSize: "0.88rem",
-                fontWeight: 600,
+                fontWeight: 3000,
                 lineHeight: 1.3,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -126,8 +148,26 @@ function SearchField({
             >
               {option.label}
             </Typography>
+
+            {showSection && (
+              <Typography
+                sx={{
+                  flexShrink: 0,
+                  pl: 1,
+                  borderLeft: `1px solid ${brand.line}`,
+                  color: brand.muted,
+                  fontSize: "0.7rem",
+                  fontWeight: 600,
+                  lineHeight: 1.3,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {option.section}
+              </Typography>
+            )}
+
             <ArrowForwardIcon
-              sx={{ fontSize: 15, color: brand.lineStrong, flexShrink: 0 }}
+              sx={{ fontSize: 15, color: brand.lineStrong, flexShrink: 0, alignItems: "end"}}
             />
           </Box>
         );

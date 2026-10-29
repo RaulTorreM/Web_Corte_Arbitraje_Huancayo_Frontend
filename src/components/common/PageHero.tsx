@@ -22,6 +22,7 @@ export default function PageHero({
   kicker,
   title,
   subtitle,
+  crumbs,
   image,
   imageAlt = "",
   children,
@@ -34,6 +35,7 @@ export default function PageHero({
         <SectionHero
           title={title}
           subtitle={subtitle}
+          crumbs={crumbs}
           image={MEDIA.servicioArbitraje}
           imageAlt={MEDIA.servicioArbitraje.alt}
           children={children}
@@ -46,6 +48,7 @@ export default function PageHero({
         <SectionHero
           title={title}
           subtitle={subtitle}
+          crumbs={crumbs}
           image={MEDIA.servicioJprd}
           imageAlt={MEDIA.servicioJprd.alt}
           children={children}
@@ -61,6 +64,7 @@ export default function PageHero({
         <SectionHero
           title={title}
           subtitle={subtitle}
+          crumbs={crumbs}
           image={MEDIA.servicioConciliacion}
           imageAlt={MEDIA.servicioConciliacion.alt}
           children={children}

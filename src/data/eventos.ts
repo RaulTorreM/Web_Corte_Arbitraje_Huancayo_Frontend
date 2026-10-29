@@ -1,89 +1,103 @@
-import { MEDIA } from "./media";
+export type EventoEvidencia = {
+  src: string;
+  alt: string;
+  label: string;
+};
 
 export type Evento = {
   id: string;
   titulo: string;
   descripcion: string;
-  fecha: string;
-  hora: string;
-  lugar: string;
-  modalidad: "Presencial" | "Virtual" | "Híbrido";
-  imagen: string;
-  estado: "proximo" | "realizado";
-  cupos?: string;
+  fechaLabel: string;
+  fechaLarga: string;
+  modalidad?: string;
+  lugar?: string;
+  horas?: string;
+  organiza: string;
+  cover: string;
+  coverAlt: string;
+  coverLabel: string;
+  coverFit?: "cover" | "contain";
+  coverPosition?: string;
+  evidencias: EventoEvidencia[];
+  pdf?: {
+    url: string;
+    label: string;
+  };
 };
 
 export const EVENTOS: Evento[] = [
   {
-    id: "ev-01",
-    titulo: "Seminario de actualización en arbitraje de contrataciones públicas",
+    id: "congreso-conciliacion-2026",
+    titulo:
+      "I Congreso Macrorregional del Centro del Perú: Conciliación Extrajudicial",
     descripcion:
-      "Análisis de las últimas resoluciones y criterios del Tribunal de Contrataciones del Estado aplicables al arbitraje.",
-    fecha: "2026-11-12",
-    hora: "5:00 p. m. – 8:00 p. m.",
-    lugar: "Auditorio de la Cámara de Comercio de Huancayo",
-    modalidad: "Híbrido",
-    imagen: MEDIA.capacitaciones.src,
-    estado: "proximo",
-    cupos: "80 cupos",
+      "Congreso macrorregional sobre conciliación extrajudicial, con una jornada virtual y una presencial. Incluyó 24 horas académicas y certificación.",
+    fechaLabel: "25—26 SEP 2026",
+    fechaLarga: "25 y 26 de septiembre de 2026",
+    modalidad: "Virtual el 25 y presencial + virtual el 26",
+    lugar: "Auditorio de la Cámara de Comercio de Huancayo, Junín",
+    horas: "24 horas académicas",
+    organiza:
+      "Confianza Centro de Conciliación, Esderium, Cámara de Comercio de Huancayo y Corte Superior de Arbitraje.",
+    cover: "/capacitaciones/congreso-conciliacion-2026/afiche-personas.jpg",
+    coverAlt:
+      "Afiche oficial del I Congreso Macrorregional del Centro del Perú: Conciliación Extrajudicial",
+    coverLabel: "Afiche oficial",
+    evidencias: [
+      {
+        src: "/capacitaciones/congreso-conciliacion-2026/afiche-personas.jpg",
+        alt: "Afiche del congreso con las fechas, modalidad y organizadores",
+        label: "Afiche oficial con fechas y modalidad",
+      },
+      {
+        src: "/capacitaciones/congreso-conciliacion-2026/afiche-horizontal.jpg",
+        alt: "Afiche horizontal del congreso con las instituciones organizadoras",
+        label: "Afiche horizontal",
+      },
+      {
+        src: "/capacitaciones/congreso-conciliacion-2026/afiche-vertical.jpg",
+        alt: "Afiche vertical del congreso con las fechas y modalidad",
+        label: "Afiche vertical",
+      },
+      {
+        src: "/capacitaciones/congreso-conciliacion-2026/informacion-programa.jpg",
+        alt: "Información general y programa académico del congreso",
+        label: "Información general y programa académico",
+      },
+    ],
   },
   {
-    id: "ev-02",
-    titulo: "Taller práctico: cómo redactar una cláusula arbitral eficaz",
+    id: "encuentro-arbitros-2025",
+    titulo:
+      "II Encuentro Nacional e Internacional de Árbitros y Adjudicadores",
     descripcion:
-      "Ejercicios guiados para incorporar correctamente la cláusula arbitral y evitar nulidades o vacíos de competencia.",
-    fecha: "2026-11-26",
-    hora: "6:00 p. m. – 7:30 p. m.",
-    lugar: "Plataforma virtual de la Corte",
-    modalidad: "Virtual",
-    imagen: MEDIA.capacitaciones.src,
-    estado: "proximo",
-    cupos: "150 cupos",
-  },
-  {
-    id: "ev-03",
-    titulo: "Jornada sobre juntas de prevención y resolución de disputas",
-    descripcion:
-      "Marco general de la JPRD, experiencias comparadas y propuesta de implementación en la Corte. La JPRD aún no cuenta con reglamento aprobado.",
-    fecha: "2026-12-10",
-    hora: "9:00 a. m. – 1:00 p. m.",
-    lugar: "Sede institucional, Av. Giráldez 634",
-    modalidad: "Presencial",
-    imagen: MEDIA.capacitaciones.src,
-    estado: "proximo",
-    cupos: "60 cupos",
-  },
-  {
-    id: "ev-04",
-    titulo: "Conversatorio: ética e independencia en el arbitraje",
-    descripcion:
-      "Panel con especialistas sobre conflictos de interés, deber de revelación y confianza en el sistema arbitral.",
-    fecha: "2026-09-18",
-    hora: "6:30 p. m. – 8:00 p. m.",
-    lugar: "Auditorio de la Cámara de Comercio de Huancayo",
-    modalidad: "Híbrido",
-    imagen: MEDIA.capacitaciones.src,
-    estado: "realizado",
-  },
-  {
-    id: "ev-05",
-    titulo: "Capacitación en contratación pública para empresas locales",
-    descripcion:
-      "Programa introductorio sobre elaboración de propuestas, ejecución contractual y mecanismos de solución de controversias.",
-    fecha: "2026-07-04",
-    hora: "4:00 p. m. – 7:00 p. m.",
-    lugar: "Cámara de Comercio de Huancayo",
-    modalidad: "Presencial",
-    imagen: MEDIA.capacitaciones.src,
-    estado: "realizado",
+      "Encuentro nacional e internacional de árbitros y adjudicadores con paneles sobre inversión, contratación pública, JPRD, defensa legal del Estado y laudo arbitral.",
+    fechaLabel: "05—06 DIC 2025",
+    fechaLarga: "05 y 06 de diciembre de 2025",
+    organiza:
+      "Cámara de Comercio de Huancayo, Corte Superior de Arbitraje, MIAC-CAMACOL, USMP/CIAR e INAPROF.",
+    cover: "/capacitaciones/encuentro-arbitros-2025/programa-01.jpg",
+    coverAlt:
+      "Programa oficial del II Encuentro Nacional e Internacional de Árbitros y Adjudicadores",
+    coverLabel: "Programa oficial · 2 páginas",
+    coverFit: "cover",
+    coverPosition: "top",
+    evidencias: [
+      {
+        src: "/capacitaciones/encuentro-arbitros-2025/programa-01.jpg",
+        alt: "Programa del viernes 05 de diciembre de 2025",
+        label: "Programa · viernes 05 de diciembre",
+      },
+      {
+        src: "/capacitaciones/encuentro-arbitros-2025/programa-02.jpg",
+        alt: "Programa del sábado 06 de diciembre de 2025",
+        label: "Programa · sábado 06 de diciembre",
+      },
+    ],
+    pdf: {
+      url: "/capacitaciones/encuentro-arbitros-2025/programa.pdf",
+      label: "Abrir programa PDF",
+    },
   },
 ];
-
-export const PROXIMOS_EVENTOS = EVENTOS.filter((e) => e.estado === "proximo");
-
-export const formatFecha = (iso: string) =>
-  new Date(`${iso}T12:00:00`).toLocaleDateString("es-PE", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });

@@ -1,297 +1,243 @@
-import { useState } from "react";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import CloseIcon from "@mui/icons-material/Close";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
-import ScheduleOutlinedIcon from "@mui/icons-material/ScheduleOutlined";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 import { brand, fonts } from "../../theme/brand";
-import { formatFecha, type Evento } from "../../data/eventos";
+import type { Evento } from "../../data/eventos";
 
-const fechaPartes = (iso: string) => {
-  const date = new Date(`${iso}T12:00:00`);
-  return {
-    dia: date.toLocaleDateString("es-PE", { day: "2-digit" }),
-    mes: date
-      .toLocaleDateString("es-PE", { month: "short" })
-      .replace(".", "")
-      .toUpperCase(),
-    anio: date.toLocaleDateString("es-PE", { year: "numeric" }),
-  };
+type EventCardProps = {
+  evento: Evento;
+  first?: boolean;
+  onOpenEvidence: () => void;
 };
 
-export default function EventCard({ evento }: { evento: Evento }) {
-  const [open, setOpen] = useState(false);
-  const fecha = fechaPartes(evento.fecha);
-  const esProximo = evento.estado === "proximo";
+export default function EventCard({
+  evento,
+  first = false,
+  onOpenEvidence,
+}: EventCardProps) {
+  const meta: { label: string; value: string }[] = [
+    { label: "Fechas", value: evento.fechaLarga },
+    ...(evento.modalidad
+      ? [{ label: "Modalidad", value: evento.modalidad }]
+      : []),
+    ...(evento.lugar ? [{ label: "Lugar", value: evento.lugar }] : []),
+    ...(evento.horas ? [{ label: "Horas académicas", value: evento.horas }] : []),
+    { label: "Organizan", value: evento.organiza },
+  ];
 
   return (
-    <>
-      <Box
-        component="article"
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", sm: "82px minmax(0, 1fr) 170px" },
-          gap: { xs: 2, sm: 3 },
-          py: { xs: 3, md: 3.4 },
-          borderTop: `1px solid ${brand.line}`,
-          transition: "border-color 0.18s ease",
-          "&:hover": { borderTopColor: brand.gold },
-        }}
-      >
-        <Box>
-          <Typography
-            sx={{
-              fontFamily: fonts.display,
-              color: brand.primaryDeep,
-              fontSize: "2rem",
-              lineHeight: 1,
-            }}
-          >
-            {fecha.dia}
-          </Typography>
-          <Typography
-            sx={{
-              mt: 0.4,
-              color: brand.goldDeep,
-              fontSize: "0.64rem",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-            }}
-          >
-            {fecha.mes} {fecha.anio}
-          </Typography>
-        </Box>
-
-        <Box>
-          <Stack direction="row" spacing={1.2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
-            <Typography
-              sx={{
-                color: esProximo ? brand.goldDeep : brand.muted,
-                fontSize: "0.62rem",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-              }}
-            >
-              {esProximo ? "Próxima actividad" : "Actividad realizada"}
-            </Typography>
-            <Typography sx={{ color: brand.line, fontSize: "0.7rem" }}>·</Typography>
-            <Typography
-              sx={{
-                color: brand.muted,
-                fontSize: "0.64rem",
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-              }}
-            >
-              {evento.modalidad}
-            </Typography>
-          </Stack>
-
-          <Typography
-            variant="h3"
-            sx={{
-              mt: 1,
-              color: brand.primaryDeep,
-              fontSize: { xs: "1.2rem", md: "1.35rem" },
-              lineHeight: 1.35,
-            }}
-          >
-            {evento.titulo}
-          </Typography>
-
-          <Typography
-            sx={{
-              mt: 0.8,
-              color: brand.muted,
-              fontSize: "0.86rem",
-              lineHeight: 1.65,
-              maxWidth: 620,
-            }}
-          >
-            {evento.descripcion}
-          </Typography>
-
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={{ xs: 0.6, sm: 2 }}
-            sx={{ mt: 1.4, flexWrap: "wrap" }}
-          >
-            <Stack direction="row" spacing={0.7} sx={{ alignItems: "center" }}>
-              <CalendarMonthOutlinedIcon sx={{ fontSize: 15, color: brand.goldDeep }} />
-              <Typography sx={{ fontSize: "0.76rem", color: brand.muted }}>
-                {formatFecha(evento.fecha)}
-              </Typography>
-            </Stack>
-
-            <Stack direction="row" spacing={0.7} sx={{ alignItems: "center" }}>
-              <ScheduleOutlinedIcon sx={{ fontSize: 15, color: brand.goldDeep }} />
-              <Typography sx={{ fontSize: "0.76rem", color: brand.muted }}>
-                {evento.hora}
-              </Typography>
-            </Stack>
-
-            <Stack direction="row" spacing={0.7} sx={{ alignItems: "center" }}>
-              <PlaceOutlinedIcon sx={{ fontSize: 15, color: brand.goldDeep }} />
-              <Typography sx={{ fontSize: "0.76rem", color: brand.muted }}>
-                {evento.lugar}
-              </Typography>
-            </Stack>
-          </Stack>
-
-          <Button
-            onClick={() => setOpen(true)}
-            variant="text"
-            endIcon={<ArrowForwardIcon sx={{ fontSize: 15 }} />}
-            sx={{ mt: 1.2, px: 0, fontSize: "0.78rem" }}
-          >
-            Ver programa
-          </Button>
-        </Box>
-
+    <Box
+      component="article"
+      sx={{
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "1fr",
+          md: "minmax(0, 0.86fr) minmax(0, 1.14fr)",
+        },
+        gap: { xs: 3.5, md: 6 },
+        py: { xs: 7, md: 9 },
+        borderTop: first
+          ? `2px solid ${brand.primaryDeep}`
+          : `1px solid ${brand.line}`,
+      }}
+    >
+      <Box>
         <Box
-          component="img"
-          src={evento.imagen}
-          alt={evento.titulo}
-          loading="lazy"
+          component="button"
+          type="button"
+          onClick={onOpenEvidence}
+          aria-label={`Ver evidencias de ${evento.titulo}`}
           sx={{
             display: "block",
             width: "100%",
-            aspectRatio: { xs: "16 / 7", sm: "4 / 3" },
-            objectFit: "contain",
+            p: 0,
+            border: `1px solid ${brand.line}`,
             backgroundColor: brand.paperAlt,
-            p: 3,
-            alignSelf: "start",
+            cursor: "pointer",
+            transition: "border-color 0.18s ease",
+            "&:hover": { borderColor: brand.gold },
+            "&:focus-visible": {
+              outline: `2px solid ${brand.goldDeep}`,
+              outlineOffset: 3,
+            },
           }}
-        />
+        >
+          <Box
+            component="img"
+            src={evento.cover}
+            alt={evento.coverAlt}
+            loading="lazy"
+            decoding="async"
+            sx={{
+              display: "block",
+              width: "100%",
+              aspectRatio: "4 / 5",
+              objectFit: evento.coverFit ?? "contain",
+              objectPosition: evento.coverPosition ?? "center",
+              p: { xs: 1.5, md: 2 },
+            }}
+          />
+        </Box>
+
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ xs: 0.6, sm: 1.5 }}
+          sx={{
+            mt: 1.2,
+            alignItems: { xs: "flex-start", sm: "center" },
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            sx={{
+              color: brand.muted,
+              fontSize: "0.75rem",
+              lineHeight: 1.5,
+            }}
+          >
+            {evento.coverLabel}
+          </Typography>
+
+          <Button
+            onClick={onOpenEvidence}
+            variant="text"
+            size="small"
+            sx={{
+              minWidth: 0,
+              p: 0,
+              color: brand.primary,
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              whiteSpace: "nowrap",
+            }}
+          >
+            Ver evidencias
+          </Button>
+        </Stack>
       </Box>
 
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        maxWidth="sm"
-        fullWidth
-        slotProps={{
-          paper: {
-            sx: {
-              borderRadius: 0,
-              borderTop: `3px solid ${brand.gold}`,
-              backgroundColor: brand.white,
-            },
-          },
-        }}
-      >
-        <DialogContent sx={{ px: { xs: 2.5, sm: 4 }, pt: { xs: 3, sm: 4 } }}>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ alignItems: "flex-start", justifyContent: "space-between", mb: 1.5 }}
-          >
-            <Stack direction="row" spacing={1.2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
-              <Typography
-                sx={{
-                  color: brand.goldDeep,
-                  fontSize: "0.62rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                {esProximo ? "Próxima actividad" : "Actividad realizada"}
-              </Typography>
-              <Typography sx={{ color: brand.line, fontSize: "0.7rem" }}>·</Typography>
+      <Box>
+        <Typography
+          sx={{
+            color: brand.goldInk,
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+          }}
+        >
+          {evento.fechaLabel}
+        </Typography>
+
+        <Typography
+          component="h2"
+          sx={{
+            mt: 1,
+            color: brand.primaryDeep,
+            fontFamily: fonts.display,
+            fontSize: { xs: "1.7rem", md: "2.05rem" },
+            fontWeight: 600,
+            lineHeight: 1.18,
+            textWrap: "balance",
+          }}
+        >
+          {evento.titulo}
+        </Typography>
+
+        <Typography
+          sx={{
+            mt: 1.5,
+            maxWidth: 640,
+            color: brand.muted,
+            fontSize: "0.94rem",
+            lineHeight: 1.75,
+            textWrap: "pretty",
+          }}
+        >
+          {evento.descripcion}
+        </Typography>
+
+        <Box
+          sx={{
+            mt: 3,
+            pt: 1.5,
+            borderTop: `1px solid ${brand.line}`,
+          }}
+        >
+          {meta.map((row) => (
+            <Box
+              key={row.label}
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  sm: "126px minmax(0, 1fr)",
+                },
+                gap: { xs: 0.2, sm: 1.2 },
+                py: 0.65,
+              }}
+            >
               <Typography
                 sx={{
                   color: brand.muted,
-                  fontSize: "0.64rem",
+                  fontSize: "0.75rem",
                   fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
+                  letterSpacing: "0.03em",
                 }}
               >
-                {evento.modalidad}
+                {row.label}
               </Typography>
-            </Stack>
-
-            <IconButton aria-label="Cerrar" onClick={() => setOpen(false)} sx={{ mt: -0.8, mr: -0.8 }}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Stack>
-
-          <Typography variant="h3" sx={{ color: brand.primaryDeep, fontSize: "1.6rem", mb: 1.8 }}>
-            {evento.titulo}
-          </Typography>
-
-          <Typography sx={{ color: brand.muted, fontSize: "0.92rem", lineHeight: 1.75, mb: 2.5 }}>
-            {evento.descripcion}
-          </Typography>
-
-          <Stack sx={{ borderTop: `1px solid ${brand.line}` }}>
-            <Stack
-              direction="row"
-              spacing={1.2}
-              sx={{ py: 1.2, alignItems: "center", borderBottom: `1px solid ${brand.line}` }}
-            >
-              <CalendarMonthOutlinedIcon sx={{ color: brand.goldDeep, fontSize: 18 }} />
-              <Typography sx={{ fontSize: "0.86rem", color: brand.ink }}>
-                {formatFecha(evento.fecha)}
+              <Typography
+                sx={{
+                  color: brand.ink,
+                  fontSize: "0.84rem",
+                  lineHeight: 1.55,
+                }}
+              >
+                {row.value}
               </Typography>
-            </Stack>
+            </Box>
+          ))}
+        </Box>
 
-            <Stack
-              direction="row"
-              spacing={1.2}
-              sx={{ py: 1.2, alignItems: "center", borderBottom: `1px solid ${brand.line}` }}
-            >
-              <ScheduleOutlinedIcon sx={{ color: brand.goldDeep, fontSize: 18 }} />
-              <Typography sx={{ fontSize: "0.86rem", color: brand.ink }}>{evento.hora}</Typography>
-            </Stack>
-
-            <Stack
-              direction="row"
-              spacing={1.2}
-              sx={{ py: 1.2, alignItems: "center", borderBottom: `1px solid ${brand.line}` }}
-            >
-              <PlaceOutlinedIcon sx={{ color: brand.goldDeep, fontSize: 18 }} />
-              <Typography sx={{ fontSize: "0.86rem", color: brand.ink }}>{evento.lugar}</Typography>
-            </Stack>
-          </Stack>
-
-          <Typography sx={{ mt: 2.2, color: brand.muted, fontSize: "0.8rem", lineHeight: 1.65 }}>
-            La inscripción es de carácter referencial en esta versión del sitio.
-            Para confirmar tu participación, escribe a la Corte o llama a la
-            Secretaría General.
-          </Typography>
-        </DialogContent>
-
-        <DialogActions sx={{ px: { xs: 2.5, sm: 4 }, pb: 3, pt: 1, gap: 1 }}>
-          <Button onClick={() => setOpen(false)} variant="text" color="primary">
-            Cerrar
-          </Button>
-
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={1.5}
+          sx={{
+            mt: 3,
+            alignItems: { xs: "stretch", sm: "center" },
+          }}
+        >
           <Button
-            component={RouterLink}
-            to="/contacto"
+            onClick={onOpenEvidence}
             variant="contained"
-            onClick={() => setOpen(false)}
-            endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
+            endIcon={<ArrowForwardIcon sx={{ fontSize: 16 }} />}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
           >
-            Solicitar información
+            Ver programa y evidencias
           </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+
+          {evento.pdf && (
+            <Button
+              component="a"
+              href={evento.pdf.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="text"
+              endIcon={<OpenInNewOutlinedIcon sx={{ fontSize: 15 }} />}
+              sx={{
+                minWidth: 0,
+                px: { xs: 0, sm: 1 },
+                color: brand.primary,
+                fontSize: "0.78rem",
+                fontWeight: 700,
+              }}
+            >
+              {evento.pdf.label}
+            </Button>
+          )}
+        </Stack>
+      </Box>
+    </Box>
   );
 }

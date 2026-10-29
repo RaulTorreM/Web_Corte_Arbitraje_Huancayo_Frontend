@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { brand } from "../../theme/brand";
 import type { MediaAsset } from "../../data/media";
 import { ease } from "../../utils/animations";
+import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 
 type SectionHeroProps = {
   title: string;
   subtitle?: string;
+  crumbs: Crumb[];
   image: MediaAsset;
   imageAlt?: string;
   children?: ReactNode;
@@ -16,11 +18,12 @@ type SectionHeroProps = {
 /**
  * Hero de las páginas de sección (Arbitraje, JPRD y Conciliación). Replica el
  * lenguaje del HeroHome: imagen horizontal, velo navy, título y subtítulo.
- * Siempre lleva la ruta de navegación en la parte superior.
+ * La ruta de navegación se superpone al inicio de la fotografía.
  */
 export default function SectionHero({
   title,
   subtitle,
+  crumbs,
   image,
   imageAlt,
   children,
@@ -64,6 +67,18 @@ export default function SectionHero({
           },
         }}
       />
+
+      <Container
+        sx={{
+          position: "absolute",
+          top: { xs: 2.2, md: 2.8 },
+          left: 0,
+          right: 0,
+          zIndex: 2,
+        }}
+      >
+        <Breadcrumbs items={crumbs} light />
+      </Container>
 
       <Container
         sx={{

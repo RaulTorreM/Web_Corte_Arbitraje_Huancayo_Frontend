@@ -1,160 +1,122 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Stack,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Container, Stack, Typography } from "@mui/material";
+// import { Link as RouterLink } from "react-router-dom";
+// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
-import SectionHeading from "../../components/common/SectionHeading";
 import EventCard from "./EventCard";
+import EventEvidenceDialog from "./EventEvidenceDialog";
+import { EVENTOS, type Evento } from "../../data/eventos";
 import { brand } from "../../theme/brand";
-import { EVENTOS } from "../../data/eventos";
-import { MEDIA } from "../../data/media";
-
-type Filtro = "proximos" | "realizados" | "todos";
-
-const FILTROS: { value: Filtro; label: string }[] = [
-  { value: "proximos", label: "Próximas" },
-  { value: "realizados", label: "Realizadas" },
-  { value: "todos", label: "Todas" },
-];
 
 export default function CapacitacionesPage() {
-  const [filtro, setFiltro] = useState<Filtro>("proximos");
-
-  const filtrados = EVENTOS.filter((evento) => {
-    if (filtro === "todos") return true;
-    if (filtro === "proximos") return evento.estado === "proximo";
-    return evento.estado === "realizado";
-  });
+  const [gallery, setGallery] = useState<Evento | null>(null);
 
   return (
     <>
       <PageMeta
-        title="Capacitaciones"
-        description="Seminarios, talleres y programas de capacitación en arbitraje y juntas de prevención y resolución de disputas. Agenda referencial."
+        title="Capacitaciones y eventos"
+        description="Encuentro de árbitros y adjudicadores y Congreso Macrorregional de Conciliación Extrajudicial realizados por la Corte Superior de Arbitraje de Huancayo, con sus programas y documentación oficial."
       />
 
       <PageHero
-        kicker="Formación especializada"
-        title="Capacitaciones"
-        subtitle="Seminarios, talleres y conversatorios para profesionales, empresas y entidades públicas."
-        crumbs={[{ label: "Capacitaciones" }]}
-        image={MEDIA.capacitaciones}
+        kicker="Actividades realizadas"
+        title="Capacitaciones y eventos"
+        subtitle="Encuentros y congresos organizados por la Corte. Programas y documentación oficial."
+        crumbs={[{ label: "Capacitaciones y eventos" }]}
       />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box
+        component="section"
+        sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}
+      >
         <Container>
-          <SectionHeading
-            kicker="Agenda académica"
-            title="Capacitaciones en arbitraje y contratación pública"
-            subtitle="Consulta las próximas actividades y las ya realizadas."
-            sx={{ mb: 0 }}
-          />
-
-          <Box sx={{ mt: { xs: 5, md: 7 }, borderBottom: `1px solid ${brand.lineStrong}` }}>
-            <Tabs
-              value={filtro}
-              onChange={(_event, value: Filtro) => setFiltro(value)}
-              variant="scrollable"
-              scrollButtons="auto"
-              allowScrollButtonsMobile
-              aria-label="Filtrar actividades"
-              sx={{
-                "& .MuiTabs-indicator": {
-                  backgroundColor: brand.gold,
-                  height: 2,
-                },
-                "& .MuiTab-root": {
-                  minHeight: 48,
-                  px: { xs: 1.2, md: 2 },
-                  color: brand.muted,
-                  fontSize: { xs: "0.76rem", md: "0.82rem" },
-                  textTransform: "none",
-                },
-                "& .Mui-selected": {
-                  color: brand.primaryDeep,
-                  fontWeight: 700,
-                },
-              }}
-            >
-              {FILTROS.map((item) => {
-                const count =
-                  item.value === "todos"
-                    ? EVENTOS.length
-                    : EVENTOS.filter((e) =>
-                      item.value === "proximos"
-                        ? e.estado === "proximo"
-                        : e.estado === "realizado"
-                    ).length;
-
-                return (
-                  <Tab
-                    key={item.value}
-                    value={item.value}
-                    label={`${item.label} (${count})`}
-                  />
-                );
-              })}
-            </Tabs>
-          </Box>
-
-          <Typography sx={{ mt: 2, mb: 1, color: brand.muted, fontSize: "0.78rem", lineHeight: 1.6 }}>
-            Agenda de demostración. Las fechas, cupos y sedes se confirman en la
-            convocatoria oficial de cada actividad.
+          <Typography
+            sx={{
+              maxWidth: 760,
+              mb: { xs: 4, md: 5 },
+              color: brand.muted,
+              fontSize: { xs: "0.96rem", md: "1.02rem" },
+              lineHeight: 1.8,
+              textWrap: "pretty",
+            }}
+          >
+            Memoria de las actividades académicas realizadas por la Corte. Cada
+            registro conserva su programa y su documentación oficial.
           </Typography>
 
-          <Stack>
-            {filtrados.map((evento) => (
-              <EventCard key={evento.id} evento={evento} />
-            ))}
-          </Stack>
+          {EVENTOS.map((evento, index) => (
+            <EventCard
+              key={evento.id}
+              evento={evento}
+              first={index === 0}
+              onOpenEvidence={() => setGallery(evento)}
+            />
+          ))}
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
+      <Box
+        component="section"
+        sx={{ backgroundColor: brand.paper, py: { xs: 6, md: 8 } }}
+      >
         <Container>
-          <Box sx={{ maxWidth: 680 }}>
-            <Typography
-              sx={{
-                color: brand.goldDeep,
-                fontSize: "0.66rem",
-                fontWeight: 700,
-                letterSpacing: "0.13em",
-                textTransform: "uppercase",
-                mb: 1.5,
-              }}
-            >
-              Programas a medida
-            </Typography>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={{ xs: 2.5, md: 4 }}
+            sx={{
+              pt: 2.5,
+              borderTop: `1px solid ${brand.lineStrong}`,
+              alignItems: { md: "center" },
+              justifyContent: "space-between",
+            }}
+          >
+            <Box>
+              {/* <Typography
+                component="h2"
+                sx={{
+                  color: brand.primaryDeep,
+                  fontFamily: fonts.display,
+                  fontSize: { xs: "1.45rem", md: "1.7rem" },
+                  fontWeight: 600,
+                  lineHeight: 1.2,
+                }}
+              >
+                Constancias de participación
+              </Typography>
+              <Typography
+                sx={{
+                  mt: 0.8,
+                  maxWidth: 620,
+                  color: brand.muted,
+                  fontSize: "0.9rem",
+                  lineHeight: 1.7,
+                }}
+              >
+                Para acreditar tu participación en estas actividades, contacta
+                a la Secretaría General.
+              </Typography> */}
+            </Box>
 
-            <Typography variant="h2" sx={{ color: brand.primaryDeep }}>
-              Capacitación para tu institución
-            </Typography>
-
-            <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.96rem", lineHeight: 1.78 }}>
-              Consulta por contenidos y modalidades para tu equipo.
-            </Typography>
-
-            <Button
+            {/* <Button
               component={RouterLink}
               to="/contacto"
               variant="contained"
               endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
-              sx={{ mt: 2.5 }}
+              sx={{ flexShrink: 0, width: { xs: "100%", sm: "auto" } }}
             >
-              Solicitar información
-            </Button>
-          </Box>
+              Contactar a la Secretaría
+            </Button> */}
+          </Stack>
         </Container>
       </Box>
+
+      {gallery && (
+        <EventEvidenceDialog
+          evento={gallery}
+          onClose={() => setGallery(null)}
+        />
+      )}
     </>
   );
 }

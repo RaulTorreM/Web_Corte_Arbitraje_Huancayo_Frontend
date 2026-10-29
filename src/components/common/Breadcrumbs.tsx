@@ -26,10 +26,11 @@ export default function Breadcrumbs({
       component="nav"
       aria-label="Ruta de navegación"
       sx={{
+        paddingTop:1,
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        gap: 0.5,
+        gap: 1,
       }}
     >
       <Typography

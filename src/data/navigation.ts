@@ -38,7 +38,7 @@ export const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Presentación", to: "/arbitraje" },
       { label: "Costos y tarifas", to: "/arbitraje/costos" },
-      { label: "Reglamentos y directivas", to: "/arbitraje/reglamentos" },
+      { label: "Reglamento y directivas", to: "/arbitraje/reglamentos" },
       { label: "Nómina de árbitros", to: "/arbitraje/arbitros" },
       { label: "Cláusula arbitral", to: "/arbitraje/clausula" },
       { label: "Inicio de arbitraje", to: "/arbitraje/inicio" },

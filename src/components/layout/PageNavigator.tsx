@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Box, Container, Link, Stack, Typography } from "@mui/material";
+import { Box, Link, Stack, Typography } from "@mui/material";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -192,7 +192,12 @@ export default function PageNavigator() {
             "linear-gradient(180deg, rgba(239,244,251,0) 0%, rgba(239,244,251,0.55) 45%, rgba(239,244,251,0.94) 100%)",
         }}
       >
-        <Container>
+        <Box
+          sx={{
+            width: "100%",
+            px: { xs: 1.5, md: 2.5 },
+          }}
+        >
           <Stack
             direction="row"
             spacing={{ xs: 1.5, md: 3 }}
@@ -223,7 +228,7 @@ export default function PageNavigator() {
               <Box />
             )}
           </Stack>
-        </Container>
+        </Box>
       </Box>
     </Box>
   );

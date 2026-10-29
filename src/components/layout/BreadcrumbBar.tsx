@@ -30,14 +30,27 @@ const getCrumbs = (pathname: string): Crumb[] | null => {
 };
 
 /**
+ * Rutas con hero fotográfico a sangre completa. En ellas la ruta de navegación
+ * se dibuja dentro del propio hero, sobre la fotografía.
+ */
+const usesHeroBreadcrumb = (current: string) =>
+  current === "/arbitraje" ||
+  current.startsWith("/arbitraje/") ||
+  current === "/jprd" ||
+  current.startsWith("/jprd/") ||
+  current === "/conciliacion" ||
+  current.startsWith("/conciliacion/");
+
+/**
  * Ruta de navegación en el flujo de la página, con fondo transparente. Se
  * alimenta del árbol de navegación, no de cada vista.
  */
 export default function BreadcrumbBar() {
   const { pathname } = useLocation();
-  const crumbs = getCrumbs(pathname);
+  const current = pathname.replace(/\/+$/, "") || "/";
+  const crumbs = getCrumbs(current);
 
-  if (!crumbs) return null;
+  if (!crumbs || usesHeroBreadcrumb(current)) return null;
 
   return (
     <Box sx={{ backgroundColor: "transparent" }}>
