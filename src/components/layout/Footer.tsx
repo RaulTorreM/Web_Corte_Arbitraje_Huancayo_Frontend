@@ -23,7 +23,7 @@ import BrandMark from "../common/BrandMark";
 import TikTokIcon from "../icons/TikTokIcon";
 
 const CORTE = [
-  { label: "Nosotros", to: "/quienes-somos" },
+  { label: "Quiénes somos", to: "/quienes-somos" },
   { label: "Consejo Directivo", to: "/quienes-somos/consejo-directivo" },
   { label: "Consejo Superior", to: "/quienes-somos/consejo" },
   { label: "Certificaciones", to: "/quienes-somos/certificaciones" },

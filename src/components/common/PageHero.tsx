@@ -15,6 +15,8 @@ type PageHeroProps = {
   crumbs: Crumb[];
   image?: MediaAsset;
   imageAlt?: string;
+  imagePosition?: string;
+  imageInset?: false | "strong" | "soft";
   children?: ReactNode;
 };
 
@@ -25,6 +27,8 @@ export default function PageHero({
   crumbs,
   image,
   imageAlt = "",
+  imagePosition = "center 34%",
+  imageInset = false,
   children,
 }: PageHeroProps) {
   const { pathname } = useLocation();
@@ -79,16 +83,41 @@ export default function PageHero({
     );
   }
 
+  if (image) {
+    return (
+      <SectionHero
+        title={title}
+        subtitle={subtitle}
+        kicker={kicker}
+        crumbs={crumbs}
+        image={image}
+        imageAlt={imageAlt || image.alt}
+        imagePosition={imagePosition}
+        imageInset={imageInset}
+        align="center"
+        children={children}
+      />
+    );
+  }
+
   return (
     <Box
       component="header"
       sx={{
         backgroundColor: brand.paper,
         borderBottom: `1px solid ${brand.line}`,
+        minHeight: { xs: 340, sm: 380, md: 440 },
+        display: "flex",
+        alignItems: "center",
       }}
     >
-      <Container sx={{ pt: { xs: 2.5, md: 3 }, pb: { xs: 4, md: 5 } }}>
-        <Box
+      <Container
+        sx={{
+          width: "100%",
+          pt: { xs: 2.5, md: 3 },
+          pb: { xs: 4, md: 5 },
+        }}
+      >        <Box
           sx={{
             display: "flex",
             alignItems: "center",
@@ -119,7 +148,7 @@ export default function PageHero({
             height: { xs: "auto", md: 240 },
           }}
         >
-          <Grid size={{ xs: 12, md: image ? 7 : 12 }}>
+          <Grid size={12}>
             <Typography
               component="h1"
               variant="h1"
@@ -153,36 +182,6 @@ export default function PageHero({
 
             {children && <Box sx={{ mt: 3 }}>{children}</Box>}
           </Grid>
-
-          {image && (
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Box
-                sx={{
-                  maxWidth: { md: 460 },
-                  ml: { md: "auto" },
-                  borderTop: `2px solid ${brand.gold}`,
-                  pt: 1.5,
-                }}
-              >
-                <Box
-                  component="img"
-                  src={image.src}
-                  alt={imageAlt || image.alt}
-                  fetchPriority="high"
-                  decoding="async"
-                  sx={{
-                    display: "block",
-                    width: "100%",
-                    height: { xs: 180, md: 226 },
-                    objectFit: image.fit,
-                    backgroundColor:
-                      image.fit === "contain" ? brand.paperAlt : "transparent",
-                    p: image.fit === "contain" ? { xs: 3, md: 4 } : 0,
-                  }}
-                />
-              </Box>
-            </Grid>
-          )}
         </Grid>
       </Container>
     </Box>

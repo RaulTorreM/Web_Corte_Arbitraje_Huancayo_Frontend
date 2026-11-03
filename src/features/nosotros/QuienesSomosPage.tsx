@@ -64,9 +64,9 @@ export default function QuienesSomosPage() {
         ariaLabel="Secciones de Quiénes somos"
       />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5.5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 7 }} sx={{ alignItems: "center" }}>
+          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: "center" }}>
             <Grid size={{ xs: 12, md: 7 }} sx={{ order: { xs: 1, md: 2 } }}>
               <Box
                 component={motion.div}
@@ -79,7 +79,13 @@ export default function QuienesSomosPage() {
                   component={motion.h2}
                   variants={fadeUp}
                   variant="h2"
-                  sx={{ color: brand.primaryDeep, maxWidth: 620 }}
+                  sx={{
+                    color: brand.primaryDeep,
+                    maxWidth: 620,
+                    mx: "auto",
+                    textAlign: "center",
+                    textWrap: "balance",
+                  }}
                 >
                   Un espacio especializado para la solución de controversias
                 </Typography>
@@ -87,7 +93,7 @@ export default function QuienesSomosPage() {
                 <Typography
                   component={motion.p}
                   variants={fadeUp}
-                  sx={{ mt: 2.2, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
+                  sx={{ mt: 2.2, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textAlign: "justify", hyphens: "auto", textWrap: "pretty" }}
                 >
                   La Corte Superior de Arbitraje de la Cámara de Comercio y Producción
                   de Huancayo y de la Región Junín es el órgano encargado de organizar
@@ -98,7 +104,7 @@ export default function QuienesSomosPage() {
                 <Typography
                   component={motion.p}
                   variants={fadeUp}
-                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
+                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textAlign: "justify", hyphens: "auto", textWrap: "pretty" }}
                 >
                   Su actuación se rige por el Estatuto y por los principios de
                   imparcialidad, independencia, transparencia, confidencialidad,
@@ -110,7 +116,7 @@ export default function QuienesSomosPage() {
                 <Typography
                   component={motion.p}
                   variants={fadeUp}
-                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textWrap: "pretty" }}
+                  sx={{ mt: 1.6, color: brand.muted, fontSize: "0.98rem", lineHeight: 1.78, maxWidth: 620, textAlign: "justify", hyphens: "auto", textWrap: "pretty" }}
                 >
                   Desde Huancayo, acompaña a empresas, entidades públicas y
                   profesionales de la región Junín en la administración ordenada de
@@ -169,14 +175,14 @@ export default function QuienesSomosPage() {
       <Box
         component="section"
         sx={{
-          py: { xs: 7, md: 10 },
+          py: { xs: 5.5, md: 6.5 },
           backgroundColor: brand.paper,
         }}
       >
         <Container>
           <Grid
             container
-            spacing={{ xs: 6, md: 8 }}
+            spacing={{ xs: 4.5, md: 6 }}
             sx={{ alignItems: "start" }}
           >
 
@@ -192,7 +198,7 @@ export default function QuienesSomosPage() {
               <Typography
                 sx={{
                   color: brand.goldInk,
-                  fontSize: "0.7rem",
+                  fontSize: "0.76rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -234,8 +240,10 @@ export default function QuienesSomosPage() {
                     sx={{
                       mt: 1.5,
                       color: brand.muted,
-                      fontSize: "0.93rem",
-                      lineHeight: 1.9,
+                      fontSize: "0.98rem",
+                      lineHeight: 1.85,
+                      textAlign: "justify",
+                      hyphens: "auto",
                       textWrap: "pretty",
                     }}
                   >
@@ -248,7 +256,7 @@ export default function QuienesSomosPage() {
                     sx={{
                       mt: 1.8,
                       color: brand.goldInk,
-                      fontSize: "0.76rem",
+                      fontSize: "0.8rem",
                     }}
                   >
                     Estatuto, Art. 2
@@ -278,8 +286,10 @@ export default function QuienesSomosPage() {
                     sx={{
                       mt: 1.5,
                       color: brand.muted,
-                      fontSize: "0.93rem",
-                      lineHeight: 1.9,
+                      fontSize: "0.98rem",
+                      lineHeight: 1.85,
+                      textAlign: "justify",
+                      hyphens: "auto",
                       textWrap: "pretty",
                     }}
                   >
@@ -293,7 +303,7 @@ export default function QuienesSomosPage() {
                     sx={{
                       mt: 1.8,
                       color: brand.goldInk,
-                      fontSize: "0.76rem",
+                      fontSize: "0.8rem",
                     }}
                   >
                     Basada en el Estatuto, Art. 1
@@ -309,7 +319,7 @@ export default function QuienesSomosPage() {
               <Typography
                 sx={{
                   color: brand.goldInk,
-                  fontSize: "0.7rem",
+                  fontSize: "0.76rem",
                   fontWeight: 700,
                   letterSpacing: "0.13em",
                   textTransform: "uppercase",
@@ -339,9 +349,10 @@ export default function QuienesSomosPage() {
                 sx={{
                   mt: 1.5,
                   color: brand.muted,
-                  fontSize: "0.92rem",
+                  fontSize: "0.98rem",
                   lineHeight: 1.8,
-                  maxWidth: 580,
+                  textAlign: "justify",
+                  hyphens: "auto",
                   textWrap: "pretty",
                 }}
               >
@@ -353,7 +364,7 @@ export default function QuienesSomosPage() {
                 container
                 columnSpacing={{ xs: 0, md: 3.5 }}
                 sx={{
-                  mt: 3.5,
+                  mt: 3,
                   borderTop: `1px solid ${brand.lineStrong}`,
                 }}
               >
@@ -362,8 +373,8 @@ export default function QuienesSomosPage() {
                     key={valor.title}
                     size={{ xs: 12, md: 6 }}
                     sx={{
-                      pt: 2.5,
-                      pb: 2.5,
+                      pt: 2.2,
+                      pb: 2.2,
                       borderBottom: `1px solid ${brand.line}`,
                     }}
                   >
@@ -379,7 +390,7 @@ export default function QuienesSomosPage() {
                         sx={{
                           color: brand.goldInk,
                           fontFamily: fonts.display,
-                          fontSize: "0.85rem",
+                          fontSize: "0.88rem",
                           flexShrink: 0,
                         }}
                       >
@@ -389,7 +400,7 @@ export default function QuienesSomosPage() {
                       <Typography
                         sx={{
                           color: brand.primaryDeep,
-                          fontSize: "0.94rem",
+                          fontSize: "0.98rem",
                           fontWeight: 700,
                           lineHeight: 1.45,
                         }}
@@ -401,8 +412,10 @@ export default function QuienesSomosPage() {
                     <Typography
                       sx={{
                         color: brand.muted,
-                        fontSize: "0.85rem",
+                        fontSize: "0.9rem",
                         lineHeight: 1.75,
+                        textAlign: "justify",
+                        hyphens: "auto",
                         textWrap: "pretty",
                       }}
                     >
@@ -418,12 +431,20 @@ export default function QuienesSomosPage() {
       </Box>
 
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box
+        component="section"
+        sx={{
+          pt: { xs: 5, md: 6 },
+          pb: { xs: 5, md: 5.5 },
+          backgroundColor: brand.paper,
+        }}
+      >
         <Container>
           <SectionHeading
             kicker="Organización"
             title="Nuestra estructura institucional"
             subtitle="Conoce a las personas y los órganos que hacen posible el funcionamiento de la Corte."
+            sx={{ mb: { xs: 3.5, md: 4.5 } }}
           />
 
           <Box sx={{ borderTop: `1px solid ${brand.lineStrong}` }}>
@@ -441,7 +462,7 @@ export default function QuienesSomosPage() {
                   },
                   gap: { xs: 0.8, md: 3 },
                   alignItems: "center",
-                  py: 2.4,
+                  py: 2.2,
                   borderBottom: `1px solid ${brand.line}`,
                   textDecoration: "none",
                   "&:hover .estructura-title": { color: brand.goldInk },
@@ -454,14 +475,14 @@ export default function QuienesSomosPage() {
                     gridArea: "title",
                     color: brand.primaryDeep,
                     fontFamily: fonts.display,
-                    fontSize: "1.2rem",
+                    fontSize: "1.26rem",
                     fontWeight: 600,
                     transition: "color 0.18s ease",
                   }}
                 >
                   {item.title}
                 </Typography>
-                <Typography sx={{ gridArea: "text", color: brand.muted, fontSize: "0.86rem", lineHeight: 1.6 }}>
+                <Typography sx={{ gridArea: "text", color: brand.muted, fontSize: "0.92rem", lineHeight: 1.65 }}>
                   {item.text}
                 </Typography>
                 <ArrowForwardIcon

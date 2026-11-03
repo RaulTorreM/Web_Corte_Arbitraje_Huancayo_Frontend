@@ -8,6 +8,7 @@ import PersonCard from "../../components/common/PersonCard";
 import { Stagger } from "../../components/common/Reveal";
 import { brand } from "../../theme/brand";
 import { EQUIPO } from "../../data/directivos";
+import { MEDIA } from "../../data/media";
 import { QUIENES_SUBNAV } from "../../data/navigation";
 
 // const FUNCIONES_ORGANOS = [
@@ -47,6 +48,9 @@ export default function EquipoPage() {
           { label: "Quiénes somos", to: "/quienes-somos" },
           { label: "Equipo de trabajo" },
         ]}
+        image={MEDIA.equipo}
+        imagePosition="center 78%"
+        imageInset="strong"
       />
 
       <SectionSubnav

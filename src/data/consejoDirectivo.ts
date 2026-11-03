@@ -3,6 +3,10 @@ export type Directivo = {
   nombre: string;
   cargo: string;
   foto: string;
+  /** Aplica el filtro que iguala el tono de los ternos. */
+  uniformSuit?: boolean;
+  /** Intensifica el contraste del terno sin oscurecer el fondo. */
+  photoTreatment?: "deep" | "deepest";
 };
 
 /**
@@ -17,6 +21,7 @@ export const CONSEJO_DIRECTIVO: Directivo[] = [
     nombre: "José Luis García Terrazos",
     cargo: "Presidente",
     foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_01.webp",
+    uniformSuit: true,
   },
   {
     id: "cd-02",
@@ -29,24 +34,32 @@ export const CONSEJO_DIRECTIVO: Directivo[] = [
     nombre: "Gerardo Zenón Porras Dolorier",
     cargo: "Director Secretario",
     foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_03.webp",
+    uniformSuit: true,
+    photoTreatment: "deep",
   },
   {
     id: "cd-04",
     nombre: "Felipe Neri Huaroto Sairitupac",
     cargo: "Director de Economía y Finanzas",
     foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_04.webp",
+    uniformSuit: true,
+    photoTreatment: "deep",
   },
   {
     id: "cd-05",
     nombre: "Dante William Alarcón Baltazar",
     cargo: "Director de Servicios, Asesoría y Defensa Empresarial",
     foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_05.webp",
+    uniformSuit: true,
+    photoTreatment: "deep",
   },
   {
     id: "cd-06",
     nombre: "Jesús Antonio Ortiz Contreras",
     cargo: "Director de Desarrollo Sectorial y Empresarial",
     foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_06.webp",
+    uniformSuit: true,
+    photoTreatment: "deepest",
   },
   {
     id: "cd-07",
@@ -59,6 +72,7 @@ export const CONSEJO_DIRECTIVO: Directivo[] = [
     nombre: "Humberto Velásquez Salaverry",
     cargo: "Director de Vigilancia",
     foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_08.webp",
+    uniformSuit: true,
   },
   {
     id: "cd-09",

@@ -107,6 +107,8 @@ function DesktopNavItem({ item, label }: { item: NavItem; label: string }) {
       component={RouterLink}
       to={item.to}
       aria-current={active ? "page" : undefined}
+      aria-label={item.label}
+      title={item.label}
       sx={{
         position: "relative",
         display: "inline-flex",
@@ -114,15 +116,16 @@ function DesktopNavItem({ item, label }: { item: NavItem; label: string }) {
         py: 1.5,
         px: 0.4,
         minWidth: 0,
-        flexShrink: 1,
+        flexShrink: 0,
         color: active ? brand.gold : "rgba(242,242,247,0.88)",
         textDecoration: "none",
-        fontSize: { lg: "0.8rem", xl: "0.84rem" },
+        fontSize: { lg: "0.7rem", xl: "0.75rem" },
         fontWeight: 700,
         lineHeight: 1.35,
-        letterSpacing: "0.005em",
+        letterSpacing: "0.035em",
         textAlign: "center",
-        overflowWrap: "normal",
+        textTransform: "uppercase",
+        whiteSpace: "nowrap",
         transition:
           "color 0.18s ease, background-color 0.22s ease, transform 0.22s ease",
         "&:hover": {
@@ -169,7 +172,7 @@ function DesktopNavItem({ item, label }: { item: NavItem; label: string }) {
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { pathname } = useLocation();
-  const wideNav = useMediaQuery("(min-width:1400px)");
+  const wideNav = useMediaQuery("(min-width:1500px)");
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -298,7 +301,7 @@ export default function Header() {
               minWidth: 0,
               mr: { xs: "auto", xl: 0 },
               textDecoration: "none",
-              paddingLeft: 5,
+              pl: { xs: 0, sm: 1, lg: 3, xl: 5 },
             }}
           >
             <BrandMark light />
@@ -515,9 +518,11 @@ export default function Header() {
                           primary: {
                             sx: {
                               fontFamily: fonts.display,
-                              fontSize: "1.12rem",
+                              fontSize: { xs: "0.98rem", sm: "1.06rem" },
                               fontWeight: itemActive ? 700 : 600,
-                              lineHeight: 1.4,
+                              lineHeight: 1.35,
+                              letterSpacing: "0.02em",
+                              textTransform: "uppercase",
                             },
                           },
                         }}

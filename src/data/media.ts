@@ -28,6 +28,12 @@ const fotoConsejoDirectivo: MediaAsset = {
   fit: "cover",
 };
 
+const fotoEquipoTrabajo: MediaAsset = {
+  src: "/equipo/equipo-trabajo.webp",
+  alt: "Equipo de trabajo de la Corte Superior de Arbitraje de Huancayo",
+  fit: "cover",
+};
+
 const fotoSede: MediaAsset = {
   src: "/images/ARBITRAJE_IMG_02-01.jpg",
   alt: "Fachada de la sede de la Corte Superior de Arbitraje en Huancayo",
@@ -56,7 +62,7 @@ export const MEDIA = {
   hero: sello,
   sede: sello,
   consejoDirectivo: fotoConsejoDirectivo,
-  equipo: sello,
+  equipo: fotoEquipoTrabajo,
   arbitraje: sello,
   conciliacion: sello,
   jprd: sello,

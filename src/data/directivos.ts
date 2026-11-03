@@ -5,29 +5,37 @@ export type Persona = {
   bio: string;
   destacado?: boolean;
   foto?: string;
+  /** Aplica el filtro que iguala el tono de los ternos. */
+  uniformSuit?: boolean;
+  /** Intensifica el contraste del terno sin oscurecer el fondo. */
+  photoTreatment?: "deep" | "deepest";
 };
 
 /**
  * Composición del Consejo Superior de Arbitraje.
  *
- * Los seis miembros titulares fueron proporcionados por la institución. Las
+ * Los seis miembros titulares fueron proporcionados por la institución. Algunas
  * fotografías quedan pendientes; PersonCard muestra las iniciales mientras
  * tanto. El DNI no se publica en el sitio.
  */
 export const CONSEJO: Persona[] = [
   {
     id: "c-01",
-    nombre: "José Luis García Terrazos",
-    cargo: "Consejero",
-    bio: "Economista",
-    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_01.webp"
+    nombre: "Emerson Edson Francisco Lizárraga Peña",
+    cargo: "Presidente",
+    bio: "Abogado",
+    foto: "/consejo-superior/CONSEJO_SUPERIOR_IMG_05.webp",
+    uniformSuit: true
+    
   },
   {
     id: "c-02",
-    nombre: "Fanny Galván Muñico",
-    cargo: "Consejera",
-    bio: "Ingeniero",
-    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_09.webp"
+    nombre: "José Luis García Terrazos",
+    cargo: "Consejero",
+    bio: "Economista",
+    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_01.webp",
+    uniformSuit: true
+    
    
   },
   {
@@ -35,18 +43,22 @@ export const CONSEJO: Persona[] = [
     nombre: "Gerardo Zenón Porras Doloirier",
     cargo: "Consejero",
     bio: "Abogado",
-    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_03.webp"
+    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_03.webp",
+    uniformSuit: true,
+    photoTreatment: "deep"
    
   },
   {
     id: "c-04",
-    nombre: "Diego Fernando García Vizcarra",
-    cargo: "Consejero",
-    bio: "Abogado",
+    nombre: "Fanny Galván Muñico",
+    cargo: "Consejera",
+    bio: "Ingeniero",
+    foto: "/consejo-directivo/CONSEJO_DIRECTIVO_IMG_09.webp"
+    
   },
   {
     id: "c-05",
-     nombre: "Emerson Edson Francisco Lizárraga Peña",
+    nombre: "Diego Fernando García Vizcarra",
     cargo: "Consejero",
     bio: "Abogado",
   },
@@ -86,6 +98,7 @@ export const EQUIPO: Persona[] = [
     nombre: "Teresa Moale Espíritu",
     cargo: "Asistencia de Secretaría",
     bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
+    foto: "/equipo/TERESA_MOALE_ESPIRITU.webp",
   },
   {
     id: "e-05",

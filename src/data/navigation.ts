@@ -17,7 +17,7 @@ export const NAV_ITEMS: NavItem[] = [
     to: "/",
   },
   {
-    label: "Nosotros",
+    label: "Quiénes somos",
     to: "/quienes-somos",
     children: [
       { label: "Nosotros", to: "/quienes-somos" },

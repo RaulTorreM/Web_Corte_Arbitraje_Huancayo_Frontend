@@ -6,6 +6,7 @@ import BreadcrumbBar from "./BreadcrumbBar";
 import Footer from "./Footer";
 import PageNavigator from "./PageNavigator";
 import PageFallback from "../common/PageFallback";
+import PortraitFilterDefs from "../common/PortraitFilterDefs";
 import { brand } from "../../theme/brand";
 
 export default function Layout() {
@@ -39,6 +40,7 @@ export default function Layout() {
       </Link>
 
       <Header />
+      <PortraitFilterDefs />
       <BreadcrumbBar />
 
       <Box

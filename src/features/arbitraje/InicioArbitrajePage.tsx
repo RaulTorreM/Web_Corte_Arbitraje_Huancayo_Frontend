@@ -387,6 +387,7 @@ export default function InicioArbitrajePage() {
         component="section"
         id="guia-requisitos"
         sx={{
+          scrollMarginTop: "calc(var(--header-h) + var(--subnav-h))",
           py: { xs: 7, md: 10 },
           backgroundColor: brand.whiteSoft,
           borderTop: `1px solid ${brand.line}`,

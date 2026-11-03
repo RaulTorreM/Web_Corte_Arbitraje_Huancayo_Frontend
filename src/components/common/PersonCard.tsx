@@ -9,6 +9,10 @@ export type PersonaView = {
   bio: string;
   foto?: string;
   destacado?: boolean;
+  /** Armoniza el tono del terno sin afectar rostro ni fondo. */
+  uniformSuit?: boolean;
+  /** Intensifica el contraste del terno sin oscurecer el fondo. */
+  photoTreatment?: "deep" | "deepest";
 };
 
 const initials = (nombre: string) =>
@@ -26,6 +30,14 @@ export default function PersonCard({
   persona: PersonaView;
 }) {
   const featured = persona.destacado;
+  const photoFilter =
+    persona.photoTreatment === "deepest"
+      ? "url(#portrait-suit-deepest)"
+      : persona.photoTreatment === "deep"
+        ? "url(#portrait-suit-deep)"
+        : persona.uniformSuit
+          ? "url(#portrait-suit-tone)"
+          : undefined;
 
   return (
     <Stack
@@ -58,6 +70,7 @@ export default function PersonCard({
               objectFit: "cover",
               objectPosition: "center 12%",
               display: "block",
+              filter: photoFilter,
               transition: "opacity 0.2s ease",
               "&:hover": { opacity: 0.9 },
             }}

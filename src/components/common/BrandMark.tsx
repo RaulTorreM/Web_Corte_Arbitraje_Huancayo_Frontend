@@ -26,7 +26,7 @@ export default function BrandMark({
 }: BrandMarkProps) {
   const logoSize = compact
     ? 69
-    : { xs: 66, sm: 21, md: 82 };
+    : { xs: 62, sm: 70, md: 82 };
 
   return (
     <Stack

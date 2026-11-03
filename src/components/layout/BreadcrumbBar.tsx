@@ -34,6 +34,8 @@ const getCrumbs = (pathname: string): Crumb[] | null => {
  * se dibuja dentro del propio hero, sobre la fotografía.
  */
 const usesHeroBreadcrumb = (current: string) =>
+  current === "/quienes-somos/consejo-directivo" ||
+  current === "/quienes-somos/equipo" ||
   current === "/arbitraje" ||
   current.startsWith("/arbitraje/") ||
   current === "/jprd" ||

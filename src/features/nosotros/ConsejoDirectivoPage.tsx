@@ -27,6 +27,7 @@ export default function ConsejoDirectivoPage() {
           { label: "Consejo Directivo" },
         ]}
         image={MEDIA.consejoDirectivo}
+        imageInset="soft"
       />
 
       <SectionSubnav
@@ -87,6 +88,8 @@ export default function ConsejoDirectivoPage() {
                       bio: "",
                       foto: directivo.foto,
                       destacado: index === 0,
+                      uniformSuit: directivo.uniformSuit,
+                      photoTreatment: directivo.photoTreatment,
                     }}
                   />
                 </Grid>

@@ -85,6 +85,7 @@ export default function ServiciosHome() {
             mb: { xs: 4, md: 5 },
             pt: { xs: 2.5, md: 3 },
             borderTop: `1px solid ${brand.lineStrong}`,
+            textAlign: "center",
           }}
         >
           <Typography
@@ -94,6 +95,7 @@ export default function ServiciosHome() {
             sx={{
               color: brand.primaryDeep,
               maxWidth: 820,
+              mx: "auto",
               fontSize: {
                 xs: "2rem",
                 md: "clamp(2.3rem, 3.5vw, 3rem)",
@@ -112,10 +114,12 @@ export default function ServiciosHome() {
             sx={{
               mt: 2,
               maxWidth: 680,
+              mx: "auto",
               color: brand.muted,
               fontSize: { xs: "0.94rem", md: "1rem" },
               lineHeight: 1.8,
               textWrap: "pretty",
+              textAlign: "center",
             }}
           >
             Brindamos servicios especializados en:
@@ -191,6 +195,7 @@ export default function ServiciosHome() {
                       lineHeight: 1.3,
                       letterSpacing: "-0.02em",
                       textWrap: "balance",
+                      textAlign: "center",
                     }}
                   >
                     {servicio.title}
@@ -203,6 +208,8 @@ export default function ServiciosHome() {
                       fontSize: "0.9rem",
                       lineHeight: 1.8,
                       textWrap: "pretty",
+                      textAlign: "justify",
+                      hyphens: "auto",
                       minHeight: 160
                     }}
                   >
@@ -218,6 +225,8 @@ export default function ServiciosHome() {
                       fontSize: "0.83rem",
                       lineHeight: 1.75,
                       textWrap: "pretty",
+                      textAlign: "justify",
+                      hyphens: "auto",
                     }}
                   >
                     {servicio.text}
