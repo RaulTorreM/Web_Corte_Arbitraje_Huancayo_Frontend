@@ -21,6 +21,7 @@ import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
+import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 import { brand, fonts } from "../../theme/brand";
 import { SITE } from "../../data/site";
 import {
@@ -39,7 +40,9 @@ type ContactItem = {
   icon: ReactNode;
   label: string;
   href?: string;
+  to?: string;
   hideOnMobile?: boolean;
+  onlyWide?: boolean;
 };
 
 const CONTACT_ITEMS: ContactItem[] = [
@@ -66,6 +69,13 @@ const CONTACT_ITEMS: ContactItem[] = [
     icon: <PlaceOutlinedIcon />,
     label: SITE.contact.address,
     hideOnMobile: true,
+  },
+  {
+    icon: <MenuBookOutlinedIcon />,
+    label: "Libro de reclamaciones",
+    to: "/libro-de-reclamaciones",
+    hideOnMobile: true,
+    onlyWide: true,
   },
 ];
 
@@ -252,12 +262,22 @@ export default function Header() {
                 ...contactItemSx,
                 fontSize: { xs: "0.72rem", sm: "0.78rem", md: "0.84rem" },
                 display: {
-                  xs: item.hideOnMobile ? "none" : "inline-flex",
-                  sm: "inline-flex",
+                  xs: item.hideOnMobile || item.onlyWide ? "none" : "inline-flex",
+                  sm: item.onlyWide ? "none" : "inline-flex",
+                  lg: "inline-flex",
                 },
               } as const;
 
-              return item.href ? (
+              return item.to ? (
+                <Box
+                  key={item.label}
+                  component={RouterLink}
+                  to={item.to}
+                  sx={itemSx}
+                >
+                  {content}
+                </Box>
+              ) : item.href ? (
                 <Box
                   key={item.label}
                   component="a"

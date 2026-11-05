@@ -76,6 +76,26 @@ img {
   max-width: 100%;
 }
 
+/*
+ * Los flujos de Documentos, Arbitraje y JPRD usan texto corrido. Se justifica
+ * el cuerpo sin afectar encabezados, botones ni celdas de tablas.
+ */
+.editorial-flow p,
+.editorial-flow li,
+.editorial-flow .MuiTypography-body1,
+.editorial-flow .MuiTypography-body2 {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.editorial-flow .MuiTableContainer p,
+.editorial-flow .MuiTableContainer li,
+.editorial-flow .MuiTableCell-root p,
+.editorial-flow .MuiTableCell-root li,
+.editorial-flow .MuiTableCell-root {
+  text-align: left;
+}
+
 ::selection {
   background-color: #e7d8ae;
   color: #0a1b2b;

@@ -42,7 +42,7 @@ export default function JprdClausulaPage() {
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 7 }}>

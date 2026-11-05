@@ -75,7 +75,7 @@ export default function ReglamentosPage() {
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 8 }}>
@@ -125,7 +125,7 @@ export default function ReglamentosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <Grid container spacing={{ xs: 5, md: 7 }}>
             <Grid size={{ xs: 12, md: 5 }}>

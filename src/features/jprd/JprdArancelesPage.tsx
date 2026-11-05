@@ -109,7 +109,7 @@ export default function JprdArancelesPage() {
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Honorarios propuestos"
@@ -160,7 +160,7 @@ export default function JprdArancelesPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading kicker="Condiciones" title="Antes de usar estas cifras" />
 

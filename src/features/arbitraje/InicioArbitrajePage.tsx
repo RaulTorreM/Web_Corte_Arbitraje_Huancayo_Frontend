@@ -143,7 +143,7 @@ export default function InicioArbitrajePage() {
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 7 }}>
             <Grid size={{ xs: 12, md: 7 }}>
@@ -260,7 +260,7 @@ export default function InicioArbitrajePage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="El recorrido"
@@ -308,7 +308,7 @@ export default function InicioArbitrajePage() {
       <Box
         component="section"
         sx={{
-          py: { xs: 7, md: 9 },
+          py: { xs: 5, md: 7 },
           backgroundColor: brand.whiteSoft,
           borderTop: `1px solid ${brand.line}`,
         }}
@@ -388,7 +388,7 @@ export default function InicioArbitrajePage() {
         id="guia-requisitos"
         sx={{
           scrollMarginTop: "calc(var(--header-h) + var(--subnav-h))",
-          py: { xs: 7, md: 10 },
+          py: { xs: 5, md: 7 },
           backgroundColor: brand.whiteSoft,
           borderTop: `1px solid ${brand.line}`,
         }}
@@ -522,7 +522,7 @@ export default function InicioArbitrajePage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Canales de atención"

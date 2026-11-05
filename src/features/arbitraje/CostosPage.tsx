@@ -107,7 +107,7 @@ export default function CostosPage() {
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Qué incluye"
@@ -132,7 +132,7 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Anexo 1"
@@ -195,7 +195,7 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading kicker="Cómo se calcula" title="Tres datos para estimar tu costo" />
 
@@ -276,7 +276,7 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Tasas y trámites"
@@ -347,7 +347,7 @@ export default function CostosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Ejemplos"

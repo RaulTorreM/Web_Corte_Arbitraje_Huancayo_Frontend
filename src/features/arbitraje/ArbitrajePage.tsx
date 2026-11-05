@@ -77,7 +77,7 @@ export default function ArbitrajePage() {
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 7 }} sx={{ alignItems: "center" }}>
             <Grid size={{ xs: 12, md: 5 }}>
@@ -192,7 +192,7 @@ export default function ArbitrajePage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <Box
             sx={{
@@ -453,7 +453,7 @@ export default function ArbitrajePage() {
       <Box
         component="section"
         sx={{
-          py: { xs: 7, md: 10 },
+          py: { xs: 5, md: 7 },
           backgroundColor: brand.whiteSoft,
           borderTop: `1px solid ${brand.line}`,
         }}
@@ -592,7 +592,7 @@ export default function ArbitrajePage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 5, md: 6 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 4, md: 5 }, backgroundColor: brand.paper }}>
         <Container>
           <Stack
             direction={{ xs: "column", md: "row" }}

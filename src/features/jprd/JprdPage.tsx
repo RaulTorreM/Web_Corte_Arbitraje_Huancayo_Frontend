@@ -32,7 +32,7 @@ export default function JprdPage() {
 
       <SectionSubnav items={JPRD_SUBNAV} ariaLabel="Secciones de la JPRD" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 7 }} sx={{ alignItems: "center" }}>
             <Grid size={{ xs: 12, md: 7 }}>
@@ -133,7 +133,7 @@ export default function JprdPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <Grid container spacing={{ xs: 3, md: 5 }} sx={{ alignItems: "flex-end", mb: 4 }}>
             <Grid size={{ xs: 12, md: 8 }}>

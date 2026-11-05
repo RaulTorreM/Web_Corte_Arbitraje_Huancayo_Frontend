@@ -75,7 +75,7 @@ export default function LaudosPage() {
 
       <SectionSubnav items={ARBITRAJE_SUBNAV} ariaLabel="Secciones de arbitraje" />
 
-      <Box component="section" sx={{ py: { xs: 7, md: 10 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
             kicker="Cómo se emite"
@@ -139,7 +139,7 @@ export default function LaudosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.paper }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.paper }}>
         <Container>
           <SectionHeading
             kicker="Después del laudo"
@@ -181,7 +181,7 @@ export default function LaudosPage() {
         </Container>
       </Box>
 
-      <Box component="section" sx={{ py: { xs: 7, md: 9 }, backgroundColor: brand.whiteSoft }}>
+      <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <Grid container spacing={{ xs: 4, md: 6 }}>
             <Grid size={{ xs: 12, md: 6 }}>
@@ -223,7 +223,7 @@ export default function LaudosPage() {
       <Box
         component="section"
         sx={{
-          py: { xs: 7, md: 9 },
+          py: { xs: 5, md: 7 },
           backgroundColor: brand.paper,
           borderTop: `1px solid ${brand.line}`,
         }}

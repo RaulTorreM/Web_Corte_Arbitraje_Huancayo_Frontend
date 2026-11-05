@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Box, Link } from "@mui/material";
 import Header from "./Header";
 import BreadcrumbBar from "./BreadcrumbBar";
@@ -10,6 +10,12 @@ import PortraitFilterDefs from "../common/PortraitFilterDefs";
 import { brand } from "../../theme/brand";
 
 export default function Layout() {
+  const { pathname } = useLocation();
+  const editorialFlow =
+    pathname === "/documentos" ||
+    pathname.startsWith("/arbitraje") ||
+    pathname.startsWith("/jprd");
+
   return (
     <Box
       sx={{
@@ -47,6 +53,7 @@ export default function Layout() {
         component="main"
         id="contenido"
         tabIndex={-1}
+        className={editorialFlow ? "editorial-flow" : undefined}
         sx={{
           flex: 1,
           display: "flex",

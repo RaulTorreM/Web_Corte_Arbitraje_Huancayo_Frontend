@@ -32,7 +32,7 @@ export default function DocumentosPage() {
 
       <Box
         component="section"
-        sx={{ py: { xs: 6, md: 9 }, backgroundColor: brand.whiteSoft }}
+        sx={{ py: { xs: 4.5, md: 6.5 }, backgroundColor: brand.whiteSoft }}
       >
         <Container>
           <Typography
