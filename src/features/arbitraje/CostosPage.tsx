@@ -86,6 +86,19 @@ const PAGO_ARBITRAJE = [
 
 const celda = { fontSize: "0.8rem", py: 1.1, px: 1.2 };
 
+const formatMoneyText = (value: string) =>
+  value.replace(
+    /(S\/|US\$)\s*(\d[\d,]*(?:\.\d+)?)/g,
+    (_, currency: string, rawAmount: string) => {
+      const amount = Number(rawAmount.replace(/,/g, ""));
+      if (!Number.isFinite(amount)) return `${currency} ${rawAmount}`;
+      return `${currency} ${amount.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`;
+    }
+  );
+
 export default function CostosPage() {
   return (
     <>
@@ -123,7 +136,7 @@ export default function CostosPage() {
                     {componente.titulo}
                   </Typography>
                   <Typography sx={{ mt: 0.7, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.62 }}>
-                    {componente.texto}
+                    {formatMoneyText(componente.texto)}
                   </Typography>
                 </Box>
               </Grid>
@@ -170,13 +183,13 @@ export default function CostosPage() {
                       {row.cuantia}
                     </TableCell>
                     <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
-                      {row.admin}
+                      {formatMoneyText(row.admin)}
                     </TableCell>
                     <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
-                      {row.tribunal}
+                      {formatMoneyText(row.tribunal)}
                     </TableCell>
                     <TableCell align="right" sx={{ ...celda, color: brand.primary }}>
-                      {row.unico}
+                      {formatMoneyText(row.unico)}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -241,7 +254,7 @@ export default function CostosPage() {
                     lineHeight: 1.6,
                   }}
                 >
-                  {nota}
+                  {formatMoneyText(nota)}
                 </Typography>
               ))}
             </Stack>
@@ -304,7 +317,7 @@ export default function CostosPage() {
                         <TableCell sx={celda}>{tasa.n}</TableCell>
                         <TableCell sx={{ ...celda, color: brand.primaryDeep }}>{tasa.concepto}</TableCell>
                         <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
-                          {tasa.monto}
+                          {formatMoneyText(tasa.monto)}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -330,7 +343,7 @@ export default function CostosPage() {
                       <TableRow key={item.concepto}>
                         <TableCell sx={{ ...celda, color: brand.primaryDeep }}>{item.concepto}</TableCell>
                         <TableCell align="right" sx={{ ...celda, color: brand.primary, fontWeight: 700 }}>
-                          {item.monto}
+                          {formatMoneyText(item.monto)}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -340,7 +353,7 @@ export default function CostosPage() {
 
               <Typography sx={{ mt: 1.5, color: brand.muted, fontSize: "0.76rem", lineHeight: 1.6 }}>
                 La solicitud de medida cautelar dentro del proceso tiene una
-                tasa de S/ 800, según el Anexo 3.
+                tasa de {formatMoneyText("S/ 800")}, según el Anexo 3.
               </Typography>
             </Grid>
           </Grid>
@@ -360,10 +373,10 @@ export default function CostosPage() {
               <Grid key={ejemplo.titulo} size={{ xs: 12, sm: 6 }}>
                 <Box sx={{ pt: 2, borderTop: `1px solid ${brand.line}` }}>
                   <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.88rem" }}>
-                    {ejemplo.titulo}
+                    {formatMoneyText(ejemplo.titulo)}
                   </Typography>
                   <Typography sx={{ mt: 0.5, color: brand.muted, fontSize: "0.83rem", lineHeight: 1.65 }}>
-                    {ejemplo.detalle}
+                    {formatMoneyText(ejemplo.detalle)}
                   </Typography>
                 </Box>
               </Grid>

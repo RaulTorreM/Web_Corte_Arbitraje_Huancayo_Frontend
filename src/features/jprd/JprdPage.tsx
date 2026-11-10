@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -7,13 +8,18 @@ import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import FramedImage from "../../components/common/FramedImage";
 import DocumentCard from "../../components/common/DocumentCard";
+import PdfViewerDialog from "../../components/common/PdfViewerDialog";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
-import { documentosPorCategoria } from "../../data/documentos";
+import {
+  DOCUMENTOS_INSTITUCIONALES,
+  type Documento,
+} from "../../data/documentos";
 import { MEDIA } from "../../data/media";
 
 export default function JprdPage() {
-  const documentos = documentosPorCategoria("jprd").slice(0, 4);
+  const [selected, setSelected] = useState<Documento | null>(null);
+  const documentos = DOCUMENTOS_INSTITUCIONALES;
 
   return (
     <>
@@ -138,9 +144,9 @@ export default function JprdPage() {
           <Grid container spacing={{ xs: 3, md: 5 }} sx={{ alignItems: "flex-end", mb: 4 }}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
-                kicker="Documentos en borrador"
-                title="Reglamento, ética y aranceles"
-                subtitle="Documentos en proceso de aprobación. No son normativa vigente y no deben citarse como reglas aplicables."
+                kicker="Documentos institucionales"
+                title="Reglamento, estatuto y código de ética"
+                subtitle="Los tres documentos institucionales actuales de la Corte, disponibles para consulta y descarga."
                 sx={{ mb: 0 }}
               />
             </Grid>
@@ -148,25 +154,32 @@ export default function JprdPage() {
             <Grid size={{ xs: 12, md: 4 }}>
               <Button
                 component={RouterLink}
-                to="/jprd/reglamento"
+                to="/documentos"
                 variant="outlined"
                 endIcon={<ArrowForwardIcon sx={{ fontSize: 17 }} />}
                 sx={{ width: { xs: "100%", sm: "fit-content" }, ml: { md: "auto" }, display: "flex" }}
               >
-                Ver todos los documentos
+                Ver documentos institucionales
               </Button>
             </Grid>
           </Grid>
 
-          <Grid container spacing={{ xs: 3, md: 4 }}>
+          <Grid container spacing={{ xs: 4, md: 5 }}>
             {documentos.map((documento) => (
-              <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 3 }}>
-                <DocumentCard documento={documento} />
+              <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
+                <DocumentCard documento={documento} onOpen={setSelected} />
               </Grid>
             ))}
           </Grid>
         </Container>
       </Box>
+
+      <PdfViewerDialog
+        open={Boolean(selected)}
+        title={selected?.titulo ?? ""}
+        url={selected?.url ?? ""}
+        onClose={() => setSelected(null)}
+      />
 
     </>
   );

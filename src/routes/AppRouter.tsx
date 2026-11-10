@@ -12,6 +12,9 @@ const ConsejoDirectivoPage = lazy(
 );
 const ConsejoPage = lazy(() => import("../features/nosotros/ConsejoPage"));
 const EquipoPage = lazy(() => import("../features/nosotros/EquipoPage"));
+const LicenciaFuncionamientoPage = lazy(
+  () => import("../features/nosotros/LicenciaFuncionamientoPage")
+);
 const CertificacionesPage = lazy(
   () => import("../features/nosotros/CertificacionesPage")
 );
@@ -93,6 +96,10 @@ export default function AppRouter() {
             <Route path="consejo-directivo" element={<ConsejoDirectivoPage />} />
             <Route path="consejo" element={<ConsejoPage />} />
             <Route path="equipo" element={<EquipoPage />} />
+            <Route
+              path="certificaciones/licencia-funcionamiento"
+              element={<LicenciaFuncionamientoPage />}
+            />
             <Route path="certificaciones" element={<CertificacionesPage />} />
           </Route>
 

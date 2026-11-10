@@ -83,6 +83,8 @@ export default function ProfessionalDirectory({
     setEspecialidad("");
   };
 
+  const showVigencia = profesionales.some((item) => Boolean(item.estado));
+
   return (
     <Box>
       <Box
@@ -182,6 +184,21 @@ export default function ProfessionalDirectory({
                 {item.nombre}
               </Typography>
 
+              {item.categoria && (
+                <Typography
+                  sx={{
+                    mt: 0.35,
+                    color: brand.goldInk,
+                    fontSize: "0.62rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.categoria}
+                </Typography>
+              )}
+
               <Typography
                 sx={{
                   color: brand.goldDeep,
@@ -211,6 +228,35 @@ export default function ProfessionalDirectory({
                   />
                 ))}
               </Stack>
+
+              {showVigencia && (
+                <Typography
+                  sx={{
+                    mt: 1.2,
+                    color: brand.muted,
+                    fontSize: "0.75rem",
+                  }}
+                >
+                  <Box
+                    component="span"
+                    sx={{ color: brand.primaryDeep, fontWeight: 700 }}
+                  >
+                    Vigencia:
+                  </Box>{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      color:
+                        item.estado === "Activo"
+                          ? brand.primaryDeep
+                          : brand.muted,
+                      fontWeight: item.estado === "Activo" ? 700 : 400,
+                    }}
+                  >
+                    {item.estado ?? "—"}
+                  </Box>
+                </Typography>
+              )}
             </Box>
           ))}
         </Stack>
@@ -223,6 +269,9 @@ export default function ProfessionalDirectory({
                 <TableCell>Apellidos y nombres</TableCell>
                 <TableCell sx={{ width: 150 }}>Profesión</TableCell>
                 <TableCell>Especialidades</TableCell>
+                {showVigencia && (
+                  <TableCell sx={{ width: 140 }}>Vigencia</TableCell>
+                )}
               </TableRow>
             </TableHead>
 
@@ -246,6 +295,22 @@ export default function ProfessionalDirectory({
                     }}
                   >
                     {item.nombre}
+                    {item.categoria && (
+                      <Typography
+                        component="span"
+                        sx={{
+                          display: "block",
+                          mt: 0.35,
+                          color: brand.goldInk,
+                          fontSize: "0.6rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {item.categoria}
+                      </Typography>
+                    )}
                   </TableCell>
 
                   <TableCell sx={{ color: brand.muted, fontSize: "0.82rem" }}>
@@ -269,6 +334,22 @@ export default function ProfessionalDirectory({
                       ))}
                     </Stack>
                   </TableCell>
+
+                  {showVigencia && (
+                    <TableCell
+                      sx={{
+                        color:
+                          item.estado === "Activo"
+                            ? brand.primaryDeep
+                            : brand.muted,
+                        fontWeight: item.estado === "Activo" ? 700 : 400,
+                        fontSize: "0.8rem",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.estado ?? "—"}
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

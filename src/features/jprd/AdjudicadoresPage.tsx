@@ -1,6 +1,4 @@
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
@@ -23,7 +21,7 @@ export default function AdjudicadoresPage() {
       <PageHero
         kicker="Registro en conformación"
         title="Registro de adjudicadores"
-        subtitle="El Estatuto incorpora la figura del adjudicador y el Registro correspondiente. La JPRD está en borrador, por lo que la nómina es referencial y no existe aún un procedimiento aprobado para administrar juntas."
+        subtitle="El Estatuto incorpora la figura del adjudicador y el Registro correspondiente. La JPRD está en proceso de implementación; esta nómina reúne adjudicadores y peritos de la relación institucional."
         crumbs={[
           { label: "JPRD", to: "/jprd" },
           { label: "Registro de adjudicadores" },
@@ -35,27 +33,17 @@ export default function AdjudicadoresPage() {
 
       <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 3, md: 5 }} sx={{ alignItems: "flex-end" }}>
+          <Grid container spacing={{ xs: 3, md: 5 }} sx={{ alignItems: "flex-end", minWidth: 1750}}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
-                kicker="Directorio referencial"
+                kicker="Directorio JPRD"
                 title="Experiencia técnica y legal para la ejecución"
-                subtitle="Nómina de demostración con profesionales de contratación pública, ingeniería, construcción y solución de controversias. No reemplaza el Registro oficial."
+                subtitle="Nómina de adjudicadores y peritos, organizada por profesión y especialidad. La JPRD se encuentra en proceso de implementación."
                 sx={{ mb: 0 }}
               />
             </Grid>
 
-            <Grid size={{ xs: 12, md: 4 }}>
-              <Button
-                component={RouterLink}
-                to="/documentos"
-                variant="outlined"
-                startIcon={<DownloadOutlinedIcon sx={{ fontSize: 17 }} />}
-                sx={{ width: { xs: "100%", sm: "fit-content" }, ml: { md: "auto" }, display: "flex" }}
-              >
-                Requisitos de postulación
-              </Button>
-            </Grid>
+  
           </Grid>
 
           <Box sx={{ mt: { xs: 4, md: 5 } }}>

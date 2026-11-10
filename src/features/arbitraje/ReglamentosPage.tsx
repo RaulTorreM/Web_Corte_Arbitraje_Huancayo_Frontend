@@ -14,7 +14,7 @@ import { MEDIA } from "../../data/media";
 
 const NORMAS = [
   {
-    norma: "Reglamento de Arbitraje — V1",
+    norma: "Reglamento de Arbitraje",
     detalle:
       "Versión del 21.09.2026. Rige la solicitud, la designación, el proceso y el laudo; su texto está sujeto a revisión antes de la publicación definitiva.",
   },
@@ -24,7 +24,7 @@ const NORMAS = [
       "Versión del 21.09.2026. Naturaleza, órganos de gobierno y comisiones; su texto está sujeto a revisión antes de la publicación definitiva.",
   },
   {
-    norma: "Código de Ética — V2",
+    norma: "Código de Ética",
     detalle:
       "Versión del 23.09.2026. Deberes, denuncias y régimen sancionador; su texto está sujeto a revisión antes de la publicación definitiva.",
   },
@@ -77,7 +77,7 @@ export default function ReglamentosPage() {
 
       <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
-          <Grid container spacing={{ xs: 4, md: 7 }}>
+          <Grid container spacing={{ xs: 4, md: 7 }} sx={{minWidth: 1750}}>
             <Grid size={{ xs: 12, md: 8 }}>
               <SectionHeading
                 kicker="Documentos normativos"
@@ -87,7 +87,7 @@ export default function ReglamentosPage() {
               />
             </Grid>
 
-            <Grid size={{ xs: 12, md: 4 }}>
+            {/* <Grid size={{ xs: 12, md: 4 }}>
               <Box
                 sx={{
                   borderTop: `2px solid ${brand.gold}`,
@@ -105,7 +105,7 @@ export default function ReglamentosPage() {
                   esta sección normativa.
                 </Typography>
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
 
           <Grid container spacing={{ xs: 3, md: 4 }}>

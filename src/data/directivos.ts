@@ -22,7 +22,7 @@ export const CONSEJO: Persona[] = [
   {
     id: "c-01",
     nombre: "Emerson Edson Francisco Lizárraga Peña",
-    cargo: "Presidente",
+    cargo: "Consejero",
     bio: "Abogado",
     foto: "/consejo-superior/CONSEJO_SUPERIOR_IMG_05.webp",
     uniformSuit: true
@@ -105,17 +105,20 @@ export const EQUIPO: Persona[] = [
     nombre: "Alejandro Chuquimantari Mucha",
     cargo: "Asistencia de Secretaría",
     bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
+    foto: "/equipo/ALEJANDRO_CHUQUIMANTARI_MUCHA.webp",
   },
   {
     id: "e-06",
     nombre: "Omar Paolo Huaman Cordova",
     cargo: "Asistencia de Secretaría",
     bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
+    foto: "/equipo/OMAR_PAOLO_HUAMAN_CORDOVA.webp",
   },
   {
     id: "e-07",
-    nombre: "Guisel",
+    nombre: "Guissell Phaula Abregu Torres",
     cargo: "Asistencia de Secretaría",
     bio: "Brinda apoyo administrativo y documental a la Secretaría, seguimiento y adecuada tramitación de los procedimientos arbitrales",
+    foto: "/equipo/GUISSELL_PHAULA_ABREGU_TORRES.webp",
   },
 ];

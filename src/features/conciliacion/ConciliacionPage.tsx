@@ -1,8 +1,7 @@
-import { Box } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
-import { brand } from "../../theme/brand";
+import ConstructionNotice from "../../components/common/ConstructionNotice";
 import { CONCILIACION_SUBNAV } from "../../data/navigation";
 import { MEDIA } from "../../data/media";
 
@@ -26,14 +25,7 @@ export default function ConciliacionPage() {
         ariaLabel="Secciones de conciliación"
       />
 
-      <Box
-        component="section"
-        sx={{
-          minHeight: { xs: 260, md: 380 },
-          backgroundColor: brand.whiteSoft,
-          borderBottom: `1px solid ${brand.line}`,
-        }}
-      />
+      <ConstructionNotice />
     </>
   );
 }

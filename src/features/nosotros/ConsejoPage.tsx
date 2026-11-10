@@ -1,14 +1,9 @@
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Container,
   Grid,
-  Stack,
   Typography,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
@@ -133,7 +128,7 @@ export default function ConsejoPage() {
               </Typography>
 
               <Typography variant="h2" sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.5rem" } }}>
-                Cómo funciona el Consejo
+                Funciones del Consejo
               </Typography>
 
               <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.94rem", lineHeight: 1.75 }}>
@@ -143,42 +138,33 @@ export default function ConsejoPage() {
                 caso de empate. Todo consta en el Libro de Actas.
               </Typography>
 
-              <Accordion sx={{ mt: 3 }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography sx={{ color: brand.primaryDeep, fontWeight: 700, fontSize: "0.9rem" }}>
-                    Ver las ocho funciones del Consejo
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Stack spacing={1.1}>
-                    {FUNCIONES_CONSEJO.map((funcion, index) => (
-                      <Box
-                        key={funcion}
-                        sx={{
-                          display: "grid",
-                          gridTemplateColumns: "26px 1fr",
-                          gap: 1,
-                          pb: 1,
-                          borderBottom: `1px solid ${brand.line}`,
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontFamily: fonts.display,
-                            color: brand.goldInk,
-                            fontSize: "0.82rem",
-                          }}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </Typography>
-                        <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
-                          {funcion}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Stack>
-                </AccordionDetails>
-              </Accordion>
+              <Box sx={{ mt: 3, borderTop: `1px solid ${brand.lineStrong}` }}>
+                {FUNCIONES_CONSEJO.map((funcion, index) => (
+                  <Box
+                    key={funcion}
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: "26px 1fr",
+                      gap: 1,
+                      py: 1.5,
+                      borderBottom: `1px solid ${brand.line}`,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFamily: fonts.display,
+                        color: brand.goldInk,
+                        fontSize: "0.82rem",
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </Typography>
+                    <Typography sx={{ color: brand.muted, fontSize: "0.82rem", lineHeight: 1.6 }}>
+                      {funcion}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
             </Grid>
 
             <Grid
@@ -203,7 +189,7 @@ export default function ConsejoPage() {
               </Typography>
 
               <Typography variant="h2" sx={{ color: brand.primaryDeep, fontSize: { xs: "1.9rem", md: "2.5rem" } }}>
-                Seis comisiones especializadas
+                Comisiones especializadas
               </Typography>
 
               <Typography sx={{ mt: 2, color: brand.muted, fontSize: "0.94rem", lineHeight: 1.75 }}>

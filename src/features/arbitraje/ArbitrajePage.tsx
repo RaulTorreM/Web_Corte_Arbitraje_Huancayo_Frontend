@@ -65,7 +65,7 @@ export default function ArbitrajePage() {
 
       <PageHero
         kicker="Mecanismo de solución de controversias"
-        title="Arbitraje administrado, de principio a fin"
+        title="Arbitraje administrado de principio a fin"
         subtitle="La Corte organiza y administra el arbitraje: recibe la solicitud, designa o confirma árbitros, controla los plazos, liquida los gastos y notifica el laudo. La decisión de la controversia corresponde al tribunal arbitral."
         crumbs={[{ label: "Arbitraje" }]}
         image={MEDIA.arbitraje}

@@ -111,6 +111,8 @@ export default function DocumentosPage() {
             ))}
           </Grid>
 
+          
+
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={1.5}
@@ -120,6 +122,33 @@ export default function DocumentosPage() {
               alignItems: { xs: "flex-start", sm: "center" },
               justifyContent: "space-between",
               borderTop: `1px solid ${brand.lineStrong}`,
+            }}
+          >
+            <Typography
+            sx={{
+              mt: 2,
+              color: brand.muted,
+              fontSize: "0.76rem",
+              lineHeight: 1.65,
+              fontStyle: "italic",
+            }}
+          >
+            (*Aprobado con Resolución Nro …… por el Consejo Directivo de la Cámara de Comercio y Producción de Huancayo y de la Región Junín)
+          </Typography>
+
+            
+         
+          </Stack>
+
+           <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            sx={{
+              mt: 0,
+              py: 2.2,
+              alignItems: { xs: "flex-start", sm: "center" },
+              justifyContent: "space-between",
+
             }}
           >
             <Typography
@@ -143,7 +172,9 @@ export default function DocumentosPage() {
             >
               Contactar a la Corte
             </Button>
-          </Stack>
+            </Stack>
+
+          
         </Container>
       </Box>
 

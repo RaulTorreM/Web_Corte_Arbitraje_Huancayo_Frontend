@@ -24,6 +24,10 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Consejo Directivo", to: "/quienes-somos/consejo-directivo" },
       { label: "Consejo Superior", to: "/quienes-somos/consejo" },
       { label: "Equipo de trabajo", to: "/quienes-somos/equipo" },
+      {
+        label: "Licencia de funcionamiento",
+        to: "/quienes-somos/certificaciones/licencia-funcionamiento",
+      },
       { label: "Certificaciones", to: "/quienes-somos/certificaciones" },
     ],
   },

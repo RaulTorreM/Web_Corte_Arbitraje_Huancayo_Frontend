@@ -1,13 +1,18 @@
+import { useState } from "react";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import PageMeta from "../../components/common/PageMeta";
 import PageHero from "../../components/common/PageHero";
 import SectionSubnav from "../../components/common/SectionSubnav";
 import SectionHeading from "../../components/common/SectionHeading";
 import DocumentCard from "../../components/common/DocumentCard";
+import PdfViewerDialog from "../../components/common/PdfViewerDialog";
 import CtaBand from "../../components/common/CtaBand";
 import { brand, fonts } from "../../theme/brand";
 import { JPRD_SUBNAV } from "../../data/navigation";
-import { documentosPorCategoria } from "../../data/documentos";
+import {
+  DOCUMENTOS_INSTITUCIONALES,
+  type Documento,
+} from "../../data/documentos";
 import { MEDIA } from "../../data/media";
 
 const ESTRUCTURA = [
@@ -42,7 +47,8 @@ const ESTRUCTURA = [
 ];
 
 export default function JprdReglamentoPage() {
-  const documentos = documentosPorCategoria("jprd");
+  const [selected, setSelected] = useState<Documento | null>(null);
+  const documentos = DOCUMENTOS_INSTITUCIONALES;
 
   return (
     <>
@@ -67,16 +73,16 @@ export default function JprdReglamentoPage() {
       <Box component="section" sx={{ py: { xs: 5, md: 7 }, backgroundColor: brand.whiteSoft }}>
         <Container>
           <SectionHeading
-            kicker="Documentos en borrador"
-            title="Estructura prevista del reglamento"
-            subtitle="El documento en elaboración desarrollará la instalación de la Junta, la designación de adjudicadores, la presentación de consultas y disputas, y el régimen de decisiones."
+            kicker="Documentos institucionales"
+            title="Reglamento, estatuto y código de ética"
+            subtitle="Los tres documentos institucionales actuales de la Corte, disponibles para consulta y descarga."
             sx={{ mb: 3 }}
           />
 
-          <Grid container spacing={{ xs: 3, md: 4 }}>
+          <Grid container spacing={{ xs: 4, md: 5 }}>
             {documentos.map((documento) => (
-              <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 3 }}>
-                <DocumentCard documento={documento} />
+              <Grid key={documento.id} size={{ xs: 12, sm: 6, md: 4 }}>
+                <DocumentCard documento={documento} onOpen={setSelected} />
               </Grid>
             ))}
           </Grid>
@@ -142,6 +148,13 @@ export default function JprdReglamentoPage() {
         primaryTo="/contacto"
         secondaryLabel="Ver aranceles"
         secondaryTo="/jprd/aranceles"
+      />
+
+      <PdfViewerDialog
+        open={Boolean(selected)}
+        title={selected?.titulo ?? ""}
+        url={selected?.url ?? ""}
+        onClose={() => setSelected(null)}
       />
     </>
   );
