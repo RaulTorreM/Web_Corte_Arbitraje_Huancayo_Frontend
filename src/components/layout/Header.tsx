@@ -2,7 +2,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import {
   AppBar,
   Box,
-  Button,
   Divider,
   Drawer,
   IconButton,
@@ -30,6 +29,7 @@ import {
   type NavItem,
 } from "../../data/navigation";
 import BrandMark from "../common/BrandMark";
+import MesaDePartesButton from "../common/MesaDePartesButton";
 import SectionSearch from "../common/SectionSearch";
 
 /* ------------------------------------------------------------------ */
@@ -216,7 +216,7 @@ export default function Header() {
       {/* BARRA DE CONTACTO SUPERIOR */}
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "none", md: "flex" },
           backgroundColor: brand.primaryDark,
           boxShadow: "inset 0 -1px 0 rgba(255,255,255,0.14)",
         }}
@@ -300,7 +300,7 @@ export default function Header() {
       <Box
         sx={{
           width: "100%",
-          px: { xs: 2, sm: 2.5, md: 3, lg: 3.5, xl: 5 },
+          px: { xs: 2.5, sm: 2.5, md: 3, lg: 3.5, xl: 5 },
         }}
       >
         <Toolbar
@@ -354,7 +354,7 @@ export default function Header() {
           {/* ACCIONES */}
           <Stack
             direction="row"
-            spacing={{ xs: 0.7, md: 1 }}
+            spacing={{ xs: 1.1, md: 1 }}
             sx={{
               alignItems: "center",
               flexShrink: 0,
@@ -363,40 +363,9 @@ export default function Header() {
               zIndex: 2,
             }}
           >
-            <Button
-              variant="contained"
-              sx={{
-                display: { xs: "none", md: "inline-flex" },
-                minWidth: 0,
-                px: { md: 2, xl: 2.5 },
-                py: 1.15,
-                fontSize: "1.05rem",
-                fontWeight: 700,
-                letterSpacing: "0.01em",
-                lineHeight: 1.3,
-                whiteSpace: "nowrap",
-                cursor: "default",
-                borderRadius: "4px",
-                color: "#071F3A",
-                backgroundColor: "#E0AD19",
-                border: "1px solid #F0C94F",
-                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.15)",
-                transition:
-                  "background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease",
-                "&:hover": {
-                  backgroundColor: "#F0C443",
-                  color: "#071F3A",
-                  boxShadow: "0 3px 8px rgba(0, 0, 0, 0.2)",
-                  transform: "translateY(-1px)",
-                },
-                "&:focus-visible": {
-                  outline: "2px solid #F7D875",
-                  outlineOffset: "3px",
-                },
-              }}
-            >
-              Mesa de Partes
-            </Button>
+            <MesaDePartesButton
+              sx={{ display: { xs: "none", md: "inline-flex" } }}
+            />
 
             <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
               <SectionSearch compact />
@@ -543,6 +512,7 @@ export default function Header() {
                               lineHeight: 1.35,
                               letterSpacing: "0.02em",
                               textTransform: "uppercase",
+                              paddingLeft:1.5
                             },
                           },
                         }}
@@ -569,22 +539,7 @@ export default function Header() {
 
             {/* ACCIONES Y CONTACTO MÓVIL */}
             <Stack spacing={1.5} sx={{ pt: 1 }}>
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{
-                  py: 1.2,
-                  borderRadius: "3px",
-                  fontWeight: 700,
-                  backgroundColor: brand.gold,
-                  color: brand.primaryDeep,
-                  "&:hover": {
-                    backgroundColor: brand.goldBright,
-                  },
-                }}
-              >
-                Mesa de Partes
-              </Button>
+              <MesaDePartesButton fullWidth />
 
               <Stack spacing={1.5} sx={{ pt: 0.5 }}>
                 <Box

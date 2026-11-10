@@ -15,6 +15,7 @@ export const SITE = {
   url: "https://arbitraje.camarahuancayo.com.pe",
   mainSiteUrl: "https://camarahuancayo.com.pe",
   mainSiteLabel: "Cámara de Comercio de Huancayo",
+  mesaDePartesUrl: "https://csa.camarahuancayo.com.pe/",
 
   contact: {
     // Datos de prueba: reemplazar por los canales oficiales de la Corte.
