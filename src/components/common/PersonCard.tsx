@@ -53,7 +53,7 @@ export default function PersonCard({
       <Box
         sx={{
           width: "100%",
-          aspectRatio: persona.foto ? "4 / 5" : "1 / 1",
+          aspectRatio: "4 / 5",
           overflow: "hidden",
           backgroundColor: brand.primaryDeep,
         }}

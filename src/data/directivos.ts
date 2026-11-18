@@ -14,9 +14,8 @@ export type Persona = {
 /**
  * Composición del Consejo Superior de Arbitraje.
  *
- * Los seis miembros titulares fueron proporcionados por la institución. Algunas
- * fotografías quedan pendientes; PersonCard muestra las iniciales mientras
- * tanto. El DNI no se publica en el sitio.
+ * Los seis miembros titulares fueron proporcionados por la institución. El DNI
+ * no se publica en el sitio.
  */
 export const CONSEJO: Persona[] = [
   {
@@ -61,19 +60,28 @@ export const CONSEJO: Persona[] = [
     nombre: "Diego Fernando García Vizcarra",
     cargo: "Consejero",
     bio: "Abogado",
+    foto: "/consejo-superior/DIEGO_FERNANDO_GARCIA_VIZCARRA.webp",
+    uniformSuit: true,
   },
   {
     id: "c-06",
-     nombre: "Alicia Eugenia Peña Olano",
+    nombre: "Alicia Eugenia Peña Olano",
     cargo: "Consejera",
     bio: "Abogada",
+    foto: "/consejo-superior/ALICIA_EUGENIA_PENA_OLANO.webp",
   },
 ];
 
 
-// FALTAN DATOS REALES: el campo `nombre` usa un texto de ejemplo para
-// identificar que la composición oficial aún no se ha publicado.
+// Equipo de trabajo de la Secretaría General y áreas de apoyo.
 export const EQUIPO: Persona[] = [
+  {
+    id: "e-03",
+    nombre: "Klaus Castro Pimentel",
+    cargo: "Coordinación Administrativa",
+    bio: "Coordina la gestión administrativa y operativa de la Corte, velando por el adecuado desarrollo de los procedimientos arbitrales.",
+    foto: "/equipo/KLAUS_CASTRO_PIMENTEL.webp",
+  },
   {
     id: "e-01",
     nombre: "Patricia Palomino Cortijo",
@@ -86,12 +94,7 @@ export const EQUIPO: Persona[] = [
     nombre: "Luis Enrique Ramos Vivas",
     cargo: "Encargado de Secretaría de Consejo",
     bio: "Coordina las sesiones del Consejo Superior, lleva las actas y verifica el cumplimiento de sus decisiones.",
-  },
-  {
-    id: "e-03",
-    nombre: "Klaus Castro Pimentel",
-    cargo: "Coordinación Administrativa",
-    bio: "Coordina la gestión administrativa y operativa de la Corte, velando por el adecuado desarrollo de los procedimientos arbitrales.",
+    foto: "/equipo/LUIS_ENRIQUE_RAMOS_VIVAS.webp",
   },
   {
     id: "e-04",
